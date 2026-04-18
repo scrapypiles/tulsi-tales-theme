@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "ayus-policy",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

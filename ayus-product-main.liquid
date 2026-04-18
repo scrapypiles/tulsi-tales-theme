@@ -1,0 +1,418 @@
+
+<div style="background-color: #ffffff; width: 100%;">
+<section id="MainProduct-{{ section.id }}" class="ayus-product-section" data-section="{{ section.id }}">
+  <div class="ayus-product-container">
+    
+    <!-- Left Column: The Imagery (Thumbnails + Main Image) -->
+    <div class="tt-left-column">
+      <div class="tt-product-media-gallery">
+      {% if product.media.size > 1 %}
+        <div class="tt-thumbnail-strip">
+          {% for media in product.media %}
+            <div class="tt-thumb" onclick="changeMainImage('{{ media | img_url: '1200x' }}')">
+              <img src="{{ media | img_url: '150x' }}" alt="{{ media.alt | escape }}">
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="tt-main-image-container">
+        {%- if product.media.size > 0 -%}
+          <div class="tt-main-image-zoom">
+            <img id="tt-primary-image" src="{{ product.featured_media | img_url: '1200x' }}" alt="{{ product.title | escape }}" loading="lazy">
+          </div>
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'ayus-placeholder-svg' }}
+        {%- endif -%}
+      </div>
+    </div>
+
+      <!-- Moved Description -->
+      <div class="ayus-product-description rte" style="margin-top: 40px;">
+        {{ product.description }}
+      </div>
+    </div>
+
+    <!-- Right Column: The Narrative & Commerce -->
+    <div class="ayus-product-info-wrapper">
+      
+      <!-- Brand & Title -->
+      <div class="ayus-product-header">
+        {%- if product.metafields.custom.brand_name -%}
+          <p class="ayus-brand-name">{{ product.metafields.custom.brand_name }}</p>
+        {%- else -%}
+          <p class="ayus-brand-name">{{ product.vendor }}</p>
+        {%- endif -%}
+        
+        <h1 class="ayus-product-title">{{ product.title | split: '-' | last | strip }}</h1>
+        
+        <!-- 1: Short Description / Benefits Hook -->
+        {%- if product.metafields.custom.benefits != blank -%}
+          {%- assign benefit_text = product.metafields.custom.benefits | strip_html | strip_newlines -%}
+          {%- assign sentences = benefit_text | split: '.' -%}
+          {%- assign short_desc = '' -%}
+          {%- for sentence in sentences limit: 2 -%}
+            {%- assign trimmed = sentence | strip -%}
+            {%- if trimmed != blank -%}
+              {%- assign short_desc = short_desc | append: trimmed | append: '.' -%}
+            {%- endif -%}
+          {%- endfor -%}
+          <p class="ayus-product-subtitle">{{ short_desc | strip }}</p>
+        {%- endif -%}
+        
+        <!-- Pricing & Reviews Wrapper (Purearth Style) -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 0; border-bottom: none;">
+          
+          <!-- Pricing -->
+          <div class="ayus-price-block" style="margin: 0; padding: 0; display: flex; align-items: baseline;">
+            <span class="ayus-regular-price" style="font-size: 20px; font-family: var(--font-body); letter-spacing: 0.05em; color: var(--color-text);">{{ product.price | money_with_currency }}</span>
+            <span style="font-size: 11px; color: #888; margin-left: 10px; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.1em;">(Inclusive of taxes)</span>
+          </div>
+          
+          <!-- Stars Next to Price -->
+          <div class="ayus-pdp-stars" style="margin: 0; display: flex; align-items: center; cursor: pointer;" onclick="document.getElementById('judgeme_product_reviews').scrollIntoView({behavior: 'smooth'})">
+            {{ product.metafields.judgeme.badge }}
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Add to Cart -->
+      <div class="ayus-cart-form">
+        <form action="/cart/add" method="post" enctype="multipart/form-data">
+          
+          
+          
+<!-- 3: Size / Quantity Selector block (Purearth style) -->
+          <div class="tt-commerce-controls" style="display:flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-bottom: 30px; border-bottom: 1px solid var(--color-border); padding-bottom: 25px;">
+            <div class="tt-size-selector" style="width: 100%;">
+              <span class="tt-control-label" style="margin-bottom: 10px; display: block;">Size:</span>
+              <div class="ayus-variant-pills" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                {%- for variant in product.variants -%}
+                  <input type="radio" name="id" value="{{ variant.id }}" id="variant-{{ variant.id }}" class="ayus-variant-radio" {% if variant == product.selected_or_first_available_variant %}checked{% endif %} style="display: none;">
+                  <label for="variant-{{ variant.id }}" class="ayus-variant-label">
+                    {%- if variant.title == 'Default Title' -%}
+                      {%- if product.metafields.custom.pack_size != blank -%}{{ product.metafields.custom.pack_size }}{%- else -%}Standard Size{%- endif -%}
+                    {%- else -%}
+                      {{ variant.title }}
+                    {%- endif -%}
+                  </label>
+                {%- endfor -%}
+              </div>
+            </div>
+            
+            <div class="tt-quantity-selector" style="margin-left: 0; margin-top: 10px;">
+              <span class="tt-control-label" style="margin-right: 15px;">QTY:</span>
+              <div class="tt-qty-box">
+                <button type="button" class="tt-qty-btn tt-qty-minus">−</button>
+                <input type="number" name="quantity" id="tt-qty-input" value="1" min="1">
+                <button type="button" class="tt-qty-btn tt-qty-plus">+</button>
+              </div>
+            
+            </div> <!-- end quantity selector -->
+          </div> <!-- end commerce controls -->
+
+          <div class="ayus-add-to-cart-wrapper">
+            <button type="submit" name="add" class="ayus-add-to-cart-button" style="width: 100%; display: block; text-align: center;">
+              ADD TO BAG
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 3: Non-Accordion Metafields Grid -->
+<div class="tt-meta-grid">
+        {%- if product.metafields.custom.product_type != blank -%}
+          <div class="tt-meta-item">
+            <span class="tt-meta-key">Type</span>
+            <span class="tt-meta-val">{{ product.metafields.custom.product_type }}</span>
+          </div>
+        {%- endif -%}
+        {%- if product.metafields.custom.dietary_preference != blank -%}
+          <div class="tt-meta-item">
+            <span class="tt-meta-key">Dietary</span>
+            <span class="tt-meta-val">{{ product.metafields.custom.dietary_preference }}</span>
+          </div>
+        {%- endif -%}
+        {%- if product.metafields.custom.hsm_code != blank -%}
+          <div class="tt-meta-item">
+            <span class="tt-meta-key">HSN Code</span>
+            <span class="tt-meta-val">{{ product.metafields.custom.hsm_code }}</span>
+          </div>
+        {%- endif -%}
+        {%- if product.metafields.custom.ayush_license != blank -%}
+          <div class="tt-meta-item">
+            <span class="tt-meta-key">AYUSH License</span>
+            <span class="tt-meta-val">{{ product.metafields.custom.ayush_license }}</span>
+          </div>
+        {%- endif -%}
+        {%- if product.metafields.custom.expiry != blank -%}
+          <div class="tt-meta-item">
+            <span class="tt-meta-key">Expiry</span>
+            <span class="tt-meta-val">{{ product.metafields.custom.expiry }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Accordions / Dropdowns -->
+      <div class="ayus-accordions">
+        
+        <!-- Dosage & Usage -->
+        {%- if product.metafields.custom.dosage != blank or product.metafields.custom.usage != blank -%}
+          <details class="tt-filter-group ayus-accordion" style="border-bottom: 1px solid var(--color-border); padding: 5px 0; margin-bottom: 0;">
+            <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
+              DOSAGE & USAGE <span class="tt-icon-toggle"></span>
+            </summary>
+            <div class="tt-filter-content rte" style="padding-bottom: 20px;">
+              {%- if product.metafields.custom.dosage != blank -%}
+                <p><strong>Dosage:</strong> {{ product.metafields.custom.dosage }}</p>
+              {%- endif -%}
+              {%- if product.metafields.custom.usage != blank -%}
+                <p><strong>Usage:</strong> {{ product.metafields.custom.usage }}</p>
+              {%- endif -%}
+            </div>
+          </details>
+        {%- endif -%}
+
+        <!-- 4: Indications & Contraindications -->
+        {%- if product.metafields.custom.indications != blank or product.metafields.custom.contraindications != blank -%}
+          <details class="tt-filter-group ayus-accordion" style="border-bottom: 1px solid var(--color-border); padding: 5px 0; margin-bottom: 0;">
+            <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
+              INDICATIONS & CONTRAINDICATIONS <span class="tt-icon-toggle"></span>
+            </summary>
+            <div class="tt-filter-content rte" style="padding-bottom: 20px;">
+              {%- if product.metafields.custom.indications != blank -%}
+                <p><strong>Indications:</strong> {{ product.metafields.custom.indications }}</p>
+              {%- endif -%}
+              {%- if product.metafields.custom.contraindications != blank -%}
+                <p><strong>Contraindications:</strong> {{ product.metafields.custom.contraindications }}</p>
+              {%- endif -%}
+            </div>
+          </details>
+        {%- endif -%}
+
+        <!-- Ingredients -->
+        {%- if product.metafields.custom.ingredients_botanical != blank or product.metafields.custom.ingredients_sanskrit != blank -%}
+          <details class="tt-filter-group ayus-accordion" style="border-bottom: 1px solid var(--color-border); padding: 5px 0; margin-bottom: 0;">
+            <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
+              OUR INGREDIENTS <span class="tt-icon-toggle"></span>
+            </summary>
+            <div class="tt-filter-content rte" style="padding-bottom: 20px;">
+              {%- if product.metafields.custom.ingredients_botanical != blank -%}
+                <p><strong>Botanical:</strong> {{ product.metafields.custom.ingredients_botanical }}</p>
+              {%- endif -%}
+              {%- if product.metafields.custom.ingredients_sanskrit != blank -%}
+                <p><strong>Sanskrit:</strong> {{ product.metafields.custom.ingredients_sanskrit }}</p>
+              {%- endif -%}
+            </div>
+          </details>
+        {%- endif -%}
+
+        <!-- 5: Dosha Profile -->
+        {%- if product.metafields.custom.dosha_impact != blank or product.metafields.custom.side_effects != blank -%}
+          <details class="tt-filter-group ayus-accordion" style="border-bottom: 1px solid var(--color-border); padding: 5px 0; margin-bottom: 0;">
+            <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
+              DOSHA PROFILE <span class="tt-icon-toggle"></span>
+            </summary>
+            <div class="tt-filter-content rte" style="padding-bottom: 20px;">
+              {%- if product.metafields.custom.dosha_impact != blank -%}
+                <p><strong>Dosha Impact:</strong> {{ product.metafields.custom.dosha_impact }}</p>
+              {%- endif -%}
+              
+            </div>
+          </details>
+        {%- endif -%}
+        
+      </div>
+      
+    </div>
+  </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const radioButtons = document.querySelectorAll('.ayus-variant-radio');
+  radioButtons.forEach(radio => {
+    radio.addEventListener('change', function() {
+      // 1. Update the URL with the selected variant
+      const url = new URL(window.location.href);
+      url.searchParams.set('variant', this.value);
+      window.history.replaceState({}, '', url.toString());
+
+      // 2. Fetch new variant data (price, etc.) dynamically if needed, 
+      // but for now the main priority is ensuring the form submits the right ID.
+      // Since the radio buttons share name="id", Shopify's default form handles the submission automatically!
+    });
+  });
+});
+</script>
+
+</section>
+</div>
+
+<!-- Related Product Recommendations -->
+<section class="tt-recommendations">
+  <div class="ayus-container">
+    <h2 style="text-align: center; font-family: var(--font-heading); margin-bottom: 40px; font-size: 32px;">You May Also Like</h2>
+    <div class="tt-horizontal-carousel" style="display: flex !important; flex-wrap: nowrap !important; overflow-x: auto !important; overflow-y: hidden !important; -webkit-overflow-scrolling: touch !important; scroll-snap-type: x mandatory !important; gap: 30px !important; padding-bottom: 30px !important; margin: 0 -40px !important; padding-left: 40px !important; padding-right: 40px !important; scrollbar-width: none !important;">
+      {% assign related_count = 0 %}
+      {% for related in collections['all'].products %}
+        {% if related.id != product.id and related_count < 8 %}
+          <div class="tt-carousel-card ayus-product-card" style="display: flex !important; flex-direction: column !important; height: 100% !important; flex: 0 0 auto !important; width: calc(25% - 22.5px) !important; min-width: 260px !important; max-width: 320px !important; scroll-snap-align: start !important; border: none !important; background: transparent !important;">
+          <div style="flex-grow: 1; display: flex; flex-direction: column;">
+            
+            <a href="{{ related.url }}" style="position: relative; width: 100%; padding-bottom: 125%; background: #eee; overflow: hidden; margin-bottom: 15px; display: block;">
+              {% if related.featured_media %}
+                <img src="{{ related.featured_media | img_url: '600x' }}" alt="{{ related.title | escape }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+              {% else %}
+                <div class="ayus-placeholder" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+              {% endif %}
+            </a>
+            
+            <div class="ayus-card-info" style="flex-grow: 1; display: flex; flex-direction: column; text-align: center; align-items: center; padding-top: 10px;">
+              <span class="ayus-brand-text" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-accent); margin-bottom: 5px;">{{ related.vendor }}</span>
+              <a href="{{ related.url }}" style="text-decoration: none; color: inherit;">
+                <h3 class="ayus-card-title" style="font-size: 16px; font-family: var(--font-body); margin-bottom: 10px;">{{ related.title | split: '-' | last | strip }}</h3>
+              </a>
+              <p class="ayus-card-price" style="margin-bottom: 0; font-size: 14px;">{{ related.price | money }}</p>
+            </div>
+            
+          </div>
+          
+          <div class="tt-card-action" style="padding: 10px 0 0 0; margin-top: auto; display: flex; flex-direction: column; width: 100%; align-items: center;">
+            <div class="tt-card-rating" style="margin-bottom: 12px; color: #d4af37; display: flex; align-items: center; justify-content: center; gap: 2px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span style="color: #888; font-size: 11px; margin-left: 6px; font-weight: normal; letter-spacing: 0.1em; text-transform: uppercase;">(0 REVIEWS)</span>
+            </div>
+            <button type="button" class="tt-card-add-btn" onclick="event.preventDefault(); addAddonToCart(this, {{ related.selected_or_first_available_variant.id }})">ADD TO BAG</button>
+          </div>
+        </div>
+            {% assign related_count = related_count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+      </div>
+  </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const radioButtons = document.querySelectorAll('.ayus-variant-radio');
+  radioButtons.forEach(radio => {
+    radio.addEventListener('change', function() {
+      // 1. Update the URL with the selected variant
+      const url = new URL(window.location.href);
+      url.searchParams.set('variant', this.value);
+      window.history.replaceState({}, '', url.toString());
+
+      // 2. Fetch new variant data (price, etc.) dynamically if needed, 
+      // but for now the main priority is ensuring the form submits the right ID.
+      // Since the radio buttons share name="id", Shopify's default form handles the submission automatically!
+    });
+  });
+});
+</script>
+
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const zoomContainer = document.querySelector('.tt-main-image-zoom');
+    if(zoomContainer) {
+      zoomContainer.addEventListener('mousemove', function(e) {
+        const primaryImg = document.getElementById('tt-primary-image');
+        if(!primaryImg) return;
+        const rect = zoomContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const xPercent = (x / rect.width) * 100;
+        const yPercent = (y / rect.height) * 100;
+        primaryImg.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+        primaryImg.style.transform = 'scale(1.5)';
+      });
+      zoomContainer.addEventListener('mouseleave', function() {
+        const primaryImg = document.getElementById('tt-primary-image');
+        if(primaryImg) {
+          primaryImg.style.transformOrigin = 'center center';
+          primaryImg.style.transform = 'scale(1)';
+        }
+      });
+    }
+  });
+
+  window.changeMainImage = function(url) {
+    const primaryImg = document.getElementById('tt-primary-image');
+    if(primaryImg) {
+      primaryImg.src = url;
+    }
+  }
+</script>
+
+<!-- Customer Reviews Horizontal Section -->
+<div style="border-top: 1px solid var(--color-border); width: 100%; margin-top: 60px;">
+<div class="ayus-container" style="max-width: 1440px; margin: 0 auto 100px auto; padding: 60px 40px 0 40px;">
+  
+
+  
+  <!-- Judge.me Main Widget Wrapped for Arrows -->
+  <div style="position: relative; max-width: 100%;" id="ayus-reviews-wrapper">
+    <button class="ayus-rev-arrow ayus-rev-prev">&#8592;</button>
+    <div id="judgeme_product_reviews" class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}">
+      {{ product.metafields.judgeme.widget }}
+    </div>
+    <button class="ayus-rev-arrow ayus-rev-next">&#8594;</button>
+  </div>
+
+  <div class="ayus-review-bottom-action">
+    <button id="ayus-trigger-review" class="ayus-btn-elegant">Write a Review</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+       const interval = setInterval(() => {
+          const carousel = document.querySelector('.jdgm-rev-widg__reviews');
+          const realBtn = document.querySelector('.jdgm-write-rev-link');
+          
+          if (carousel) {
+             // Arrows Logic
+             const prev = document.querySelector('.ayus-rev-prev');
+             const next = document.querySelector('.ayus-rev-next');
+             
+             prev.addEventListener('click', () => {
+               carousel.scrollBy({ left: -320, behavior: 'smooth' });
+             });
+             next.addEventListener('click', () => {
+               carousel.scrollBy({ left: 320, behavior: 'smooth' });
+             });
+             
+             // If Judge.me hasn't generated the button yet, keep waiting
+             if (realBtn) {
+               clearInterval(interval);
+               document.getElementById('ayus-trigger-review').addEventListener('click', function(e) {
+                  e.preventDefault();
+                  realBtn.click();
+               });
+             }
+          }
+       }, 500);
+       
+       // Fallback clear
+       setTimeout(() => clearInterval(interval), 10000);
+    });
+  </script>
+
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "Ayus Product Layout",
+  "settings": []
+}
+{% endschema %}
+
+
+
+
+

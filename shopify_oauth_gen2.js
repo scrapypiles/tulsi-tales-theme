@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 
 const SHOP = '5iib0q-9y.myshopify.com'; // Using the internal .myshopify.com identifier
-const API_KEY = process.env.SHOPIFY_API_KEY;
+const API_KEY = '21339c465012434114918a7ddefd838a';
 const SCOPES = 'write_themes,read_themes,write_products,read_products,write_files,read_files,write_content,read_content';
 const REDIRECT_URI = 'http://localhost:8000/callback';
 const STATE = crypto.randomBytes(16).toString('hex');

@@ -1,0 +1,141 @@
+{
+  "sections": {
+    "main": {
+      "type": "ayus-policy-content",
+      "blocks": {
+        "block_intro": {
+          "type": "section",
+          "settings": {
+            "heading": "",
+            "text": "<p>Welcome to Tulsi Tales. By accessing or using our website and purchasing from us, you agree to the following terms. Please read them carefully.</p>"
+          }
+        },
+        "block_1": {
+          "type": "section",
+          "settings": {
+            "heading": "1. Who We Are",
+            "text": "<p>Tulsi Tales is an online marketplace curating authentic Ayurvedic products sourced from India. We are a retail platform — we do not manufacture any of the products we sell.</p>"
+          }
+        },
+        "block_2": {
+          "type": "section",
+          "settings": {
+            "heading": "2. Use of This Website",
+            "text": "<p>By using this website you confirm that you are at least 18 years of age, that the information you provide to us is accurate, and that you will use this site for lawful purposes only.</p><p>You may not use this site to copy, reproduce, or redistribute any content without our written permission, attempt to gain unauthorised access to any part of the site, or engage in any conduct that could damage, disable, or impair the site or interfere with other users.</p>"
+          }
+        },
+        "block_3": {
+          "type": "section",
+          "settings": {
+            "heading": "3. Products and Information",
+            "text": "<p>We take care in curating the products we carry and in providing accurate product information. However:</p>\n    <ul>\n      <li>Product descriptions , ingredients, and images are provided for informational purposes and are subject to change by the manufacturer.</li>\n      <li>We do our best  to ensure accuracy but cannot guarantee that all product information is complete, current, or error-free at all times.</li>\n      <li>We reserve the right  to limit quantities, discontinue products, or refuse orders at our discretion.</li>\n    </ul>"
+          }
+        },
+        "block_4": {
+          "type": "section",
+          "settings": {
+            "heading": "4. Health and Medical Disclaimer",
+            "text": "<p>This is important. Please read carefully.</p><p>The products sold on Tulsi Tales are not intended to diagnose, treat, cure, or prevent any disease or medical condition. The information provided on this website — including product descriptions, ingredient information, and any educational content — is for general informational purposes only and does not constitute medical advice.</p><p>Ayurvedic products work best when matched to the right individual through proper diagnosis. We strongly recommend consulting a qualified Ayurvedic doctor or practitioner before purchasing or using any product, particularly if you are addressing a specific health concern.</p><p>If you are pregnant, breastfeeding, managing a medical condition, or taking prescription medication, consult your doctor before using any product purchased from this site.</p><p>Do not delay seeking professional medical advice because of something you have read on this website.</p>"
+          }
+        },
+        "block_5": {
+          "type": "section",
+          "settings": {
+            "heading": "5. Orders and Payment",
+            "text": "<p>When you place an order on Tulsi Tales you are making an offer to purchase. We reserve the right to accept or decline any order.</p><p>Once your order is confirmed you will receive an email confirmation. This confirmation does not guarantee availability — in the rare event that a product is out of stock after your order is placed, we will notify you promptly and offer a refund or alternative.</p><p>All prices are listed in the applicable currency at checkout and are inclusive or exclusive of taxes as indicated. We reserve the right to change prices at any time without notice, but changes will not affect orders already confirmed.</p><p>Payment is processed securely at checkout. We do not store your payment details.</p>"
+          }
+        },
+        "block_6": {
+          "type": "section",
+          "settings": {
+            "heading": "6. Shipping and Delivery",
+            "text": "<p>We ship within India and internationally. Shipping timelines and costs are displayed at checkout and vary by location.</p><p>We do our best to meet estimated delivery times but cannot guarantee them. Delays caused by customs, courier services, or circumstances outside our control are not our responsibility.</p><p>For international orders, you are responsible for any import duties, customs fees, or taxes levied by your country. These are not included in our pricing.</p><p>Risk of loss and title for products pass to you upon delivery to the carrier.</p>"
+          }
+        },
+        "block_7": {
+          "type": "section",
+          "settings": {
+            "heading": "7. Returns and Refunds",
+            "text": "<p>Due to the nature of wellness and consumable products, we are only able to accept returns in the following circumstances:</p>\n    <ul>\n      <li>The product arrived damaged or defective.</li>\n      <li>The wrong product was delivered.</li>\n      <li>The product is significantly different from its description on our website.</li>\n    </ul>\n    <p>To initiate a return , contact us at tulsitales@gmail.com within 7 days of receiving your order. Please include your order number and a photograph of the issue.</p><p>We do not accept returns on opened products, products returned without prior authorisation, or products returned outside the 7-day window.</p><p>Refunds, where applicable, will be processed within 10 business days of us receiving and verifying the return.</p>"
+          }
+        },
+        "block_8": {
+          "type": "section",
+          "settings": {
+            "heading": "8. Intellectual Property",
+            "text": "<p>All content on this website — including text, images, logos, and design — is the property of Tulsi Tales and is protected by applicable intellectual property laws. You may not use, reproduce, or distribute any content from this site without our express written permission.</p>"
+          }
+        },
+        "block_9": {
+          "type": "section",
+          "settings": {
+            "heading": "9. Third Party Links",
+            "text": "<p>Our website may contain links to third party websites for reference or convenience. We are not responsible for the content, accuracy, or practices of any third party site. A link does not constitute an endorsement.</p>"
+          }
+        },
+        "block_10": {
+          "type": "section",
+          "settings": {
+            "heading": "10. Limitation of Liability",
+            "text": "<p>To the fullest extent permitted by law, Tulsi Tales shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of this website or any products purchased through it.</p><p>Our total liability to you for any claim arising from a purchase shall not exceed the amount you paid for the product in question.</p><p>Nothing in these terms limits our liability for fraud, death, or personal injury caused by our negligence.</p>"
+          }
+        },
+        "block_11": {
+          "type": "section",
+          "settings": {
+            "heading": "11. Privacy",
+            "text": "<p>Your use of this website is also governed by our Privacy Policy, which is incorporated into these terms by reference. Please review it to understand how we collect, use, and protect your information.</p>"
+          }
+        },
+        "block_12": {
+          "type": "section",
+          "settings": {
+            "heading": "12. Changes to These Terms",
+            "text": "<p>We may update these terms from time to time. The most current version will always be posted on this page with the date of last update. Continued use of the website after changes are posted constitutes your acceptance of the updated terms.</p>"
+          }
+        },
+        "block_13": {
+          "type": "section",
+          "settings": {
+            "heading": "13. Governing Law",
+            "text": "<p>These terms are governed by the laws of India. Any disputes arising from these terms or your use of this website shall be subject to the exclusive jurisdiction of the courts of India.</p>"
+          }
+        },
+        "block_14": {
+          "type": "section",
+          "settings": {
+            "heading": "14. Contact Us",
+            "text": "<p>If you have any questions about these terms, please contact us at:</p><ul>\n        <li><strong>Email:</strong> tulsitales@gmail.com</li>\n        <li><strong>Instagram:</strong> @tulsitales</li>\n      </ul><p>By using this website and placing an order, you confirm that you have read, understood, and agree to these Terms of Service.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_intro",
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4",
+        "block_5",
+        "block_6",
+        "block_7",
+        "block_8",
+        "block_9",
+        "block_10",
+        "block_11",
+        "block_12",
+        "block_13",
+        "block_14"
+      ],
+      "settings": {
+        "tagline": "Tulsi Tales",
+        "subtitle": "Last updated: April 2026",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

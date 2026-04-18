@@ -1,0 +1,252 @@
+{%- style -%}
+  .contact-banner {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #F7F5F0;
+    {% if section.settings.banner_image %}
+      background-image: url('{{ section.settings.banner_image | img_url: '2000x' }}');
+    {% endif %}
+  }
+  .contact-banner::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: {{ section.settings.overlay_color | default: '#000000' }};
+    opacity: {{ section.settings.overlay_opacity | default: 0 | divided_by: 100.0 }};
+  }
+  .contact-banner-content {
+    position: relative;
+    z-index: 1;
+    color: {{ section.settings.text_color | default: '#2C2A29' }};
+    padding: 0 20px;
+  }
+  .contact-tagline {
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+    display: block;
+    margin-bottom: 15px;
+  }
+  .contact-title {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    margin: 0 0 15px 0;
+    font-weight: normal;
+  }
+  
+  .ayus-contact-section {
+    padding: 80px 20px;
+    background-color: #ffffff;
+  }
+  .ayus-contact-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+  }
+  .ayus-contact-info {
+    flex: 1;
+    min-width: 300px;
+  }
+  .ayus-contact-form-wrapper {
+    flex: 1.5;
+    min-width: 300px;
+    background: #fafafa;
+    padding: 40px;
+    border: 1px solid var(--color-border);
+  }
+  
+  .contact-info-block {
+    margin-bottom: 40px;
+  }
+  .contact-info-block h3 {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    color: var(--color-text);
+    margin-bottom: 10px;
+    font-weight: normal;
+  }
+  .contact-info-block p, .contact-info-block a {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: #555;
+    text-decoration: none;
+    line-height: 1.8;
+  }
+  .contact-info-block a:hover {
+    color: var(--color-accent);
+  }
+  
+  .ayus-form-group {
+    margin-bottom: 20px;
+  }
+  .ayus-form-group label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #888;
+    margin-bottom: 8px;
+  }
+  .ayus-form-group input, .ayus-form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--color-border);
+    font-family: var(--font-body);
+    font-size: 14px;
+    background: #fff;
+    border-radius: 0;
+  }
+  .ayus-form-group input:focus, .ayus-form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+  }
+  
+  .ayus-submit-btn {
+    background-color: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
+    padding: 16px 40px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+  .ayus-submit-btn:hover {
+    background-color: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+  }
+{%- endstyle -%}
+
+<div class="contact-banner">
+  <div class="contact-banner-content">
+    <span class="contact-tagline">{{ section.settings.tagline | default: 'Get in Touch' }}</span>
+    <h1 class="contact-title">{{ page.title }}</h1>
+  </div>
+</div>
+
+<section class="ayus-contact-section">
+  <div class="ayus-contact-container">
+    
+    <!-- Left: Contact Details -->
+    <div class="ayus-contact-info">
+      <div class="contact-info-block">
+        <h3>WhatsApp / Phone</h3>
+        <p><a href="https://wa.me/916300796184" target="_blank">+91 63007 96184</a></p>
+        <p style="font-size: 12px; color: #888; margin-top: 5px;">Available Mon-Fri, 9am - 6pm</p>
+      </div>
+      
+      <div class="contact-info-block">
+        <h3>Email</h3>
+        <p><a href="mailto:tulsitales@gmail.com">tulsitales@gmail.com</a></p>
+        <p style="font-size: 12px; color: #888; margin-top: 5px;">We aim to reply within 24 hours.</p>
+      </div>
+      
+      <div class="contact-info-block">
+        <h3>Instagram</h3>
+        <p><a href="https://instagram.com/tulsitales" target="_blank">@tulsitales</a></p>
+      </div>
+      
+      <div class="contact-info-block" style="margin-top: 60px;">
+        <h3>Customer Support</h3>
+        <p>If you have any questions about your order, shipping, or need Ayurvedic advice on our products, our dedicated support team is here to help.</p>
+      </div>
+    </div>
+    
+    <!-- Right: Contact Form -->
+    <div class="ayus-contact-form-wrapper">
+      <h3 style="font-family: var(--font-heading); font-size: 24px; color: var(--color-text); margin-bottom: 30px; font-weight: normal; text-align: center;">Send us a Message</h3>
+      
+      {%- form 'contact', id: 'AyusContactForm' -%}
+        {%- if form.posted_successfully? -%}
+          <div style="padding: 15px; background: #e6f4ea; border: 1px solid #34a853; color: #188038; margin-bottom: 20px; font-family: var(--font-body); font-size: 14px; text-align: center;">
+            Thanks for reaching out! We'll get back to you soon.
+          </div>
+        {%- elsif form.errors -%}
+          <div style="padding: 15px; background: #fce8e6; border: 1px solid #ea4335; color: #c5221f; margin-bottom: 20px; font-family: var(--font-body); font-size: 14px; text-align: center;">
+            Oops! Please adjust the following:
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <div class="ayus-form-group">
+          <label for="ContactForm-name">Name</label>
+          <input type="text" id="ContactForm-name" name="contact[name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" required>
+        </div>
+        
+        <div class="ayus-form-group">
+          <label for="ContactForm-email">Email</label>
+          <input type="email" id="ContactForm-email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" required>
+        </div>
+        
+        <div class="ayus-form-group">
+          <label for="ContactForm-phone">Phone Number</label>
+          <input type="tel" id="ContactForm-phone" name="contact[phone]" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+        </div>
+        
+        <div class="ayus-form-group">
+          <label for="ContactForm-body">Message</label>
+          <textarea id="ContactForm-body" name="contact[body]" rows="5" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
+        </div>
+        
+        <button type="submit" class="ayus-submit-btn">Send Message</button>
+      {%- endform -%}
+    </div>
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Page",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#2C2A29"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Get in Touch"
+    }
+  ]
+}
+{% endschema %}

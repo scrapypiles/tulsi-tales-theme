@@ -1,0 +1,109 @@
+{
+  "sections": {
+    "main": {
+      "type": "ayus-policy-content",
+      "blocks": {
+        "block_intro": {
+          "type": "section",
+          "settings": {
+            "heading": "",
+            "text": "<p>We want you to feel confident buying from Tulsi Tales. This policy explains clearly what we can and cannot do when something goes wrong with your order.</p>"
+          }
+        },
+        "block_1": {
+          "type": "section",
+          "settings": {
+            "heading": "1. Our Approach",
+            "text": "<p>We are a curated marketplace selling consumable wellness products. Because of the nature of these products — herbs, supplements, oils, and formulations — we are not able to accept returns or offer refunds simply because you changed your mind or the product did not produce the results you expected.</p><p>What we do take seriously is when something is genuinely wrong with your order. If a product arrives damaged, is incorrect, or is significantly misrepresented, we will make it right.</p>"
+          }
+        },
+        "block_2": {
+          "type": "section",
+          "settings": {
+            "heading": "2. When You Are Eligible for a Refund or Replacement",
+            "text": "<p>We will offer a refund or replacement in the following situations:</p>\n    <ul>\n      <li><strong>Damaged on arrival:</strong> If your product arrives broken, leaking, or physically damaged, contact us within 7 days of delivery with a photograph of the damage and your order number. We will arrange a replacement or full refund.</li>\n      <li><strong>Wrong product delivered:</strong> If you receive a product that is different from what you ordered, contact us within 7 days. We will arrange for the correct product to be sent or issue a full refund including shipping costs.</li>\n      <li><strong>Significantly not as described:</strong> If a product is materially different from its description on our website — in ingredients, form, or size — contact us within 7 days and we will review your claim. Where we agree there is a genuine discrepancy, we will offer a refund or replacement.</li>\n    </ul>"
+          }
+        },
+        "block_3": {
+          "type": "section",
+          "settings": {
+            "heading": "3. When We Cannot Offer a Refund",
+            "text": "<p>We are unable to process refunds in the following circumstances:</p>\n    <ul>\n      <li>You changed your mind after purchase.</li>\n      <li>The product did not produce the health or wellness results you expected.  Ayurvedic products work differently for different individuals, and results depend on many factors including diagnosis, constitution, and consistency of use. We strongly recommend consulting a qualified Ayurvedic practitioner before purchasing.</li>\n      <li>The product has been opened , used, or partially consumed, unless it arrived in that condition.</li>\n      <li>You ordered the wrong product.  Please check your order carefully before confirming.</li>\n      <li>The return request is made more than 7 days after delivery.</li>\n      <li>The product was damaged after delivery due to improper storage or handling.</li>\n    </ul>"
+          }
+        },
+        "block_4": {
+          "type": "section",
+          "settings": {
+            "heading": "4. How to Request a Refund",
+            "text": "<p>To raise a refund or replacement request:</p>\n    <ol>\n      <li>Email us at  tulsitales@gmail.com within 7 days of receiving your order.</li>\n      <li>Include your order number , the name of the product, and a clear description of the issue.</li>\n      <li>Attach a photograph  where relevant — for damaged or incorrect products this is required.</li>\n    </ol>\n    <p>We will respond  within 2 business days to let you know whether your request has been approved and what the next steps are.</p>"
+          }
+        },
+        "block_5": {
+          "type": "section",
+          "settings": {
+            "heading": "5. Returns",
+            "text": "<p>In most cases we will not require you to return the product. If we do need the product returned, we will confirm this in our response and provide instructions. We will cover return shipping costs where the fault is ours.</p><p>Do not send anything back without receiving confirmation from us first. Unrequested returns cannot be processed.</p>"
+          }
+        },
+        "block_6": {
+          "type": "section",
+          "settings": {
+            "heading": "6. Refund Processing",
+            "text": "<p>Approved refunds will be processed within 10 business days of our confirmation. Refunds will be issued to the original payment method used at checkout.</p><p>Depending on your bank or payment provider, it may take additional time for the funds to appear in your account. This is outside our control.</p>"
+          }
+        },
+        "block_7": {
+          "type": "section",
+          "settings": {
+            "heading": "7. International Orders",
+            "text": "<p>For international orders, original shipping costs are non-refundable unless the fault is ours — for example, a wrong or damaged product. We are also not able to refund import duties, customs fees, or taxes levied by your country as these are not collected by us.</p><p>If a replacement is being sent for an international order, standard shipping charges may apply.</p>"
+          }
+        },
+        "block_8": {
+          "type": "section",
+          "settings": {
+            "heading": "8. Cancellations",
+            "text": "<p>If you need to cancel an order, contact us at tulsitales@gmail.com as soon as possible. We will do our best to cancel it before it is dispatched.</p><p>If the order has already been dispatched at the time of your cancellation request, we are unable to cancel it. You are welcome to raise a return request once it arrives, subject to the conditions above.</p>"
+          }
+        },
+        "block_9": {
+          "type": "section",
+          "settings": {
+            "heading": "9. A Note on Ayurvedic Products and Results",
+            "text": "<p>Ayurveda is a personalised system of medicine. The same product can work very well for one person and have little effect for another — not because the product is ineffective, but because the match between product and person was not right.</p><p>Effective Ayurvedic treatment depends on an accurate diagnosis of your constitution and current imbalances. Without that, even a well-made, authentic product may not deliver the results you are looking for.</p><p>This is why we consistently recommend consulting a qualified Ayurvedic doctor or practitioner before purchasing — particularly if you are addressing a specific health concern. A proper consultation is the most important step you can take, and it makes everything you buy far more likely to work.</p><p>We are not able to offer refunds on the basis that a product did not produce the expected results, as outcomes are deeply individual and dependent on factors beyond the product itself.</p>"
+          }
+        },
+        "block_10": {
+          "type": "section",
+          "settings": {
+            "heading": "10. Contact",
+            "text": "<p>For any questions about this policy or to raise a request:</p><ul>\n        <li><strong>Email:</strong> tulsitales@gmail.com</li>\n        <li><strong>Instagram:</strong> @tulsitales</li>\n      </ul><p>We aim to respond to all queries within 2 business days.</p><p>This policy applies to all purchases made through the Tulsi Tales website. We reserve the right to update this policy at any time. The current version will always be available on this page.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_intro",
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4",
+        "block_5",
+        "block_6",
+        "block_7",
+        "block_8",
+        "block_9",
+        "block_10"
+      ],
+      "settings": {
+        "tagline": "Tulsi Tales",
+        "subtitle": "Last updated: April 2026",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 40
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

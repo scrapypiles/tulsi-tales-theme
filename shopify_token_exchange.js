@@ -1,7 +1,7 @@
 const https = require('https');
 
 const SHOP = '5iib0q-9y.myshopify.com';
-const API_KEY = process.env.SHOPIFY_API_KEY;
+const API_KEY = '89081a9c354ddfb1d839de7062d40a4f';
 const API_SECRET = process.env.SHOPIFY_API_SECRET;
 const CODE = 'c00f7d3373d33fc26ec99e46e97db3dc';
 
