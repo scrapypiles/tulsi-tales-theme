@@ -1013,9 +1013,7 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   color: var(--color-text);
 }
-.ayus-header {
-  position: relative;
-}
+
 
 .ayus-header { padding: 15px 0; align-items: baseline; }
 
@@ -1111,18 +1109,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 .ayus-mobile-drawer {
   position: fixed;
-  top: 0; left: -100%;
+  top: 0; left: 0;
+  transform: translateX(-100%);
   width: 80%; max-width: 300px;
   height: 100vh;
   background: var(--color-background);
   z-index: 999999;
   box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-  transition: left 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   display: flex;
   flex-direction: column;
 }
 .ayus-mobile-drawer.active {
-  left: 0;
+  transform: translateX(0);
 }
 .ayus-mobile-drawer-header {
   display: flex; justify-content: space-between; align-items: baseline;
@@ -2189,4 +2188,118 @@ details > summary::-webkit-details-marker {
   flex-direction: column !important;
   flex-grow: 1 !important;
   justify-content: flex-end !important;
+}
+
+
+/* ==========================================
+   STATE OF THE ART MOBILE RESPONSIVENESS 
+   ========================================== */
+@media (max-width: 850px) {
+
+  /* 1. Global Container Spacing & Typography Scaling */
+  .ayus-product-section {
+    padding: 30px 15px !important; /* Tighter padding on mobile */
+  }
+  .ayus-container {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+  
+  /* Scale down massive fonts automatically */
+  h1 { font-size: clamp(28px, 6vw, 42px) !important; }
+  h2 { font-size: clamp(24px, 5vw, 36px) !important; }
+  .ayus-product-title { font-size: 28px !important; margin-bottom: 5px !important; line-height: 1.2 !important; }
+  
+  /* 2. Hero Section */
+  .ayus-hero {
+    min-height: 70vh !important;
+  }
+  .tt-hero-content {
+    padding: 0 15px !important;
+  }
+  .tt-hero-content h1 {
+    font-size: clamp(32px, 8vw, 48px) !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* 3. Product Image Optimizations (PDP) */
+  .tt-main-image-zoom {
+    padding-bottom: 110% !important; /* Slightly squarer on mobile so it fits on screen without scrolling down too far */
+    border-radius: 4px !important; 
+  }
+  .tt-main-image-zoom img {
+    padding: 15px !important; /* Maximize the image real estate on mobile instead of 40px padding */
+  }
+  
+  .ayus-product-container {
+    gap: 30px !important; /* Tighten gap between image and text block */
+  }
+  
+  /* 4. "You May Also Like" & "Featured Collection" Swipe Grids */
+  .ayus-featured-collection .ayus-grid,
+  .tt-horizontal-carousel {
+    margin: 0 -15px !important; /* Bleed to edge */
+    padding-left: 15px !important; 
+    padding-right: 15px !important;
+    gap: 15px !important;
+    scroll-padding-left: 15px !important;
+  }
+  .ayus-featured-collection .ayus-product-card,
+  .tt-horizontal-carousel .tt-carousel-card {
+    min-width: 65vw !important; /* Take up 65% of screen so the next card peeks in */
+    max-width: 75vw !important;
+  }
+
+  /* 5. Touch Targets (Minimum 48px for Apple Human Interface Guidelines) */
+  .ayus-btn, .ayus-btn-outline, .ayus-add-to-cart-button, .tt-card-add-btn {
+    min-height: 48px !important;
+    width: 100% !important; /* Full width buttons on mobile */
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+  .ayus-accordion-header, .tt-filter-header {
+    padding: 20px 0 !important;
+    min-height: 48px !important; /* Ensure easy tapping */
+  }
+  
+  /* 6. Review Carousel (Judge.me) */
+  .jdgm-rev-widg__reviews {
+    margin: 30px -15px 0 !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    scroll-padding-left: 15px !important;
+    gap: 15px !important;
+  }
+  .jdgm-rev {
+    min-width: 80vw !important; /* Show one review at a time clearly on mobile */
+    padding: 20px !important;
+  }
+  .ayus-rev-prev { left: -5px !important; }
+  .ayus-rev-next { right: -5px !important; }
+  
+  /* 7. Footer Stacking */
+  .site-footer {
+    padding: 60px 15px 30px !important;
+  }
+  .site-footer > div {
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+  .site-footer > div > div {
+    margin-bottom: 40px !important;
+  }
+  
+  /* 8. Contact Page & Legal Pages */
+  .ayus-contact-container {
+    flex-direction: column !important;
+    gap: 40px !important;
+  }
+  .ayus-contact-form-wrapper {
+    padding: 20px !important;
+    border: none !important;
+    background: transparent !important;
+  }
+  .policy-banner {
+    height: 250px !important;
+  }
 }
