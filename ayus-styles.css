@@ -1,3 +1,4 @@
+*, *::before, *::after { box-sizing: border-box; }
 :root {
   --color-accent: #4A5D4E; /* Earthy Sage Green */
   --color-accent-dark: #36453A;
@@ -2301,5 +2302,83 @@ details > summary::-webkit-details-marker {
   }
   .policy-banner {
     height: 250px !important;
+  }
+}
+@media (max-width: 850px) {
+  .ayus-product-container {
+    flex-direction: column !important;
+    gap: 30px !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+  }
+  .tt-left-column, .ayus-product-info-wrapper {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .ayus-product-section {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    width: 100% !important;
+    }
+
+}
+
+
+
+/* HARD OVERRIDE FOR PDP MOBILE LAYOUT */
+@media (max-width: 850px) {
+  .ayus-product-section {
+    padding: 20px 15px 40px 15px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important; 
+  }
+  
+  .ayus-product-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 30px !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  .tt-left-column {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  .ayus-product-info-wrapper {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Ensure the text inside doesn't overflow */
+  .ayus-product-title {
+    word-wrap: break-word !important;
+    white-space: normal !important;
+    width: 100% !important;
+  }
+
+  /* Ensure the button doesn't overflow */
+  .ayus-add-to-cart-wrapper,
+  .ayus-add-to-cart-button {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 }
