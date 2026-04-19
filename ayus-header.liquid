@@ -19,8 +19,17 @@
 
     <!-- Logo -->
     <div class="ayus-nav-left desktop-only">
-      {% for block in section.blocks %}
-        <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>{{ block.settings.title }}</a>
+      {% for link in linklists[section.settings.menu].links %}
+        <div class="ayus-nav-item" style="position: relative; display: inline-block;">
+          <a href="{{ link.url }}" class="ayus-nav-link" style="display: flex; align-items: center;">{{ link.title }}{% if link.links != blank %} <svg style="margin-left:5px; width:10px; height:10px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>{% endif %}</a>
+          {% if link.links != blank %}
+            <div class="ayus-dropdown" style="position: absolute; top: 100%; left: 0; background: var(--color-background); border: 1px solid var(--color-border); padding: 15px 20px; min-width: 200px; display: none; flex-direction: column; gap: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); z-index: 100;">
+              {% for childlink in link.links %}
+                <a href="{{ childlink.url }}" style="text-transform: none; letter-spacing: 0.05em; margin: 0; padding: 5px 0;">{{ childlink.title }}</a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
       {% endfor %}
     </div>
     <div class="ayus-logo">
@@ -93,8 +102,17 @@
     </div>
     
     <nav class="ayus-mobile-nav">
-      {% for block in section.blocks %}
-        <a href="{{ block.settings.link }}" class="tt-mobile-nav-link">{{ block.settings.title }}</a>
+      {% for link in linklists[section.settings.menu].links %}
+        <div class="tt-mobile-nav-item">
+          <a href="{{ link.url }}" class="tt-mobile-nav-link" style="display: flex; justify-content: space-between; align-items: center;">{{ link.title }}</a>
+          {% if link.links != blank %}
+            <div class="tt-mobile-dropdown" style="padding-left: 15px; border-left: 1px solid var(--color-border); margin-top: 10px; display: flex; flex-direction: column; gap: 10px;">
+              {% for childlink in link.links %}
+                <a href="{{ childlink.url }}" style="font-family: var(--font-body); font-size: 16px; color: #555; text-decoration: none;">{{ childlink.title }}</a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
       {% endfor %}
     </nav>
   </div>
@@ -116,10 +134,10 @@
   "name": "Header",
   "settings": [
     {
-      "type": "checkbox",
-      "id": "show_announcement",
-      "label": "Show announcement bar",
-      "default": true
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main Menu",
+      "default": "main-menu"
     },
     {
       "type": "text",
@@ -142,43 +160,6 @@
       "label": "Logo height",
       "default": 60
     }
-  ],
-  "blocks": [
-    {
-      "type": "link",
-      "name": "Menu Link",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Link Title",
-          "default": "Menu Item"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link URL"
-        }
-      ]
-    }
-  ],
-  "default": {
-    "blocks": [
-      {
-        "type": "link",
-        "settings": {
-          "title": "All Products",
-          "link": "shopify://collections/all"
-        }
-      },
-      {
-        "type": "link",
-        "settings": {
-          "title": "Our Story",
-          "link": "shopify://pages/our-story"
-        }
-      }
-    ]
-  }
+  ]
 }
 {% endschema %}

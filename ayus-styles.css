@@ -2382,3 +2382,7 @@ details > summary::-webkit-details-marker {
     box-sizing: border-box !important;
   }
 }
+
+/* Desktop Dropdown Hover */
+.ayus-nav-item:hover .ayus-dropdown { display: flex !important; }
+.ayus-dropdown a:hover { color: var(--color-accent) !important; }
