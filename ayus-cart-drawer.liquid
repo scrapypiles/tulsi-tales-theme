@@ -1,0 +1,343 @@
+
+<div id="shopify-section-cart-drawer" class="tt-cart-drawer-wrapper" data-cart-count="{{ cart.item_count }}">
+  <div id="tt-cart-drawer" class="tt-cart-drawer">
+    <div class="tt-cart-overlay" onclick="closeBagDrawer()"></div>
+    <div class="tt-cart-panel">
+      
+      <div class="tt-cart-header">
+        <h2>Your Bag</h2>
+        <button class="tt-cart-close" onclick="closeBagDrawer()">&times;</button>
+      </div>
+      
+      <div class="tt-cart-body" id="tt-cart-body-content">
+        {% if cart.item_count > 0 %}
+          <div class="tt-cart-items">
+            {% assign cart_product_ids = "" %}
+            {% for item in cart.items %}
+              {% assign cart_product_ids = cart_product_ids | append: item.product_id | append: "," %}
+              <div class="tt-cart-item" data-key="{{ item.key }}">
+                <div class="tt-cart-item-img">
+                  {% if item.image %}
+                    <img src="{{ item.image | img_url: '200x' }}" alt="{{ item.title | escape }}">
+                  {% endif %}
+                </div>
+                <div class="tt-cart-item-details">
+                  <h4 class="tt-cart-item-title">{{ item.product.title }}</h4>
+                  {% unless item.variant.title contains 'Default' %}
+                    <p class="tt-cart-variant">{{ item.variant.title }}</p>
+                  {% endunless %}
+                  <p class="tt-cart-price">{{ item.final_line_price | money }}</p>
+                  
+                  <div class="tt-cart-qty-wrapper">
+                    <div class="tt-qty-box tt-cart-qty">
+                      <button type="button" class="tt-qty-btn minus" onclick="changeCartItem(this, '{{ item.key }}', {{ item.quantity | minus: 1 }})">-</button>
+                      <input type="text" value="{{ item.quantity }}" readonly>
+                      <button type="button" class="tt-qty-btn plus" onclick="changeCartItem(this, '{{ item.key }}', {{ item.quantity | plus: 1 }})">+</button>
+                    </div>
+                    <a href="#" class="tt-cart-remove" onclick="event.preventDefault(); changeCartItem(this, '{{ item.key }}', 0)">Remove</a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          
+          <!-- In-Cart Cross-sells / Add-ons -->
+          <div class="tt-cart-addons">
+            <h4 class="tt-addons-title">You May Also Like</h4>
+            <div class="tt-addons-list">
+              {% assign addons_shown = 0 %}
+              {% for addon in collections['all'].products %}
+                {% assign addon_id_str = addon.id | append: "" %}
+                {% unless cart_product_ids contains addon_id_str %}
+                  <div class="tt-addon-item">
+                    <div class="tt-addon-img">
+                      {% if addon.featured_media %}
+                        <img src="{{ addon.featured_media | img_url: '150x' }}" alt="{{ addon.title | escape }}">
+                      {% else %}
+                        <div class="ayus-placeholder" style="width:100%; height:100%;"></div>
+                      {% endif %}
+                    </div>
+                    <div class="tt-addon-info">
+                      <p class="tt-addon-title">{{ addon.title | split: '-' | last | strip | truncate: 25 }}</p>
+                      <p class="tt-addon-price">{{ addon.price | money }}</p>
+                    </div>
+                    <div class="tt-addon-action">
+                      <button type="button" class="tt-addon-add-btn" onclick="addAddonToCart(this, {{ addon.selected_or_first_available_variant.id }})">Add</button>
+                    </div>
+                  </div>
+                  {% assign addons_shown = addons_shown | plus: 1 %}
+                  {% if addons_shown >= 4 %}{% break %}{% endif %}
+                {% endunless %}
+              {% endfor %}
+            </div>
+          </div>
+
+        {% else %}
+          <div class="tt-cart-empty">
+            <p>Your bag is currently empty.</p>
+            <a href="/collections/all" class="ayus-btn" style="display:inline-block; background-color: var(--color-accent); color: #fff; border-color: var(--color-accent);" onclick="closeBagDrawer()">Continue Shopping</a>
+          </div>
+          
+          <!-- Add-ons even when empty -->
+          <div class="tt-cart-addons" style="margin-top: 50px;">
+            <h4 class="tt-addons-title">Discover Favorites</h4>
+            <div class="tt-addons-list">
+              {% assign addons_shown = 0 %}
+              {% for addon in collections['all'].products %}
+                <div class="tt-addon-item">
+                  <div class="tt-addon-img">
+                    {% if addon.featured_media %}
+                      <img src="{{ addon.featured_media | img_url: '150x' }}" alt="{{ addon.title | escape }}">
+                    {% else %}
+                      <div class="ayus-placeholder" style="width:100%; height:100%;"></div>
+                    {% endif %}
+                  </div>
+                  <div class="tt-addon-info">
+                    <p class="tt-addon-title">{{ addon.title | split: '-' | last | strip | truncate: 25 }}</p>
+                    <p class="tt-addon-price">{{ addon.price | money }}</p>
+                  </div>
+                  <div class="tt-addon-action">
+                    <button type="button" class="tt-addon-add-btn" onclick="addAddonToCart(this, {{ addon.selected_or_first_available_variant.id }})">Add</button>
+                  </div>
+                </div>
+                {% assign addons_shown = addons_shown | plus: 1 %}
+                {% if addons_shown >= 4 %}{% break %}{% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+      
+      {% if cart.item_count > 0 %}
+        <div class="tt-cart-footer">
+          <div class="tt-cart-subtotal">
+            <span>Subtotal</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          <p class="tt-cart-tax-note">Taxes and shipping calculated at checkout</p>
+          <form action="/cart" method="post" id="cart-drawer-form" novalidate>
+            <button type="submit" name="checkout" value="Checkout" class="ayus-btn tt-checkout-btn" style="width:100%; background-color: var(--color-accent); color: #fff; border-color: var(--color-accent);">Proceed to Checkout</button>
+          </form>
+        </div>
+      {% endif %}
+      
+    </div>
+  </div>
+</div>
+
+<style>
+  .tt-cart-drawer {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 99999; pointer-events: none; opacity: 0; visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .tt-cart-drawer.is-open { pointer-events: auto; opacity: 1; visibility: visible; }
+  .tt-cart-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+  }
+  .tt-cart-panel {
+    position: absolute; top: 0; right: -450px;
+    width: 400px; max-width: 90vw; height: 100%;
+    background: var(--color-background);
+    box-shadow: -2px 0 15px rgba(0,0,0,0.1);
+    transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex; flex-direction: column;
+  }
+  .tt-cart-drawer.is-open .tt-cart-panel { right: 0; }
+  .tt-cart-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 30px; border-bottom: 1px solid var(--color-border);
+  }
+  .tt-cart-header h2 { font-family: var(--font-heading); font-size: 24px; margin: 0; }
+  .tt-cart-close { background: transparent; border: none; font-size: 28px; cursor: pointer; color: var(--color-text); }
+  .tt-cart-body { flex-grow: 1; overflow-y: auto; padding: 20px 30px; }
+  .tt-cart-item { display: flex; gap: 20px; margin-bottom: 25px; }
+  .tt-cart-item-img { width: 80px; flex-shrink: 0; }
+  .tt-cart-item-img img { width: 100%; height: auto; border: 1px solid var(--color-border); }
+  .tt-cart-item-details { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+  .tt-cart-item-title { font-family: var(--font-heading); font-size: 16px; margin: 0 0 5px 0; }
+  .tt-cart-variant { font-size: 12px; color: #666; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.05em; }
+  .tt-cart-price { font-size: 14px; font-weight: bold; margin: 0 0 10px 0; }
+  .tt-cart-qty-wrapper { display: flex; align-items: center; justify-content: space-between; }
+  .tt-cart-qty { height: 30px; }
+  .tt-cart-qty input { width: 30px; height: 100%; border: none; text-align: center; border-left: 1px solid var(--color-border); border-right: 1px solid var(--color-border); font-size: 12px; }
+  .tt-cart-qty button { width: 25px; height: 100%; font-size: 14px; }
+  .tt-cart-remove { font-size: 11px; text-transform: uppercase; color: #888; text-decoration: underline; }
+  .tt-cart-footer { padding: 30px; border-top: 1px solid var(--color-border); background: #fff; }
+  .tt-cart-subtotal { display: flex; justify-content: space-between; font-size: 18px; font-family: var(--font-heading); margin-bottom: 10px; }
+  .tt-cart-tax-note { font-size: 12px; color: #666; margin-bottom: 20px; text-align: center; }
+  .tt-cart-empty { text-align: center; padding-top: 50px; }
+  .tt-cart-empty p { font-size: 16px; color: #555; margin-bottom: 20px; }
+  
+  /* Add-ons Styles */
+  .tt-cart-addons { margin-top: 30px; border-top: 1px solid var(--color-border); padding-top: 25px; }
+  .tt-addons-title { font-family: var(--font-heading); font-size: 15px; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text); }
+  
+  .tt-addons-list { 
+    display: flex; 
+    gap: 15px; 
+    overflow-x: auto; 
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+  }
+  .tt-addons-list::-webkit-scrollbar { height: 6px; }
+  .tt-addons-list::-webkit-scrollbar-thumb { background: var(--color-accent); border-radius: 6px; }
+  .tt-addons-list::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 6px; }
+  
+  .tt-addon-item { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    width: 110px; 
+    flex-shrink: 0; 
+    padding: 12px; 
+    background: #fff; 
+    border: 1px solid var(--color-border); 
+    text-align: center;
+  }
+  
+  .tt-addon-img { width: 100%; aspect-ratio: 1; margin-bottom: 10px; }
+  .tt-addon-img img { width: 100%; height: 100%; object-fit: cover; display: block; border: 1px solid var(--color-border); }
+  
+  .tt-addon-info { flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start; margin-bottom: 10px; width: 100%; }
+  .tt-addon-title { font-family: var(--font-body); font-size: 12px; font-weight: bold; margin: 0 0 5px 0; color: var(--color-text); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 31px; }
+  .tt-addon-price { font-size: 12px; margin: 0; color: var(--color-accent); font-weight: bold; }
+  
+  .tt-addon-action { width: 100%; margin-top: auto; }
+  .tt-addon-add-btn { width: 100%; background: var(--color-accent); color: white; border: none; padding: 8px 10px; font-size: 10px; text-transform: uppercase; cursor: pointer; letter-spacing: 0.05em; transition: opacity 0.3s; }
+  .tt-addon-add-btn:hover { opacity: 0.8; }
+</style>
+
+<script>
+  function openBagDrawer() {
+    document.getElementById('tt-cart-drawer').classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeBagDrawer() {
+    document.getElementById('tt-cart-drawer').classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  
+  function changeCartItem(btn, key, qty) {
+    if (qty < 0) return;
+    
+    // Find the specific item wrapper
+    const itemWrapper = btn.closest('.tt-cart-item');
+    if (itemWrapper) {
+      // Optimistic UI update: lock buttons and show a loading state on this specific item
+      itemWrapper.style.opacity = '0.5';
+      itemWrapper.style.pointerEvents = 'none';
+      const input = itemWrapper.querySelector('input');
+      if (input) input.value = qty;
+    }
+
+    fetch(window.Shopify.routes.root + 'cart/change.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: key, quantity: qty })
+    })
+    .then(response => response.json())
+    .then(data => {
+       refreshBagDrawer();
+    })
+    .catch(error => {
+       console.error('Error updating cart:', error);
+       if (itemWrapper) {
+         itemWrapper.style.opacity = '1';
+         itemWrapper.style.pointerEvents = 'auto';
+       }
+    });
+  }
+
+  function addAddonToCart(btn, variantId) {
+    const originalText = btn.innerText;
+    btn.innerText = '...';
+    btn.disabled = true;
+
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: variantId, quantity: 1 })
+    })
+    .then(res => res.json())
+    .then(data => {
+      refreshBagDrawer();
+    })
+    .catch(err => {
+      console.error(err);
+      btn.innerText = originalText;
+      btn.disabled = false;
+    });
+  }
+  
+  function refreshBagDrawer() {
+    fetch(window.location.pathname + '?section_id=ayus-cart-drawer')
+    .then(res => res.text())
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const newDrawerWrapper = doc.getElementById('shopify-section-ayus-cart-drawer');
+      
+      if(newDrawerWrapper) {
+        document.getElementById('shopify-section-ayus-cart-drawer').innerHTML = newDrawerWrapper.innerHTML;
+        document.getElementById('tt-cart-drawer').classList.add('is-open');
+        
+        const newCount = document.getElementById('shopify-section-cart-drawer')?.getAttribute('data-cart-count');
+        const countElements = document.querySelectorAll('.ayus-cart-link');
+        countElements.forEach(el => {
+          if(el.querySelector('.tt-cart-badge')) { el.querySelector('.tt-cart-badge').innerText = newCount || document.querySelector('.tt-cart-drawer-wrapper').getAttribute('data-cart-count'); }
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('submit', function(e) {
+      const form = e.target;
+      if (form.action && form.action.indexOf('/cart/add') !== -1) {
+        e.preventDefault();
+        
+        const submitBtn = form.querySelector('[type="submit"]');
+        if(!submitBtn) return;
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = 'Adding...';
+        submitBtn.disabled = true;
+
+        fetch(window.Shopify.routes.root + 'cart/add.js', {
+          method: 'POST',
+          body: new FormData(form)
+        })
+        .then(response => response.json())
+        .then(data => {
+          refreshBagDrawer();
+          openBagDrawer();
+          submitBtn.innerText = originalText;
+          submitBtn.disabled = false;
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          submitBtn.innerText = originalText;
+          submitBtn.disabled = false;
+        });
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      // Find the closest ancestor that matches our cart link class
+      const cartLink = e.target.closest('.ayus-cart-link');
+      if (cartLink) {
+        e.preventDefault();
+        openBagDrawer();
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Cart Drawer",
+  "settings": []
+}
+{% endschema %}
