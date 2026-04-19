@@ -36,8 +36,43 @@
       </ul>
     </div>
   </div>
-  <div style="max-width: 1200px; margin: 40px auto 0; padding-top: 30px; border-top: 1px solid #EAE5D9; text-align: center; font-size: 10px; letter-spacing: 2px; color: #888; text-transform: uppercase;">
-    &copy; {{ 'now' | date: '%Y' }} Tulsi Tales. All rights reserved.
+  <div style="max-width: 1200px; margin: 40px auto 0; padding-top: 30px; border-top: 1px solid var(--color-border); display: flex; flex-direction: column; align-items: center; gap: 20px;">
+    
+    {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
+      {%- form 'localization', id: 'AyusFooterLocalizationForm', class: 'ayus-localization-form' -%}
+        <div style="display: flex; gap: 15px; justify-content: center; align-items: center; flex-wrap: wrap;">
+          
+          {%- if localization.available_countries.size > 1 -%}
+            <div class="ayus-loc-wrapper">
+              <select name="country_code" onchange="this.form.submit()" style="background: transparent; border: 1px solid var(--color-border); padding: 10px 15px; font-family: var(--font-body); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text); border-radius: 0; cursor: pointer; outline: none; -webkit-appearance: none; -moz-appearance: none; appearance: none; text-align: center; padding-right: 25px; background-image: url('data:image/svg+xml;utf8,<svg width=\"10\" height=\"6\" viewBox=\"0 0 10 6\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1 1L5 5L9 1\" stroke=\"%233E3E3E\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>'); background-repeat: no-repeat; background-position: right 10px center;">
+                {%- for country in localization.available_countries -%}
+                  <option value="{{ country.iso_code }}" {%- if country.iso_code == localization.country.iso_code %} selected{% endif %}>
+                    {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
+                  </option>
+                {%- endfor -%}
+              </select>
+            </div>
+          {%- endif -%}
+          
+          {%- if localization.available_languages.size > 1 -%}
+            <div class="ayus-loc-wrapper">
+              <select name="language_code" onchange="this.form.submit()" style="background: transparent; border: 1px solid var(--color-border); padding: 10px 15px; font-family: var(--font-body); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text); border-radius: 0; cursor: pointer; outline: none; -webkit-appearance: none; -moz-appearance: none; appearance: none; text-align: center; padding-right: 25px; background-image: url('data:image/svg+xml;utf8,<svg width=\"10\" height=\"6\" viewBox=\"0 0 10 6\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1 1L5 5L9 1\" stroke=\"%233E3E3E\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>'); background-repeat: no-repeat; background-position: right 10px center;">
+                {%- for language in localization.available_languages -%}
+                  <option value="{{ language.iso_code }}" {%- if language.iso_code == localization.language.iso_code %} selected{% endif %}>
+                    {{ language.endonym_name | capitalize }}
+                  </option>
+                {%- endfor -%}
+              </select>
+            </div>
+          {%- endif -%}
+          
+        </div>
+      {%- endform -%}
+    {%- endif -%}
+
+    <div style="text-align: center; font-size: 10px; letter-spacing: 2px; color: #888; text-transform: uppercase; margin-top: 10px;">
+      &copy; {{ 'now' | date: '%Y' }} Tulsi Tales. All rights reserved.
+    </div>
   </div>
 </footer>
 {% schema %}
