@@ -233,17 +233,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const radioButtons = document.querySelectorAll('.ayus-variant-radio');
   radioButtons.forEach(radio => {
     radio.addEventListener('change', function() {
-      // 1. Update the URL with the selected variant
+      // Update URL with selected variant ID
       const url = new URL(window.location.href);
       url.searchParams.set('variant', this.value);
       window.history.replaceState({}, '', url.toString());
-
-      // 2. Fetch new variant data (price, etc.) dynamically if needed, 
-      // but for now the main priority is ensuring the form submits the right ID.
-      // ...
-
-  
-
     });
   });
 
@@ -320,24 +313,6 @@ document.addEventListener('DOMContentLoaded', function() {
         {% endfor %}
       </div>
   </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const radioButtons = document.querySelectorAll('.ayus-variant-radio');
-  radioButtons.forEach(radio => {
-    radio.addEventListener('change', function() {
-      // 1. Update the URL with the selected variant
-      const url = new URL(window.location.href);
-      url.searchParams.set('variant', this.value);
-      window.history.replaceState({}, '', url.toString());
-
-      // 2. Fetch new variant data (price, etc.) dynamically if needed, 
-      // but for now the main priority is ensuring the form submits the right ID.
-      // Since the radio buttons share name="id", Shopify's default form handles the submission automatically!
-    });
-  });
-});
-</script>
 
 </section>
 
