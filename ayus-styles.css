@@ -1,3 +1,8 @@
+
+/* GLOBAL BOX-SIZING FIX */
+*, *::before, *::after {
+  box-sizing: border-box !important;
+}
 :root {
   --color-accent: #4A5D4E; /* Earthy Sage Green */
   --color-accent-dark: #36453A;
@@ -278,31 +283,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 .ayus-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 40px;
 }
 .ayus-product-card a {
   text-decoration: none;
   color: var(--color-text);
 }
-.ayus-card-img-wrapper {
-  position: relative;
-  width: 100%;
-  padding-bottom: 125%; /* Tall portrait aspect ratio */
-  overflow: hidden;
-  background: #EEE;
-  margin-bottom: 20px;
-}
-.ayus-card-img-wrapper img {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-.ayus-product-card:hover .ayus-card-img-wrapper img {
-  transform: scale(1.05);
-}
+
+
+.ayus-product-card:hover 
 .ayus-card-info {
   text-align: center;
 }
@@ -1376,7 +1366,7 @@ html, body {
   /* Force a sleek 2-column grid for products on mobile */
   .ayus-collection-main .ayus-grid {
     display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 10px !important;
   }
   /* Scale down product cards to fit 2-up nicely */
@@ -1573,11 +1563,7 @@ html, body {
 }
   
   /* Make sure the image wrappers don't collapse */
-  .ayus-featured-collection .ayus-card-img-wrapper {
-    width: 100% !important;
-    padding-top: 100% !important; /* Keep square aspect ratio */
-    position: relative !important;
-  }
+  .ayus-featured-collection 
   .ayus-featured-collection .ayus-card-img-wrapper img, 
   .ayus-featured-collection .ayus-placeholder {
     position: absolute !important;
@@ -1822,8 +1808,7 @@ details[open] > summary .tt-icon-plus::before {
 .tt-card-add-btn, .jdgm-write-rev-link {
   padding: 12px 25px !important;
   font-size: 10px !important;
-  width: 80% !important;
-  max-width: 200px !important;
+  width: 100% !important; max-width: 100% !important;
 }
 
 
@@ -2206,27 +2191,9 @@ details > summary::-webkit-details-marker {
 
 
 /* --- FIX PRODUCT CARD IMAGE RATIOS --- */
-.ayus-card-img-wrapper {
-  position: relative !important;
-  width: 100% !important;
-  padding-bottom: 125% !important; /* Enforce 4:5 portrait ratio */
-  overflow: hidden !important;
-  background: #f7f5f0 !important; /* Soft cream background for empty space */
-  display: block !important;
-  margin-bottom: 20px !important;
-}
 
-.ayus-card-img-wrapper img {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important; /* This ensures tall/wide images scale down to fit inside the box without stretching the box */
-  transition: transform 0.8s ease !important;
-  padding: 10px !important; /* Give images a little breathing room from the edge */
-  box-sizing: border-box !important;
-}
+
+
 
 /* Force the grid items to align to the top */
 .ayus-product-card {
@@ -2248,10 +2215,7 @@ details > summary::-webkit-details-marker {
    MOBILE RESPONSIVENESS PATCH (Strictly Mobile Guardrails)
    ========================================================= */
 
-/* 1. Global Box-Sizing to Prevent Horizontal Scroll/Bleed */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+
 
 /* 2. Strict Mobile Restraints */
 @media (max-width: 768px) {
@@ -2326,7 +2290,7 @@ details > summary::-webkit-details-marker {
 
   /* Collection Grid adjustments for mobile */
   .ayus-collection-grid {
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 15px !important;
   }
   
@@ -2366,3 +2330,28 @@ details > summary::-webkit-details-marker {
 
 /* Stars general sizing down */
 .jdgm-rev-widg__summary-stars .jdgm-star { font-size: 16px !important; }
+
+/* ENFORCED UNIVERSAL IMAGE CONTAINER */
+.ayus-card-img-wrapper {
+  position: relative !important;
+  width: 100% !important;
+  height: 0 !important;
+  padding-bottom: 125% !important; /* Strict 4:5 ratio for EVERY product card */
+  overflow: hidden !important;
+  background: #f7f5f0 !important;
+  display: block !important;
+  margin-bottom: 20px !important;
+}
+
+.ayus-card-img-wrapper img, 
+.ayus-card-img-wrapper .ayus-placeholder {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important; /* Force the image to fill the 4:5 box, cropping if necessary, NEVER changing the box size */
+  box-sizing: border-box !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
