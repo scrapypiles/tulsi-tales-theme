@@ -292,7 +292,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-.ayus-product-card:hover 
+.ayus-product-card:hover .ayus-card-img-wrapper img {
+  transform: scale(1.05);
+}
 .ayus-card-info {
   text-align: center;
 }
