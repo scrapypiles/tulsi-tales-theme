@@ -1661,7 +1661,7 @@ details[open] > summary .tt-icon-plus::before {
 
 /* Judge.me Purearth Overrides */
 .jdgm-widget { font-family: var(--font-body) !important; }
-.jdgm-star { color: #d4af37 !important; }
+.jdgm-star { color: #C16552 !important; }
 .jdgm-preview-badge .jdgm-star { font-size: 14px !important; line-height: 1 !important; display: inline-block !important; }
 .jdgm-prev-badge__text { font-size: 12px !important; letter-spacing: 0.1em !important; text-transform: uppercase !important; color: #888 !important; margin-left: 8px !important; display: inline-block !important; }
 
@@ -1709,7 +1709,7 @@ details[open] > summary .tt-icon-plus::before {
 }
 .jdgm-rev-widg__reviews::-webkit-scrollbar { height: 6px; }
 .jdgm-rev-widg__reviews::-webkit-scrollbar-track { background: #f1f1f1; }
-.jdgm-rev-widg__reviews::-webkit-scrollbar-thumb { background: #d4af37; }
+.jdgm-rev-widg__reviews::-webkit-scrollbar-thumb { background: #C16552; }
 
 /* Review Cards */
 .jdgm-rev {
@@ -2124,7 +2124,7 @@ details > summary::-webkit-details-marker {
 }
 
 /* Elegant Stars */
-.jdgm-star { color: #C2A878 !important; } /* Muted Earthy Gold */
+.jdgm-star { color: #C16552 !important; } /* Muted Earthy Gold */
 .jdgm-rev-widg__summary-stars .jdgm-star { font-size: 20px !important; letter-spacing: 2px !important; }
 
 /* Hide Original Button */
@@ -2341,3 +2341,13 @@ details > summary::-webkit-details-marker {
     padding-bottom: 40px !important;
   }
 }
+
+/* Histogram Overrides (Brand Aligned & Subtle) */
+.jdgm-histogram { max-width: 400px !important; margin: 0 auto !important; }
+.jdgm-histogram__bar { height: 6px !important; background-color: #FAF8F5 !important; border-radius: 3px !important; }
+.jdgm-histogram__bar-content { background-color: #4A5D4E !important; border-radius: 3px !important; }
+.jdgm-histogram__percentage, .jdgm-histogram__frequency { font-size: 11px !important; color: #888 !important; }
+.jdgm-histogram__star .jdgm-star { font-size: 14px !important; }
+
+/* Stars general sizing down */
+.jdgm-rev-widg__summary-stars .jdgm-star { font-size: 16px !important; }
