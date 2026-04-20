@@ -1,0 +1,375 @@
+
+<section class="ayus-collection-section" data-section-id="{{ section.id }}" style="background-color: #F9F6F0; padding-bottom: 60px;">
+  <div class="ayus-container">
+    
+    <!-- Hero Banner for Collection (Thinner + Photo) -->
+    {% assign hero_bg = section.settings.image | img_url: 'master' %}
+    {% if collection.image %}
+      {% assign hero_bg = collection.image | img_url: 'master' %}
+    {% elsif section.settings.image == blank %}
+      {% assign hero_bg = 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=1600' %}
+    {% endif %}
+    
+    <div class="tt-collection-hero" style="background-image: url('{{ hero_bg }}'); position: relative;">
+      <div class="tt-hero-overlay"></div>
+      <div class="tt-hero-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 800px; padding: 0 20px; box-sizing: border-box; text-align: center; z-index: 10;">
+    <h1 class="tt-hero-title" style="margin: 0 auto; text-align: center; color: #fff; font-family: var(--font-heading); font-size: 42px; font-weight: normal; letter-spacing: 0.02em;">The Collection</h1>
+    <div class="tt-collection-desc" style="margin: 15px auto 0 auto; text-align: center; color: #fff; font-family: var(--font-body); font-size: 18px; line-height: 1.6;">Authentic Ayurvedic products, carefully chosen.</div>
+  </div>
+</div>
+    </div>
+
+    <!-- Collection Layout: Sidebar + Grid -->
+    <div class="ayus-collection-layout">
+      
+      <!-- Filters Sidebar (Split by Brand, Concern, Category) -->
+      
+      <aside class="ayus-collection-sidebar" style="background-color: #ffffff; padding: 25px; border: 1px solid var(--color-border); border-radius: 4px;">
+        <div class="tt-sidebar-header" style="margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="margin: 0; font-family: var(--font-heading); font-size: 20px;">Filters</h3>
+          <a href="/collections/all" class="tt-clear-all" style="font-size: 11px; text-transform: uppercase; color: var(--color-accent); text-decoration: underline;">Clear All</a>
+        </div>
+        
+        <!-- APPLIED FILTERS HANDLED BY JS -->
+
+        <div class="tt-sidebar-sort" style="border-bottom: 1px solid var(--color-border); padding: 5px 0;">
+          <label for="SortBy" style="display: block; font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; margin: 0; color: var(--color-text);">Sort By</label>
+          <select id="SortBy" name="sort_by" class="tt-size-select" style="width: 100%; padding: 12px; font-family: var(--font-body); font-size: 14px; border: 1px solid var(--color-border); background-color: #fff; cursor: pointer; margin-bottom: 15px;" onchange="applyFilters()">
+            {% for option in collection.sort_options %}
+              <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected="selected"{% endif %}>{{ option.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <!-- CATEGORY FILTER -->
+        <details class="tt-filter-group" style="border-bottom: 1px solid var(--color-border); padding: 5px 0;">
+          <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
+          Category <span class="tt-icon-toggle"></span>
+        </summary>
+          <div class="tt-filter-content" style="padding-bottom: 20px;">
+            <ul class="tt-filter-list">
+              {% assign categories = "Oils, Powders, Tablets, Syrups, Bhasma, Arishta, Lehyam, Ghritham" | split: ", " %}
+              {% for cat in categories %}
+                {% assign cat_handle = cat | handleize %}
+                <li>
+                  <label class="tt-checkbox-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 12px; font-family: var(--font-body); font-size: 14px; color: var(--color-text);">
+                    <input type="checkbox" class="tt-tag-checkbox" style="margin: 0; padding: 0; width: 16px; height: 16px; flex-shrink: 0;" data-tag-name="{{ cat }}" value="{{ cat_handle }}" onchange="applyFilters()">
+                    {{ cat }}
+                  </label>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </details>
+
+        <!-- CONCERN FILTER -->
+        <details class="tt-filter-group" style="border-bottom: 1px solid var(--color-border); padding: 5px 0;">
+          <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
+          Concern <span class="tt-icon-toggle"></span>
+        </summary>
+          <div class="tt-filter-content" style="padding-bottom: 20px;">
+            <ul class="tt-filter-list">
+              {% assign concerns = section.settings.concerns | default: "Immunity, Digestion, Skin Care, Hair Care, Stress Relief, Detox, Pain Relief, Respiratory, Sleep" | split: ", " %}
+              {% for concern in concerns %}
+                {% assign con_handle = concern | handleize %}
+                <li>
+                  <label class="tt-checkbox-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 12px; font-family: var(--font-body); font-size: 14px; color: var(--color-text);">
+                    <input type="checkbox" class="tt-tag-checkbox" style="margin: 0; padding: 0; width: 16px; height: 16px; flex-shrink: 0;" data-tag-name="{{ concern }}" value="{{ con_handle }}" onchange="applyFilters()">
+                    {{ concern }}
+                  </label>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </details>
+        
+        <!-- BRAND FILTER -->
+        <details class="tt-filter-group" style="padding: 5px 0;">
+          <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
+          Brand <span class="tt-icon-toggle"></span>
+        </summary>
+          <div class="tt-filter-content" style="padding-bottom: 20px;">
+            <ul class="tt-filter-list">
+              {% for vendor in collection.all_vendors %}
+                {% assign ven_handle = vendor | handleize %}
+                <li>
+                  <label class="tt-checkbox-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 12px; font-family: var(--font-body); font-size: 14px; color: var(--color-text);">
+                    <input type="checkbox" class="tt-tag-checkbox" style="margin: 0; padding: 0; width: 16px; height: 16px; flex-shrink: 0;" data-tag-name="{{ vendor }}" value="{{ ven_handle }}" onchange="applyFilters()">
+                    {{ vendor }}
+                  </label>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </details>
+
+      </aside>
+
+                        
+
+      
+
+
+      <!-- Main Product Grid -->
+      <div class="ayus-collection-main">
+        
+        <div class="tt-collection-toolbar" style="margin-bottom: 20px;">
+          <p class="tt-product-count" style="font-size: 14px; color: #555; margin: 0; font-weight: bold;">Showing {{ collection.products_count }} Products</p>
+        </div>
+
+        <div id="CollectionProductGrid" class="ayus-grid">
+          {% paginate collection.products by 24 %}
+            {% for product in collection.products %}
+              <div class="ayus-product-card" style="display: flex; flex-direction: column; height: 100%;">
+                <a href="{{ product.url }}" target="_blank" style="flex-grow: 1; text-decoration: none; color: inherit; display: flex; flex-direction: column;">
+                  <div class="ayus-card-img-wrapper">
+                    {% if product.featured_media %}
+                      <img src="{{ product.featured_media | img_url: '600x' }}" alt="{{ product.title | escape }}">
+                    {% else %}
+                      <div class="ayus-placeholder"></div>
+                    {% endif %}
+                  </div>
+                  <div class="ayus-card-info" style="flex-grow: 1; display: flex; flex-direction: column;">
+                    <span class="ayus-brand-text">{{ product.vendor }}</span>
+                    <h3 class="ayus-card-title">{{ product.title | split: '-' | last | strip }}</h3>
+                    
+                    <p class="ayus-card-price" style="margin-bottom: 0;">{{ product.price | money }}</p>
+                  </div>
+                </a>
+                <div class="tt-card-action" style="padding: 10px 0 0 0; margin-top: auto; display: flex; flex-direction: column; width: 100%; align-items: center;">
+<!-- Stars right above Add to Bag -->
+                  <div class="tt-card-rating" style="margin-bottom: 12px; color: #d4af37; display: flex; align-items: center; justify-content: center; gap: 2px;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <span style="color: #888; font-size: 11px; margin-left: 6px; font-weight: normal; letter-spacing: 0.1em; text-transform: uppercase;">(0 REVIEWS)</span>
+                  </div>
+<button type="button" class="tt-card-add-btn" onclick="event.preventDefault(); addAddonToCart(this, {{ product.selected_or_first_available_variant.id }})">ADD TO BAG</button>
+</div>
+              </div>
+            {% else %}
+              <div class="tt-empty-state">
+                <p>No products match your selected filters.</p>
+                <a href="/collections/all" class="ayus-btn-outline">Clear Filters</a>
+              </div>
+            {% endfor %}
+            
+            {% if paginate.next %}
+              <div class="tt-infinite-scroll-trigger" data-url="{{ paginate.next.url }}" style="grid-column: 1 / -1; text-align: center; margin-top: 40px; padding: 20px;">
+                <div class="tt-spinner" style="width: 30px; height: 30px; border: 3px solid rgba(0,0,0,0.1); border-radius: 50%; border-top-color: var(--color-accent); animation: tt-spin 1s ease-in-out infinite; margin: 0 auto;"></div>
+              </div>
+            {% endif %}
+          {% endpaginate %}
+        </div>
+
+        
+
+      
+      
+            <script>
+        function applyFilters() {
+          document.querySelector('.ayus-collection-sidebar').style.opacity = '0.5';
+          
+          let selectedHandles = [];
+          document.querySelectorAll('.tt-tag-checkbox:checked').forEach(cb => {
+            if(cb.value) selectedHandles.push(cb.value);
+          });
+          
+          let url = '/collections/all';
+          if (selectedHandles.length > 0) { 
+            url += '/' + selectedHandles.join('+'); 
+          }
+          
+          const currentParams = new URLSearchParams(window.location.search);
+          const sortSelect = document.getElementById('SortBy');
+          if (sortSelect && sortSelect.value) { 
+            currentParams.set('sort_by', sortSelect.value);
+          }
+          
+          let queryString = currentParams.toString();
+          if (queryString) {
+            url += '?' + queryString;
+          }
+          
+          window.location.href = url;
+        }
+
+        function removeTag(tagHandle) {
+          document.querySelector('.ayus-collection-sidebar').style.opacity = '0.5';
+          let selectedHandles = [];
+          document.querySelectorAll('.tt-tag-checkbox:checked').forEach(cb => {
+            if (cb.value !== tagHandle) {
+              selectedHandles.push(cb.value);
+            }
+          });
+          
+          let url = '/collections/all';
+          if (selectedHandles.length > 0) { 
+            url += '/' + selectedHandles.join('+'); 
+          }
+          
+          const currentParams = new URLSearchParams(window.location.search);
+          const sortSelect = document.getElementById('SortBy');
+          if (sortSelect && sortSelect.value) { 
+            currentParams.set('sort_by', sortSelect.value);
+          }
+          
+          let queryString = currentParams.toString();
+          if (queryString) {
+            url += '?' + queryString;
+          }
+          
+          window.location.href = url;
+        }
+      </script>
+
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          // Parse the URL path to find active tags (e.g. /collections/all/oils+immunity)
+          const pathSegments = window.location.pathname.split('/');
+          let activeTags = [];
+          
+          // Shopify collection tags are usually the last segment if there is one
+          if(pathSegments.length > 3 && pathSegments[2] === 'all') {
+            const tagString = pathSegments[3]; // e.g. "oils+immunity"
+            if(tagString) {
+              activeTags = tagString.split('+');
+            }
+          }
+          
+          if(activeTags.length > 0) {
+             let pillsHtml = '<div class="tt-applied-filters"><p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #888; margin-bottom: 10px;">Applied Filters:</p><div class="tt-applied-pills">';
+             
+             activeTags.forEach(tagHandle => {
+               // Find the checkbox with this handle
+               const cb = document.querySelector('.tt-tag-checkbox[value="' + tagHandle + '"]');
+               if(cb) {
+                 cb.checked = true;
+                 
+                 // Open the parent accordion
+                 const parentDetail = cb.closest('details');
+                 if(parentDetail) parentDetail.open = true;
+                 
+                 // Generate friendly name for the pill
+                 let friendlyName = cb.getAttribute('data-tag-name') || tagHandle.replace(/-/g, ' ');
+                 pillsHtml += '<span class="tt-filter-pill" onclick="removeTag(\'' + tagHandle + '\')">' + friendlyName + ' &times;</span>';
+               } else {
+                 // Fallback if tag isn't in our sidebar lists
+                 pillsHtml += '<span class="tt-filter-pill" onclick="removeTag(\'' + tagHandle + '\')">' + tagHandle.replace(/-/g, ' ') + ' &times;</span>';
+               }
+             });
+             
+             pillsHtml += '</div></div>';
+             
+             // Inject pills at top of sidebar
+             const sidebarHeader = document.querySelector('.tt-sidebar-header');
+             sidebarHeader.insertAdjacentHTML('afterend', pillsHtml);
+          }
+        });
+      </script>
+
+</div>
+    </div>
+  </div>
+
+      <script>
+          );
+
+                const newLoadMore = html.querySelector('.tt-load-more-btn');
+                if (newLoadMore) {
+                  btn.setAttribute('data-url', newLoadMore.getAttribute('data-url'));
+                  btn.innerText = originalText;
+                  btn.disabled = false;
+                } else {
+                  loadMoreWrapper.remove();
+                }
+              })
+              .catch(e => {
+                console.error(e);
+                btn.innerText = "Failed. Try Again.";
+                btn.disabled = false;
+              });
+          }
+      </script>
+
+</section>
+
+
+
+
+
+
+{% schema %}
+{
+  "name": "Collection Grid & Filters",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Default Banner Image"
+    },
+    {
+      "type": "textarea",
+      "id": "concerns",
+      "label": "Concern Filter Options",
+      "default": "Immunity, Digestion, Skin Care, Hair Care, Stress Relief, Detox, Pain Relief, Respiratory, Sleep"
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+
+// INFINITE SCROLL OBSERVER
+document.addEventListener("DOMContentLoaded", function() {
+  const trigger = document.querySelector('.tt-infinite-scroll-trigger');
+  if (!trigger) return;
+  
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      loadMoreProducts(trigger);
+    }
+  }, { rootMargin: "0px 0px 400px 0px" });
+  
+  observer.observe(trigger);
+});
+
+// MODIFIED LOAD MORE LOGIC FOR INFINITE
+window.loadMoreProducts = function(button) {
+  if(button.classList.contains('loading')) return;
+  const url = button.getAttribute('data-url');
+  if(!url) return;
+  
+  button.classList.add('loading');
+  
+  fetch(url)
+    .then(res => res.text())
+    .then(data => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data, 'text/html');
+      const newItems = doc.querySelectorAll('.ayus-product-card');
+      const grid = document.getElementById('CollectionProductGrid');
+      
+      // We must insert the new items BEFORE the infinite trigger, not just append to grid
+      // So we append to the grid, but the trigger might be the last child. 
+      // Actually, since trigger is at the bottom, just appending child before trigger works.
+      const triggerElem = document.querySelector('.tt-infinite-scroll-trigger');
+      
+      newItems.forEach(item => {
+        grid.insertBefore(item, triggerElem);
+      });
+      
+      const newNext = doc.querySelector('.tt-infinite-scroll-trigger');
+      if (newNext) {
+        button.setAttribute('data-url', newNext.getAttribute('data-url'));
+        button.classList.remove('loading');
+      } else {
+        button.style.display = 'none'; // No more pages
+      }
+    });
+}
+
+</script>
