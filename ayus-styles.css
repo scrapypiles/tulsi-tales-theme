@@ -1760,7 +1760,7 @@ details[open] > summary .tt-icon-plus::before {
 }
 
 /* UNIVERSAL HOVER STATE (GREEN FILL + WHITE TEXT) */
-.ayus-btn:hover, .ayus-btn-outline:hover, .tt-card-add-btn:hover, .ayus-add-to-cart-button:hover, .jdgm-write-rev-link:hover, .jdgm-submit-rev:hover {
+.ayus-btn:hover, .ayus-btn-outline:hover,  .jdgm-write-rev-link:hover, .jdgm-submit-rev:hover {
   background-color: var(--color-accent) !important;
   color: #ffffff !important;
   border-color: var(--color-accent) !important;
@@ -1768,16 +1768,7 @@ details[open] > summary .tt-icon-plus::before {
 
 
 /* BULLETPROOF UNIVERSAL ADD TO BAG BUTTON (PUREARTH STYLE) */
-.tt-card-add-btn, .ayus-add-to-cart-button, 
-
-/* Ensure Add to Bag on grids is 80% width like FC */
-
-
-/* Ensure main PDP Add to Bag is thick and solid */
-
-
-/* HOVER STATES (FILL WITH GREEN, TEXT WHITE) */
-.tt-card-add-btn:hover, .ayus-add-to-cart-button:hover, 
+ 
 
 
 /* UNIVERSAL BUTTONS - PUREARTH STYLE */
@@ -1814,7 +1805,7 @@ details[open] > summary .tt-icon-plus::before {
 
 
 /* HOVER STATE (GREEN FILL + WHITE TEXT) */
-.ayus-btn:hover, .ayus-btn-outline:hover, .tt-card-add-btn:hover, .ayus-add-to-cart-button:hover, .jdgm-write-rev-link:hover, .jdgm-submit-rev:hover {
+.ayus-btn:hover, .ayus-btn-outline:hover,  .jdgm-write-rev-link:hover, .jdgm-submit-rev:hover {
   background-color: var(--color-accent) !important;
   color: #ffffff !important;
   border-color: var(--color-accent) !important;
@@ -2386,3 +2377,68 @@ details > summary::-webkit-details-marker {
 /* Desktop Dropdown Hover */
 .ayus-nav-item:hover .ayus-dropdown { display: flex !important; }
 .ayus-dropdown a:hover { color: var(--color-accent) !important; }
+
+/* --- FIX BUTTON ALIGNMENT IN GRIDS --- */
+.tt-card-action {
+  margin-top: auto !important; /* Pushes the button to the bottom */
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.tt-card-add-btn {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  white-space: nowrap !important; /* Prevent text wrapping */
+}
+
+/* Ensure the flex card itself stretches vertically */
+.ayus-product-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+.ayus-card-info {
+  flex-grow: 1 !important; /* This takes up the middle space */
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+
+/* HARD PRODUCT CARD FLEXBOX ALIGNMENT */
+.tt-carousel-card, .ayus-product-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important; /* Take full height of row */
+  justify-content: space-between !important;
+}
+
+.ayus-card-info {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  flex-grow: 1 !important; /* Forces the text section to stretch and eat empty space */
+  justify-content: flex-start !important; /* Keep text at top of info box */
+}
+
+.tt-card-action {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-end !important; /* Push everything inside here to the bottom */
+  margin-top: auto !important; /* Force to bottom of card */
+  width: 100% !important;
+  padding-top: 15px !important;
+}
+
+/* Force Button to be identical size across all products */
+.tt-card-add-btn {
+  width: 100% !important; /* Use exactly the width of the card */
+  max-width: 100% !important; 
+  padding: 12px 0 !important; /* Ensure uniform padding regardless of text length */
+  text-align: center !important;
+  box-sizing: border-box !important;
+  white-space: nowrap !important;
+}
