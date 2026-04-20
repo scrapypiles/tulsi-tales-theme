@@ -2205,12 +2205,27 @@ details > summary::-webkit-details-marker {
   height: 100% !important;
 }
 
+
 .ayus-card-info {
   display: flex !important;
   flex-direction: column !important;
   flex-grow: 1 !important;
-  justify-content: flex-end !important;
+  justify-content: flex-start !important; /* Force Brand Name to lock to the top edge */
 }
+
+.ayus-brand-text {
+  margin-top: 0 !important; /* Ensure brand is flush against top padding */
+}
+
+/* Ensure the title itself has a standard margin bottom */
+.ayus-card-title {
+  margin-bottom: auto !important; /* Push the price and button down to the bottom */
+}
+
+.ayus-card-price {
+  margin-top: 15px !important;
+}
+
 
 
 /* =========================================================
