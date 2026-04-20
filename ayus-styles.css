@@ -282,7 +282,7 @@ h6 {
 .ayus-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 40px;
+  gap: 30px;
 }
 .ayus-product-card a {
   text-decoration: none;
@@ -295,7 +295,7 @@ h6 {
 .ayus-card-info {
   text-align: center;
 
-  padding-top: 5px !important; /* stitched look */
+  padding-top: 15px !important; /* Match original purearth reference */
 }
 .ayus-brand-text {
   font-size: 11px;
@@ -2065,8 +2065,7 @@ details[open] > summary .tt-icon-plus::before {
 .jdgm-write-rev-link {
   padding: 12px 25px !important;
   font-size: 10px !important;
-  width: 100% !important;
-  max-width: 100% !important;
+  width: 80% !important; max-width: 250px !important; margin-left: auto !important; margin-right: auto !important;
 }
 
 /* HOVER STATE (GREEN FILL + WHITE TEXT) */
@@ -2597,8 +2596,7 @@ details > summary::-webkit-details-marker {
 
   /* Ensure the mobile product media gallery image fits correctly */
   .tt-main-image-wrapper {
-    width: 100% !important;
-    max-width: 100% !important;
+    width: 80% !important; max-width: 250px !important; margin-left: auto !important; margin-right: auto !important;
   }
 
   /* Header mobile padding */
@@ -2648,6 +2646,8 @@ details > summary::-webkit-details-marker {
 
 /* ENFORCED UNIVERSAL IMAGE CONTAINER */
 .ayus-card-img-wrapper {
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
   position: relative !important;
   width: 100% !important;
   height: 0 !important;
@@ -2655,7 +2655,7 @@ details > summary::-webkit-details-marker {
   overflow: hidden !important;
   background: #f7f5f0 !important;
   display: block !important;
-  margin-bottom: 10px !important; /* Halved spacing so text feels stitched to image */
+  margin-bottom: 0 !important; /* Stitched to info block */
 }
 
 .ayus-card-img-wrapper img,
