@@ -242,43 +242,30 @@ document.addEventListener('DOMContentLoaded', function() {
       // but for now the main priority is ensuring the form submits the right ID.
       // ...
 
-  // Quantity Selector
-  const qtyInput = document.getElementById('tt-qty-input');
-  const btnMinus = document.querySelector('.tt-qty-minus');
-  const btnPlus = document.querySelector('.tt-qty-plus');
   
-  if (qtyInput && btnMinus && btnPlus) {
-    btnMinus.addEventListener('click', function() {
-      let currentVal = parseInt(qtyInput.value) || 1;
-      if (currentVal > 1) {
-        qtyInput.value = currentVal - 1;
-      }
-    });
-    btnPlus.addEventListener('click', function() {
-      let currentVal = parseInt(qtyInput.value) || 1;
-      qtyInput.value = currentVal + 1;
-    });
-  }
 
     });
   });
 
-  // --- Quantity Selector Logic ---
-  const qtyInput = document.getElementById('tt-qty-input');
-  const btnMinus = document.querySelector('.tt-qty-minus');
-  const btnPlus = document.querySelector('.tt-qty-plus');
   
-  if (qtyInput && btnMinus && btnPlus) {
-    btnMinus.addEventListener('click', function() {
-      let currentVal = parseInt(qtyInput.value) || 1;
+
+
+  // --- Quantity Selector Logic CLEAN ---
+  const qtyInputEl = document.getElementById('tt-qty-input');
+  const btnMinusEl = document.querySelector('.tt-qty-minus');
+  const btnPlusEl = document.querySelector('.tt-qty-plus');
+  
+  if (qtyInputEl && btnMinusEl && btnPlusEl) {
+    btnMinusEl.onclick = function() {
+      let currentVal = parseInt(qtyInputEl.value) || 1;
       if (currentVal > 1) {
-        qtyInput.value = currentVal - 1;
+        qtyInputEl.value = currentVal - 1;
       }
-    });
-    btnPlus.addEventListener('click', function() {
-      let currentVal = parseInt(qtyInput.value) || 1;
-      qtyInput.value = currentVal + 1;
-    });
+    };
+    btnPlusEl.onclick = function() {
+      let currentVal = parseInt(qtyInputEl.value) || 1;
+      qtyInputEl.value = currentVal + 1;
+    };
   }
 
 });
