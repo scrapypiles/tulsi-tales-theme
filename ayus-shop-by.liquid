@@ -1,0 +1,63 @@
+
+<section class="tt-shop-by-section">
+  <div class="ayus-container">
+    <h2 style="margin-top: 0; margin-bottom: 40px;">{{ section.settings.heading | escape }}</h2>
+    <div class="tt-shop-by-grid">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link }}" class="tt-shop-by-card" {{ block.shopify_attributes }}>
+          <h3 style="margin-top: 0; margin-bottom: 10px;">{{ block.settings.title | escape }}</h3>
+          <p style="margin-bottom: 0;">{{ block.settings.description | escape }}</p>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ayus Shop By Categories",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop By"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Category"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Short description"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ayus Shop By Categories",
+      "blocks": [
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" }
+      ]
+    }
+  ]
+}
+{% endschema %}

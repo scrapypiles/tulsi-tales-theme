@@ -1,0 +1,73 @@
+{
+  "sections": {
+    "hero": {
+      "type": "ayus-hero",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Generated_Image_April_06_2026_-_2_35PM.png",
+        "heading": "Unfold a Tale of India",
+        "subheading": "Authentic Ayurvedic products, thoughtfully sourced.",
+        "button_label": "Explore The Collection",
+        "button_link": "\/collections\/all"
+      }
+    },
+    "shop_by": {
+      "type": "ayus-shop-by",
+      "blocks": {
+        "brand": {
+          "type": "category",
+          "settings": {
+            "title": "Brand",
+            "description": "Curated Ayurvedic Brands",
+            "link": "\/collections\/all"
+          }
+        },
+        "concern": {
+          "type": "category",
+          "settings": {
+            "title": "Concern",
+            "description": "Targeted Healing",
+            "link": "\/collections\/all"
+          }
+        },
+        "category": {
+          "type": "category",
+          "settings": {
+            "title": "Category",
+            "description": "Oils, Powders & Tablets",
+            "link": "\/collections\/all"
+          }
+        }
+      },
+      "block_order": [
+        "brand",
+        "concern",
+        "category"
+      ],
+      "settings": {
+        "heading": "Shop By"
+      }
+    },
+    "featured": {
+      "type": "ayus-featured-collection",
+      "settings": {
+        "heading": "Soulful Curation",
+        "collection": "all",
+        "product_limit": 4,
+        "show_view_all": true
+      }
+    },
+    "philosophy": {
+      "type": "ayus-philosophy",
+      "settings": {
+        "heading": "Our Promise",
+        "text": "We declutter the path—making soulfully chosen, authentic Ayurvedic remedies accessible and affordable within India and Worldwide. Grounded in tradition, purity, and purpose."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "shop_by",
+    "featured",
+    "philosophy"
+  ]
+}
