@@ -52,7 +52,7 @@ h6 {
 /* Left Column: Image */
 .ayus-product-media-wrapper {
   flex: 1 1 50%;
-  min-width: 400px;
+  min-width: 0;
 }
 
 .ayus-product-main-image img {
@@ -538,7 +538,7 @@ h6 {
 /* Left Column: Media Gallery */
 .tt-product-media-gallery {
   flex: 1 1 50%;
-  min-width: 400px;
+  min-width: 0;
   display: flex;
   gap: 20px;
   align-items: flex-start;
@@ -761,7 +761,7 @@ h6 {
 .tt-left-column {
   flex: 1 1 45%;
   max-width: 550px; /* Limit the max width so the image doesn't get ridiculously large */
-  min-width: 300px;
+  min-width: 0;
   display: flex;
   flex-direction: column;
 }
@@ -2541,6 +2541,36 @@ details > summary::-webkit-details-marker {
     font-size: clamp(24px, 6vw, 32px) !important;
   }
 
+  
+  /* FORCE WRAPPERS TO NOT EXCEED SCREEN WIDTH */
+  .ayus-product-info-wrapper,
+  .tt-left-column,
+  .ayus-product-media-wrapper {
+    max-width: 100% !important;
+    width: 100% !important;
+    
+  }
+
+  /* Ensure button doesn't force width */
+  .ayus-add-to-cart-button,
+  .ayus-btn,
+  .ayus-btn-outline {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Ensure the grid of meta info scales down */
+  .tt-meta-grid {
+    grid-template-columns: 1fr !important; /* Stack vertically on small screens to prevent blow out */
+  }
+
+  /* Ensure the variant pills wrap properly */
+  .ayus-variant-pills {
+    flex-wrap: wrap !important;
+    width: 100% !important;
+  }
+
   /* Mobile Carousels (Horizontal Swipe) */
   .tt-horizontal-carousel {
     display: flex !important;
@@ -2705,4 +2735,21 @@ details > summary::-webkit-details-marker {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .ayus-product-container,
+  .tt-left-column,
+  .tt-product-media-gallery,
+  .ayus-product-info-wrapper {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  .ayus-product-section {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
 }
