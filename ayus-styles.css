@@ -281,7 +281,7 @@ h6 {
 }
 .ayus-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 40px;
 }
 .ayus-product-card a {
@@ -294,6 +294,8 @@ h6 {
 }
 .ayus-card-info {
   text-align: center;
+
+  padding-top: 5px !important; /* stitched look */
 }
 .ayus-brand-text {
   font-size: 11px;
@@ -2653,7 +2655,7 @@ details > summary::-webkit-details-marker {
   overflow: hidden !important;
   background: #f7f5f0 !important;
   display: block !important;
-  margin-bottom: 20px !important;
+  margin-bottom: 10px !important; /* Halved spacing so text feels stitched to image */
 }
 
 .ayus-card-img-wrapper img,
