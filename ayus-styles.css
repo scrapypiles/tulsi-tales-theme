@@ -690,7 +690,22 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   margin-left: auto;
 }
+
+.tt-qty-box input {
+  width: 40px;
+  text-align: center;
+  border: none;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  padding: 5px 0;
+  font-family: var(--font-body);
+  background: transparent;
+  color: var(--color-text);
+  margin: 0;
+}
+
 .tt-qty-box {
+  border-bottom: 1px solid var(--color-border) !important;
   display: flex;
   align-items: center;
   border: 1px solid var(--color-border);
