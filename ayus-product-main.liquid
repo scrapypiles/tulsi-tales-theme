@@ -262,6 +262,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     });
   });
+
+  // --- Quantity Selector Logic ---
+  const qtyInput = document.getElementById('tt-qty-input');
+  const btnMinus = document.querySelector('.tt-qty-minus');
+  const btnPlus = document.querySelector('.tt-qty-plus');
+  
+  if (qtyInput && btnMinus && btnPlus) {
+    btnMinus.addEventListener('click', function() {
+      let currentVal = parseInt(qtyInput.value) || 1;
+      if (currentVal > 1) {
+        qtyInput.value = currentVal - 1;
+      }
+    });
+    btnPlus.addEventListener('click', function() {
+      let currentVal = parseInt(qtyInput.value) || 1;
+      qtyInput.value = currentVal + 1;
+    });
+  }
+
 });
 </script>
 
