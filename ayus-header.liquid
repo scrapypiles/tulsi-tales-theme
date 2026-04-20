@@ -20,10 +20,10 @@
     <!-- Logo -->
     <div class="ayus-nav-left desktop-only">
       {% for link in linklists[section.settings.menu].links %}
-        <div class="ayus-nav-item" style="position: relative; display: inline-block;">
-          <a href="{{ link.url }}" class="ayus-nav-link" style="display: flex; align-items: center;">{% if link.title == 'Catalog' %}All Products{% else %}{{ link.title }}{% endif %}{% if link.links != blank %} <svg style="margin-left:5px; width:10px; height:10px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>{% endif %}</a>
+        <div class="ayus-nav-item tt-desktop-dropdown">
+          <a href="{{ link.url }}" class="ayus-nav-link tt-desktop-link">{% if link.title == 'Catalog' %}All Products{% else %}{{ link.title }}{% endif %}{% if link.links != blank %} <svg style="margin-left:5px; width:10px; height:10px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>{% endif %}</a>
           {% if link.links != blank %}
-            <div class="ayus-dropdown" style="position: absolute; top: 100%; left: 0; background: var(--color-background); border: 1px solid var(--color-border); padding: 15px 20px; min-width: 200px; display: none; flex-direction: column; gap: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); z-index: 100;">
+            <div class="ayus-dropdown tt-desktop-menu">
               {% for childlink in link.links %}
                 <a href="{{ childlink.url }}" style="text-transform: none; letter-spacing: 0.05em; margin: 0; padding: 5px 0;">{{ childlink.title }}</a>
               {% endfor %}
@@ -106,9 +106,9 @@
         <div class="tt-mobile-nav-item">
           <a href="{{ link.url }}" class="tt-mobile-nav-link" style="display: flex; justify-content: space-between; align-items: center;">{% if link.title == 'Catalog' %}All Products{% else %}{{ link.title }}{% endif %}</a>
           {% if link.links != blank %}
-            <div class="tt-mobile-dropdown" style="padding-left: 15px; border-left: 1px solid var(--color-border); margin-top: 10px; display: flex; flex-direction: column; gap: 10px;">
+            <div class="tt-mobile-dropdown">
               {% for childlink in link.links %}
-                <a href="{{ childlink.url }}" style="font-family: var(--font-body); font-size: 16px; color: #555; text-decoration: none;">{{ childlink.title }}</a>
+                <a href="{{ childlink.url }}" class="tt-mobile-sublink">{{ childlink.title }}</a>
               {% endfor %}
             </div>
           {% endif %}
