@@ -57,7 +57,7 @@
               {%- assign short_desc = short_desc | append: trimmed | append: '.' -%}
             {%- endif -%}
           {%- endfor -%}
-          <p class="ayus-product-subtitle">{{ short_desc | strip }}</p>
+          <p class="ayus-product-subtitle" id="ayus-subtitle-{{ section.id }}">{{ short_desc | strip }}</p><script>document.addEventListener("DOMContentLoaded", function() { const sub = document.getElementById("ayus-subtitle-{{ section.id }}"); if(sub) { sub.innerText = sub.innerText.replace(/,\s([A-Z])/g, function(m, p1) { return ", " + p1.toLowerCase(); }); } });</script>
         {%- endif -%}
         
         <!-- Pricing & Reviews Wrapper (Purearth Style) -->
@@ -149,7 +149,7 @@
         {%- if product.metafields.custom.expiry != blank -%}
           <div class="tt-meta-item">
             <span class="tt-meta-key">Expiry</span>
-            <span class="tt-meta-val">{{ product.metafields.custom.expiry }}</span>
+            <span class="tt-meta-val">{{ product.metafields.custom.expiry | replace: "Months", "" | replace: "months", "" | strip }} Months</span>
           </div>
         {%- endif -%}
       </div>
@@ -240,7 +240,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // 2. Fetch new variant data (price, etc.) dynamically if needed, 
       // but for now the main priority is ensuring the form submits the right ID.
-      // Since the radio buttons share name="id", Shopify's default form handles the submission automatically!
+      // ...
+
+  // Quantity Selector
+  const qtyInput = document.getElementById('tt-qty-input');
+  const btnMinus = document.querySelector('.tt-qty-minus');
+  const btnPlus = document.querySelector('.tt-qty-plus');
+  
+  if (qtyInput && btnMinus && btnPlus) {
+    btnMinus.addEventListener('click', function() {
+      let currentVal = parseInt(qtyInput.value) || 1;
+      if (currentVal > 1) {
+        qtyInput.value = currentVal - 1;
+      }
+    });
+    btnPlus.addEventListener('click', function() {
+      let currentVal = parseInt(qtyInput.value) || 1;
+      qtyInput.value = currentVal + 1;
+    });
+  }
+
     });
   });
 });

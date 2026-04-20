@@ -26,7 +26,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .ayus-product-section {
-  padding: 60px 40px;
+  padding: 60px 40px 0 40px;
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -157,7 +157,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Responsive */
 @media (max-width: 768px) {
   .ayus-product-section {
-    padding: 30px 20px;
+    padding: 30px 20px 0 20px;
   }
   .ayus-product-container {
     flex-direction: column;
@@ -621,9 +621,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Recommendations Section */
 .tt-recommendations {
-  border-top: 1px solid var(--color-border);
-  padding: 80px 0;
-  margin-top: 60px;
+  border-top: none;
+  padding: 0;
+  margin-top: 0;
   background-color: var(--color-background);
 }
 
@@ -1029,8 +1029,8 @@ h1, h2, h3, h4, h5, h6 {
   padding: 40px 0 !important;
 }
 .tt-recommendations {
-  padding: 40px 0 !important;
-  margin-top: 30px !important;
+  padding: 0 !important;
+  margin-top: 0 !important;
 }
 
 
@@ -2328,5 +2328,16 @@ details > summary::-webkit-details-marker {
   /* Header mobile padding */
   .ayus-header-inner {
     padding: 15px !important;
+  }
+}
+
+.tt-recommendations .ayus-container {
+  padding-top: 60px !important;
+  padding-bottom: 60px !important;
+}
+@media (max-width: 768px) {
+  .tt-recommendations .ayus-container {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
   }
 }
