@@ -253,11 +253,11 @@ document.addEventListener('DOMContentLoaded', function() {
 <section class="tt-recommendations">
   <div class="ayus-container">
     <h2 style="text-align: center; font-family: var(--font-heading); margin-bottom: 40px; font-size: 32px;">You May Also Like</h2>
-    <div class="tt-horizontal-carousel" style="display: flex !important; flex-wrap: nowrap !important; overflow-x: auto !important; overflow-y: hidden !important; -webkit-overflow-scrolling: touch !important; scroll-snap-type: x mandatory !important; gap: 30px; padding-bottom: 30px !important; margin: 0 -40px; padding-left: 40px; padding-right: 40px; scrollbar-width: none !important;">
+    <div class="tt-horizontal-carousel" style="display: flex !important; flex-wrap: nowrap !important; overflow-x: auto !important; overflow-y: hidden !important; -webkit-overflow-scrolling: touch !important; scroll-snap-type: x mandatory !important; gap: 30px !important; padding-bottom: 30px !important; margin: 0 -40px !important; padding-left: 40px !important; padding-right: 40px !important; scrollbar-width: none !important;">
       {% assign related_count = 0 %}
       {% for related in collections['all'].products %}
         {% if related.id != product.id and related_count < 8 %}
-          <div class="tt-carousel-card ayus-product-card" style="display: flex !important; flex-direction: column !important; height: 100% !important; flex: 0 0 auto !important; width: calc(25% - 22.5px) !important; min-width: 260px; max-width: 320px; scroll-snap-align: start !important; border: none !important; background: transparent !important;">
+          <div class="tt-carousel-card ayus-product-card" style="display: flex !important; flex-direction: column !important; height: 100% !important; flex: 0 0 auto !important; width: calc(25% - 22.5px) !important; min-width: 260px !important; max-width: 320px !important; scroll-snap-align: start !important; border: none !important; background: transparent !important;">
           <div style="flex-grow: 1; display: flex; flex-direction: column;">
             
             <a href="{{ related.url }}" style="position: relative; width: 100%; padding-bottom: 125%; background: #eee; overflow: hidden; margin-bottom: 15px; display: block;">
@@ -403,8 +403,6 @@ document.addEventListener('DOMContentLoaded', function() {
   </script>
 
 </div>
-</div>
-
 </div>
 
 {% schema %}
