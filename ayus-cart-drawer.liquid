@@ -223,14 +223,21 @@
   function changeCartItem(btn, key, qty) {
     if (qty < 0) return;
     
-    // Find the specific item wrapper
     const itemWrapper = btn.closest('.tt-cart-item');
-    if (itemWrapper) {
-      // Optimistic UI update: lock buttons and show a loading state on this specific item
-      itemWrapper.style.opacity = '0.5';
-      itemWrapper.style.pointerEvents = 'none';
-      const input = itemWrapper.querySelector('input');
-      if (input) input.value = qty;
+    const input = itemWrapper ? itemWrapper.querySelector('input') : null;
+    
+    // 1. Instantly update the input visually (Butter Smooth)
+    if (input && qty > 0) {
+      input.value = qty;
+    }
+    
+    // If removing the item (qty 0), smoothly fade it out
+    if (qty === 0 && itemWrapper) {
+      itemWrapper.style.transition = 'opacity 0.3s ease, height 0.3s ease, margin 0.3s ease';
+      itemWrapper.style.opacity = '0';
+      itemWrapper.style.height = '0px';
+      itemWrapper.style.margin = '0px';
+      itemWrapper.style.overflow = 'hidden';
     }
 
     fetch(window.Shopify.routes.root + 'cart/change.js', {
@@ -239,15 +246,46 @@
       body: JSON.stringify({ id: key, quantity: qty })
     })
     .then(response => response.json())
-    .then(data => {
-       refreshBagDrawer();
+    .then(cart => {
+       // 2. Parse the cart JSON and update the DOM directly without refreshing the whole section
+       
+       // Update overall cart badge counts
+       const countElements = document.querySelectorAll('.ayus-cart-link .tt-cart-badge');
+       countElements.forEach(el => el.innerText = cart.item_count);
+       
+       if (cart.item_count === 0) {
+         // If cart is completely empty, trigger a full HTML refresh to show the empty state graphic
+         refreshBagDrawer();
+         return;
+       }
+       
+       // Format money helper (Assuming Rs. format)
+       const formatMoney = (cents) => 'Rs. ' + (cents / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+       
+       // Update Subtotal
+       const subtotalEl = document.querySelector('.tt-cart-subtotal span:last-child');
+       if (subtotalEl) {
+         subtotalEl.innerText = formatMoney(cart.total_price);
+       }
+       
+       // Update individual line item prices
+       if (qty > 0 && itemWrapper) {
+         const lineItem = cart.items.find(i => i.key === key);
+         if (lineItem) {
+           const priceEl = itemWrapper.querySelector('.tt-cart-price');
+           if (priceEl) {
+             priceEl.innerText = formatMoney(lineItem.final_line_price);
+           }
+         }
+       } else if (qty === 0 && itemWrapper) {
+         // Remove it from the DOM completely now that the fade out is done
+         setTimeout(() => itemWrapper.remove(), 300);
+       }
     })
     .catch(error => {
        console.error('Error updating cart:', error);
-       if (itemWrapper) {
-         itemWrapper.style.opacity = '1';
-         itemWrapper.style.pointerEvents = 'auto';
-       }
+       // Revert UI on failure
+       refreshBagDrawer();
     });
   }
 
