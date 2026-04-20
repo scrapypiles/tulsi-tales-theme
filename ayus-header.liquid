@@ -21,7 +21,7 @@
     <div class="ayus-nav-left desktop-only">
       {% for link in linklists[section.settings.menu].links %}
         <div class="ayus-nav-item" style="position: relative; display: inline-block;">
-          <a href="{{ link.url }}" class="ayus-nav-link" style="display: flex; align-items: center;">{{ link.title }}{% if link.links != blank %} <svg style="margin-left:5px; width:10px; height:10px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>{% endif %}</a>
+          <a href="{{ link.url }}" class="ayus-nav-link" style="display: flex; align-items: center;">{% if link.title == 'Catalog' %}All Products{% else %}{{ link.title }}{% endif %}{% if link.links != blank %} <svg style="margin-left:5px; width:10px; height:10px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>{% endif %}</a>
           {% if link.links != blank %}
             <div class="ayus-dropdown" style="position: absolute; top: 100%; left: 0; background: var(--color-background); border: 1px solid var(--color-border); padding: 15px 20px; min-width: 200px; display: none; flex-direction: column; gap: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); z-index: 100;">
               {% for childlink in link.links %}
@@ -104,7 +104,7 @@
     <nav class="ayus-mobile-nav">
       {% for link in linklists[section.settings.menu].links %}
         <div class="tt-mobile-nav-item">
-          <a href="{{ link.url }}" class="tt-mobile-nav-link" style="display: flex; justify-content: space-between; align-items: center;">{{ link.title }}</a>
+          <a href="{{ link.url }}" class="tt-mobile-nav-link" style="display: flex; justify-content: space-between; align-items: center;">{% if link.title == 'Catalog' %}All Products{% else %}{{ link.title }}{% endif %}</a>
           {% if link.links != blank %}
             <div class="tt-mobile-dropdown" style="padding-left: 15px; border-left: 1px solid var(--color-border); margin-top: 10px; display: flex; flex-direction: column; gap: 10px;">
               {% for childlink in link.links %}
