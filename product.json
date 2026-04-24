@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "ayus-product-main",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

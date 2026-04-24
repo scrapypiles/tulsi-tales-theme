@@ -1,4 +1,9 @@
-{%- style -%}
+const fs = require('fs');
+
+const path = '/home/acharya-kln/.openclaw/workspace/tulsi-tales-theme/ayus-contact.liquid';
+let content = fs.readFileSync(path, 'utf8');
+
+const newContent = `{%- style -%}
   .contact-banner {
     position: relative;
     width: 100%;
@@ -364,4 +369,7 @@
     }
   ]
 }
-{% endschema %}
+{% endschema %}`;
+
+fs.writeFileSync(path, newContent, 'utf8');
+console.log("Rewrote ayus-contact.liquid to use dynamic blocks");

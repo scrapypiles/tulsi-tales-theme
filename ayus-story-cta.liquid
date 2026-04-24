@@ -1,7 +1,8 @@
 
+
 <style>
   #shopify-section-{{ section.id }} {
-    background-color: {{ section.settings.bg_color }};
+    background-color: {{ section.settings.layout_bg_color }};
     color: {{ section.settings.text_color }};
     {% if section.settings.border_placement == 'top' or section.settings.border_placement == 'both' %}
     border-top: 1px solid var(--color-border);
@@ -19,7 +20,7 @@
   }
 </style>
 
-<section class="tt-shop-by-section">
+<section class="ayus-story-cta" style="padding: 100px 20px; text-align: center; background-color: {{ section.settings.layout_bg_color | default: '#faf8f5' }};">
 
     {% if section.settings.custom_image %}
       <div style="text-align: center; margin: 20px 0;">
@@ -27,22 +28,21 @@
       </div>
     {% endif %}
     
-  <div class="ayus-container">
-    <h2 style="margin-top: 0; margin-bottom: 40px;">{{ section.settings.heading }}</h2>
-    <div class="tt-shop-by-grid">
-      {% for block in section.blocks %}
-        <a href="{{ block.settings.link }}" class="tt-shop-by-card" {{ block.shopify_attributes }}>
-          <h3 style="margin-top: 0; margin-bottom: 10px;">{{ block.settings.title | escape }}</h3>
-          <p style="margin-bottom: 0;">{{ block.settings.description | escape }}</p>
-        </a>
-      {% endfor %}
+  <div style="max-width: 800px; margin: 0 auto;">
+    <h2 style="font-family: var(--font-heading); font-size: 36px; margin-bottom: 20px; color: var(--color-text);">{{ section.settings.heading }}</h2>
+    <div class="rte" style="font-family: var(--font-body); font-size: 14px; line-height: 1.8; color: #555; max-width: 600px; margin: 0 auto 40px auto;">
+      {{ section.settings.text }}
     </div>
+    {% if section.settings.btn_link != blank and section.settings.btn_label != blank %}
+      <a href="{{ section.settings.btn_link }}" class="ayus-btn-outline" style="font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.15em; font-size: 11px; padding: 15px 30px; border: 1px solid var(--color-border); color: var(--color-text); text-decoration: none; display: inline-block;">
+        {{ section.settings.btn_label }}
+      </a>
+    {% endif %}
   </div>
 </section>
-
 {% schema %}
 {
-  "name": "Ayus Shop By Categories",
+  "name": "Story Call to Action",
   "settings": [
     {
       "type": "header",
@@ -90,7 +90,7 @@
     },
     {
       "type": "color",
-      "id": "bg_color",
+      "id": "layout_bg_color",
       "label": "Background Color",
       "default": "#FAF8F5"
     },
@@ -99,47 +99,12 @@
       "id": "custom_image",
       "label": "Insert Image"
     },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Shop By"
-    }
+    
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Begin your journey" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Explore our curated collection of authentic Ayurvedic remedies.</p>" },
+    { "type": "text", "id": "btn_label", "label": "Button Label", "default": "<p>Shop All</p>" },
+    { "type": "url", "id": "btn_link", "label": "Button Link" }
   ],
-  "blocks": [
-    {
-      "type": "category",
-      "name": "Category Card",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Category"
-        },
-        {
-          "type": "text",
-          "id": "description",
-          "label": "Description",
-          "default": "Short description"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Ayus Shop By Categories",
-      "blocks": [
-        { "type": "category" },
-        { "type": "category" },
-        { "type": "category" }
-      ]
-    }
-  ]
+  "presets": [{ "name": "Story Call to Action" }]
 }
 {% endschema %}

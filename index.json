@@ -3,11 +3,11 @@
     "hero": {
       "type": "ayus-hero",
       "settings": {
-        "image": "shopify:\/\/shop_images\/Generated_Image_April_06_2026_-_2_35PM.png",
+        "image": "shopify://shop_images/Generated_Image_April_06_2026_-_2_35PM.png",
         "heading": "Unfold a Tale of India",
         "subheading": "Authentic Ayurvedic products, thoughtfully sourced.",
         "button_label": "Explore The Collection",
-        "button_link": "\/collections\/all"
+        "button_link": "/collections/all"
       }
     },
     "shop_by": {
@@ -18,7 +18,7 @@
           "settings": {
             "title": "Brand",
             "description": "Curated Ayurvedic Brands",
-            "link": "\/collections\/all"
+            "link": "/collections/all#brand"
           }
         },
         "concern": {
@@ -26,7 +26,7 @@
           "settings": {
             "title": "Concern",
             "description": "Targeted Healing",
-            "link": "\/collections\/all"
+            "link": "/collections/all#concern"
           }
         },
         "category": {
@@ -34,7 +34,7 @@
           "settings": {
             "title": "Category",
             "description": "Oils, Powders & Tablets",
-            "link": "\/collections\/all"
+            "link": "/collections/all#category"
           }
         }
       },
@@ -52,7 +52,7 @@
       "settings": {
         "heading": "Soulful Curation",
         "collection": "all",
-        "product_limit": 4,
+        "product_limit": 12,
         "show_view_all": true
       }
     },

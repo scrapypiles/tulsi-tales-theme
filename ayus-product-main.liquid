@@ -24,13 +24,13 @@
         {%- else -%}
           {{ 'product-1' | placeholder_svg_tag: 'ayus-placeholder-svg' }}
         {%- endif -%}
+        
+        <!-- Moved Description -->
+        <div class="ayus-product-description rte" style="margin-top: 40px;">
+          {{ product.description }}
+        </div>
       </div>
     </div>
-
-      <!-- Moved Description -->
-      <div class="ayus-product-description rte" style="margin-top: 40px;">
-        {{ product.description }}
-      </div>
     </div>
 
     <!-- Right Column: The Narrative & Commerce -->
