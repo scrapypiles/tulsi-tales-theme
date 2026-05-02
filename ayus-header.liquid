@@ -20,7 +20,7 @@
     <!-- Logo -->
     <div class="ayus-nav-left desktop-only">
       {% for link in linklists[section.settings.menu].links %}
-        {% if link.title == 'Contact' or link.title == 'Contact Us' or link.url contains 'contact' %}{% continue %}{% endif %}
+        {% if link.title == 'Home' or link.title == 'Contact' or link.title == 'Contact Us' or link.url contains 'contact' %}{% continue %}{% endif %}
         <div class="ayus-nav-item tt-desktop-dropdown">
           <a href="{{ link.url }}" class="ayus-nav-link tt-desktop-link">{% if link.title == 'Catalog' %}All Products{% else %}{{ link.title }}{% endif %}{% if link.links != blank %} <svg style="margin-left:5px; width:10px; height:10px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>{% endif %}</a>
           {% if link.links != blank %}
@@ -107,7 +107,7 @@
     
     <nav class="ayus-mobile-nav">
       {% for link in linklists[section.settings.menu].links %}
-        {% if link.title == 'Contact' or link.title == 'Contact Us' or link.url contains 'contact' %}{% continue %}{% endif %}
+        {% if link.title == 'Home' or link.title == 'Contact' or link.title == 'Contact Us' or link.url contains 'contact' %}{% continue %}{% endif %}
         <div class="tt-mobile-nav-item">
           <a href="{{ link.url }}" class="tt-mobile-nav-link" style="display: flex; justify-content: space-between; align-items: center;">{% if link.title == 'Catalog' %}All Products{% else %}{{ link.title }}{% endif %}</a>
           {% if link.links != blank %}
