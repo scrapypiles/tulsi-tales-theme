@@ -1,196 +1,87 @@
-
 <footer class="site-footer" style="padding: 100px 20px 40px; background-color: var(--color-background); color: var(--color-text); font-family: var(--font-body); border-top: 1px solid var(--color-border);">
+  <!-- Top 3 Columns -->
   <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
     
-    {% for block in section.blocks %}
-      {% case block.type %}
-        {% when 'brand_info' %}
-          <div style="flex: 1 1 0%; min-width: 250px;" {{ block.shopify_attributes }}>
-            <div style="margin-bottom: 20px;">
-              {%- if true -%}
-                <img src="{{ 'logo.png' | asset_url }}" alt="Tulsi Tales Logo" style="max-width: 180px; height: auto;" />
-              {%- else -%}
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22c0-5 2-8 5-11-3 0-5 2-5 5 0-3-2-5-5-5 3 3 5 6 5 11z"></path>
-                  <path d="M12 22V12"></path>
-                </svg>
-              {%- endif -%}
-            </div>
-            <div style="font-size: 13px; line-height: 2; color: #555;">{{ block.settings.text }}</div>
-          </div>
-        
-        {% when 'link_list' %}
-          <div style="flex: 1 1 0%; min-width: 250px;" {{ block.shopify_attributes }}>
-            <h4 style="font-family: var(--font-heading); font-weight: 500; letter-spacing: 3px; text-transform: uppercase; font-size: 15px; margin-bottom: 20px; color: var(--color-text);">{{ block.settings.heading }}</h4>
-            <ul style="list-style: none; padding: 0; font-size: 12px; line-height: 2.5; letter-spacing: 1px; text-transform: uppercase;">
-                <li><a href="/pages/our-story" style="color: var(--color-text); text-decoration: none;">Our Story</a></li>
-                <li><a href="/pages/terms" style="color: var(--color-text); text-decoration: none;">Terms of Service</a></li>
-                <li><a href="/pages/policy" style="color: var(--color-text); text-decoration: none;">Privacy Policy</a></li>
-                <li><a href="/pages/refund" style="color: var(--color-text); text-decoration: none;">Refund Policy</a></li>
-                <li><a href="/pages/shipping" style="color: var(--color-text); text-decoration: none;">Shipping Policy</a></li>
-                <li><a href="/pages/contact" style="color: var(--color-text); text-decoration: none;">Contact Us</a></li>
-            </ul>
-          </div>
-          
-        {% when 'contact_newsletter' %}
-          <div style="flex: 1 1 0%; min-width: 250px;" {{ block.shopify_attributes }}>
-            <h4 style="font-family: var(--font-heading); font-weight: 500; letter-spacing: 3px; text-transform: uppercase; font-size: 15px; margin-bottom: 20px; color: var(--color-text);">{{ block.settings.heading }}</h4>
-            <div style="font-size: 13px; line-height: 1.6; color: #555; margin-bottom: 20px;">
-              {{ block.settings.contact_text }}
-            </div>
-            
-            {% form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' %}
-              <input type="hidden" name="contact[tags]" value="newsletter">
-              <div style="display: flex; border-bottom: 1px solid var(--color-text); padding-bottom: 5px; max-width: 300px;">
-                <input
-                  id="NewsletterForm--{{ section.id }}"
-                  type="email"
-                  name="contact[email]"
-                  class="field__input"
-                  value="{{ form.email }}"
-                  aria-required="true"
-                  autocorrect="off"
-                  autocapitalize="off"
-                  autocomplete="email"
-                  placeholder="{{ block.settings.newsletter_placeholder | escape }}"
-                  style="border: none; background: transparent; width: 100%; font-family: var(--font-body); font-size: 11px; letter-spacing: 0.1em; color: var(--color-text); outline: none;"
-                  required
-                >
-                <button type="submit" name="commit" id="Subscribe" style="background: transparent; border: none; font-size: 16px; cursor: pointer; color: var(--color-text);">&rarr;</button>
-              </div>
-              {%- if form.posted_successfully? -%}
-                <p style="font-size: 11px; color: green; margin-top: 10px; text-transform: uppercase; letter-spacing: 0.05em;">{{ block.settings.success_message }}</p>
-              {%- endif -%}
-            {% endform %}
-          </div>
-      {% endcase %}
-    {% endfor %}
+    <!-- Column 1: Logo & SEO -->
+    <div style="flex: 1 1 0%; min-width: 250px;">
+      <div style="margin-bottom: 20px;">
+        <a href="/">
+          <img src="{{ 'logo.png' | asset_url }}" alt="Tulsi Tales Logo" style="max-width: 180px; height: auto;" />
+        </a>
+      </div>
+      <div style="font-size: 13px; line-height: 2; color: #555;">
+        Rooted in eternal Ayurvedic wisdom. We craft pure, botanical formulations designed to bring holistic well-being, harmony, and natural balance to your daily rituals.
+      </div>
+    </div>
+
+    <!-- Column 2: Links -->
+    <div style="flex: 1 1 0%; min-width: 250px;">
+      <h4 style="font-family: var(--font-heading); font-weight: 500; letter-spacing: 3px; text-transform: uppercase; font-size: 15px; margin-bottom: 20px; color: var(--color-text);">Explore</h4>
+      <ul style="list-style: none; padding: 0; font-size: 12px; line-height: 2.5; letter-spacing: 1px; text-transform: uppercase;">
+          <li><a href="/collections/all" style="color: var(--color-text); text-decoration: none;">All Products</a></li>
+          <li><a href="/pages/our-story" style="color: var(--color-text); text-decoration: none;">Our Story</a></li>
+          <li><a href="/pages/contact" style="color: var(--color-text); text-decoration: none;">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: Contact & Newsletter -->
+    <div style="flex: 1 1 0%; min-width: 250px;">
+      <h4 style="font-family: var(--font-heading); font-weight: 500; letter-spacing: 3px; text-transform: uppercase; font-size: 15px; margin-bottom: 20px; color: var(--color-text);">Contact</h4>
+      <div style="font-size: 13px; line-height: 1.6; color: #555; margin-bottom: 20px;">
+        <p>Email: tulsitales@gmail.com<br>Phone: +91 7832 980 384</p>
+      </div>
+      
+      {% form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div style="display: flex; border-bottom: 1px solid var(--color-text); padding-bottom: 5px; max-width: 300px;">
+          <input
+            id="NewsletterForm--{{ section.id }}"
+            type="email"
+            name="contact[email]"
+            class="field__input"
+            value="{{ form.email }}"
+            aria-required="true"
+            autocorrect="off"
+            autocapitalize="off"
+            autocomplete="email"
+            placeholder="JOIN OUR NEWSLETTER"
+            style="border: none; background: transparent; width: 100%; font-family: var(--font-body); font-size: 11px; letter-spacing: 0.1em; color: var(--color-text); outline: none;"
+            required
+          >
+          <button type="submit" name="commit" id="Subscribe" style="background: transparent; border: none; font-size: 16px; cursor: pointer; color: var(--color-text);">&rarr;</button>
+        </div>
+        {%- if form.posted_successfully? -%}
+          <p style="font-size: 11px; color: green; margin-top: 10px; text-transform: uppercase; letter-spacing: 0.05em;">Thanks for subscribing!</p>
+        {%- endif -%}
+      {% endform %}
+    </div>
+
   </div>
 
-  <!-- Bottom Section -->
-  <div style="max-width: 1200px; margin: 60px auto 0; padding-top: 30px; border-top: 1px solid var(--color-border); display: flex; flex-direction: column; align-items: center; gap: 20px;">
+  <!-- Bottom Section: Policies, Divider, Copyright -->
+  <div style="max-width: 1200px; margin: 60px auto 0; padding-top: 0; display: flex; flex-direction: column; align-items: center; gap: 20px;">
     
     <!-- Policy Links -->
     <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap;">
-      {% for link in linklists[section.settings.bottom_menu].links %}
-        <a href="{{ link.url }}" style="font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: #888;">{{ link.title }}</a>
-      {% endfor %}
+      <a href="/pages/policy" style="font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: #888;">Privacy Policy</a>
+      <a href="/pages/terms" style="font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: #888;">Terms of Service</a>
+      <a href="/pages/refund" style="font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: #888;">Refund Policy</a>
+      <a href="/pages/shipping" style="font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: #888;">Shipping Policy</a>
     </div>
 
-    <!-- Localization -->
-    {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
-      {%- form 'localization', id: 'AyusFooterLocalizationForm', class: 'ayus-localization-form' -%}
-        <div style="display: flex; gap: 15px; justify-content: center; align-items: center; flex-wrap: wrap;">
-          {%- if localization.available_countries.size > 1 -%}
-            <div class="ayus-loc-wrapper">
-              <select name="country_code" onchange="this.form.submit()" style="background: transparent; border: 1px solid var(--color-border); padding: 10px 15px; font-family: var(--font-body); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text); border-radius: 0; cursor: pointer; outline: none; -webkit-appearance: none; -moz-appearance: none; appearance: none; text-align: center; padding-right: 25px;">
-                {%- for country in localization.available_countries -%}
-                  <option value="{{ country.iso_code }}" {%- if country.iso_code == localization.country.iso_code %} selected{% endif %}>
-                    {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
-                  </option>
-                {%- endfor -%}
-              </select>
-            </div>
-          {%- endif -%}
-        </div>
-      {%- endform -%}
-    {%- endif -%}
+    <!-- Divider -->
+    <div style="width: 100%; border-top: 1px solid var(--color-border); margin: 10px 0;"></div>
 
+    <!-- Copyright -->
     <div style="text-align: center; font-size: 10px; letter-spacing: 2px; color: #888; text-transform: uppercase;">
-      &copy; {{ 'now' | date: '%Y' }} {{ section.settings.copyright_text }}
+      &copy; {{ 'now' | date: '%Y' }} TULSI TALES. ALL RIGHTS RESERVED.
     </div>
+
   </div>
 </footer>
 {% schema %}
 {
   "name": "Ayus Footer",
-  "settings": [
-    {
-      "type": "link_list",
-      "id": "bottom_menu",
-      "label": "Bottom Legal Menu"
-    },
-    {
-      "type": "text",
-      "id": "copyright_text",
-      "label": "Copyright Name",
-      "default": "Tulsi Tales. All rights reserved."
-    }
-  ],
-  "blocks": [
-    {
-      "type": "brand_info",
-      "name": "Brand Info",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "logo",
-          "label": "Logo"
-        },
-        {
-          "type": "richtext",
-          "id": "text",
-          "label": "Description",
-          "default": "<p>Rooted in Ayurvedic wisdom.<br>Crafted for modern rituals.</p>"
-        }
-      ]
-    },
-    {
-      "type": "link_list",
-      "name": "Link Column",
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "Explore"
-        },
-        {
-          "type": "link_list",
-          "id": "menu",
-          "label": "Menu"
-        }
-      ]
-    },
-    {
-      "type": "contact_newsletter",
-      "name": "Contact & Newsletter",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "Contact & Join"
-        },
-        {
-          "type": "richtext",
-          "id": "contact_text",
-          "label": "Contact Info",
-          "default": "<p>Email: hello@tulsitales.com<br>Phone: +91 800 000 0000</p>"
-        },
-        {
-          "type": "text",
-          "id": "newsletter_placeholder",
-          "label": "Newsletter Placeholder",
-          "default": "ENTER YOUR EMAIL"
-        },
-        {
-          "type": "text",
-          "id": "success_message",
-          "label": "Success Message",
-          "default": "Thanks for subscribing!"
-        }
-      ]
-    }
-  ],
-  "default": {
-    "blocks": [
-      { "type": "brand_info" },
-      { "type": "link_list" },
-      { "type": "contact_newsletter" }
-    ]
-  }
+  "settings": []
 }
 {% endschema %}
