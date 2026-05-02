@@ -78,6 +78,20 @@
   .contact-info-block {
     margin-bottom: 40px;
   }
+  .contact-info-block.featured-support {
+    background-color: var(--color-background);
+    padding: 30px;
+    border: 1px solid var(--color-border);
+    margin-bottom: 50px;
+  }
+  .contact-info-block.featured-support p {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--color-text);
+    margin: 0;
+    font-style: italic;
+  }
+
   .contact-info-block h3 {
     font-family: var(--font-heading);
     font-size: 20px;
@@ -164,8 +178,8 @@
     <!-- Left: Contact Details -->
     <div class="ayus-contact-info">
       {% for block in section.blocks %}
-        <div class="contact-info-block" {{ block.shopify_attributes }}>
-          <h3>{{ block.settings.title }}</h3>
+                <div class="contact-info-block {% if block.settings.title == 'Customer Support' %}featured-support{% endif %}" {{ block.shopify_attributes }}>
+          {% if block.settings.title != 'Customer Support' %}<h3>{{ block.settings.title }}</h3>{% endif %}
           {% if block.settings.link_text != blank %}
             <p><a href="{{ block.settings.link_url }}">{{ block.settings.link_text }}</a></p>
           {% endif %}
