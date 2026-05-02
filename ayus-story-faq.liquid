@@ -1,0 +1,70 @@
+
+<section class="ayus-story-faq" style="padding: 100px 20px; background-color: #FAF8F5; border-bottom: 1px solid var(--color-border);">
+  <div style="max-width: 800px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 50px;">
+      {% if section.settings.label != blank %}
+        <span style="font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.15em; font-size: 10px; color: var(--color-accent); margin-bottom: 15px; display: block;">{{ section.settings.label }}</span>
+      {% endif %}
+      <h2 style="font-family: var(--font-heading); font-size: 32px; color: var(--color-text);">{{ section.settings.heading }}</h2>
+    </div>
+    <div class="tt-faq-list">
+      {% for block in section.blocks %}
+      <details class="tt-filter-group" style="border-bottom: 1px solid var(--color-border); padding: 5px 0;" {{ block.shopify_attributes }}>
+        <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none;">
+          {{ block.settings.question }} <span class="tt-icon-toggle"></span>
+        </summary>
+        <div class="tt-filter-content" style="padding-bottom: 20px;">
+          <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.8; color: #555; margin: 0;">{{ block.settings.answer }}</p>
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<style>
+/* Remove default triangle in Safari/Chrome */
+details.tt-filter-group summary::-webkit-details-marker { display: none; }
+details.tt-filter-group summary { list-style: none; outline: none; }
+
+/* Custom + / - Icon */
+details.tt-filter-group summary .tt-icon-toggle {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--color-text);
+  transition: opacity 0.2s;
+}
+
+details.tt-filter-group:not([open]) summary .tt-icon-toggle::before { content: "+"; }
+details.tt-filter-group[open] summary .tt-icon-toggle::before { content: "−"; } /* using minus sign instead of hyphen */
+</style>
+{% schema %}
+{
+  "name": "Story FAQs",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color"
+    },
+    { "type": "text", "id": "label", "label": "Section Label", "default": "Questions?" },
+    { "type": "text", "id": "heading", "label": "Section Heading", "default": "Frequently Asked Questions" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "textarea", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Story FAQs" }]
+}
+{% endschema %}

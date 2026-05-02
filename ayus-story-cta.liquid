@@ -1,6 +1,6 @@
 
 
-<section class="ayus-story-cta" style="padding: 100px 20px; text-align: center; background-color: {{ section.settings.layout_bg_color | default: '#faf8f5' }};">
+<section class="ayus-story-cta" style="padding: 100px 20px; text-align: center; background-color: #ffffff; border-bottom: 1px solid var(--color-border);">
 
     
     
@@ -20,6 +20,11 @@
 {
   "name": "Story Call to Action",
   "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color"
+    },
     {
       "type": "header",
       "content": "Layout & Styling"
