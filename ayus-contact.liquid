@@ -41,6 +41,16 @@
     margin: 0 0 15px 0;
     font-weight: normal;
   }
+  .contact-subtitle {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 15px auto 0;
+    color: inherit;
+    opacity: 0.9;
+  }
+
   
   .ayus-contact-section {
     padding: 80px 20px;
@@ -135,7 +145,16 @@
 <div class="contact-banner">
   <div class="contact-banner-content">
     <span class="contact-tagline">{{ section.settings.tagline | default: 'Get in Touch' }}</span>
-    <h1 class="contact-title">{{ page.title }}</h1>
+    <h1 class="contact-title">
+      {% if section.settings.title != blank %}
+        {{ section.settings.title }}
+      {% else %}
+        {{ page.title }}
+      {% endif %}
+    </h1>
+    {% if section.settings.subtitle != blank %}
+      <div class="contact-subtitle">{{ section.settings.subtitle }}</div>
+    {% endif %}
   </div>
 </div>
 
@@ -241,6 +260,16 @@
       "id": "tagline",
       "label": "Tagline",
       "default": "Get in Touch"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Custom Title (Overrides page title)"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle / Paragraph"
     },
     {
       "type": "header",
