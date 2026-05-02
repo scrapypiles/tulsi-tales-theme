@@ -1,6 +1,6 @@
 
 
-<section class="ayus-story-quote" style="padding: 100px 20px; text-align: center; background-color: #FAF8F5; border-bottom: 1px solid var(--color-border);">
+<section class="ayus-story-quote" style="padding: 100px 20px; text-align: center; background-color: #ffffff; border-bottom: 1px solid var(--color-border);">
 
     
     
@@ -10,7 +10,7 @@
     {% else %}
       <img src="{{ 'favicon.png' | asset_url }}" alt="Tulsi Tales Symbol" style="width: 48px; height: 48px; object-fit: contain; margin-bottom: 20px; opacity: 1;">
     {% endif %}
-    <h2 style="font-family: var(--font-heading); font-size: 28px; line-height: 1.4; color: var(--color-text); margin: 0; font-style: italic;">"{{ section.settings.quote_text }}"</h2>
+    <h2 style="font-family: var(--font-heading); font-size: 28px; line-height: 1.4; color: var(--color-text); margin: 0; font-style: italic;">{{ section.settings.quote_text }}</h2>
   </div>
 </section>
 {% schema %}
