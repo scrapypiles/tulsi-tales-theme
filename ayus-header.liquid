@@ -31,12 +31,15 @@
           {% endif %}
         </div>
       {% endfor %}
+      <div class="ayus-nav-item tt-desktop-dropdown">
+        <a href="/pages/our-story" class="ayus-nav-link tt-desktop-link">Our Story</a>
+      </div>
     </div>
     <div class="ayus-logo">
       <a href="/" class="tt-logo-link">
         {% assign logo_url = section.settings.logo | default: 'tulsi-tales-logo.png' %}
         {% if logo_url %}
-          <img src="{{ 'tulsi-tales-logo.png' | asset_url }}" alt="{{ shop.name }}" style="max-height: {{ section.settings.logo_height }}px; width: auto; display: block;">
+          <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" style="max-height: {{ section.settings.logo_height }}px; width: auto; display: block;">
         {% else %}
           {{ shop.name }}
         {% endif %}
@@ -114,6 +117,9 @@
           {% endif %}
         </div>
       {% endfor %}
+      <div class="tt-mobile-nav-item">
+        <a href="/pages/our-story" class="ayus-mobile-link">Our Story</a>
+      </div>
     </nav>
   </div>
 

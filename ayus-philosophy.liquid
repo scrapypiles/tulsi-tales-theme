@@ -1,37 +1,9 @@
 
-
-<style>
-  #shopify-section-{{ section.id }} {
-    background-color: {{ section.settings.layout_bg_color }};
-    color: {{ section.settings.text_color }};
-    {% if section.settings.border_placement == 'top' or section.settings.border_placement == 'both' %}
-    border-top: 1px solid var(--color-border);
-    {% endif %}
-    {% if section.settings.border_placement == 'bottom' or section.settings.border_placement == 'both' %}
-    border-bottom: 1px solid var(--color-border);
-    {% endif %}
-  }
-  #shopify-section-{{ section.id }} h1,
-  #shopify-section-{{ section.id }} h2,
-  #shopify-section-{{ section.id }} h3 {
-    text-align: {{ section.settings.header_placement }} !important;
-    font-size: {{ section.settings.heading_size }} !important;
-    color: {{ section.settings.text_color }} !important;
-  }
-</style>
-
 <section class="ayus-philosophy" style="background-color: #ffffff; padding: 80px 20px; text-align: center; border-top: 1px solid var(--color-border);">
-
-    {% if section.settings.custom_image %}
-      <div style="text-align: center; margin: 20px 0;">
-        <img src="{{ section.settings.custom_image | img_url: 'master' }}" alt="" style="max-width: 100%; height: auto;">
-      </div>
-    {% endif %}
-    
   <div style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
     <img src="{{ 'favicon.png' | asset_url }}" alt="Tulsi Tales Symbol" style="width: 40px; height: 40px; object-fit: contain; margin-bottom: 20px;">
-    <h2 style="margin-top: 0; font-family: var(--font-heading); font-size: 36px; color: var(--color-text); margin-bottom: 25px; font-weight: normal;">{{ section.settings.heading }}</h2>
-    <p style="margin-bottom: 0; font-family: var(--font-body); font-size: 18px; color: #555; line-height: 1.8; font-style: italic;">“{{ section.settings.text }}”</p>
+    <h2 style="margin-top: 0; font-family: var(--font-heading); font-size: 36px; color: var(--color-text); margin-bottom: 25px; font-weight: normal;">{{ section.settings.heading | escape }}</h2>
+    <p style="margin-bottom: 0; font-family: var(--font-body); font-size: 18px; color: #555; line-height: 1.8; font-style: italic;">“{{ section.settings.text | escape }}”</p>
   </div>
 </section>
 
@@ -49,71 +21,16 @@
   "name": "Ayus Philosophy",
   "settings": [
     {
-      "type": "header",
-      "content": "Layout & Styling"
-    },
-    {
-      "type": "select",
-      "id": "header_placement",
-      "label": "Header Placement",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
-      ],
-      "default": "center"
-    },
-    {
-      "type": "select",
-      "id": "border_placement",
-      "label": "Border Placement",
-      "options": [
-        { "value": "none", "label": "None" },
-        { "value": "top", "label": "Top" },
-        { "value": "bottom", "label": "Bottom" },
-        { "value": "both", "label": "Top & Bottom" }
-      ],
-      "default": "none"
-    },
-    {
-      "type": "select",
-      "id": "heading_size",
-      "label": "Heading Size",
-      "options": [
-        { "value": "24px", "label": "Small" },
-        { "value": "36px", "label": "Medium" },
-        { "value": "48px", "label": "Large" }
-      ],
-      "default": "36px"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text Color",
-      "default": "#333333"
-    },
-    {
-      "type": "color",
-      "id": "layout_bg_color",
-      "label": "Background Color",
-      "default": "#FAF8F5"
-    },
-    {
-      "type": "image_picker",
-      "id": "custom_image",
-      "label": "Insert Image"
-    },
-    {
       "type": "text",
       "id": "heading",
       "label": "Heading",
       "default": "Our Promise"
     },
     {
-      "type": "richtext",
+      "type": "textarea",
       "id": "text",
       "label": "Text",
-      "default": "<p>We declutter the path—making soulfully chosen remedies accessible and affordable. Grounded in tradition, purity, and purpose.</p>"
+      "default": "We declutter the path—making soulfully chosen remedies accessible and affordable. Grounded in tradition, purity, and purpose."
     }
   ],
   "presets": [

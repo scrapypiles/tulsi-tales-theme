@@ -1,34 +1,7 @@
 
-<style>
-  #shopify-section-{{ section.id }} {
-    background-color: {{ section.settings.bg_color }};
-    color: {{ section.settings.text_color }};
-    {% if section.settings.border_placement == 'top' or section.settings.border_placement == 'both' %}
-    border-top: 1px solid var(--color-border);
-    {% endif %}
-    {% if section.settings.border_placement == 'bottom' or section.settings.border_placement == 'both' %}
-    border-bottom: 1px solid var(--color-border);
-    {% endif %}
-  }
-  #shopify-section-{{ section.id }} h1,
-  #shopify-section-{{ section.id }} h2,
-  #shopify-section-{{ section.id }} h3 {
-    text-align: {{ section.settings.header_placement }} !important;
-    font-size: {{ section.settings.heading_size }} !important;
-    color: {{ section.settings.text_color }} !important;
-  }
-</style>
-
 <section class="tt-shop-by-section">
-
-    {% if section.settings.custom_image %}
-      <div style="text-align: center; margin: 20px 0;">
-        <img src="{{ section.settings.custom_image | img_url: 'master' }}" alt="" style="max-width: 100%; height: auto;">
-      </div>
-    {% endif %}
-    
   <div class="ayus-container">
-    <h2 style="margin-top: 0; margin-bottom: 40px;">{{ section.settings.heading }}</h2>
+    <h2 style="margin-top: 0; margin-bottom: 40px;">{{ section.settings.heading | escape }}</h2>
     <div class="tt-shop-by-grid">
       {% for block in section.blocks %}
         <a href="{{ block.settings.link }}" class="tt-shop-by-card" {{ block.shopify_attributes }}>
@@ -44,61 +17,6 @@
 {
   "name": "Ayus Shop By Categories",
   "settings": [
-    {
-      "type": "header",
-      "content": "Layout & Styling"
-    },
-    {
-      "type": "select",
-      "id": "header_placement",
-      "label": "Header Placement",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
-      ],
-      "default": "center"
-    },
-    {
-      "type": "select",
-      "id": "border_placement",
-      "label": "Border Placement",
-      "options": [
-        { "value": "none", "label": "None" },
-        { "value": "top", "label": "Top" },
-        { "value": "bottom", "label": "Bottom" },
-        { "value": "both", "label": "Top & Bottom" }
-      ],
-      "default": "none"
-    },
-    {
-      "type": "select",
-      "id": "heading_size",
-      "label": "Heading Size",
-      "options": [
-        { "value": "24px", "label": "Small" },
-        { "value": "36px", "label": "Medium" },
-        { "value": "48px", "label": "Large" }
-      ],
-      "default": "36px"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text Color",
-      "default": "#333333"
-    },
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Background Color",
-      "default": "#FAF8F5"
-    },
-    {
-      "type": "image_picker",
-      "id": "custom_image",
-      "label": "Insert Image"
-    },
     {
       "type": "text",
       "id": "heading",

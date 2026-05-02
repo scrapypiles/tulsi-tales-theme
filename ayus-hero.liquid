@@ -1,39 +1,11 @@
 
-
-<style>
-  #shopify-section-{{ section.id }} {
-    background-color: {{ section.settings.layout_bg_color }};
-    color: {{ section.settings.text_color }};
-    {% if section.settings.border_placement == 'top' or section.settings.border_placement == 'both' %}
-    border-top: 1px solid var(--color-border);
-    {% endif %}
-    {% if section.settings.border_placement == 'bottom' or section.settings.border_placement == 'both' %}
-    border-bottom: 1px solid var(--color-border);
-    {% endif %}
-  }
-  #shopify-section-{{ section.id }} h1,
-  #shopify-section-{{ section.id }} h2,
-  #shopify-section-{{ section.id }} h3 {
-    text-align: {{ section.settings.header_placement }} !important;
-    font-size: {{ section.settings.heading_size }} !important;
-    color: {{ section.settings.text_color }} !important;
-  }
-</style>
-
 <section class="ayus-hero" style="{% if section.settings.image %}background-image: url('{{ section.settings.image | img_url: 'master' }}');{% endif %} display: flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; text-align: center !important; padding: 100px 20px;">
-
-    {% if section.settings.custom_image %}
-      <div style="text-align: center; margin: 20px 0;">
-        <img src="{{ section.settings.custom_image | img_url: 'master' }}" alt="" style="max-width: 100%; height: auto;">
-      </div>
-    {% endif %}
-    
   <div class="ayus-hero-overlay"></div>
   <div class="ayus-hero-content" style="position: relative; z-index: 10; width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto;">
-    <h1>{{ section.settings.heading }}</h1>
-    <p>{{ section.settings.subheading }}</p>
+    <h1>{{ section.settings.heading | escape }}</h1>
+    <p>{{ section.settings.subheading | escape }}</p>
     {% if section.settings.button_link != blank and section.settings.button_label != blank %}
-      <a href="{{ section.settings.button_link }}" class="ayus-btn">{{ section.settings.button_label }}</a>
+      <a href="{{ section.settings.button_link }}" class="ayus-btn">{{ section.settings.button_label | escape }}</a>
     {% endif %}
   </div>
 </section>
@@ -42,61 +14,6 @@
 {
   "name": "Ayus Hero",
   "settings": [
-    {
-      "type": "header",
-      "content": "Layout & Styling"
-    },
-    {
-      "type": "select",
-      "id": "header_placement",
-      "label": "Header Placement",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
-      ],
-      "default": "center"
-    },
-    {
-      "type": "select",
-      "id": "border_placement",
-      "label": "Border Placement",
-      "options": [
-        { "value": "none", "label": "None" },
-        { "value": "top", "label": "Top" },
-        { "value": "bottom", "label": "Bottom" },
-        { "value": "both", "label": "Top & Bottom" }
-      ],
-      "default": "none"
-    },
-    {
-      "type": "select",
-      "id": "heading_size",
-      "label": "Heading Size",
-      "options": [
-        { "value": "24px", "label": "Small" },
-        { "value": "36px", "label": "Medium" },
-        { "value": "48px", "label": "Large" }
-      ],
-      "default": "36px"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text Color",
-      "default": "#333333"
-    },
-    {
-      "type": "color",
-      "id": "layout_bg_color",
-      "label": "Background Color",
-      "default": "#FAF8F5"
-    },
-    {
-      "type": "image_picker",
-      "id": "custom_image",
-      "label": "Insert Image"
-    },
     {
       "type": "image_picker",
       "id": "image",
@@ -109,10 +26,10 @@
       "default": "Find your way home."
     },
     {
-      "type": "richtext",
+      "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "<p>To vibrant, supported, confident living. Authentic Ayurvedic remedies curated with soul.</p>"
+      "default": "To vibrant, supported, confident living. Authentic Ayurvedic remedies curated with soul."
     },
     {
       "type": "text",
