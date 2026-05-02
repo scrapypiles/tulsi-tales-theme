@@ -1,0 +1,217 @@
+
+<style>
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    {% if section.settings.border_placement == 'top' or section.settings.border_placement == 'both' %}
+    border-top: 1px solid var(--color-border);
+    {% endif %}
+    {% if section.settings.border_placement == 'bottom' or section.settings.border_placement == 'both' %}
+    border-bottom: 1px solid var(--color-border);
+    {% endif %}
+  }
+  #shopify-section-{{ section.id }} h1,
+  #shopify-section-{{ section.id }} h2,
+  #shopify-section-{{ section.id }} h3 {
+    text-align: {{ section.settings.header_placement }} !important;
+    font-size: {{ section.settings.heading_size }} !important;
+    color: {{ section.settings.text_color }} !important;
+  }
+</style>
+
+<section class="ayus-featured-collection">
+
+    {% if section.settings.custom_image %}
+      <div style="text-align: center; margin: 20px 0;">
+        <img src="{{ section.settings.custom_image | img_url: 'master' }}" alt="" style="max-width: 100%; height: auto;">
+      </div>
+    {% endif %}
+    
+  <div class="ayus-container">
+    <h2 style="text-align: center; font-size: 36px; margin-bottom: 60px;">{{ section.settings.heading }}</h2>
+    <div class="tt-horizontal-carousel">
+      {%- assign collection = collections[section.settings.collection] -%}
+      {% for product in collection.products limit: section.settings.product_limit %}
+        
+        <div class="tt-carousel-card ayus-product-card">
+          <div style="flex-grow: 1; display: flex; flex-direction: column;">
+            
+            <a href="{{ product.url }}" target="_blank" style="position: relative; width: 100%; padding-bottom: 125%; background: #eee; overflow: hidden; margin-bottom: 15px; display: block;">
+              {% if product.featured_media %}
+                <img src="{{ product.featured_media | img_url: '600x' }}" alt="{{ product.title | escape }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+              {% else %}
+                <div class="ayus-placeholder" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+              {% endif %}
+            </a>
+            
+            <div class="ayus-card-info" style="flex-grow: 1; display: flex; flex-direction: column; text-align: center; align-items: center; padding-top: 10px;">
+              <span class="ayus-brand-text" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-accent); margin-bottom: 5px;">{{ product.vendor }}</span>
+              <a href="{{ product.url }}" target="_blank" style="text-decoration: none; color: inherit;">
+                <h3 class="ayus-card-title" style="font-size: 16px; font-family: var(--font-body); margin-bottom: 10px;">{{ product.title | split: '-' | last | strip }}</h3>
+              </a>
+              <p class="ayus-card-price" style="margin-bottom: 0; font-size: 14px;">{{ product.price | money }}</p>
+            </div>
+            
+          </div>
+          
+          <div class="tt-card-action" style="padding: 10px 0 0 0; margin-top: auto; display: flex; flex-direction: column; width: 100%; align-items: center;">
+            <div class="tt-card-rating" style="margin-bottom: 12px; color: #d4af37; display: flex; align-items: center; justify-content: center; gap: 2px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span style="color: #888; font-size: 11px; margin-left: 6px; font-weight: normal; letter-spacing: 0.1em; text-transform: uppercase;">(0 REVIEWS)</span>
+            </div>
+            <button type="button" class="tt-card-add-btn"  onclick="event.preventDefault(); addAddonToCart(this, {{ product.selected_or_first_available_variant.id }})">ADD TO BAG</button>
+          </div>
+        </div>
+        
+      {% else %}
+        <p>Select a collection to display products.</p>
+      {% endfor %}
+    </div>
+    {% if section.settings.show_view_all %}
+      <div class="ayus-center-btn" style="text-align: center; margin-top: 60px;">
+        <a href="{{ collection.url | default: '/collections/all' }}" class="ayus-btn" style="display: inline-block; padding: 16px 40px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.15em; font-size: 13px; background-color: var(--color-accent); color: #fff; border: 1px solid var(--color-accent);">View All Products</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const carousels = document.querySelectorAll('.tt-horizontal-carousel');
+  carousels.forEach(carousel => {
+    // Slow auto-scroll
+    let isDown = false;
+    let scrollInterval;
+    
+    const startScroll = () => {
+      scrollInterval = setInterval(() => {
+        // Scroll right by 1px
+        carousel.scrollLeft += 1;
+        // If reached end, reset to 0 (or loop)
+        if (carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth)) {
+          carousel.scrollLeft = 0;
+        }
+      }, 30); // Speed
+    };
+    
+    startScroll();
+    
+    // Pause on hover or touch
+    carousel.addEventListener('mouseenter', () => clearInterval(scrollInterval));
+    carousel.addEventListener('mouseleave', startScroll);
+    carousel.addEventListener('touchstart', () => clearInterval(scrollInterval));
+    carousel.addEventListener('touchend', startScroll);
+  });
+});
+</script>
+
+
+<style>
+.tt-horizontal-carousel::-webkit-scrollbar { display: none !important; }
+@media (max-width: 1100px) {
+  .tt-carousel-card { flex: 0 0 calc(33.333% - 20px) !important; max-width: calc(33.333% - 20px) !important; min-width: 250px !important; }
+}
+@media (max-width: 850px) {
+  .tt-horizontal-carousel { margin: 0 -20px !important; padding-left: 20px !important; padding-right: 20px !important; gap: 20px !important; }
+  .tt-carousel-card { flex: 0 0 75% !important; max-width: 75% !important; scroll-snap-align: center !important; }
+}
+.tt-card-add-btn:hover { background-color: var(--color-accent) !important; color: #fff !important; border-color: var(--color-accent) !important; }
+</style>
+
+{% schema %}
+{
+  "name": "Ayus Featured Collection",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout & Styling"
+    },
+    {
+      "type": "select",
+      "id": "header_placement",
+      "label": "Header Placement",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "border_placement",
+      "label": "Border Placement",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "top", "label": "Top" },
+        { "value": "bottom", "label": "Bottom" },
+        { "value": "both", "label": "Top & Bottom" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "options": [
+        { "value": "24px", "label": "Small" },
+        { "value": "36px", "label": "Medium" },
+        { "value": "48px", "label": "Large" }
+      ],
+      "default": "36px"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FAF8F5"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_image",
+      "label": "Insert Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Soulful Curation"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "min": 4,
+      "max": 12,
+      "step": 4,
+      "label": "Product Limit",
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show 'View All' button",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ayus Featured Collection"
+    }
+  ]
+}
+{% endschema %}
