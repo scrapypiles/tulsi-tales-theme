@@ -5,8 +5,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="canonical" href="{{ canonical_url }}">
-    <title>{{ page_title }} - Tulsi Tales</title>
+    <link rel="canonical" href="{% if template == 'index' %}https://www.tulsitales.com{% else %}{{ canonical_url }}{% endif %}">
+    <title>{% if template == 'index' %}Tulsi Tales | Authentic Ayurvedic Products from India{% else %}{{ page_title }} - Tulsi Tales{% endif %}</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% if template == 'index' %}Tulsi Tales | Authentic Ayurvedic Products from India{% else %}{{ page_title }}{% endif %}">
+    <meta property="og:description" content="{% if page_description %}{{ page_description | escape }}{% else %}A curated Ayurvedic marketplace sourcing authentic herbs, supplements, oils, and wellness products from India. Delivered across India and worldwide.{% endif %}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta name="description" content="{% if page_description %}{{ page_description | escape }}{% else %}A curated Ayurvedic marketplace sourcing authentic herbs, supplements, oils, and wellness products from India. Delivered across India and worldwide.{% endif %}">
+
 
     {%- assign social_img = settings.share_image | default: 'social-image.jpg' -%}
     {%- if settings.share_image != blank -%}
@@ -20,16 +27,36 @@
     {%- endif -%}
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Tulsi Tales — curated Ayurvedic products from India">
 
     {{ content_for_header }}
     
+    {%- style -%}
+      {{ settings.font_heading | font_face: font_display: 'swap' }}
+      {{ settings.font_body | font_face: font_display: 'swap' }}
+      
+      :root {
+        --color-background: {{ settings.color_bg | default: '#FAF8F5' }};
+        --color-text: {{ settings.color_text | default: '#2C2C2C' }};
+        --color-accent: {{ settings.color_accent | default: '#4A5D4E' }};
+        --color-border: {{ settings.color_border | default: '#EAE5D9' }};
+        
+        --font-heading: {{ settings.font_heading.family | default: "'Playfair Display'" }}, {{ settings.font_heading.fallback_families | default: "serif" }};
+        --font-body: {{ settings.font_body.family | default: "'Lato'" }}, {{ settings.font_body.fallback_families | default: "sans-serif" }};
+        
+        --base-heading-size: {{ settings.heading_base_size | default: 36 }}px;
+        --base-body-size: {{ settings.body_base_size | default: 14 }}px;
+        --global-section-padding: {{ settings.section_padding | default: 80 }}px;
+        --global-border-radius: {{ settings.border_radius | default: 0 }}px;
+      }
+    {%- endstyle -%}
     {{ 'ayus-styles.css' | asset_url | stylesheet_tag }}
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     {% if settings.favicon != blank %}
-      <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 128 }}" type="image/png">
+      <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png">
     {% else %}
       <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png">
     {% endif %}
