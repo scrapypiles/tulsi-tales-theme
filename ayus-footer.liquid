@@ -70,16 +70,14 @@
             </ul>
             
             {% if block.settings.show_newsletter %}
-            <form method="post" action="/contact#ContactFooter" id="ContactFooter" accept-charset="UTF-8" class="contact-form">
-              <input type="hidden" name="form_type" value="customer">
-              <input type="hidden" name="utf8" value="✓">
+            {% form 'customer', id: 'ContactFooter' %}
               <input type="hidden" name="contact[tags]" value="newsletter">
               
               <div style="display: flex; border-bottom: 1px solid var(--color-text); padding-bottom: 5px; max-width: 300px;">
                 <input
                   type="email"
                   name="contact[email]"
-                  value=""
+                  value="{{ form.email }}"
                   aria-required="true"
                   autocorrect="off"
                   autocapitalize="off"
@@ -90,12 +88,10 @@
                 >
                 <button type="submit" style="background: transparent; border: none; font-size: 20px; cursor: pointer; color: var(--color-text); padding: 5px 15px; position: relative; z-index: 10;">&rarr;</button>
               </div>
-              <script>
-                if (window.location.search.includes('customer_posted=true') || window.location.search.includes('contact_posted=true')) {
-                    document.write('<p style="font-size: 11px; color: green; margin-top: 10px; text-transform: uppercase; letter-spacing: 0.05em;">Thanks for subscribing!</p>');
-                }
-              </script>
-            </form>
+              {%- if form.posted_successfully? -%}
+                <p style="font-size: 11px; color: green; margin-top: 10px; text-transform: uppercase; letter-spacing: 0.05em;">Thanks for subscribing!</p>
+              {%- endif -%}
+            {% endform %}
             {% endif %}
           </div>
       {% endcase %}
@@ -133,7 +129,7 @@
           <a href="{{ link.url }}" style="font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: #888;">{{ link.title }}</a>
         {% endfor %}
       {% else %}
-        <a href="/policies/privacy-policy" style="font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: #888;">Privacy Policy</a>
+        <a href="/pages/policy" style="font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: #888;">Privacy Policy</a>
         <a href="/pages/terms" style="font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: #888;">Terms of Service</a>
         <a href="/pages/refund" style="font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: #888;">Refund Policy</a>
         <a href="/pages/shipping" style="font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; color: #888;">Shipping Policy</a>
