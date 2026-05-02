@@ -124,7 +124,7 @@
                 <a href="{{ product.url }}" target="_blank" style="flex-grow: 1; text-decoration: none; color: inherit; display: flex; flex-direction: column;">
                   <div class="ayus-card-img-wrapper">
                     {% if product.featured_media %}
-                      <img src="{{ product.featured_media | img_url: '600x' }}" alt="{{ product.title | escape }}">
+                      <img src="{{ product.featured_media | img_url: '600x' }}" alt="{{ product.title | escape }}" loading="lazy">
                     {% else %}
                       <div class="ayus-placeholder"></div>
                     {% endif %}

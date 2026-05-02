@@ -24,7 +24,7 @@
 
     {% if section.settings.custom_image %}
       <div style="text-align: center; margin: 20px 0;">
-        <img src="{{ section.settings.custom_image | img_url: 'master' }}" alt="" style="max-width: 100%; height: auto;">
+        <img src="{{ section.settings.custom_image | img_url: 'master' }}" alt="" style="max-width: 100%; height: auto;" loading="lazy">
       </div>
     {% endif %}
     

@@ -6,7 +6,7 @@
     
   <div style="max-width: 800px; margin: 0 auto;">
     {% if section.settings.quote_icon %}
-      <img src="{{ section.settings.quote_icon | img_url: 'master' }}" alt="Icon" style="width: 48px; height: 48px; object-fit: contain; margin-bottom: 20px; opacity: 1;">
+      <img src="{{ section.settings.quote_icon | img_url: 'master' }}" alt="Icon" style="width: 48px; height: 48px; object-fit: contain; margin-bottom: 20px; opacity: 1;" loading="lazy">
     {% else %}
       <img src="{{ 'favicon.png' | asset_url }}" alt="Tulsi Tales Symbol" style="width: 48px; height: 48px; object-fit: contain; margin-bottom: 20px; opacity: 1;">
     {% endif %}

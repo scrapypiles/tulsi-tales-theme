@@ -9,7 +9,7 @@
             <div style="margin-bottom: 20px;">
               <a href="/">
                 {% if block.settings.logo != blank %}
-                  <img src="{{ block.settings.logo | img_url: '400x' }}" alt="{{ shop.name }}" style="max-width: {{ block.settings.logo_width }}px; height: auto;" />
+                  <img src="{{ block.settings.logo | img_url: '400x' }}" alt="{{ shop.name }}" style="max-width: {{ block.settings.logo_width }}px; height: auto;"  loading="lazy">
                 {% else %}
                   <img src="{{ 'logo.png' | asset_url }}" alt="Tulsi Tales Logo" style="max-width: {{ block.settings.logo_width }}px; height: auto;" />
                 {% endif %}
