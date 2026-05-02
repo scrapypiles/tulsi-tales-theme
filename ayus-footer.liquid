@@ -15,17 +15,19 @@
                 {% endif %}
               </a>
             </div>
-            <div style="font-size: 14px; line-height: 2.2; color: #666; font-family: var(--font-body); letter-spacing: 0.05em; max-width: 380px; margin-top: 15px;">
+            <div class="footer-rte" style="font-size: 14px; line-height: 2.2; color: #666; font-family: var(--font-body); letter-spacing: 0.05em; max-width: 380px; margin-top: 15px;">
               {{ block.settings.text }}
             </div>
+            <style>.footer-rte p { margin: 0 0 10px 0; } .footer-rte a { color: var(--color-text); text-decoration: underline; text-underline-offset: 4px; } .footer-rte strong { font-weight: 600; color: var(--color-text); }</style>
           </div>
 
         {% when 'link_list' %}
           <div {{ block.shopify_attributes }}>
             <h4 style="font-family: var(--font-heading); font-weight: 500; letter-spacing: 3px; text-transform: uppercase; font-size: 15px; margin-bottom: 25px; color: var(--color-text);">{{ block.settings.heading }}</h4>
             <ul style="list-style: none; padding: 0; font-size: 12px; line-height: 2.5; letter-spacing: 1px; text-transform: uppercase;">
-              {% if block.settings.menu != blank and linklists[block.settings.menu].links.size > 0 %}
-                {% for link in linklists[block.settings.menu].links %}
+              {% assign footer_menu = block.settings.menu %}
+              {% if footer_menu != blank and linklists[footer_menu] != empty and linklists[footer_menu].links.size > 0 %}
+                {% for link in linklists[footer_menu].links %}
                   <li><a href="{{ link.url }}" style="color: var(--color-text); text-decoration: none;">{{ link.title }}</a></li>
                 {% endfor %}
               {% else %}
@@ -193,10 +195,10 @@
           "default": 180
         },
         {
-          "type": "textarea",
+          "type": "richtext",
           "id": "text",
           "label": "Brand Description",
-          "default": "Rooted in eternal Ayurvedic wisdom. We craft pure, botanical formulations designed to bring holistic well-being, harmony, and natural balance to your daily rituals."
+          "default": "<p>Rooted in eternal Ayurvedic wisdom. We craft pure, botanical formulations designed to bring holistic well-being, harmony, and natural balance to your daily rituals.</p>"
         }
       ]
     },
