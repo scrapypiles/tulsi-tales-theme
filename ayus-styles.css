@@ -544,8 +544,15 @@ h6 {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 80px; /* Fixed width for the vertical strip */
+  width: 80px;
   flex-shrink: 0;
+  max-height: 550px;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.tt-thumbnail-strip::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
 }
 
 .tt-thumb {
@@ -598,7 +605,7 @@ h6 {
 /* Recommendations Section */
 .tt-recommendations {
   border-top: none;
-  padding: 60px 0;
+  padding: 100px 0;
   margin-top: 0;
   background-color: var(--color-background);
 }
