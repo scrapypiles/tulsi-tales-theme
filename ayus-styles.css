@@ -598,7 +598,7 @@ h6 {
 /* Recommendations Section */
 .tt-recommendations {
   border-top: none;
-  padding: 0;
+  padding: 60px 0;
   margin-top: 0;
   background-color: var(--color-background);
 }
@@ -2610,10 +2610,9 @@ details > summary::-webkit-details-marker {
   /* Featured Collection section specific spacing */
   .ayus-featured-collection .ayus-container,
   .tt-recommendations .ayus-container {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    overflow-x: hidden !important;
-  }
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
 
   /* Collection Grid adjustments for mobile */
   .ayus-collection-grid {
@@ -2637,14 +2636,14 @@ details > summary::-webkit-details-marker {
 }
 
 .tt-recommendations .ayus-container {
-  padding-top: 60px !important;
-  padding-bottom: 60px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 @media (max-width: 768px) {
   .tt-recommendations .ayus-container {
-    padding-top: 40px !important;
-    padding-bottom: 40px !important;
-  }
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
 }
 
 /* Histogram Overrides (Brand Aligned & Subtle) */
