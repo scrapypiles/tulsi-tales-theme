@@ -9,7 +9,7 @@
       {% if product.media.size > 1 %}
         <div class="tt-thumbnail-strip">
           {% for media in product.media %}
-            <div class="tt-thumb" onclick="changeMainImage('{{ media | img_url: '1200x' }}')">
+            <div class="tt-thumb" onmouseenter="changeMainImage('{{ media | img_url: '1200x' }}')">
               <img src="{{ media | img_url: '150x' }}" alt="{{ media.alt | escape }}" loading="lazy">
             </div>
           {% endfor %}
@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!-- Customer Reviews Horizontal Section -->
-<div style="border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); width: 100%; background-color: #ffffff; padding: 100px 0;">
+<div style="width: 100%; background-color: #ffffff; padding: 60px 0 80px 0;">
 <div class="ayus-container" style="max-width: 1440px; margin: 0 auto; padding: 0 40px;">
   
 

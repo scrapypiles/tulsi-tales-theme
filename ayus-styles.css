@@ -604,8 +604,8 @@ h6 {
 
 /* Recommendations Section */
 .tt-recommendations {
-  border-top: none;
-  padding: 100px 0;
+  border: none;
+  padding: 80px 0;
   margin-top: 0;
   background-color: var(--color-background);
 }
