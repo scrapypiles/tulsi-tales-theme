@@ -1018,8 +1018,7 @@ h6 {
   padding: 40px 0 !important;
 }
 .tt-recommendations {
-  padding: 0 !important;
-  margin-top: 0 !important;
+  /* Removed conflicting padding zeroing */
 }
 
 /* Search Bar Size Fix */
