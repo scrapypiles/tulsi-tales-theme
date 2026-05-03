@@ -13,7 +13,15 @@
               <img src="{{ media | img_url: '150x' }}" alt="{{ media.alt | escape }}" loading="lazy">
             </div>
           {% endfor %}
-        </div>
+        
+        <script>
+          // Preload full-res images in the background so hover is completely instant
+          {% for media in product.media %}
+            (new Image()).src = '{{ media | img_url: "1200x" }}';
+          {% endfor %}
+        </script>
+
+      </div>
       {% endif %}
 
       <div class="tt-main-image-container">
