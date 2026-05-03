@@ -70,13 +70,13 @@ h6 {
   letter-spacing: 0.15em;
   font-size: 12px;
   color: var(--color-accent);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .ayus-product-title {
   font-size: 36px;
   line-height: 1.2;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .ayus-price-block {
@@ -633,7 +633,7 @@ h6 {
   font-weight: 300;
   font-style: italic;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 /* Update 2: Button Colors */
@@ -1471,7 +1471,7 @@ body {
   }
   .ayus-product-title {
     font-size: 22px !important;
-    margin-bottom: 8px !important;
+    margin-bottom: 10px !important;
   }
   .ayus-product-subtitle {
     font-size: 14px !important;
@@ -1485,7 +1485,7 @@ body {
   }
   .ayus-brand-name {
     font-size: 11px !important;
-    margin-bottom: 5px !important;
+    margin-bottom: 10px !important;
   }
 
   /* Form inputs should be strictly 16px on iOS to prevent auto-zoom */
