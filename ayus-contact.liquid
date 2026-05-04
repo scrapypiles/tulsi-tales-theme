@@ -1,3 +1,4 @@
+{% if section.settings.show_section %}
 {%- style -%}
   .contact-banner {
     position: relative;
@@ -39,22 +40,22 @@
     font-family: var(--font-heading);
     font-size: 48px;
     line-height: 1.2;
-    margin: 0 0 15px 0;
+    margin: 0 auto 5px auto;
     font-weight: normal;
   }
   .contact-subtitle {
     font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.4;
     max-width: 600px;
-    margin: 15px auto 0;
+    margin: 0 auto;
     color: inherit;
     opacity: 0.9;
   }
 
   
   .ayus-contact-section {
-    padding: 80px 20px;
+    padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px !important;
     background-color: #ffffff;
   }
   .ayus-contact-container {
@@ -88,7 +89,7 @@
   }
   .contact-info-block.featured-support p {
     font-size: 20px;
-    line-height: 1.6;
+    line-height: 1.4;
     color: #B75D47;
     margin: 0;
     font-style: italic;
@@ -257,10 +258,38 @@
   </div>
 </section>
 
+{% endif %}
+
 {% schema %}
 {
   "name": "Contact Page",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 80
+    },
     {
       "type": "image_picker",
       "id": "banner_image",

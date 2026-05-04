@@ -1,0 +1,46 @@
+{% if section.settings.show_section %}
+
+<section class="ayus-404-section" style="padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px !important; background-color: #ffffff; text-align: center; min-height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  <div class="ayus-container">
+    <h1 style="font-family: var(--font-heading); font-size: 80px; margin-bottom: 20px; color: var(--color-accent);">404</h1>
+    <h2 style="font-family: var(--font-heading); font-size: 32px; margin-bottom: 20px;">Page Not Found</h2>
+    <p style="font-family: var(--font-body); margin-bottom: 40px; color: #555;">The product you are looking for has been moved or no longer exists.</p>
+    <a href="/collections/all" class="ayus-btn">Return to All Products</a>
+  </div>
+</section>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "404 Page",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
+    }
+  ]
+}
+{% endschema %}

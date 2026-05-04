@@ -1,5 +1,6 @@
+{% if section.settings.show_section %}
 
-<section class="tt-shop-by-section">
+<section class="tt-shop-by-section" style="padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px !important;">
   <div class="ayus-container">
     <h2 style="margin-top: 0; margin-bottom: 40px;">{{ section.settings.heading | escape }}</h2>
     <div class="tt-shop-by-grid">
@@ -13,10 +14,38 @@
   </div>
 </section>
 
+{% endif %}
+
 {% schema %}
 {
   "name": "Ayus Shop By Categories",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 80
+    },
     {
       "type": "text",
       "id": "heading",

@@ -1,23 +1,29 @@
+{% if section.settings.show_section %}
+<style>
+  .tt-collection-banner::before {
+    opacity: 0.42;
+  }
+</style>
 
-<section class="ayus-collection-section" data-section-id="{{ section.id }}" style="background-color: #F9F6F0; padding-bottom: 60px;">
-  <div class="ayus-container">
-    
-    <!-- Hero Banner for Collection (Thinner + Photo) -->
-    {% assign hero_bg = section.settings.image | img_url: 'master' %}
-    {% if collection.image %}
-      {% assign hero_bg = collection.image | img_url: 'master' %}
-    {% elsif section.settings.image == blank %}
-      {% assign hero_bg = 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=1600' %}
-    {% endif %}
-    
-    <div class="tt-collection-hero" style="background-image: url('{{ hero_bg }}'); position: relative;">
-      <div class="tt-hero-overlay"></div>
-      <div class="tt-hero-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 800px; padding: 0 20px; box-sizing: border-box; text-align: center; z-index: 10;">
-    <h1 class="tt-hero-title" style="margin: 0 auto; text-align: center; color: #fff; font-family: var(--font-heading); font-size: 42px; font-weight: normal; letter-spacing: 0.02em;">The Collection</h1>
-    <div class="tt-collection-desc" style="margin: 15px auto 0 auto; text-align: center; color: #fff; font-family: var(--font-body); font-size: 18px; line-height: 1.6;">Authentic Ayurvedic products, carefully chosen.</div>
+<!-- Hero Banner for Collection -->
+{% assign hero_bg = section.settings.image | img_url: 'master' %}
+{% if collection.image %}
+  {% assign hero_bg = collection.image | img_url: 'master' %}
+{% elsif section.settings.image == blank %}
+  {% assign hero_bg = 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=1600' %}
+{% endif %}
+
+<div class="contact-banner tt-collection-banner" style="background-image: url('{{ hero_bg }}'); margin-bottom: 40px;">
+  <div class="contact-banner-content">
+    <span class="contact-tagline" style="color: #eeeeee;">THE COLLECTION</span>
+    <h1 class="contact-title" style="color: #ffffff;">Every product here earned its place.</h1>
+    <div class="contact-subtitle" style="color: #ffffff; opacity: 0.9;"><p>Curated from India's finest Ayurvedic makers. Nothing we wouldn't use ourselves.</p></div>
   </div>
 </div>
-    </div>
+
+<section class="ayus-collection-section" data-section-id="{{ section.id }}" style="background-color: #F9F6F0; padding-top: {{ section.settings.padding_top }}px !important; padding-bottom: {{ section.settings.padding_bottom }}px !important;">
+  <div class="ayus-container">
+
 
     <!-- Collection Layout: Sidebar + Grid -->
     <div class="ayus-collection-layout">
@@ -136,7 +142,7 @@
                     <p class="ayus-card-price" style="margin-bottom: 0;">{{ product.price | money }}</p>
                   </div>
                 </a>
-                <div class="tt-card-action" style="padding: 10px 0 0 0; margin-top: auto; display: flex; flex-direction: column; width: 100%; align-items: center;">
+                <div class="tt-card-action" style="padding: 5px 0 0 0; margin-top: auto; display: flex; flex-direction: column; width: 100%; align-items: center;">
 <!-- Stars right above Add to Bag -->
                   <div class="tt-card-rating" style="margin-bottom: 12px; color: #d4af37; display: flex; align-items: center; justify-content: center; gap: 2px;">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -158,7 +164,7 @@
             
             {% if paginate.next %}
               <div class="tt-infinite-scroll-trigger" data-url="{{ paginate.next.url }}" style="grid-column: 1 / -1; text-align: center; margin-top: 40px; padding: 20px;">
-                <div class="tt-spinner" style="width: 30px; height: 30px; border: 3px solid rgba(0,0,0,0.1); border-radius: 50%; border-top-color: var(--color-accent); animation: tt-spin 1s ease-in-out infinite; margin: 0 auto;"></div>
+                <div class="tt-spinner" style="width: 30px; height: 30px; border: 3px solid rgba(0,0,0,0.1); border-radius: 50%; border-top-color: var(--color-accent); animation: tt-spin 1s ease-in-out infinite; margin: 0 auto 5px auto;"></div>
               </div>
             {% endif %}
           {% endpaginate %}
@@ -297,15 +303,38 @@
 
 </section>
 
-
-
-
-
+{% endif %}
 
 {% schema %}
 {
   "name": "Collection Grid & Filters",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
+    },
     {
       "type": "image_picker",
       "id": "image",

@@ -1,0 +1,202 @@
+{% if section.settings.show_section %}
+<section class="ayus-instagram-section">
+  <div class="ayus-container">
+    <div class="ayus-instagram-header">
+      {% if section.settings.eyebrow != blank %}
+        <span class="ayus-instagram-eyebrow">{{ section.settings.eyebrow }}</span>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <div class="ayus-instagram-subheading">{{ section.settings.subheading }}</div>
+      {% endif %}
+    </div>
+
+    {% if section.settings.embed_code != blank %}
+      <div class="ayus-instagram-widget-wrap">
+        {{ section.settings.embed_code }}
+      </div>
+    {% else %}
+      <div class="ayus-instagram-placeholder">
+        <div class="ayus-instagram-placeholder-grid">
+          <div class="ayus-instagram-card"></div>
+          <div class="ayus-instagram-card"></div>
+          <div class="ayus-instagram-card"></div>
+          <div class="ayus-instagram-card"></div>
+        </div>
+        <p class="ayus-instagram-placeholder-copy">{{ section.settings.placeholder_text }}</p>
+      </div>
+    {% endif %}
+
+    {% if section.settings.instagram_url != blank and section.settings.button_label != blank %}
+      <div class="ayus-instagram-actions">
+        <a href="{{ section.settings.instagram_url }}" class="ayus-btn" target="_blank" rel="noopener">
+          {{ section.settings.button_label }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .ayus-instagram-section {
+    padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px !important;
+    background: #ffffff;
+    border-top: 1px solid var(--color-border);
+  }
+  .ayus-instagram-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 40px;
+  }
+  .ayus-instagram-eyebrow {
+    display: inline-block;
+    margin-bottom: 14px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  .ayus-instagram-header h2 {
+    margin: 0 0 12px;
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--color-text);
+  }
+  .ayus-instagram-subheading,
+  .ayus-instagram-subheading p {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: #666;
+  }
+  .ayus-instagram-widget-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .ayus-instagram-placeholder {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .ayus-instagram-placeholder-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .ayus-instagram-card {
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(180deg, #f3efe6 0%, #ece4d6 100%);
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+  }
+  .ayus-instagram-placeholder-copy {
+    margin: 18px 0 0;
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8a8478;
+  }
+  .ayus-instagram-actions {
+    text-align: center;
+    margin-top: 32px;
+  }
+  @media (max-width: 850px) {
+    .ayus-instagram-section {
+      padding: 64px 20px 56px;
+    }
+    .ayus-instagram-header h2 {
+      font-size: 30px;
+    }
+    .ayus-instagram-placeholder-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+  }
+</style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Ayus Instagram",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show Instagram section",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 80
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Instagram"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Follow our rituals as they unfold"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Share ingredient stories, behind the scenes moments, and the quiet rituals that shape Tulsi Tales.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "embed_code",
+      "label": "Instagram widget embed code",
+      "info": "Paste your widget embed code here later, for example from LightWidget or Elfsight. Leave blank to show the simple placeholder."
+    },
+    {
+      "type": "text",
+      "id": "placeholder_text",
+      "label": "Placeholder text",
+      "default": "Your Instagram feed can go live here whenever you are ready."
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Follow on Instagram"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ayus Instagram"
+    }
+  ]
+}
+{% endschema %}

@@ -1,6 +1,7 @@
+{% if section.settings.show_section %}
 
 
-<section class="ayus-story-hero" style="background-color: var(--color-background); border-bottom: 1px solid var(--color-border);">
+<section class="ayus-story-hero" style="background-color: var(--color-background); border-bottom: 1px solid var(--color-border); padding-top: {{ section.settings.padding_top }}px !important; padding-bottom: {{ section.settings.padding_bottom }}px !important;">
 
     
     
@@ -15,18 +16,47 @@
         <span style="display: block; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.2em; font-size: 13px; margin-bottom: 15px; color: #eee;">{{ section.settings.hero_tagline }}</span>
       {% endif %}
       {% if section.settings.hero_heading != blank %}
-        <h1 style="font-family: var(--font-heading); font-size: 48px; line-height: 1.2; margin: 0 0 15px 0; font-weight: normal; color: #fff !important;">{{ section.settings.hero_heading }}</h1>
+        <h1 style="font-family: var(--font-heading); font-size: 48px; line-height: 1.2; margin: 0 auto 5px auto; font-weight: normal; color: #fff !important;">{{ section.settings.hero_heading }}</h1>
       {% endif %}
       {% if section.settings.hero_subheading != blank %}
-        <p style="font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: #fff; margin: 0; opacity: 0.9;">{{ section.settings.hero_subheading }}</p>
+        <p style="font-family: var(--font-body); font-size: 18px; line-height: 1.6; color: #fff; margin: 0; opacity: 0.9;">{{ section.settings.hero_subheading }}</p>
       {% endif %}
     </div>
   </div>
 </section>
+
+{% endif %}
+
 {% schema %}
 {
   "name": "Story Hero",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    },
     {
       "type": "header",
       "content": "Layout & Styling"

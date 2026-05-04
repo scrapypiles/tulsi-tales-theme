@@ -1,7 +1,8 @@
+{% if section.settings.show_section %}
 
 <div style="background-color: #ffffff; width: 100%;">
 <section id="MainProduct-{{ section.id }}" class="ayus-product-section" data-section="{{ section.id }}">
-  <div class="ayus-product-container" style="padding-bottom: 60px;">
+  <div class="ayus-product-container" style="padding-top: {{ section.settings.padding_top }}px !important; padding-bottom: {{ section.settings.padding_bottom }}px !important;">
     
     <!-- Left Column: The Imagery (Thumbnails + Main Image) -->
     <div class="tt-left-column">
@@ -203,7 +204,7 @@
         {%- if product.metafields.custom.ingredients_botanical != blank or product.metafields.custom.ingredients_sanskrit != blank -%}
           <details class="tt-filter-group ayus-accordion" style="border-bottom: 1px solid var(--color-border); padding: 5px 0; margin-bottom: 0;">
             <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
-              OUR INGREDIENTS <span class="tt-icon-toggle"></span>
+              INGREDIENTS <span class="tt-icon-toggle"></span>
             </summary>
             <div class="tt-filter-content rte" style="padding-bottom: 20px;">
               {%- if product.metafields.custom.ingredients_botanical != blank -%}
@@ -281,8 +282,22 @@ document.addEventListener('DOMContentLoaded', function() {
     <h2 style="text-align: center; font-family: var(--font-heading); margin-bottom: 40px; font-size: 32px;">You May Also Like</h2>
     <div class="tt-horizontal-carousel">
       {% assign related_count = 0 %}
+      {% assign current_tags = product.tags | join: '|||' | downcase %}
       {% for related in collections['all'].products %}
-        {% if related.id != product.id and related_count < 8 %}
+        {% if related.id == product.id %}{% continue %}{% endif %}
+        
+        {% assign is_match = false %}
+        {% for tag in related.tags %}
+          {% assign down_tag = tag | downcase %}
+          {% if down_tag != 'ayurvedic' and down_tag != 'vaidyaratnam' and down_tag != 'wellness' %}
+            {% if current_tags contains down_tag %}
+              {% assign is_match = true %}
+              {% break %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+
+        {% if is_match and related_count < 8 %}
           <div class="tt-carousel-card ayus-product-card">
           <div style="flex-grow: 1; display: flex; flex-direction: column;">
             
@@ -413,13 +428,41 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 </div>
 
+{% endif %}
+
 {% schema %}
 {
   "name": "Ayus Product Layout",
-  "settings": []
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
+    }
+  ]
 }
 {% endschema %}
-
 
 
 

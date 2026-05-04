@@ -1,5 +1,6 @@
+{% if section.settings.show_section %}
 
-<section class="ayus-story-faq" style="padding: 100px 20px; background-color: #FAF8F5; border-bottom: 1px solid var(--color-border);">
+<section class="ayus-story-faq" style="padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px !important; background-color: #FAF8F5; border-bottom: 1px solid var(--color-border);">
   <div style="max-width: 800px; margin: 0 auto;">
     <div style="text-align: center; margin-bottom: 50px;">
       {% if section.settings.label != blank %}
@@ -43,10 +44,39 @@ details.tt-filter-group summary .tt-icon-toggle {
 details.tt-filter-group:not([open]) summary .tt-icon-toggle::before { content: "+"; }
 details.tt-filter-group[open] summary .tt-icon-toggle::before { content: "−"; } /* using minus sign instead of hyphen */
 </style>
+
+{% endif %}
+
 {% schema %}
 {
   "name": "Story FAQs",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 100
+    },
     {
       "type": "color",
       "id": "bg_color",

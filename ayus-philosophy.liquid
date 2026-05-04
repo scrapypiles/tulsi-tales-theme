@@ -1,5 +1,6 @@
+{% if section.settings.show_section %}
 
-<section class="ayus-philosophy" style="background-color: #ffffff; padding: 80px 20px; text-align: center; border-top: 1px solid var(--color-border);">
+<section class="ayus-philosophy" style="background-color: #ffffff; padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px !important; text-align: center; border-top: 1px solid var(--color-border);">
   <div style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
     <img src="{{ 'favicon.png' | asset_url }}" alt="Tulsi Tales Symbol" style="width: 40px; height: 40px; object-fit: contain; margin-bottom: 20px;">
     <h2 style="margin-top: 0; font-family: var(--font-heading); font-size: 36px; color: var(--color-text); margin-bottom: 25px; font-weight: normal;">{{ section.settings.heading | escape }}</h2>
@@ -15,11 +16,40 @@
     padding-bottom: 0 !important;
   }
 </style>
+
+{% endif %}
+
 {% schema %}
 
 {
   "name": "Ayus Philosophy",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 80
+    },
     {
       "type": "text",
       "id": "heading",
