@@ -1304,9 +1304,9 @@ body {
 @media (max-width: 850px) {
   /* 1 & 2 & 8: Header, Logo, Icons, Fonts */
   .ayus-header-container {
-    padding: 7px 14px !important;
+    padding: 7px 12px !important;
     display: grid !important;
-    grid-template-columns: 96px auto 96px;
+    grid-template-columns: 72px auto 72px;
     align-items: center !important;
     column-gap: 10px;
     position: relative;
@@ -1315,20 +1315,19 @@ body {
   }
   .tt-mobile-header-left,
   .ayus-nav-right {
-    width: 96px;
-    min-width: 96px;
+    width: 72px;
+    min-width: 72px;
     display: flex !important;
     align-items: center !important;
-    gap: 14px;
+    justify-content: space-between !important;
+    gap: 0;
     z-index: 4;
   }
   .tt-mobile-header-left {
     justify-self: start;
-    justify-content: flex-start !important;
   }
   .ayus-nav-right {
     justify-self: end;
-    justify-content: flex-end !important;
   }
   .ayus-mobile-toggle {
     flex: 0 0 auto;
@@ -1353,7 +1352,7 @@ body {
     width: auto;
     z-index: 2;
     justify-self: center;
-    padding: 0 18px;
+    padding: 0 14px;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -1399,8 +1398,8 @@ body {
     stroke-width: 1.7 !important;
   }
   .tt-cart-badge {
-    top: -6px;
-    right: -8px;
+    top: -5px;
+    right: -5px;
     width: 17px;
     height: 17px;
     font-size: 9px;
@@ -1427,7 +1426,7 @@ body {
   .ayus-hero {
     height: 56vh !important;
     min-height: 400px !important;
-    background-size: 118% !important;
+    background-size: 112% !important;
     background-position: center center !important;
   }
   .ayus-hero-content {
@@ -2194,11 +2193,11 @@ details[open] > summary .tt-icon-plus::before {
 /* Small Buttons (Product Cards & Reviews) */
 .tt-card-add-btn,
 .jdgm-write-rev-link {
-  padding: 14px 24px !important;
-  font-size: 13px !important;
+  padding: 11px 20px !important;
+  font-size: 11px !important;
   width: auto !important;
   max-width: 100% !important;
-  min-width: 152px !important;
+  min-width: 136px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
