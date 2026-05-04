@@ -1313,9 +1313,11 @@ body {
   }
   .tt-mobile-header-left,
   .ayus-nav-right {
+    width: 84px;
+    min-width: 84px;
     display: flex !important;
     align-items: center !important;
-    gap: 12px;
+    gap: 10px;
     z-index: 4;
   }
   .tt-mobile-header-left {
@@ -1358,6 +1360,19 @@ body {
     min-width: 24px;
     min-height: 24px;
     vertical-align: middle !important;
+  }
+  .ayus-nav-right .tt-desktop-search-toggle,
+  .desktop-only.tt-desktop-search-toggle,
+  .ayus-nav-right .tt-desktop-search-toggle.desktop-only {
+    display: none !important;
+  }
+  .ayus-nav-right .ayus-account-link,
+  .ayus-nav-right .ayus-cart-link,
+  .tt-mobile-header-left .tt-mobile-search-toggle,
+  .tt-mobile-header-left .ayus-mobile-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
   .tt-icon-link svg {
     width: 24px !important;
