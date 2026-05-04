@@ -74,7 +74,7 @@
           
           <!-- Pricing -->
           <div class="ayus-price-block" style="margin: 0; padding: 0; display: flex; align-items: baseline;">
-            <span class="ayus-regular-price" style="font-size: 20px; font-family: var(--font-body); letter-spacing: 0.05em; color: var(--color-text);">{{ product.price | money_with_currency }}</span>
+            <span id="ayus-regular-price-{{ section.id }}" class="ayus-regular-price" style="font-size: 20px; font-family: var(--font-body); letter-spacing: 0.05em; color: var(--color-text);">{{ product.selected_or_first_available_variant.price | money_with_currency }}</span>
             <span style="font-size: 11px; color: #888; margin-left: 10px; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.1em;">(Inclusive of taxes)</span>
           </div>
           
@@ -98,7 +98,7 @@
               <span class="tt-control-label" style="margin-bottom: 10px; display: block;">Size:</span>
               <div class="ayus-variant-pills" style="display: flex; flex-wrap: wrap; gap: 10px;">
                 {%- for variant in product.variants -%}
-                  <input type="radio" name="id" value="{{ variant.id }}" id="variant-{{ variant.id }}" class="ayus-variant-radio" {% if variant == product.selected_or_first_available_variant %}checked{% endif %} style="display: none;">
+                  <input type="radio" name="id" value="{{ variant.id }}" id="variant-{{ variant.id }}" class="ayus-variant-radio" data-price="{{ variant.price | money_with_currency }}" {% if variant == product.selected_or_first_available_variant %}checked{% endif %} style="display: none;">
                   <label for="variant-{{ variant.id }}" class="ayus-variant-label">
                     {%- if variant.title == 'Default Title' -%}
                       {%- if product.metafields.custom.pack_size != blank -%}{{ product.metafields.custom.pack_size }}{%- else -%}Standard Size{%- endif -%}
@@ -240,17 +240,26 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const radioButtons = document.querySelectorAll('.ayus-variant-radio');
+  const priceEl = document.getElementById('ayus-regular-price-{{ section.id }}');
+
+  function syncVariantUI(radio) {
+    if (!radio) return;
+    if (priceEl && radio.dataset.price) {
+      priceEl.textContent = radio.dataset.price;
+    }
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('variant', radio.value);
+    window.history.replaceState({}, '', url.toString());
+  }
+
   radioButtons.forEach(radio => {
     radio.addEventListener('change', function() {
-      // Update URL with selected variant ID
-      const url = new URL(window.location.href);
-      url.searchParams.set('variant', this.value);
-      window.history.replaceState({}, '', url.toString());
+      syncVariantUI(this);
     });
   });
 
-  
-
+  syncVariantUI(document.querySelector('.ayus-variant-radio:checked'));
 
   // --- Quantity Selector Logic CLEAN ---
   const qtyInputEl = document.getElementById('tt-qty-input');
