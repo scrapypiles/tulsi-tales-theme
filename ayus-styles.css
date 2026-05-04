@@ -1307,6 +1307,10 @@ body {
     text-align: left;
     font-size: 34px !important;
     line-height: 1 !important;
+    color: var(--color-accent) !important;
+    display: flex !important;
+    align-items: center !important;
+    min-height: 28px;
   }
   .ayus-logo {
     position: absolute;
@@ -1315,17 +1319,33 @@ body {
     width: auto;
   }
   .tt-logo-link img {
-    max-height: 40px !important;
+    max-height: 46px !important;
   }
   .ayus-nav-right {
     flex: 1;
     display: flex !important;
     justify-content: flex-end;
     align-items: center;
-    gap: 15px; /* Clean gap between icons */
+    gap: 8px;
   }
   .tt-icon-link {
     margin-left: 0 !important;
+    color: var(--color-accent) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    min-height: 28px;
+  }
+  .tt-icon-link svg {
+    width: 24px !important;
+    height: 24px !important;
+    display: block;
+    stroke-width: 1.7 !important;
+  }
+  .tt-cart-badge {
+    top: -6px;
+    right: -8px;
   }
 
   /* 8: Typography scale down */
