@@ -1301,32 +1301,45 @@ body {
     align-items: center;
     position: relative;
     width: 100%;
+    min-height: 58px;
   }
   .ayus-mobile-toggle {
-    flex: 1;
+    flex: 0 0 auto;
+    width: 32px;
     text-align: left;
     font-size: 34px !important;
     line-height: 1 !important;
     color: var(--color-accent) !important;
     display: flex !important;
     align-items: center !important;
+    justify-content: flex-start !important;
     min-height: 28px;
+    z-index: 4;
   }
   .ayus-logo {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     width: auto;
+    z-index: 2;
   }
   .tt-logo-link img {
-    max-height: 46px !important;
+    max-height: 50px !important;
   }
   .ayus-nav-right {
-    flex: 1;
+    flex: 0 0 auto;
     display: flex !important;
     justify-content: flex-end;
     align-items: center;
     gap: 8px;
+    z-index: 4;
+  }
+  #tt-search-toggle {
+    position: absolute !important;
+    left: 56px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
   }
   .tt-icon-link {
     margin-left: 0 !important;
