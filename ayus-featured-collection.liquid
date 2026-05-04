@@ -56,24 +56,24 @@
 document.addEventListener("DOMContentLoaded", function() {
   const carousels = document.querySelectorAll('.tt-horizontal-carousel');
   carousels.forEach(carousel => {
-    // Slow auto-scroll
-    let isDown = false;
+    if (window.innerWidth <= 850) {
+      carousel.style.scrollBehavior = 'smooth';
+      return;
+    }
+
     let scrollInterval;
-    
     const startScroll = () => {
+      clearInterval(scrollInterval);
       scrollInterval = setInterval(() => {
-        // Scroll right by 1px
         carousel.scrollLeft += 1;
-        // If reached end, reset to 0 (or loop)
         if (carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth)) {
           carousel.scrollLeft = 0;
         }
-      }, 30); // Speed
+      }, 30);
     };
-    
+
     startScroll();
-    
-    // Pause on hover or touch
+
     carousel.addEventListener('mouseenter', () => clearInterval(scrollInterval));
     carousel.addEventListener('mouseleave', startScroll);
     carousel.addEventListener('touchstart', () => clearInterval(scrollInterval));
@@ -89,8 +89,8 @@ document.addEventListener("DOMContentLoaded", function() {
   .tt-carousel-card { flex: 0 0 calc(33.333% - 20px) !important; max-width: calc(33.333% - 20px) !important; min-width: 250px !important; }
 }
 @media (max-width: 850px) {
-  .tt-horizontal-carousel { margin: 0 -20px !important; padding-left: 20px !important; padding-right: 20px !important; gap: 20px !important; }
-  .tt-carousel-card { flex: 0 0 75% !important; max-width: 75% !important; scroll-snap-align: center !important; }
+  .tt-horizontal-carousel { margin: 0 -20px !important; padding-left: 20px !important; padding-right: 20px !important; gap: 18px !important; scroll-snap-type: x proximity !important; scroll-behavior: smooth !important; }
+  .tt-carousel-card { flex: 0 0 68% !important; max-width: 68% !important; scroll-snap-align: center !important; }
 }
 .tt-card-add-btn:hover { background-color: var(--color-accent) !important; color: #fff !important; border-color: var(--color-accent) !important; }
 </style>
