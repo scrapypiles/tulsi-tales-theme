@@ -1400,16 +1400,16 @@ body {
 
   /* 8: Typography scale down */
   h1 {
-    font-size: 28px !important;
+    font-size: 30px !important;
   }
   h2 {
-    font-size: 24px !important;
+    font-size: 26px !important;
   }
   p {
     font-size: 14px !important;
   }
   .tt-hero-content h1 {
-    font-size: 32px !important;
+    font-size: 34px !important;
     line-height: 1.2;
   }
   .ayus-product-title {
@@ -1417,8 +1417,8 @@ body {
   }
 
   .ayus-hero {
-    height: 62vh !important;
-    min-height: 460px !important;
+    height: 56vh !important;
+    min-height: 400px !important;
   }
   .ayus-hero-content {
     max-width: 340px !important;
@@ -1440,8 +1440,13 @@ body {
 
   /* 3: Reduce space above Shop By */
   .tt-shop-by-section {
-    padding-top: 20px !important;
+    padding-top: 10px !important;
     padding-bottom: 30px !important;
+  }
+  .tt-shop-by-section h2,
+  .ayus-featured-collection h2 {
+    font-size: 26px !important;
+    margin-bottom: 32px !important;
   }
 
   /* 4: Soulful curation - Horizontal Scroll Carousel */
