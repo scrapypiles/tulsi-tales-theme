@@ -138,10 +138,11 @@ h6 {
 .ayus-accordion[open] .ayus-accordion-content {
   padding-bottom: 24px;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 2.0; letter-spacing: 0.03em;
   color: #555;
 }
 
+.ayus-accordion-content p, .ayus-accordion-content ul, .ayus-accordion-content li { line-height: 2.0; letter-spacing: 0.03em; } 
 .ayus-accordion-content p {
   margin-bottom: 10px;
 }
@@ -249,14 +250,14 @@ h6 {
   flex-direction: column;
   align-items: center;
 }
-.ayus-hero-content h1 {
+.ayus-hero-content h1 { margin-bottom: 30px !important;
   font-size: 64px;
   margin-bottom: 20px;
   margin-top: 0;
   line-height: 1.2;
   font-family: var(--font-heading);
 }
-.ayus-hero-content p {
+.ayus-hero-content p { margin-top: 5px !important; margin-bottom: 30px !important;
   font-size: 18px;
   margin-bottom: 40px;
   font-weight: 300;
@@ -276,8 +277,9 @@ h6 {
 }
 .ayus-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 30px;
+  row-gap: 60px;
 }
 .ayus-product-card a {
   text-decoration: none;
@@ -428,6 +430,13 @@ h6 {
 }
 .tt-announcement-bar p {
   margin: 0;
+}
+.tt-announcement-bar a,
+.tt-announcement-bar a[href^="mailto:"],
+.tt-announcement-bar a[href^="tel:"],
+.tt-announcement-bar a[x-apple-data-detectors] {
+  color: inherit !important;
+  text-decoration: none !important;
 }
 
 .tt-shop-by-section {
@@ -587,7 +596,7 @@ h6 {
   position: relative;
   overflow: hidden;
   border-radius: 0; /* Purearth uses sharp edges usually */
-  background: #f7f5f0; /* Soft cream backdrop for cutout products */
+  background: #ffffff; /* Soft cream backdrop for cutout products */
   cursor: zoom-in;
 }
 
@@ -692,7 +701,7 @@ h6 {
 }
 
 .tt-qty-box.tt-cart-qty {
-  border-bottom: none !important;
+  border-bottom: 1px solid var(--color-border) !important;
   border: 1px solid var(--color-border);
 }
 .tt-qty-btn {
@@ -784,10 +793,13 @@ h6 {
 }
 
 /* Collection Hero */
-.tt-collection-hero {
+.tt-collection-hero { height: 350px !important;
   position: relative;
   background-color: var(--color-accent);
-  padding: 80px 20px;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   color: #fff;
   margin-bottom: 40px;
@@ -1072,7 +1084,7 @@ h6 {
 }
 
 /* Thinner Collection Banner */
-.tt-collection-hero {
+.tt-collection-hero { height: 350px !important;
   padding: 40px 20px !important;
   min-height: 180px;
   display: flex;
@@ -1195,7 +1207,7 @@ h6 {
   max-width: 100%;
   padding: 0;
 }
-.tt-collection-hero {
+.tt-collection-hero { height: 350px !important;
   margin-top: 0 !important;
   width: 100%;
   margin-bottom: 40px !important;
@@ -1293,6 +1305,8 @@ body {
   .ayus-mobile-toggle {
     flex: 1;
     text-align: left;
+    font-size: 34px !important;
+    line-height: 1 !important;
   }
   .ayus-logo {
     position: absolute;
@@ -1301,7 +1315,7 @@ body {
     width: auto;
   }
   .tt-logo-link img {
-    max-height: 30px !important; /* Scale down logo to prevent overlap */
+    max-height: 40px !important;
   }
   .ayus-nav-right {
     flex: 1;
@@ -1437,7 +1451,7 @@ body {
   .ayus-card-info {
     padding: 10px !important;
   }
-  .tt-collection-hero {
+  .tt-collection-hero { height: 350px !important;
     min-height: 120px !important;
     padding: 30px 15px !important;
     margin-bottom: 20px !important;
@@ -1518,7 +1532,7 @@ body {
 
   .ayus-mobile-drawer-header {
     padding: 20px 24px !important;
-    border-bottom: none !important;
+    border-bottom: 1px solid var(--color-border) !important;
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -1946,7 +1960,7 @@ details[open] > summary .tt-icon-plus::before {
 .jdgm-rev__body {
   font-family: var(--font-body) !important;
   font-size: 14px !important;
-  line-height: 1.8 !important;
+  line-height: 1.6 !important;
   color: #444 !important;
 }
 .jdgm-rev__author {
@@ -2240,15 +2254,15 @@ details[open] > summary .tt-icon-plus::after {
 .jdgm-rev-widg {
   border: none !important;
   border-top: none !important;
-  border-bottom: none !important;
+  border-bottom: 1px solid var(--color-border) !important;
 }
 .jdgm-rev-widg__header {
   border: none !important;
-  border-bottom: none !important;
+  border-bottom: 1px solid var(--color-border) !important;
 }
 .jdgm-rev-widg__summary {
   border: none !important;
-  border-bottom: none !important;
+  border-bottom: 1px solid var(--color-border) !important;
 }
 
 /* Reveal and style real Judge.me button */
@@ -2439,7 +2453,7 @@ details > summary::-webkit-details-marker {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 .ayus-rev-arrow:hover {
-  background: #f7f5f0;
+  background: #ffffff;
   transform: translateY(-50%) scale(1.05);
 }
 .ayus-rev-prev {
@@ -2689,7 +2703,7 @@ details > summary::-webkit-details-marker {
   height: 0 !important;
   padding-bottom: 125% !important; /* Strict 4:5 ratio for EVERY product card */
   overflow: hidden !important;
-  background: #f7f5f0 !important;
+  background: #ffffff !important;
   display: block !important;
   margin-bottom: 0 !important; /* Stitched to info block */
 }
@@ -2701,7 +2715,7 @@ details > summary::-webkit-details-marker {
   left: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important; /* Force the image to fill the 4:5 box, cropping if necessary, NEVER changing the box size */
+  object-fit: cover !important; /* Force the image to fit in the 4:5 box without cropping */
   box-sizing: border-box !important;
   padding: 0 !important;
   margin: 0 !important;
@@ -2758,4 +2772,102 @@ details > summary::-webkit-details-marker {
     padding-left: 15px !important;
     padding-right: 15px !important;
   }
+}
+
+.tt-filter-content, 
+.tt-filter-content *, 
+.tt-filter-content p, 
+.tt-filter-content div, 
+.tt-filter-content span, 
+.tt-filter-content ul, 
+.tt-filter-content li {
+  line-height: 1.6 !important;
+  letter-spacing: normal !important;
+}
+
+/* Explicit overrides for Description */
+.ayus-product-description,
+.ayus-product-description p,
+.ayus-product-description span {
+  line-height: 1.5 !important;
+  letter-spacing: normal !important;
+  margin-bottom: 12px !important;
+}
+
+/* Explicit overrides for Accordions */
+.tt-filter-content,
+.tt-filter-content p,
+.tt-filter-content span,
+.tt-filter-content li {
+  line-height: 1.6 !important;
+  letter-spacing: normal !important;
+  margin-bottom: 15px !important;
+}
+
+/* Global Banner Styles (from Contact) */
+.contact-banner {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #F7F5F0;
+}
+.contact-banner::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #000000;
+  opacity: 0.3;
+}
+.contact-banner-content {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  padding: 0 20px;
+}
+.contact-tagline {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 13px;
+  display: block;
+  margin-bottom: 15px;
+}
+.contact-title {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  line-height: 1.2;
+  margin: 0 auto 5px auto;
+  font-weight: normal;
+}
+.contact-subtitle {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.4;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.tt-collection-hero .contact-banner-content {
+  color: #ffffff !important;
+}
+.tt-collection-hero .contact-title {
+  color: #ffffff !important;
+}
+.tt-collection-hero .contact-subtitle {
+  color: #ffffff !important;
+  opacity: 0.9;
+}
+.tt-collection-hero .contact-tagline {
+  color: #eeeeee !important;
+}
+
+@media (max-width: 850px) {
+  .contact-title { font-size: 26px !important; }
+  .contact-subtitle { font-size: 14px !important; }
 }
