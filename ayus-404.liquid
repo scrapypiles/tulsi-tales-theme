@@ -1,11 +1,26 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} > section,
+  #shopify-section-{{ section.id }} > div,
+  #shopify-section-{{ section.id }} > header,
+  #shopify-section-{{ section.id }} > footer {
+    background-color: {{ section.settings.background_color | default: '#ffffff' }} !important;
+    {% if section.settings.background_image != blank %}
+      background-image: url('{{ section.settings.background_image | image_url: width: 2400 }}') !important;
+      background-size: cover !important;
+      background-position: {{ section.settings.background_position | default: 'center center' }} !important;
+      background-repeat: no-repeat !important;
+    {% endif %}
+  }
+{%- endstyle -%}
+
 {% if section.settings.show_section %}
 
 <section class="ayus-404-section" style="padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px !important; background-color: #ffffff; text-align: center; min-height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
   <div class="ayus-container">
-    <h1 style="font-family: var(--font-heading); font-size: 80px; margin-bottom: 20px; color: var(--color-accent);">404</h1>
-    <h2 style="font-family: var(--font-heading); font-size: 32px; margin-bottom: 20px;">Page Not Found</h2>
-    <p style="font-family: var(--font-body); margin-bottom: 40px; color: #555;">The product you are looking for has been moved or no longer exists.</p>
-    <a href="/collections/all" class="ayus-btn">Return to All Products</a>
+    <h1 style="font-family: var(--font-heading); font-size: 80px; margin-bottom: 20px; color: var(--color-accent);">{{ section.settings.error_code }}</h1>
+    <{{ section.settings.heading_tag }} style="font-family: var(--font-heading); font-size: 32px; margin-bottom: 20px;">{{ section.settings.heading }}</{{ section.settings.heading_tag }}>
+    <p style="font-family: var(--font-body); margin-bottom: 40px; color: #555;">{{ section.settings.body_text }}</p>
+    <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="ayus-btn">{{ section.settings.button_label }}</a>
   </div>
 </section>
 
@@ -40,6 +55,71 @@
       "unit": "px",
       "label": "Padding bottom",
       "default": 60
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "select",
+      "id": "background_position",
+      "label": "Background image position",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "center top", "label": "Top" },
+        { "value": "center bottom", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "text",
+      "id": "error_code",
+      "label": "Error code",
+      "default": "404"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "p", "label": "Paragraph" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Page Not Found"
+    },
+    {
+      "type": "text",
+      "id": "body_text",
+      "label": "Body text",
+      "default": "The product you are looking for has been moved or no longer exists."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Return to All Products"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
     }
   ]
 }

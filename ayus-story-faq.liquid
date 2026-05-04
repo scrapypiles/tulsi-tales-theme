@@ -1,3 +1,18 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} > section,
+  #shopify-section-{{ section.id }} > div,
+  #shopify-section-{{ section.id }} > header,
+  #shopify-section-{{ section.id }} > footer {
+    background-color: {{ section.settings.background_color | default: '#faf8f5' }} !important;
+    {% if section.settings.background_image != blank %}
+      background-image: url('{{ section.settings.background_image | image_url: width: 2400 }}') !important;
+      background-size: cover !important;
+      background-position: {{ section.settings.background_position | default: 'center center' }} !important;
+      background-repeat: no-repeat !important;
+    {% endif %}
+  }
+{%- endstyle -%}
+
 {% if section.settings.show_section %}
 
 <section class="ayus-story-faq" style="padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px !important; background-color: #FAF8F5; border-bottom: 1px solid var(--color-border);">
@@ -76,6 +91,30 @@ details.tt-filter-group[open] summary .tt-icon-toggle::before { content: "−"; 
       "unit": "px",
       "label": "Padding bottom",
       "default": 100
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#faf8f5"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "select",
+      "id": "background_position",
+      "label": "Background image position",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "center top", "label": "Top" },
+        { "value": "center bottom", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ],
+      "default": "center center"
     },
     {
       "type": "color",

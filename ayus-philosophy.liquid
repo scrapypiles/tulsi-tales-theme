@@ -1,9 +1,24 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} > section,
+  #shopify-section-{{ section.id }} > div,
+  #shopify-section-{{ section.id }} > header,
+  #shopify-section-{{ section.id }} > footer {
+    background-color: {{ section.settings.background_color | default: '#ffffff' }} !important;
+    {% if section.settings.background_image != blank %}
+      background-image: url('{{ section.settings.background_image | image_url: width: 2400 }}') !important;
+      background-size: cover !important;
+      background-position: {{ section.settings.background_position | default: 'center center' }} !important;
+      background-repeat: no-repeat !important;
+    {% endif %}
+  }
+{%- endstyle -%}
+
 {% if section.settings.show_section %}
 
 <section class="ayus-philosophy" style="background-color: #ffffff; padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px !important; text-align: center; border-top: 1px solid var(--color-border);">
   <div style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
     <img src="{{ 'favicon.png' | asset_url }}" alt="Tulsi Tales Symbol" style="width: 40px; height: 40px; object-fit: contain; margin-bottom: 20px;">
-    <h2 style="margin-top: 0; font-family: var(--font-heading); font-size: 36px; color: var(--color-text); margin-bottom: 25px; font-weight: normal;">{{ section.settings.heading | escape }}</h2>
+    <{{ section.settings.heading_tag }} style="margin-top: 0; font-family: var(--font-heading); font-size: 36px; color: var(--color-text); margin-bottom: 25px; font-weight: normal;">{{ section.settings.heading | escape }}</{{ section.settings.heading_tag }}>
     <p style="margin-bottom: 0; font-family: var(--font-body); font-size: 18px; color: #555; line-height: 1.8; font-style: italic;">“{{ section.settings.text | escape }}”</p>
   </div>
 </section>
@@ -49,6 +64,42 @@
       "unit": "px",
       "label": "Padding bottom",
       "default": 80
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "select",
+      "id": "background_position",
+      "label": "Background image position",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "center top", "label": "Top" },
+        { "value": "center bottom", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "p", "label": "Paragraph" }
+      ],
+      "default": "h2"
     },
     {
       "type": "text",

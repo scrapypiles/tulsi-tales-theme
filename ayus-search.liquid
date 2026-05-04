@@ -1,12 +1,27 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} > section,
+  #shopify-section-{{ section.id }} > div,
+  #shopify-section-{{ section.id }} > header,
+  #shopify-section-{{ section.id }} > footer {
+    background-color: {{ section.settings.background_color | default: '#faf8f5' }} !important;
+    {% if section.settings.background_image != blank %}
+      background-image: url('{{ section.settings.background_image | image_url: width: 2400 }}') !important;
+      background-size: cover !important;
+      background-position: {{ section.settings.background_position | default: 'center center' }} !important;
+      background-repeat: no-repeat !important;
+    {% endif %}
+  }
+{%- endstyle -%}
+
 {% if section.settings.show_section %}
 
 <section class="ayus-search-section" style="padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px !important;">
   <div class="ayus-container">
     
     <div class="tt-search-header" style="text-align: center; margin-bottom: 30px;">
-      <h1 style="font-family: var(--font-heading); font-size: 32px; margin-bottom: 20px;">Search Results</h1>
+      <{{ section.settings.search_heading_tag }} style="font-family: var(--font-heading); font-size: 32px; margin-bottom: 20px;">{{ section.settings.search_heading }}</{{ section.settings.search_heading_tag }}>
       <form action="{{ routes.search_url }}" method="get" role="search" style="max-width: 500px; margin: 0 auto; display: flex; border: 1px solid var(--color-border);">
-        <input type="text" name="q" value="{{ search.terms | escape }}" placeholder="Search remedies..." style="flex-grow: 1; padding: 15px; border: none; outline: none; font-family: var(--font-body);">
+        <input type="text" name="q" value="{{ search.terms | escape }}" placeholder="{{ section.settings.search_placeholder }}" style="flex-grow: 1; padding: 15px; border: none; outline: none; font-family: var(--font-body);">
         <input type="hidden" name="options[prefix]" value="last">
         <button type="submit" style="background: var(--color-accent); color: white; border: none; padding: 0 30px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px;">Search</button>
       </form>
@@ -15,10 +30,10 @@
     {% if search.performed %}
       {% if search.results_count == 0 %}
         <div style="text-align: center; padding: 40px 0; color: #555;">
-          <p>No results found for "{{ search.terms | escape }}". Try checking your spelling or using more general terms.</p>
+          <p>{{ section.settings.no_results_text | replace: '[search_term]', search.terms }}</p>
         </div>
       {% else %}
-        <p style="text-align: center; margin-bottom: 20px; color: #888;">Showing {{ search.results_count }} results for "{{ search.terms | escape }}"</p>
+        <p style="text-align: center; margin-bottom: 20px; color: #888;">{{ section.settings.results_text | replace: '[count]', search.results_count | replace: '[search_term]', search.terms }}</p>
         <div class="ayus-search-grid-wrapper" style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
         <div class="ayus-grid" style="row-gap: 50px;">
           {% for item in search.results %}
@@ -92,6 +107,66 @@
       "unit": "px",
       "label": "Padding bottom",
       "default": 0
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#faf8f5"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "select",
+      "id": "background_position",
+      "label": "Background image position",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "center top", "label": "Top" },
+        { "value": "center bottom", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "select",
+      "id": "search_heading_tag",
+      "label": "Search heading tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "p", "label": "Paragraph" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "text",
+      "id": "search_heading",
+      "label": "Search heading",
+      "default": "Search Results"
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search input placeholder",
+      "default": "Search remedies..."
+    },
+    {
+      "type": "text",
+      "id": "results_text",
+      "label": "Results summary text",
+      "default": "Showing [count] results for \"[search_term]\""
+    },
+    {
+      "type": "text",
+      "id": "no_results_text",
+      "label": "No results text",
+      "default": "No results found for \"[search_term]\". Try checking your spelling or using more general terms."
     }
   ]
 }
