@@ -1,22 +1,7 @@
-{%- style -%}
-  #shopify-section-{{ section.id }} > section,
-  #shopify-section-{{ section.id }} > div,
-  #shopify-section-{{ section.id }} > header,
-  #shopify-section-{{ section.id }} > footer {
-    background-color: {{ section.settings.background_color | default: '#f9f6f0' }} !important;
-    {% if section.settings.background_image != blank %}
-      background-image: url('{{ section.settings.background_image | image_url: width: 2400 }}') !important;
-      background-size: cover !important;
-      background-position: {{ section.settings.background_position | default: 'center center' }} !important;
-      background-repeat: no-repeat !important;
-    {% endif %}
-  }
-{%- endstyle -%}
-
 {% if section.settings.show_section %}
 <style>
   .tt-collection-banner::before {
-    opacity: {{ section.settings.hero_overlay_opacity | default: 42 | divided_by: 100.0 }};
+    opacity: 0.42;
   }
 </style>
 
@@ -30,9 +15,9 @@
 
 <div class="contact-banner tt-collection-banner" style="background-image: url('{{ hero_bg }}'); margin-bottom: 40px;">
   <div class="contact-banner-content">
-    <span class="contact-tagline" style="color: #eeeeee;">{{ section.settings.hero_tagline }}</span>
-    <{{ section.settings.hero_heading_tag }} class="contact-title" style="color: #ffffff;">{{ section.settings.hero_heading }}</{{ section.settings.hero_heading_tag }}>
-    <div class="contact-subtitle" style="color: #ffffff; opacity: 0.9;">{{ section.settings.hero_subtitle }}</div>
+    <span class="contact-tagline" style="color: #eeeeee;">THE COLLECTION</span>
+    <h1 class="contact-title" style="color: #ffffff;">Every product here earned its place.</h1>
+    <div class="contact-subtitle" style="color: #ffffff; opacity: 0.9;"><p>Curated from India's finest Ayurvedic makers. Nothing we wouldn't use ourselves.</p></div>
   </div>
 </div>
 
@@ -351,73 +336,9 @@
       "default": 60
     },
     {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background color",
-      "default": "#f9f6f0"
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Background image"
-    },
-    {
-      "type": "select",
-      "id": "background_position",
-      "label": "Background image position",
-      "options": [
-        { "value": "center center", "label": "Center" },
-        { "value": "center top", "label": "Top" },
-        { "value": "center bottom", "label": "Bottom" },
-        { "value": "left center", "label": "Left" },
-        { "value": "right center", "label": "Right" }
-      ],
-      "default": "center center"
-    },
-    {
       "type": "image_picker",
       "id": "image",
       "label": "Default Banner Image"
-    },
-    {
-      "type": "range",
-      "id": "hero_overlay_opacity",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "label": "Hero overlay opacity",
-      "default": 42
-    },
-    {
-      "type": "text",
-      "id": "hero_tagline",
-      "label": "Hero tagline",
-      "default": "THE COLLECTION"
-    },
-    {
-      "type": "select",
-      "id": "hero_heading_tag",
-      "label": "Hero heading tag",
-      "options": [
-        { "value": "h1", "label": "H1" },
-        { "value": "h2", "label": "H2" },
-        { "value": "h3", "label": "H3" },
-        { "value": "p", "label": "Paragraph" }
-      ],
-      "default": "h1"
-    },
-    {
-      "type": "text",
-      "id": "hero_heading",
-      "label": "Hero heading",
-      "default": "Every product here earned its place."
-    },
-    {
-      "type": "richtext",
-      "id": "hero_subtitle",
-      "label": "Hero subtitle",
-      "default": "<p>Curated from India's finest Ayurvedic makers. Nothing we wouldn't use ourselves.</p>"
     },
     {
       "type": "textarea",

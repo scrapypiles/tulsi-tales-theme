@@ -1,18 +1,3 @@
-{%- style -%}
-  #shopify-section-{{ section.id }} > section,
-  #shopify-section-{{ section.id }} > div,
-  #shopify-section-{{ section.id }} > header,
-  #shopify-section-{{ section.id }} > footer {
-    background-color: {{ section.settings.background_color | default: '#ffffff' }} !important;
-    {% if section.settings.background_image != blank %}
-      background-image: url('{{ section.settings.background_image | image_url: width: 2400 }}') !important;
-      background-size: cover !important;
-      background-position: {{ section.settings.background_position | default: 'center center' }} !important;
-      background-repeat: no-repeat !important;
-    {% endif %}
-  }
-{%- endstyle -%}
-
 {% if section.settings.show_section %}
 {%- style -%}
   .contact-banner {
@@ -188,13 +173,13 @@
 <div class="contact-banner">
   <div class="contact-banner-content">
     <span class="contact-tagline">{{ section.settings.tagline | default: 'Get in Touch' }}</span>
-    <{{ section.settings.title_tag }} class="contact-title">
+    <h1 class="contact-title">
       {% if section.settings.title != blank %}
         {{ section.settings.title }}
       {% else %}
         {{ page.title }}
       {% endif %}
-    </{{ section.settings.title_tag }}>
+    </h1>
     {% if section.settings.subtitle != blank %}
       <div class="contact-subtitle">{{ section.settings.subtitle }}</div>
     {% endif %}
@@ -306,30 +291,6 @@
       "default": 80
     },
     {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Background image"
-    },
-    {
-      "type": "select",
-      "id": "background_position",
-      "label": "Background image position",
-      "options": [
-        { "value": "center center", "label": "Center" },
-        { "value": "center top", "label": "Top" },
-        { "value": "center bottom", "label": "Bottom" },
-        { "value": "left center", "label": "Left" },
-        { "value": "right center", "label": "Right" }
-      ],
-      "default": "center center"
-    },
-    {
       "type": "image_picker",
       "id": "banner_image",
       "label": "Banner Image"
@@ -361,18 +322,6 @@
       "id": "tagline",
       "label": "Tagline",
       "default": "Get in Touch"
-    },
-    {
-      "type": "select",
-      "id": "title_tag",
-      "label": "Hero title tag",
-      "options": [
-        { "value": "h1", "label": "H1" },
-        { "value": "h2", "label": "H2" },
-        { "value": "h3", "label": "H3" },
-        { "value": "p", "label": "Paragraph" }
-      ],
-      "default": "h1"
     },
     {
       "type": "text",

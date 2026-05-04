@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="canonical" href="{% if template == 'index' %}https://www.tulsitales.com{%- else -%}{{ canonical_url }}{%- endif -%}">
-    <title>{%- if template == 'index' -%}Tulsi Tales | Authentic Ayurvedic Products from India{%- else -%}{{ page_title | strip }} | Tulsi Tales{%- endif -%}</title>
+    <link rel="canonical" href="{% if template == 'index' %}https://www.tulsitales.com{% else %}{{ canonical_url }}{% endif %}">
+    <title>{% if template == 'index' %}Tulsi Tales | Authentic Ayurvedic Products from India{% else %}{{ page_title }} | Tulsi Tales{% endif %}</title>
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="{% if template == 'index' %}Tulsi Tales | Authentic Ayurvedic Products from India{%- else -%}{{ page_title | strip }}{%- endif -%}">
-    <meta property="og:description" content="{% if page_description %}{{ page_description | escape }}{%- else -%}A curated Ayurvedic marketplace sourcing authentic herbs, supplements, oils, and wellness products from India. Delivered across India and worldwide.{%- endif -%}">
+    <meta property="og:title" content="{% if template == 'index' %}Tulsi Tales | Authentic Ayurvedic Products from India{% else %}{{ page_title }}{% endif %}">
+    <meta property="og:description" content="{% if page_description %}{{ page_description | escape }}{% else %}A curated Ayurvedic marketplace sourcing authentic herbs, supplements, oils, and wellness products from India. Delivered across India and worldwide.{% endif %}">
     <meta property="og:url" content="{{ canonical_url }}">
-    <meta name="description" content="{% if page_description %}{{ page_description | escape }}{%- else -%}A curated Ayurvedic marketplace sourcing authentic herbs, supplements, oils, and wellness products from India. Delivered across India and worldwide.{%- endif -%}">
+    <meta name="description" content="{% if page_description %}{{ page_description | escape }}{% else %}A curated Ayurvedic marketplace sourcing authentic herbs, supplements, oils, and wellness products from India. Delivered across India and worldwide.{% endif %}">
 
 
     {%- assign social_img = settings.share_image | default: 'seo-image.jpg' -%}
@@ -48,163 +48,7 @@
         --base-body-size: {{ settings.body_base_size | default: 14 }}px;
         --global-section-padding: {{ settings.section_padding | default: 80 }}px;
         --global-border-radius: {{ settings.border_radius | default: 0 }}px;
-        --tt-h1-desktop: {{ settings.type_h1_desktop | default: 48 }}px;
-        --tt-h1-mobile: {{ settings.type_h1_mobile | default: 32 }}px;
-        --tt-h2-desktop: {{ settings.type_h2_desktop | default: 36 }}px;
-        --tt-h2-mobile: {{ settings.type_h2_mobile | default: 28 }}px;
-        --tt-h3-desktop: {{ settings.type_h3_desktop | default: 24 }}px;
-        --tt-h3-mobile: {{ settings.type_h3_mobile | default: 20 }}px;
-        --tt-body-desktop: {{ settings.type_body_desktop | default: 14 }}px;
-        --tt-body-mobile: {{ settings.type_body_mobile | default: 14 }}px;
-        --tt-heading-line-height: {{ settings.type_heading_line_height | default: 120 | divided_by: 100.0 }};
-        --tt-body-line-height: {{ settings.type_body_line_height | default: 170 | divided_by: 100.0 }};
-        --tt-heading-tracking: {{ settings.type_heading_tracking | default: 0 | divided_by: 10.0 }}px;
-        --tt-body-tracking: {{ settings.type_body_tracking | default: 0 | divided_by: 10.0 }}px;
       }
-
-      {% if settings.enable_advanced_typography %}
-      #MainContent .ayus-hero h1,
-      #MainContent .contact-title,
-      #MainContent .policy-title,
-      #MainContent .ayus-product-title,
-      #MainContent .ayus-search-section h1,
-      #MainContent .ayus-404-section h1 {
-        font-size: var(--tt-h1-desktop) !important;
-        line-height: var(--tt-heading-line-height) !important;
-        letter-spacing: var(--tt-heading-tracking) !important;
-        text-transform: {{ settings.type_heading_transform | default: 'none' }} !important;
-        font-style: {{ settings.type_heading_style | default: 'normal' }} !important;
-      }
-
-      #MainContent .ayus-featured-collection h2,
-      #MainContent .tt-shop-by-section h2,
-      #MainContent .ayus-philosophy h2,
-      #MainContent .ayus-story-text h2,
-      #MainContent .ayus-story-split-section h2,
-      #MainContent .ayus-story-cta h2,
-      #MainContent .ayus-story-faq h2,
-      #MainContent .ayus-story-quote h2,
-      #MainContent .ayus-story-values h2,
-      #MainContent .ayus-policy-page h1,
-      #MainContent .ayus-policy-page h2,
-      #MainContent .ayus-contact-section h3,
-      #MainContent .ayus-instagram-section h2,
-      #MainContent .ayus-404-section h2,
-      #MainContent .tt-collection-banner .contact-title {
-        line-height: var(--tt-heading-line-height) !important;
-        letter-spacing: var(--tt-heading-tracking) !important;
-        text-transform: {{ settings.type_heading_transform | default: 'none' }} !important;
-        font-style: {{ settings.type_heading_style | default: 'normal' }} !important;
-      }
-
-      #MainContent .ayus-featured-collection h2,
-      #MainContent .tt-shop-by-section h2,
-      #MainContent .ayus-philosophy h2,
-      #MainContent .ayus-story-text h2,
-      #MainContent .ayus-story-split-section h2,
-      #MainContent .ayus-story-cta h2,
-      #MainContent .ayus-story-faq h2,
-      #MainContent .ayus-story-quote h2,
-      #MainContent .ayus-story-values h2,
-      #MainContent .ayus-instagram-section h2,
-      #MainContent .ayus-404-section h2 {
-        font-size: var(--tt-h2-desktop) !important;
-      }
-
-      #MainContent h3,
-      #MainContent .ayus-card-title,
-      #MainContent .contact-info-block h3,
-      #MainContent .tt-meta-key {
-        font-size: var(--tt-h3-desktop) !important;
-        line-height: var(--tt-heading-line-height) !important;
-        letter-spacing: var(--tt-heading-tracking) !important;
-        text-transform: {{ settings.type_heading_transform | default: 'none' }} !important;
-        font-style: {{ settings.type_heading_style | default: 'normal' }} !important;
-      }
-
-      #MainContent p,
-      #MainContent li,
-      #MainContent label,
-      #MainContent input,
-      #MainContent textarea,
-      #MainContent select,
-      #MainContent .rte,
-      #MainContent .contact-subtitle,
-      #MainContent .policy-subtitle,
-      #MainContent .ayus-product-subtitle,
-      #MainContent .ayus-card-price,
-      #MainContent .ayus-brand-text,
-      #MainContent .tt-product-count {
-        line-height: var(--tt-body-line-height) !important;
-        letter-spacing: var(--tt-body-tracking) !important;
-        text-transform: {{ settings.type_body_transform | default: 'none' }} !important;
-        font-style: {{ settings.type_body_style | default: 'normal' }} !important;
-      }
-
-      #MainContent p,
-      #MainContent li,
-      #MainContent label,
-      #MainContent input,
-      #MainContent textarea,
-      #MainContent select,
-      #MainContent .rte,
-      #MainContent .contact-subtitle,
-      #MainContent .policy-subtitle,
-      #MainContent .ayus-product-subtitle,
-      #MainContent .ayus-card-price,
-      #MainContent .ayus-brand-text,
-      #MainContent .tt-product-count {
-        font-size: var(--tt-body-desktop) !important;
-      }
-
-      @media (max-width: 850px) {
-        #MainContent .ayus-hero h1,
-        #MainContent .contact-title,
-        #MainContent .policy-title,
-        #MainContent .ayus-product-title,
-        #MainContent .ayus-search-section h1,
-        #MainContent .ayus-404-section h1 {
-          font-size: var(--tt-h1-mobile) !important;
-        }
-
-        #MainContent .ayus-featured-collection h2,
-        #MainContent .tt-shop-by-section h2,
-        #MainContent .ayus-philosophy h2,
-        #MainContent .ayus-story-text h2,
-        #MainContent .ayus-story-split-section h2,
-        #MainContent .ayus-story-cta h2,
-        #MainContent .ayus-story-faq h2,
-        #MainContent .ayus-story-quote h2,
-        #MainContent .ayus-story-values h2,
-        #MainContent .ayus-instagram-section h2,
-        #MainContent .ayus-404-section h2 {
-          font-size: var(--tt-h2-mobile) !important;
-        }
-
-        #MainContent h3,
-        #MainContent .ayus-card-title,
-        #MainContent .contact-info-block h3,
-        #MainContent .tt-meta-key {
-          font-size: var(--tt-h3-mobile) !important;
-        }
-
-        #MainContent p,
-        #MainContent li,
-        #MainContent label,
-        #MainContent input,
-        #MainContent textarea,
-        #MainContent select,
-        #MainContent .rte,
-        #MainContent .contact-subtitle,
-        #MainContent .policy-subtitle,
-        #MainContent .ayus-product-subtitle,
-        #MainContent .ayus-card-price,
-        #MainContent .ayus-brand-text,
-        #MainContent .tt-product-count {
-          font-size: var(--tt-body-mobile) !important;
-        }
-      }
-      {% endif %}
     {%- endstyle -%}
     {{ 'ayus-styles.css' | asset_url | stylesheet_tag }}
     
@@ -213,9 +57,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     {% if settings.favicon != blank %}
       <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png">
-    {%- else -%}
+    {% else %}
       <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png">
-    {%- endif -%}
+    {% endif %}
   </head>
   <body class="ayus-body-template template-{{ template.name }}">
     

@@ -1,24 +1,9 @@
-{%- style -%}
-  #shopify-section-{{ section.id }} > section,
-  #shopify-section-{{ section.id }} > div,
-  #shopify-section-{{ section.id }} > header,
-  #shopify-section-{{ section.id }} > footer {
-    background-color: {{ section.settings.background_color | default: '#faf8f5' }} !important;
-    {% if section.settings.background_image != blank %}
-      background-image: url('{{ section.settings.background_image | image_url: width: 2400 }}') !important;
-      background-size: cover !important;
-      background-position: {{ section.settings.background_position | default: 'center center' }} !important;
-      background-repeat: no-repeat !important;
-    {% endif %}
-  }
-{%- endstyle -%}
-
 {% if section.settings.show_section %}
 
 <section class="ayus-hero" style="{% if section.settings.image %}background-image: url('{{ section.settings.image | img_url: 'master' }}');{% endif %} display: flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; text-align: center !important; padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px !important;">
   <div class="ayus-hero-overlay"></div>
   <div class="ayus-hero-content" style="position: relative; z-index: 10; width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto;">
-    <{{ section.settings.heading_tag }}>{{ section.settings.heading | escape }}</{{ section.settings.heading_tag }}>
+    <h1>{{ section.settings.heading | escape }}</h1>
     <p>{{ section.settings.subheading | escape }}</p>
     {% if section.settings.button_link != blank and section.settings.button_label != blank %}
       <a href="{{ section.settings.button_link }}" class="ayus-btn">{{ section.settings.button_label | escape }}</a>
@@ -59,45 +44,9 @@
       "default": 100
     },
     {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background color",
-      "default": "#faf8f5"
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Background image"
-    },
-    {
-      "type": "select",
-      "id": "background_position",
-      "label": "Background image position",
-      "options": [
-        { "value": "center center", "label": "Center" },
-        { "value": "center top", "label": "Top" },
-        { "value": "center bottom", "label": "Bottom" },
-        { "value": "left center", "label": "Left" },
-        { "value": "right center", "label": "Right" }
-      ],
-      "default": "center center"
-    },
-    {
       "type": "image_picker",
       "id": "image",
       "label": "Background Image"
-    },
-    {
-      "type": "select",
-      "id": "heading_tag",
-      "label": "Heading tag",
-      "options": [
-        { "value": "h1", "label": "H1" },
-        { "value": "h2", "label": "H2" },
-        { "value": "h3", "label": "H3" },
-        { "value": "p", "label": "Paragraph" }
-      ],
-      "default": "h1"
     },
     {
       "type": "text",
