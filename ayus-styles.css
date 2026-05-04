@@ -1185,12 +1185,22 @@ h6 {
   font-weight: bold;
 }
 
+.tt-mobile-header-left {
+  display: none;
+}
+
 @media (max-width: 850px) {
   .desktop-only {
     display: none !important;
   }
+  .tt-mobile-header-left {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px;
+  }
   .ayus-mobile-toggle {
-    display: block;
+    display: flex !important;
   }
   .ayus-header-container {
     justify-content: space-between;
@@ -1301,20 +1311,34 @@ body {
     align-items: center;
     position: relative;
     width: 100%;
-    min-height: 58px;
+    min-height: 60px;
+  }
+  .tt-mobile-header-left,
+  .ayus-nav-right {
+    width: 92px;
+    min-width: 92px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px;
+    z-index: 4;
+  }
+  .tt-mobile-header-left {
+    justify-content: flex-start !important;
+  }
+  .ayus-nav-right {
+    justify-content: flex-end !important;
   }
   .ayus-mobile-toggle {
     flex: 0 0 auto;
-    width: 32px;
+    width: 24px;
     text-align: left;
     font-size: 34px !important;
     line-height: 1 !important;
     color: var(--color-accent) !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: flex-start !important;
-    min-height: 28px;
-    z-index: 4;
+    justify-content: center !important;
+    min-height: 24px;
   }
   .ayus-logo {
     position: absolute;
@@ -1326,21 +1350,6 @@ body {
   .tt-logo-link img {
     max-height: 50px !important;
   }
-  .ayus-nav-right {
-    flex: 0 0 auto;
-    display: flex !important;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 8px;
-    z-index: 4;
-  }
-  #tt-search-toggle {
-    position: absolute !important;
-    left: 56px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 4;
-  }
   .tt-icon-link {
     margin-left: 0 !important;
     color: var(--color-accent) !important;
@@ -1348,7 +1357,9 @@ body {
     align-items: center !important;
     justify-content: center !important;
     line-height: 1 !important;
-    min-height: 28px;
+    min-width: 24px;
+    min-height: 24px;
+    vertical-align: middle !important;
   }
   .tt-icon-link svg {
     width: 24px !important;

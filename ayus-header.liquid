@@ -10,9 +10,13 @@
 
 <header class="ayus-header" style="padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px !important;">
   <div class="ayus-header-container">
-    <!-- Mobile Hamburger Toggle -->
-    <div class="ayus-mobile-toggle" onclick="openMobileMenu();">
-      ☰
+    <div class="tt-mobile-header-left">
+      <div class="ayus-mobile-toggle" onclick="openMobileMenu();" aria-label="Open menu" role="button">
+        ☰
+      </div>
+      <a href="#" class="tt-icon-link tt-mobile-search-toggle" data-search-toggle="true" aria-label="Search">
+        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </a>
     </div>
 
     <!-- Desktop Nav Left -->
@@ -52,7 +56,7 @@
     <div class="ayus-nav-right">
       
 
-      <a href="#" id="tt-search-toggle" class="tt-icon-link"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></a>
+      <a href="#" class="tt-icon-link desktop-only" data-search-toggle="true" aria-label="Search"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></a>
       {% if customer %}
         <a href="{{ routes.account_url }}" class="ayus-account-link tt-icon-link" title="Account"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
       {% else %}

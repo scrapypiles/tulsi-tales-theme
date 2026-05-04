@@ -74,22 +74,27 @@
   
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        const searchToggle = document.getElementById('tt-search-toggle');
+        const searchToggles = document.querySelectorAll('[data-search-toggle="true"]');
         const searchBar = document.getElementById('tt-search-bar');
         const searchClose = document.getElementById('tt-search-close');
         
-        if(searchToggle && searchBar) {
-          searchToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            searchBar.classList.toggle('active');
-            if(searchBar.classList.contains('active')) {
-              searchBar.querySelector('input').focus();
-            }
+        if(searchToggles.length && searchBar) {
+          searchToggles.forEach(function(searchToggle) {
+            searchToggle.addEventListener('click', function(e) {
+              e.preventDefault();
+              searchBar.classList.toggle('active');
+              if(searchBar.classList.contains('active')) {
+                const input = searchBar.querySelector('input');
+                if (input) input.focus();
+              }
+            });
           });
           
-          searchClose.addEventListener('click', function() {
-            searchBar.classList.remove('active');
-          });
+          if (searchClose) {
+            searchClose.addEventListener('click', function() {
+              searchBar.classList.remove('active');
+            });
+          }
         }
       });
     </script>
