@@ -94,12 +94,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid var(--color-text);
+      border-bottom: 1px solid #6f6963;
       padding-bottom: 2px;
       width: 100%;
       max-width: 100%;
       margin-bottom: 0;
-      color: var(--color-text);
+      color: #6f6963;
     }
     .tt-site-footer .tt-footer-newsletter-input {
       border: none;
@@ -112,14 +112,14 @@
       font-size: 8px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--color-text);
+      color: #6f6963;
       line-height: 1;
       height: 12px;
     }
     .tt-site-footer .tt-footer-newsletter-button {
       border: none;
       background: transparent;
-      color: var(--color-text);
+      color: #6f6963;
       font-size: 14px;
       line-height: 1;
       padding: 0;
@@ -129,12 +129,16 @@
       align-items: center;
       justify-content: flex-end;
       height: 12px;
-      width: 20px;
+      width: auto;
     }
     .tt-site-footer .tt-footer-newsletter-input::placeholder {
-      color: var(--color-text);
+      color: #6f6963;
       opacity: 1;
     }
+    .tt-site-footer .tt-footer-newsletter-input:focus::placeholder {
+      color: transparent !important;
+    }
+
     .tt-site-footer .tt-footer-success {
       margin-top: 10px;
       font-size: 11px;
