@@ -2181,6 +2181,26 @@ details[open] > summary .tt-icon-plus::before {
   font-size: 13px !important;
 }
 
+
+/* Make Add to Bag less chunky on cards */
+.tt-card-add-btn {
+  border: none !important;
+  border-bottom: 1px solid rgba(0,0,0,0.2) !important;
+  background-color: transparent !important;
+  padding: 4px 0 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.1em !important;
+  min-width: 0 !important;
+  color: var(--color-text) !important;
+  transition: opacity 0.3s ease !important;
+}
+.tt-card-add-btn:hover {
+  background-color: transparent !important;
+  color: var(--color-text) !important;
+  border-bottom-color: var(--color-accent) !important;
+  opacity: 0.7 !important;
+}
+
 /* Small Buttons (Product Cards & Reviews) */
 .tt-card-add-btn,
 .jdgm-write-rev-link {
