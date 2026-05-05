@@ -2185,7 +2185,10 @@ details[open] > summary .tt-icon-plus::before {
 /* Make Add to Bag less chunky on cards */
 .tt-card-add-btn {
   border: none !important;
-  border-bottom: 1px solid rgba(0,0,0,0.2) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
+  text-decoration-color: rgba(0,0,0,0.3) !important;
+  border-bottom: none !important;
   background-color: transparent !important;
   padding: 4px 0 !important;
   font-size: 11px !important;
@@ -2197,7 +2200,7 @@ details[open] > summary .tt-icon-plus::before {
 .tt-card-add-btn:hover {
   background-color: transparent !important;
   color: var(--color-text) !important;
-  border-bottom-color: var(--color-accent) !important;
+  text-decoration-color: var(--color-accent) !important;
   opacity: 0.7 !important;
 }
 
@@ -3106,7 +3109,10 @@ button.tt-card-add-btn,
 a.tt-card-add-btn,
 .tt-card-add-btn {
   border: none !important;
-  border-bottom: 1px solid rgba(0,0,0,0.2) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
+  text-decoration-color: rgba(0,0,0,0.3) !important;
+  border-bottom: none !important;
   background-color: transparent !important;
   padding: 4px 0 !important;
   font-size: 11px !important;
@@ -3123,7 +3129,7 @@ a.tt-card-add-btn:hover,
 .tt-card-add-btn:hover {
   background-color: transparent !important;
   color: var(--color-text) !important;
-  border-bottom-color: var(--color-accent) !important;
+  text-decoration-color: var(--color-accent) !important;
   opacity: 0.7 !important;
 }
 
