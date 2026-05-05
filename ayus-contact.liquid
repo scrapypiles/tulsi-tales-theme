@@ -103,20 +103,43 @@
   }
 
   .contact-info-block h3 {
-    font-family: var(--font-heading);
-    font-size: 20px;
-    color: var(--color-text);
-    margin-bottom: 10px;
-    font-weight: normal;
+    font-family: var(--font-body);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #888;
+    margin-bottom: 8px;
+    font-weight: 600;
   }
-  @media (max-width: 850px) {
-    .contact-info-block h3 {
-      font-size: 24px;
-      margin-bottom: 5px;
-    }
-  }
+  
   .contact-info-block p {
     font-family: var(--font-body);
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+    margin: 0 0 5px 0;
+  }
+  .contact-info-block a {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    color: var(--color-text);
+    text-decoration: none;
+    line-height: 1.2;
+    display: inline-block;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
+  }
+  .contact-info-block a:hover {
+    border-bottom: 1px solid var(--color-accent);
+  }
+  @media (max-width: 850px) {
+    .contact-info-block a {
+      font-size: 20px;
+    }
+  }
+  @media (max-width: 850px) {
+    .contact-info-block p {
+    font-family: var(--font-body);
     font-size: 14px;
     color: #555;
     line-height: 1.8;
@@ -130,34 +153,8 @@
     font-weight: normal;
   }
   @media (max-width: 850px) {
-    .contact-info-block p {
-      font-size: 13px;
-    }
     .contact-info-block a {
-      font-size: 18px;
-    }
-  }
-  @media (max-width: 850px) {
-    .contact-info-block p {
-    font-family: var(--font-body);
-    font-size: 14px;
-    color: #555;
-    line-height: 1.8;
-  }
-  .contact-info-block a {
-    font-family: var(--font-body);
-    font-size: 18px;
-    color: var(--color-text);
-    text-decoration: none;
-    line-height: 1.8;
-    font-weight: normal;
-  }
-  @media (max-width: 850px) {
-    .contact-info-block p {
-      font-size: 13px;
-    }
-    .contact-info-block a {
-      font-size: 18px;
+      font-size: 20px;
     }
   }
   }
