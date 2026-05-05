@@ -1413,15 +1413,15 @@ body {
   .tt-cart-badge {
     top: -4px;
     right: -3px;
-    width: 18px;
-    height: 18px;
-    font-size: 10px;
+    width: 18px !important;
+    height: 18px !important;
+    font-size: 10px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    line-height: 1 !important;
+    line-height: 0 !important;
     padding: 0 !important;
-    padding-top: 1px !important;
+    border-radius: 50% !important;
   }
 
   /* 8: Typography scale down */
