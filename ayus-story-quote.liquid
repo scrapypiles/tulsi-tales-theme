@@ -2,6 +2,7 @@
 
 
 <section class="ayus-story-quote" style="padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px !important; text-align: center; background-color: #ffffff; border-bottom: 1px solid var(--color-border);">
+<style>@media(max-width:850px){.ayus-story-quote { padding-top: 40px !important; padding-bottom: 40px !important; }}</style>
 
     
     
@@ -11,7 +12,7 @@
     {% else %}
       <img src="{{ 'favicon.png' | asset_url }}" alt="Tulsi Tales Symbol" style="width: 48px; height: 48px; object-fit: contain; margin-bottom: 20px; opacity: 1;">
     {% endif %}
-    <h2 class="tt-story-quote-text" style="font-family: var(--font-heading); font-size: 28px; line-height: 1.4; color: var(--color-text); margin: 0; font-style: italic;"><style>@media(max-width:850px){.tt-story-quote-text { font-size: 32px !important; }}</style>{{ section.settings.quote_text }}</h2>
+    <h2 class="tt-story-quote-text" style="font-family: var(--font-heading); font-size: 28px; line-height: 1.4; color: var(--color-text); margin: 0; font-style: italic;"><style>@media(max-width:850px){.tt-story-quote-text { font-size: 40px !important; }}</style>{{ section.settings.quote_text }}</h2>
   </div>
 </section>
 
