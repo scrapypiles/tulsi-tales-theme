@@ -1317,12 +1317,16 @@ body {
   .ayus-nav-right {
     width: 76px;
     min-width: 76px;
-    display: grid !important;
-    grid-template-columns: repeat(2, 32px);
+    display: flex !important;
     align-items: center !important;
-    justify-content: space-between !important;
-    column-gap: 12px;
+    gap: 16px;
     z-index: 4;
+  }
+  .ayus-nav-right {
+    justify-content: flex-end !important;
+  }
+  .tt-mobile-header-left {
+    justify-content: flex-start !important;
   }
   .tt-mobile-header-left {
     justify-self: start;
@@ -1401,13 +1405,14 @@ body {
   .tt-cart-badge {
     top: -4px;
     right: -3px;
-    width: 17px;
-    height: 17px;
-    font-size: 8px;
+    width: 18px;
+    height: 18px;
+    font-size: 9px;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    line-height: 1 !important;
+    line-height: 0 !important;
+    padding-top: 2px !important;
   }
 
   /* 8: Typography scale down */
