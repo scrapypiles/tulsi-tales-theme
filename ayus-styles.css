@@ -1594,9 +1594,7 @@ body {
   .ayus-card-info {
     padding: 10px !important;
   }
-  .tt-card-action {
-    padding-top: 4px !important;
-  }
+  .tt-card-action { padding-top: 0 !important; margin-top: 0 !important; }
   .tt-card-action .tt-card-rating {
     margin-bottom: 8px !important;
   }
@@ -3109,27 +3107,26 @@ button.tt-card-add-btn,
 a.tt-card-add-btn,
 .tt-card-add-btn {
   border: none !important;
-  text-decoration: underline !important;
-  text-underline-offset: 4px !important;
-  text-decoration-color: rgba(0,0,0,0.3) !important;
-  border-bottom: none !important;
+  border-bottom: 1px solid var(--color-accent) !important;
   background-color: transparent !important;
   padding: 4px 0 !important;
   font-size: 11px !important;
+  font-weight: 600 !important;
   letter-spacing: 0.1em !important;
   min-width: 0 !important;
   width: auto !important;
-  color: var(--color-text) !important;
+  color: var(--color-accent) !important;
   transition: opacity 0.3s ease !important;
   text-transform: uppercase !important;
   font-family: var(--font-body) !important;
+  text-decoration: none !important;
 }
 button.tt-card-add-btn:hover,
 a.tt-card-add-btn:hover,
 .tt-card-add-btn:hover {
   background-color: transparent !important;
-  color: var(--color-text) !important;
-  text-decoration-color: var(--color-accent) !important;
+  color: var(--color-accent) !important;
+  border-bottom-color: var(--color-accent) !important;
   opacity: 0.7 !important;
 }
 

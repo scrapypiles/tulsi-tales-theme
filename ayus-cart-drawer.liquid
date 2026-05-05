@@ -284,7 +284,7 @@
   function addAddonToCart(btn, variantId) {
     const originalText = btn.dataset.originalText || btn.innerText;
     btn.dataset.originalText = originalText;
-    btn.innerText = 'Adding...';
+    /* btn.innerText = "Adding..."; */ btn.style.opacity = "0.5";
     btn.disabled = true;
     openBagDrawer();
 
@@ -302,13 +302,13 @@
     })
     .catch(err => {
       console.error(err);
-      btn.innerText = originalText;
+      /* btn.innerText = originalText; */ btn.style.opacity = "1";
       btn.disabled = false;
     })
     .finally(() => {
       setTimeout(() => {
         if (btn && btn.isConnected) {
-          btn.innerText = originalText;
+          /* btn.innerText = originalText; */ btn.style.opacity = "1";
           btn.disabled = false;
         }
       }, 450);
