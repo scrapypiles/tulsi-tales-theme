@@ -1306,7 +1306,7 @@ body {
   .ayus-header-container {
     padding: 7px 12px !important;
     display: grid !important;
-    grid-template-columns: 72px auto 72px;
+    grid-template-columns: 56px auto 56px;
     align-items: center !important;
     column-gap: 10px;
     position: relative;
@@ -1315,12 +1315,13 @@ body {
   }
   .tt-mobile-header-left,
   .ayus-nav-right {
-    width: 72px;
-    min-width: 72px;
-    display: flex !important;
+    width: 56px;
+    min-width: 56px;
+    display: grid !important;
+    grid-template-columns: repeat(2, 24px);
     align-items: center !important;
     justify-content: space-between !important;
-    gap: 0;
+    column-gap: 8px;
     z-index: 4;
   }
   .tt-mobile-header-left {
@@ -1331,8 +1332,8 @@ body {
   }
   .ayus-mobile-toggle {
     flex: 0 0 auto;
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
     color: var(--color-accent) !important;
     display: inline-flex !important;
     align-items: center !important;
@@ -1340,10 +1341,10 @@ body {
     line-height: 0 !important;
   }
   .ayus-mobile-toggle svg {
-    width: 26px !important;
-    height: 26px !important;
+    width: 28px !important;
+    height: 28px !important;
     display: block;
-    stroke-width: 1.7 !important;
+    stroke-width: 1.8 !important;
   }
   .ayus-logo {
     position: static !important;
@@ -1398,11 +1399,15 @@ body {
     stroke-width: 1.7 !important;
   }
   .tt-cart-badge {
-    top: -5px;
-    right: -5px;
+    top: -4px;
+    right: -3px;
     width: 17px;
     height: 17px;
-    font-size: 9px;
+    font-size: 8px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
   }
 
   /* 8: Typography scale down */
