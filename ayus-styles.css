@@ -1416,6 +1416,16 @@ body {
   }
 
   /* 8: Typography scale down */
+
+  .tt-shop-by-card h3 {
+    font-size: 26px !important;
+    margin-bottom: 8px !important;
+  }
+  .tt-shop-by-card p {
+    font-size: 11px !important;
+    letter-spacing: 0.15em !important;
+  }
+
   h1 {
     font-size: 31px !important;
   }
