@@ -31,7 +31,7 @@
                   <div class="tt-cart-qty-wrapper">
                     <div class="tt-cart-qty" style="display: inline-block !important; width: 90px !important; height: 32px !important; border: 1px solid rgba(0,0,0,0.15) !important; background: #fff !important; box-sizing: border-box !important; position: relative !important; margin: 0 !important; padding: 0 !important; vertical-align: middle !important;">
     <span class="tt-qty-btn minus" onclick="changeCartItem(this, '{{ item.key }}', {{ item.quantity | minus: 1 }})" style="position: absolute !important; left: 0 !important; top: 0 !important; width: 30px !important; height: 30px !important; background: transparent !important; border: none !important; font-size: 18px !important; color: #333 !important; cursor: pointer !important; padding: 0 !important; margin: 0 !important; line-height: 28px !important; text-align: center !important; font-weight: 300 !important; user-select: none !important;">-</span>
-    <input type="text" value="{{ item.quantity }}" readonly style="position: absolute !important; left: 30px !important; top: 0 !important; width: 28px !important; height: 30px !important; background: transparent !important; border: none !important; border-left: 1px solid rgba(0,0,0,0.1) !important; border-right: 1px solid rgba(0,0,0,0.1) !important; text-align: center !important; font-size: 12px !important; color: #333 !important; padding: 0 !important; margin: 0 !important; outline: none !important; box-sizing: border-box !important; -webkit-appearance: none !important; border-radius: 0 !important; pointer-events: none !important;">
+    <input type="text" value="{{ item.quantity }}" readonly style="position: absolute !important; left: 30px !important; top: 0 !important; width: 28px !important; height: 30px !important; background: transparent !important; border: none !important; border-left: 1px solid rgba(0,0,0,0.1) !important; border-right: 1px solid rgba(0,0,0,0.1) !important; text-align: center !important; font-size: 12px !important; color: #333 !important; padding: 0 !important; margin: 0 !important; outline: none !important; box-sizing: border-box !important; -webkit-appearance: none !important; border-radius: 0 !important; pointer-events: none !important; display: block !important;">
     <span class="tt-qty-btn plus" onclick="changeCartItem(this, '{{ item.key }}', {{ item.quantity | plus: 1 }})" style="position: absolute !important; right: 0 !important; top: 0 !important; width: 30px !important; height: 30px !important; background: transparent !important; border: none !important; font-size: 16px !important; color: #333 !important; cursor: pointer !important; padding: 0 !important; margin: 0 !important; line-height: 30px !important; text-align: center !important; font-weight: 300 !important; user-select: none !important;">+</span>
   </div>
                     <a href="#" class="tt-cart-remove" onclick="event.preventDefault(); changeCartItem(this, '{{ item.key }}', 0)">Remove</a>
@@ -62,7 +62,7 @@
                       <p class="tt-addon-price">{{ addon.price | money }}</p>
                     </div>
                     <div class="tt-addon-action">
-                      <button type="button" class="tt-addon-add-btn" style="background: transparent !important; border: none !important; border-bottom: 1px solid var(--color-accent) !important; font-size: 11px !important; text-transform: uppercase !important; color: var(--color-accent) !important; letter-spacing: 0.1em !important; cursor: pointer !important; padding: 2px 0 !important; font-weight: 600 !important; min-width: 0 !important; width: auto !important; display: inline-block !important; height: auto !important; line-height: 1.2 !important;" onclick="addAddonToCart(this, {{ addon.selected_or_first_available_variant.id }})">Add</button>
+                      <button type="button" class="tt-addon-add-btn" style="background: transparent !important; border: none !important; text-decoration: underline !important; text-underline-offset: 4px !important; border-bottom: none !important; font-size: 11px !important; text-transform: uppercase !important; color: var(--color-accent) !important; letter-spacing: 0.1em !important; cursor: pointer !important; padding: 2px 0 !important; font-weight: 600 !important; min-width: 0 !important; width: auto !important; display: inline-block !important; height: auto !important; line-height: 1.2 !important;" onclick="addAddonToCart(this, {{ addon.selected_or_first_available_variant.id }})">Add</button>
                     </div>
                   </div>
                   {% assign addons_shown = addons_shown | plus: 1 %}
@@ -70,6 +70,9 @@
                 {% endunless %}
               {% endfor %}
             </div>
+
+            <div class="tt-addons-dots" id="tt-addons-dots"></div>
+
           </div>
 
         {% else %}
@@ -97,13 +100,16 @@
                     <p class="tt-addon-price">{{ addon.price | money }}</p>
                   </div>
                   <div class="tt-addon-action">
-                    <button type="button" class="tt-addon-add-btn" style="background: transparent !important; border: none !important; border-bottom: 1px solid var(--color-accent) !important; font-size: 11px !important; text-transform: uppercase !important; color: var(--color-accent) !important; letter-spacing: 0.1em !important; cursor: pointer !important; padding: 2px 0 !important; font-weight: 600 !important; min-width: 0 !important; width: auto !important; display: inline-block !important; height: auto !important; line-height: 1.2 !important;" onclick="addAddonToCart(this, {{ addon.selected_or_first_available_variant.id }})">Add</button>
+                    <button type="button" class="tt-addon-add-btn" style="background: transparent !important; border: none !important; text-decoration: underline !important; text-underline-offset: 4px !important; border-bottom: none !important; font-size: 11px !important; text-transform: uppercase !important; color: var(--color-accent) !important; letter-spacing: 0.1em !important; cursor: pointer !important; padding: 2px 0 !important; font-weight: 600 !important; min-width: 0 !important; width: auto !important; display: inline-block !important; height: auto !important; line-height: 1.2 !important;" onclick="addAddonToCart(this, {{ addon.selected_or_first_available_variant.id }})">Add</button>
                   </div>
                 </div>
                 {% assign addons_shown = addons_shown | plus: 1 %}
                 {% if addons_shown >= 4 %}{% break %}{% endif %}
               {% endfor %}
             </div>
+
+            <div class="tt-addons-dots" id="tt-addons-dots"></div>
+
           </div>
         {% endif %}
       </div>
@@ -153,12 +159,12 @@
   .tt-cart-item-img img { width: 100%; height: auto; border: 1px solid var(--color-border); }
   .tt-cart-item-details { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
   .tt-cart-item-title { font-family: var(--font-heading); font-size: 16px; margin: 0 0 5px 0; }
-  .tt-cart-variant { font-size: 12px; color: #666; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.05em; }
+  .tt-cart-variant { font-size: 10px; color: #666; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.05em; }
   .tt-cart-price { font-size: 14px; font-weight: bold; margin: 0 0 10px 0; }
   .tt-cart-qty-wrapper { display: flex; align-items: center; justify-content: space-between; }
   .tt-cart-qty { display: inline-block !important; width: 90px !important; height: 32px !important; border: 1px solid rgba(0,0,0,0.15) !important; background: #fff !important; box-sizing: border-box !important; position: relative !important; margin: 0 !important; padding: 0 !important; }
-  .tt-cart-qty input { display: none !important; /* Managed by inline style */ }
-  .tt-cart-qty button { display: none !important; /* Managed by inline style */ }
+  
+  
   .tt-cart-remove { font-size: 11px; text-transform: uppercase; color: #888; text-decoration: underline; }
   .tt-cart-footer { padding: 30px; border-top: 1px solid var(--color-border); background: #fff; }
   .tt-cart-subtotal { display: flex; justify-content: space-between; font-size: 18px; font-family: var(--font-heading); margin-bottom: 10px; }
@@ -186,14 +192,19 @@
   .tt-addon-img { width: 100%; aspect-ratio: 1; margin-bottom: 10px; }
   .tt-addon-img img { width: 100%; height: 100%; object-fit: cover; display: block; border: 1px solid var(--color-border); }
   
-  .tt-addon-info { flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start; margin-bottom: 10px; width: 100%; }
+  .tt-addon-info { flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start; margin-bottom: 2px; width: 100%; }
   .tt-addon-title { font-family: var(--font-body); font-size: 11px; margin: 0 0 5px 0; color: var(--color-text); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; white-space: normal; height: auto; }
-  .tt-addon-price { font-size: 12px; margin: 0; color: var(--color-accent); font-weight: bold; }
+  .tt-addon-price { font-size: 12px; margin: 0; color: var(--color-accent); font-weight: normal; }
   
   .tt-addon-action { width: 100%; margin-top: auto; }
   .tt-addon-add-btn { width: 100%; border: none !important; border-bottom: 1px solid rgba(0,0,0,0.2) !important; background-color: transparent !important; padding: 4px 0 !important; font-size: 11px !important; letter-spacing: 0.1em !important; text-transform: uppercase; cursor: pointer; transition: 0.3s; } 
 .tt-addon-add-btn:hover { border-bottom-color: var(--color-accent) !important; opacity: 0.7; }
   .tt-addon-add-btn:hover { opacity: 0.8; }
+  .tt-addons-dots { display: flex; justify-content: center; gap: 6px; margin-top: 15px; }
+  .tt-addons-dots .tt-dot { width: 6px; height: 6px; border-radius: 50%; background: #ccc; transition: 0.3s; }
+  .tt-addons-dots .tt-dot.active { background: var(--color-accent); }
+  .tt-addons-list::-webkit-scrollbar { display: none; } /* Hide native scrollbar since we have dots */
+  .tt-addons-list { scrollbar-width: none; }
 </style>
 
 <script>
@@ -371,7 +382,47 @@
       }
     });
   });
+
+  function initCartDots() {
+    const lists = document.querySelectorAll('.tt-addons-list');
+    lists.forEach(list => {
+      const parent = list.parentElement;
+      const dotsContainer = parent.querySelector('.tt-addons-dots');
+      if (!dotsContainer) return;
+      
+      const updateDots = () => {
+        const items = list.querySelectorAll('.tt-addon-item');
+        if (items.length <= 1) return;
+        
+        const scrollW = list.scrollWidth - list.clientWidth;
+        const scrollL = list.scrollLeft;
+        const percent = scrollW > 0 ? (scrollL / scrollW) : 0;
+        
+        // We'll just show 3 dots for simplicity, or 1 dot per item. Let's do 1 dot per item.
+        let numDots = items.length;
+        let activeIndex = Math.round(percent * (numDots - 1));
+        
+        let html = '';
+        for(let i=0; i<numDots; i++) {
+          html += '<span class="tt-dot ' + (i === activeIndex ? 'active' : '') + '"></span>';
+        }
+        dotsContainer.innerHTML = html;
+      };
+      
+      list.addEventListener('scroll', updateDots);
+      updateDots();
+    });
+  }
+  
+  // Call it when drawer opens and initially
+  document.addEventListener('DOMContentLoaded', initCartDots);
+  const oldOpenBag = openBagDrawer;
+  openBagDrawer = function() {
+    oldOpenBag();
+    setTimeout(initCartDots, 100);
+  };
 </script>
+
 
 {% schema %}
 {
