@@ -5,7 +5,7 @@
     <div class="tt-cart-panel">
       
       <div class="tt-cart-header">
-        <h2>Your Bag</h2>
+        <h2 style="font-size: 16px; text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--font-body); margin: 0;">Your Bag</h2>
         <button class="tt-cart-close" onclick="closeBagDrawer()">&times;</button>
       </div>
       
@@ -29,10 +29,10 @@
                   <p class="tt-cart-price">{{ item.final_line_price | money }}</p>
                   
                   <div class="tt-cart-qty-wrapper">
-                    <div class="tt-qty-box tt-cart-qty" style="display: inline-flex !important; flex-direction: row !important; height: 30px !important; min-height: 30px !important; width: 80px !important; border: 1px solid var(--color-border) !important; background: #fff !important; box-sizing: border-box !important; align-items: stretch !important; justify-content: center !important; margin: 0 !important; padding: 0 !important; overflow: hidden !important;">
-    <button type="button" class="tt-qty-btn minus" onclick="changeCartItem(this, '{{ item.key }}', {{ item.quantity | minus: 1 }})" style="flex: 0 0 25px !important; width: 25px !important; background: transparent !important; border: none !important; color: #333 !important; font-size: 16px !important; font-family: sans-serif !important; display: flex !important; align-items: center !important; justify-content: center !important; padding: 0 !important; margin: 0 !important; cursor: pointer !important; line-height: 1 !important; height: 100% !important; box-sizing: border-box !important;">-</button>
-    <input type="text" value="{{ item.quantity }}" readonly style="flex: 1 1 auto !important; width: 30px !important; height: 100% !important; min-height: 30px !important; border: none !important; border-left: 1px solid var(--color-border) !important; border-right: 1px solid var(--color-border) !important; background: transparent !important; text-align: center !important; font-size: 13px !important; color: #333 !important; padding: 0 !important; margin: 0 !important; box-sizing: border-box !important; border-radius: 0 !important; -webkit-appearance: none !important;">
-    <button type="button" class="tt-qty-btn plus" onclick="changeCartItem(this, '{{ item.key }}', {{ item.quantity | plus: 1 }})" style="flex: 0 0 25px !important; width: 25px !important; background: transparent !important; border: none !important; color: #333 !important; font-size: 16px !important; font-family: sans-serif !important; display: flex !important; align-items: center !important; justify-content: center !important; padding: 0 !important; margin: 0 !important; cursor: pointer !important; line-height: 1 !important; height: 100% !important; box-sizing: border-box !important;">+</button>
+                    <div class="tt-cart-qty" style="display: flex !important; align-items: center !important; justify-content: space-between !important; border: 1px solid rgba(0,0,0,0.1) !important; border-radius: 4px !important; padding: 2px 8px !important; width: 80px !important; height: 30px !important; box-sizing: border-box !important;">
+    <button type="button" class="tt-qty-btn minus" onclick="changeCartItem(this, '{{ item.key }}', {{ item.quantity | minus: 1 }})" style="background: none !important; border: none !important; font-size: 16px !important; color: #333 !important; cursor: pointer !important; padding: 0 !important; margin: 0 !important; line-height: 1 !important; display: flex !important; align-items: center !important; height: 100% !important;">-</button>
+    <input type="text" value="{{ item.quantity }}" readonly style="background: none !important; border: none !important; text-align: center !important; font-size: 12px !important; color: #333 !important; width: 30px !important; padding: 0 !important; margin: 0 !important; outline: none !important; -webkit-appearance: none !important;">
+    <button type="button" class="tt-qty-btn plus" onclick="changeCartItem(this, '{{ item.key }}', {{ item.quantity | plus: 1 }})" style="background: none !important; border: none !important; font-size: 16px !important; color: #333 !important; cursor: pointer !important; padding: 0 !important; margin: 0 !important; line-height: 1 !important; display: flex !important; align-items: center !important; height: 100% !important;">+</button>
   </div>
                     <a href="#" class="tt-cart-remove" onclick="event.preventDefault(); changeCartItem(this, '{{ item.key }}', 0)">Remove</a>
                   </div>
@@ -145,10 +145,7 @@
     display: flex; flex-direction: column;
   }
   .tt-cart-drawer.is-open .tt-cart-panel { right: 0; }
-  .tt-cart-header {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 30px; border-bottom: 1px solid var(--color-border);
-  }
+  .tt-cart-header { display: flex; justify-content: space-between; align-items: center; padding: 25px 30px; border-bottom: none; }
   .tt-cart-header h2 { font-family: var(--font-heading); font-size: 24px; margin: 0; }
   .tt-cart-close { background: transparent; border: none; font-size: 28px; cursor: pointer; color: var(--color-text); }
   .tt-cart-body { flex-grow: 1; overflow-y: auto; overflow-x: hidden; padding: 20px 30px 0 30px; display: flex; flex-direction: column; }
@@ -404,7 +401,7 @@
   .tt-qa-drawer { position: fixed; bottom: -100%; left: 0; width: 100%; background: #faf8f5; z-index: 9999999; padding: 30px 24px; border-top-left-radius: 20px; border-top-right-radius: 20px; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 -5px 20px rgba(0,0,0,0.1); max-height: 85vh; overflow-y: auto; display: flex; flex-direction: column; }
   .tt-qa-drawer.active { bottom: 0; }
   
-  .tt-qa-close { position: absolute; top: 15px; right: 15px; background: #fff; border: 1px solid #eee; border-radius: 50%; width: 32px; height: 32px; font-size: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--color-text); line-height: 0; padding-bottom: 3px; z-index: 2; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+  .tt-qa-close { position: absolute; top: 15px; right: 15px; background: transparent; border: none; font-size: 32px; font-weight: 300; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--color-text); padding: 0; margin: 0; line-height: 1; z-index: 2; box-shadow: none; border-radius: 0; }
   
   .tt-qa-header-product { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-right: 20px; }
   .tt-qa-prod-img { width: 90px; height: 90px; object-fit: cover; border: 1px solid var(--color-border); border-radius: 4px; }
