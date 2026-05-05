@@ -91,12 +91,12 @@
       line-height: 1.8;
     }
     .tt-site-footer .tt-footer-newsletter-row {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 5px;
+      justify-content: space-between;
       border-bottom: 1px solid var(--color-text);
-      padding-bottom: 4px;
-      width: auto;
+      padding-bottom: 2px;
+      width: 100%;
       max-width: 100%;
       margin-bottom: 0;
       color: var(--color-text);
@@ -104,17 +104,17 @@
     .tt-site-footer .tt-footer-newsletter-input {
       border: none;
       background: transparent;
-      width: 280px;
+      flex-grow: 1;
       outline: none;
       padding: 0;
       margin: 0;
       font-family: var(--font-body);
-      font-size: 9px;
+      font-size: 8px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--color-text);
       line-height: 1;
-      height: 14px;
+      height: 12px;
     }
     .tt-site-footer .tt-footer-newsletter-button {
       border: none;
