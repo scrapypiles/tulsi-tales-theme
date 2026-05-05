@@ -1,0 +1,110 @@
+{
+  "current": {
+    "color_bg": "#FAF8F5",
+    "color_text": "#2C2C2C",
+    "color_accent": "#4A5D4E",
+    "color_border": "#EAE5D9",
+    "color_button_text": "#ffffff",
+    "checkout": {
+      "color_button": "#4a5d4e",
+      "color_accent": "#4a5d4e",
+      "color_background": "#faf8f5",
+      "color_text": "#2c2624",
+      "color_error": "#c4624a",
+      "font_family_base": "Lato",
+      "font_family_heading": "Playfair Display",
+      "color_button_text": "#ffffff",
+      "color_heading": "#2c2624",
+      "color_field_bg": "#ffffff",
+      "color_field_border": "#e8e2d9",
+      "font_body": "Lato",
+      "font_heading": "Playfair Display"
+    },
+    "color_body_text": "#2c2624",
+    "color_button": "#4a5d4e",
+    "color_borders": "#e8e2d9",
+    "color_page_bg": "#faf8f5",
+    "checkout_body_background_color": "#faf8f5",
+    "checkout_button_color": "#4a5d4e",
+    "checkout_accent_color": "#c4624a",
+    "checkout_heading_font": "playfair_display_n4",
+    "checkout_body_font": "lato_n4",
+    "color_checkout_background": "#faf8f5",
+    "color_checkout_button": "#4a5d4e",
+    "color_checkout_button_text": "#ffffff",
+    "color_checkout_accent": "#4a5d4e",
+    "color_checkout_error": "#c4624a",
+    "color_checkout_text": "#2c2624",
+    "color_checkout_heading": "#2c2624",
+    "color_checkout_field_bg": "#ffffff",
+    "color_checkout_field_border": "#e8e2d9",
+    "font_checkout_body": "Lato",
+    "font_checkout_heading": "Playfair Display",
+    "sections": {
+      "ayus-header": {
+        "type": "ayus-header",
+        "settings": {
+          "show_announcement": true,
+          "menu": "main-menu",
+          "announcement_text": "We guide with love. Reach us: Tulsitales@gmail.com | +91 7832980384",
+          "logo": "shopify:\/\/shop_images\/logo_horizontal_color_orange.png",
+          "logo_height": 60
+        }
+      },
+      "ayus-footer": {
+        "type": "ayus-footer",
+        "blocks": {
+          "brand_info_1": {
+            "type": "brand_info",
+            "settings": {
+              "logo_width": 200,
+              "text": "<p>Tulsi Tales is a curated Ayurvedic marketplace sourcing authentic herbs, supplements, oils, and wellness products from India. Trusted by seekers of genuine Ayurvedic healing — delivered across India and worldwide.<\/p>"
+            }
+          },
+          "link_list_1": {
+            "type": "link_list",
+            "settings": {
+              "heading": "Explore",
+              "menu": ""
+            }
+          },
+          "contact_1": {
+            "type": "contact_newsletter",
+            "settings": {
+              "heading": "Contact & Join",
+              "email": "tulsitales@gmail.com",
+              "phone": "+91 7832 980 384",
+              "instagram": "@tulsitalesofficial",
+              "show_newsletter": true,
+              "newsletter_placeholder": "ENTER EMAIL TO JOIN NEWSLETTER"
+            }
+          }
+        },
+        "block_order": [
+          "brand_info_1",
+          "link_list_1",
+          "contact_1"
+        ],
+        "settings": {
+          "padding_top": 48,
+          "padding_bottom": 16,
+          "policy_menu": "",
+          "show_divider": true,
+          "copyright_text": "Rooted in eternal Ayurvedic wisdom."
+        }
+      },
+      "ayus-cart-drawer": {
+        "type": "ayus-cart-drawer",
+        "settings": {}
+      }
+    },
+    "content_for_index": [],
+    "blocks": {
+      "14060646107696862457": {
+        "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/judgeme_core\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      }
+    }
+  }
+}
