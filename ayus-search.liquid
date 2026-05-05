@@ -5,10 +5,49 @@
     
     <div class="tt-search-header" style="text-align: center; margin-bottom: 30px;">
       <h1 style="font-family: var(--font-heading); font-size: 32px; margin-bottom: 20px;">Search Results</h1>
-      <form action="{{ routes.search_url }}" method="get" role="search" style="max-width: 500px; margin: 0 auto; display: flex; border: 1px solid var(--color-border);">
-        <input type="text" name="q" value="{{ search.terms | escape }}" placeholder="Search remedies..." style="flex-grow: 1; padding: 15px; border: none; outline: none; font-family: var(--font-body);">
+      
+<style>
+  .tt-search-form {
+    max-width: 500px; margin: 0 auto; display: flex; border: 1px solid var(--color-border);
+  }
+  .tt-search-input {
+    flex-grow: 1; padding: 15px; border: none; outline: none; font-family: var(--font-body);
+  }
+  .tt-search-btn {
+    background: var(--color-accent); color: white; border: none; padding: 0 30px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px;
+  }
+  @media (max-width: 850px) {
+    .tt-search-header h1 {
+      font-size: 24px !important;
+    }
+    .tt-search-form {
+      flex-direction: column;
+      border: none;
+      gap: 15px;
+    }
+    .tt-search-input {
+      border: 1px solid rgba(74, 93, 78, 0.2);
+      border-radius: 8px;
+    }
+    .tt-search-btn {
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .ayus-search-grid-wrapper {
+      padding: 0 10px !important;
+    }
+    .ayus-search-section .ayus-grid {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 10px;
+      row-gap: 30px;
+    }
+  }
+</style>
+<form action="{{ routes.search_url }}" method="get" role="search" class="tt-search-form">
+        <input type="text" name="q" value="{{ search.terms | escape }}" placeholder="Search remedies..." class="tt-search-input">
         <input type="hidden" name="options[prefix]" value="last">
-        <button type="submit" style="background: var(--color-accent); color: white; border: none; padding: 0 30px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px;">Search</button>
+        <button type="submit" class="tt-search-btn">Search</button>
       </form>
     </div>
 
