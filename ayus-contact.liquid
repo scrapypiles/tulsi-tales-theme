@@ -12,7 +12,7 @@
     text-align: center;
     background-color: #F7F5F0;
     {% if section.settings.banner_image %}
-      background-image: url('{{ section.settings.banner_image | img_url: '2000x' }}');
+      background-image: url('{{ section.settings.banner_image | img_url: '1200x' }}');
     {% endif %}
   }
   .contact-banner::before {
@@ -88,20 +88,12 @@
     margin-bottom: 50px;
   }
   .contact-info-block.featured-support p {
-    font-size: 20px;
-    line-height: 1.4;
-    color: #B75D47;
-    margin: 0;
-    font-style: italic;
-    letter-spacing: 1px;
-  }
-  @media (max-width: 850px) {
-    .contact-info-block.featured-support p {
-      font-size: 24px;
+      font-size: 26px !important;
     }
     .ayus-contact-container {
-      margin-top: 10px; /* Reduce padding above */
-      gap: 20px;
+      margin-top: -20px !important; 
+      padding-top: 0 !important;
+      gap: 20px !important;
     }
   }
 
@@ -213,7 +205,7 @@
     <!-- Left: Contact Details -->
     <div class="ayus-contact-info">
       {% for block in section.blocks %}
-                <div class="contact-info-block {% if block.settings.title == 'Customer Support' %}featured-support{% endif %}" {{ block.shopify_attributes }}>
+                <div class="contact-info-block {% if block.settings.title == 'Customer Support' %}featured-support{% endif %}" style="{% if block.settings.title == 'Customer Support' %}margin-top: -10px;{% endif %}" {{ block.shopify_attributes }}>
           {% if block.settings.title != 'Customer Support' %}<h3>{{ block.settings.title }}</h3>{% endif %}
           {% if block.settings.link_text != blank %}
             <p><a href="{{ block.settings.link_url }}">{{ block.settings.link_text }}</a></p>

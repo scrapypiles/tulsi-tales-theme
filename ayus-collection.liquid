@@ -6,9 +6,9 @@
 </style>
 
 <!-- Hero Banner for Collection -->
-{% assign hero_bg = section.settings.image | img_url: 'master' %}
+{% assign hero_bg = section.settings.image | img_url: '1000x' %}
 {% if collection.image %}
-  {% assign hero_bg = collection.image | img_url: 'master' %}
+  {% assign hero_bg = collection.image | img_url: '1000x' %}
 {% elsif section.settings.image == blank %}
   {% assign hero_bg = 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=1600' %}
 {% endif %}
