@@ -104,37 +104,46 @@
 
   .contact-info-block h3 {
     font-family: var(--font-body);
-    font-size: 11px;
+    font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: #888;
-    margin-bottom: 8px;
-    font-weight: 600;
+    color: var(--color-accent);
+    margin-bottom: 12px;
+    font-weight: normal;
   }
   
   .contact-info-block p {
     font-family: var(--font-body);
     font-size: 13px;
-    color: #666;
-    line-height: 1.5;
-    margin: 0 0 5px 0;
+    color: #888;
+    line-height: 1.6;
+    margin: 5px 0 15px 0;
   }
   .contact-info-block a {
-    font-family: var(--font-heading);
-    font-size: 22px;
+    font-family: var(--font-body);
+    font-size: 15px;
     color: var(--color-text);
     text-decoration: none;
-    line-height: 1.2;
+    line-height: 1.5;
     display: inline-block;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 2px;
     transition: 0.3s;
+    font-weight: 500;
+  }
+  .contact-info-block a:hover {
+    border-bottom: 1px solid var(--color-accent);
+    color: var(--color-accent);
   }
   .contact-info-block a:hover {
     border-bottom: 1px solid var(--color-accent);
   }
   @media (max-width: 850px) {
     .contact-info-block a {
-      font-size: 20px;
+      font-size: 16px;
+    }
+    .contact-info-block {
+      margin-bottom: 30px;
     }
   }
   @media (max-width: 850px) {
@@ -154,7 +163,10 @@
   }
   @media (max-width: 850px) {
     .contact-info-block a {
-      font-size: 20px;
+      font-size: 16px;
+    }
+    .contact-info-block {
+      margin-bottom: 30px;
     }
   }
   }
@@ -242,11 +254,12 @@
       {% for block in section.blocks %}
                 <div class="contact-info-block {% if block.settings.title == 'Customer Support' %}featured-support{% endif %}" style="{% if block.settings.title == 'Customer Support' %}margin-top: -10px;{% endif %}" {{ block.shopify_attributes }}>
           {% if block.settings.title != 'Customer Support' %}<h3>{{ block.settings.title }}</h3>{% endif %}
-          {% if block.settings.subtitle != blank %}
-            <p style="font-size: 13px; color: #888; margin-bottom: 5px; margin-top: 0;">{{ block.settings.subtitle }}</p>
-          {% endif %}
+          
           {% if block.settings.link_text != blank %}
             <p><a href="{{ block.settings.link_url }}">{{ block.settings.link_text }}</a></p>
+          {% endif %}
+          {% if block.settings.subtitle != blank %}
+            <p>{{ block.settings.subtitle }}</p>
           {% endif %}
           {% if block.settings.text_content != blank %}
             <p>{{ block.settings.text_content }}</p>
