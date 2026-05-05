@@ -62,7 +62,7 @@
                       <p class="tt-addon-price">{{ addon.price | money }}</p>
                     </div>
                     <div class="tt-addon-action">
-                      <button type="button" class="tt-addon-add-btn" onclick="addAddonToCart(this, {{ addon.selected_or_first_available_variant.id }})">Add</button>
+                      <button type="button" class="tt-addon-add-btn tt-card-add-btn" onclick="addAddonToCart(this, {{ addon.selected_or_first_available_variant.id }})">Add</button>
                     </div>
                   </div>
                   {% assign addons_shown = addons_shown | plus: 1 %}
@@ -97,7 +97,7 @@
                     <p class="tt-addon-price">{{ addon.price | money }}</p>
                   </div>
                   <div class="tt-addon-action">
-                    <button type="button" class="tt-addon-add-btn" onclick="addAddonToCart(this, {{ addon.selected_or_first_available_variant.id }})">Add</button>
+                    <button type="button" class="tt-addon-add-btn tt-card-add-btn" onclick="addAddonToCart(this, {{ addon.selected_or_first_available_variant.id }})">Add</button>
                   </div>
                 </div>
                 {% assign addons_shown = addons_shown | plus: 1 %}
@@ -116,7 +116,7 @@
           </div>
           <p class="tt-cart-tax-note">Taxes and shipping calculated at checkout</p>
           <form action="/cart" method="post" id="cart-drawer-form" novalidate>
-            <button type="submit" name="checkout" value="Checkout" class="ayus-btn tt-checkout-btn" style="width:100%; background-color: var(--color-accent); color: #fff; border-color: var(--color-accent);">Proceed to Checkout</button>
+            <button type="submit" name="checkout" value="Checkout" class="ayus-btn tt-checkout-btn" style="width:100%; background-color: var(--color-accent); color: #fff; border-color: var(--color-accent); white-space: nowrap;">Proceed to Checkout</button>
           </form>
         </div>
       {% endif %}
@@ -161,9 +161,9 @@
   .tt-cart-variant { font-size: 12px; color: #666; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.05em; }
   .tt-cart-price { font-size: 14px; font-weight: bold; margin: 0 0 10px 0; }
   .tt-cart-qty-wrapper { display: flex; align-items: center; justify-content: space-between; }
-  .tt-cart-qty { height: 30px; border: 1px solid var(--color-border); box-sizing: border-box; background-color: #fff; }
-  .tt-cart-qty input { width: 30px; height: 100%; border: none; text-align: center; border-left: 1px solid var(--color-border); border-right: 1px solid var(--color-border); font-size: 12px; background-color: #fff; }
-  .tt-cart-qty button { width: 25px; height: 100%; font-size: 14px; background-color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 1; }
+  .tt-cart-qty { height: 32px; border: 1px solid var(--color-border); box-sizing: border-box; background-color: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .tt-cart-qty input { width: 34px; height: 32px; border: none; text-align: center; border-left: 1px solid var(--color-border); border-right: 1px solid var(--color-border); font-size: 12px; background-color: #fff; padding: 0; box-sizing: border-box; }
+  .tt-cart-qty button { width: 28px; height: 32px; font-size: 16px; background-color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 1; border: none; }
   .tt-cart-remove { font-size: 11px; text-transform: uppercase; color: #888; text-decoration: underline; }
   .tt-cart-footer { padding: 30px; border-top: 1px solid var(--color-border); background: #fff; }
   .tt-cart-subtotal { display: flex; justify-content: space-between; font-size: 18px; font-family: var(--font-heading); margin-bottom: 10px; }
@@ -186,27 +186,18 @@
   .tt-addons-list::-webkit-scrollbar-thumb { background: var(--color-accent); border-radius: 6px; }
   .tt-addons-list::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 6px; }
   
-  .tt-addon-item { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    width: 110px; 
-    flex-shrink: 0; 
-    padding: 12px; 
-    background: #fff; 
-    border: 1px solid var(--color-border); 
-    text-align: center;
-  }
+  .tt-addon-item { display: flex; flex-direction: column; align-items: center; width: 140px; flex-shrink: 0; padding: 12px; background: #fff; border: 1px solid var(--color-border); text-align: center; }
   
   .tt-addon-img { width: 100%; aspect-ratio: 1; margin-bottom: 10px; }
   .tt-addon-img img { width: 100%; height: 100%; object-fit: cover; display: block; border: 1px solid var(--color-border); }
   
   .tt-addon-info { flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start; margin-bottom: 10px; width: 100%; }
-  .tt-addon-title { font-family: var(--font-body); font-size: 12px; font-weight: bold; margin: 0 0 5px 0; color: var(--color-text); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 31px; }
+  .tt-addon-title { font-family: var(--font-body); font-size: 11px; margin: 0 0 5px 0; color: var(--color-text); line-height: 1.4; display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
   .tt-addon-price { font-size: 12px; margin: 0; color: var(--color-accent); font-weight: bold; }
   
   .tt-addon-action { width: 100%; margin-top: auto; }
-  .tt-addon-add-btn { width: 100%; background: var(--color-accent); color: white; border: none; padding: 8px 10px; font-size: 10px; text-transform: uppercase; cursor: pointer; letter-spacing: 0.05em; transition: opacity 0.3s; }
+  .tt-addon-add-btn { width: 100%; border: none !important; border-bottom: 1px solid rgba(0,0,0,0.2) !important; background-color: transparent !important; padding: 4px 0 !important; font-size: 11px !important; letter-spacing: 0.1em !important; text-transform: uppercase; cursor: pointer; transition: 0.3s; } 
+.tt-addon-add-btn:hover { border-bottom-color: var(--color-accent) !important; opacity: 0.7; }
   .tt-addon-add-btn:hover { opacity: 0.8; }
 </style>
 
