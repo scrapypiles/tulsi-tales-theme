@@ -1304,21 +1304,21 @@ body {
 @media (max-width: 850px) {
   /* 1 & 2 & 8: Header, Logo, Icons, Fonts */
   .ayus-header-container {
-    padding: 7px 20px !important;
-    display: flex !important;
-    justify-content: space-between !important;
+    padding: 7px 16px !important;
+    display: grid !important;
+    grid-template-columns: 88px auto 88px;
     align-items: center !important;
-    position: relative;
+    justify-content: space-between !important;
     width: 100%;
     min-height: 52px;
   }
   .tt-mobile-header-left,
   .ayus-nav-right {
-    width: 82px !important;
-    min-width: 82px !important;
+    width: 88px !important;
+    min-width: 88px !important;
     display: flex !important;
     align-items: center !important;
-    gap: 18px !important;
+    gap: 22px !important;
     z-index: 4;
     padding: 0 !important;
   }
@@ -1346,8 +1346,8 @@ body {
     padding: 0 !important;
   }
   .ayus-mobile-toggle svg {
-    width: 32px !important;
-    height: 32px !important;
+    width: 34px !important;
+    height: 34px !important;
     display: block;
     stroke-width: 1.8 !important;
   }
@@ -1398,8 +1398,8 @@ body {
     justify-content: center !important;
   }
   .tt-icon-link svg {
-    width: 26px !important;
-    height: 26px !important;
+    width: 28px !important;
+    height: 28px !important;
     display: block;
     stroke-width: 1.7 !important;
   }
