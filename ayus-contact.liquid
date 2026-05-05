@@ -88,7 +88,12 @@
     margin-bottom: 50px;
   }
   .contact-info-block.featured-support p {
-      font-size: 26px !important;
+      font-size: 22px !important;
+      line-height: 1.4 !important;
+      color: #B75D47 !important;
+      margin: 0 !important;
+      font-style: italic !important;
+      letter-spacing: 1px !important;
     }
     .ayus-contact-container {
       margin-top: -20px !important; 
@@ -110,18 +115,51 @@
       margin-bottom: 5px;
     }
   }
-  .contact-info-block p, .contact-info-block a {
+  .contact-info-block p {
     font-family: var(--font-body);
     font-size: 14px;
     color: #555;
-    text-decoration: none;
     line-height: 1.8;
   }
+  .contact-info-block a {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: #333;
+    text-decoration: none;
+    line-height: 1.8;
+    font-weight: 600;
+  }
   @media (max-width: 850px) {
-    .contact-info-block p, .contact-info-block a {
+    .contact-info-block p {
       font-size: 13px;
-      line-height: 1.6;
     }
+    .contact-info-block a {
+      font-size: 18px;
+    }
+  }
+  @media (max-width: 850px) {
+    .contact-info-block p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: #555;
+    line-height: 1.8;
+  }
+  .contact-info-block a {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: #333;
+    text-decoration: none;
+    line-height: 1.8;
+    font-weight: 600;
+  }
+  @media (max-width: 850px) {
+    .contact-info-block p {
+      font-size: 13px;
+    }
+    .contact-info-block a {
+      font-size: 18px;
+    }
+  }
   }
   .contact-info-block a:hover {
     color: var(--color-accent);
