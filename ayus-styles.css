@@ -2683,9 +2683,7 @@ details > summary::-webkit-details-marker {
   margin-bottom: auto !important; /* Push the price and button down to the bottom */
 }
 
-.ayus-card-price {
-  margin-top: 15px !important;
-}
+/* Price margin handled by hierarchy patch */
 
 /* =========================================================
    MOBILE RESPONSIVENESS PATCH (Strictly Mobile Guardrails)
@@ -3043,4 +3041,41 @@ details > summary::-webkit-details-marker {
 @media (max-width: 850px) {
   .contact-title { font-size: 26px !important; }
   .contact-subtitle { font-size: 14px !important; }
+}
+
+
+/* Better Hierarchy for Product Card Info */
+.ayus-brand-text {
+  font-size: 11px !important;
+  letter-spacing: 0.15em !important;
+  margin-bottom: 6px !important;
+  color: #777 !important;
+}
+
+.ayus-card-title {
+  font-size: 17px !important;
+  line-height: 1.3 !important;
+  margin-bottom: 8px !important;
+}
+
+.ayus-card-price {
+  font-size: 14px !important;
+  margin-top: 0 !important;
+  margin-bottom: auto !important; /* Push everything below it down */
+  font-weight: 600 !important;
+  color: #333 !important;
+}
+
+@media (max-width: 850px) {
+  .ayus-card-title {
+    font-size: 15px !important;
+    margin-bottom: 6px !important;
+  }
+  .ayus-brand-text {
+    font-size: 10px !important;
+    margin-bottom: 4px !important;
+  }
+  .ayus-card-price {
+    font-size: 13px !important;
+  }
 }
