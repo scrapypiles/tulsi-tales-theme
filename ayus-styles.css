@@ -1304,23 +1304,23 @@ body {
 @media (max-width: 850px) {
   /* 1 & 2 & 8: Header, Logo, Icons, Fonts */
   .ayus-header-container {
-    padding: 7px 18px !important;
-    display: grid !important;
-    grid-template-columns: 76px auto 76px;
+    padding: 7px 20px !important;
+    display: flex !important;
+    justify-content: space-between !important;
     align-items: center !important;
-    column-gap: 10px;
     position: relative;
     width: 100%;
     min-height: 52px;
   }
   .tt-mobile-header-left,
   .ayus-nav-right {
-    width: 76px;
-    min-width: 76px;
+    width: 82px !important;
+    min-width: 82px !important;
     display: flex !important;
     align-items: center !important;
-    gap: 16px;
+    gap: 18px !important;
     z-index: 4;
+    padding: 0 !important;
   }
   .ayus-nav-right {
     justify-content: flex-end !important;
@@ -1335,18 +1335,19 @@ body {
     justify-self: end;
   }
   .ayus-mobile-toggle {
-    flex: 0 0 auto;
-    width: 32px;
-    height: 32px;
+    flex: 0 0 32px !important;
+    width: 32px !important;
+    height: 32px !important;
     color: var(--color-accent) !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     line-height: 0 !important;
+    padding: 0 !important;
   }
   .ayus-mobile-toggle svg {
-    width: 34px !important;
-    height: 34px !important;
+    width: 32px !important;
+    height: 32px !important;
     display: block;
     stroke-width: 1.8 !important;
   }
@@ -1377,11 +1378,11 @@ body {
     align-items: center !important;
     justify-content: center !important;
     line-height: 0 !important;
-    width: 24px;
-    height: 24px;
-    min-width: 24px;
-    min-height: 24px;
+    width: 32px !important;
+    height: 32px !important;
+    flex: 0 0 32px !important;
     vertical-align: middle !important;
+    padding: 0 !important;
   }
   .ayus-nav-right .tt-desktop-search-toggle,
   .desktop-only.tt-desktop-search-toggle,
@@ -1397,8 +1398,8 @@ body {
     justify-content: center !important;
   }
   .tt-icon-link svg {
-    width: 28px !important;
-    height: 28px !important;
+    width: 26px !important;
+    height: 26px !important;
     display: block;
     stroke-width: 1.7 !important;
   }
