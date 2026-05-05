@@ -1334,6 +1334,13 @@ body {
   .ayus-nav-right {
     justify-self: end;
   }
+
+  .tt-mobile-header-left a,
+  .tt-mobile-header-left div,
+  .ayus-nav-right a {
+    margin: 0 !important;
+  }
+
   .ayus-mobile-toggle {
     flex: 0 0 32px !important;
     width: 32px !important;
