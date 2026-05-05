@@ -1642,20 +1642,20 @@ body {
 
   /* --- REIMAGINED MODERN MENU DRAWER --- */
   .ayus-mobile-drawer {
-    width: 85% !important;
-    max-width: 340px !important;
-    background: #ffffff !important;
-    border-right: none !important;
-    border-top-right-radius: 16px;
-    border-bottom-right-radius: 16px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1) !important;
+    width: 88% !important;
+    max-width: 360px !important;
+    background: #faf8f5 !important;
+    border-right: 1px solid rgba(74, 93, 78, 0.08) !important;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12) !important;
     display: flex !important;
     flex-direction: column !important;
   }
 
   .ayus-mobile-drawer-header {
-    padding: 20px 24px !important;
-    border-bottom: 1px solid var(--color-border) !important;
+    padding: 24px 24px 18px !important;
+    border-bottom: 1px solid rgba(74, 93, 78, 0.08) !important;
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -1663,7 +1663,9 @@ body {
 
   .tt-mobile-drawer-logo {
     font-family: var(--font-heading);
-    font-size: 20px;
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
     color: var(--color-accent);
     font-weight: normal;
   }
@@ -1679,29 +1681,29 @@ body {
   }
 
   .ayus-mobile-drawer-body {
-    padding: 0 24px !important;
+    padding: 18px 24px 0 !important;
     flex-grow: 1 !important;
     overflow-y: auto !important;
   }
 
   /* App-style Search Bar inside menu */
   .tt-mobile-search-container {
-    margin-bottom: 25px !important;
+    margin-bottom: 22px !important;
   }
   .tt-mobile-search {
     display: flex !important;
     align-items: center !important;
-    background: #f5f5f5 !important;
-    border-radius: 10px !important;
-    padding: 10px 14px !important;
-    border: none !important;
+    background: #ffffff !important;
+    border-radius: 14px !important;
+    padding: 12px 14px !important;
+    border: 1px solid rgba(74, 93, 78, 0.08) !important;
     margin-bottom: 0 !important;
   }
   .tt-mobile-search-input {
     background: transparent !important;
     border: none !important;
     flex-grow: 1 !important;
-    font-size: 16px !important;
+    font-size: 15px !important;
     outline: none !important;
     padding: 0 !important;
     margin-left: 10px !important;
@@ -1714,7 +1716,7 @@ body {
   .ayus-mobile-nav {
     display: flex !important;
     flex-direction: column !important;
-    gap: 0 !important;
+    gap: 2px !important;
   }
   .tt-mobile-nav-item {
     display: flex !important;
@@ -1722,11 +1724,11 @@ body {
   }
   .tt-mobile-nav-link {
     font-family: var(--font-heading) !important;
-    font-size: 22px !important;
-    padding: 16px 0 !important;
+    font-size: 23px !important;
+    padding: 18px 0 !important;
     color: var(--color-text) !important;
     text-decoration: none !important;
-    border-bottom: 1px solid #f0f0f0 !important;
+    border-bottom: 1px solid rgba(74, 93, 78, 0.08) !important;
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -1736,7 +1738,7 @@ body {
 
   .tt-mobile-sublink {
     font-family: var(--font-body) !important;
-    font-size: 16px !important;
+    font-size: 15px !important;
     color: #555 !important;
     text-decoration: none !important;
     padding: 8px 0 !important;
@@ -1745,10 +1747,10 @@ body {
 
   /* Distinct Auth Footer area */
   .ayus-mobile-drawer-footer {
-    padding: 24px !important;
-    background: #fafafa !important;
-    border-top: 1px solid #eaeaea !important;
-    border-bottom-right-radius: 16px;
+    padding: 20px 24px 24px !important;
+    background: rgba(255, 255, 255, 0.65) !important;
+    border-top: 1px solid rgba(74, 93, 78, 0.08) !important;
+    border-bottom-right-radius: 20px;
     display: flex;
     flex-direction: column;
     gap: 12px;
