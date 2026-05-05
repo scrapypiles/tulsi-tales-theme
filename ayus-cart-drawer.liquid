@@ -1,6 +1,19 @@
 
 <div id="shopify-section-cart-drawer" class="tt-cart-drawer-wrapper" data-cart-count="{{ cart.item_count }}">
   <div id="tt-cart-drawer" class="tt-cart-drawer">
+    <style>
+      .tt-cart-drawer-wrapper .tt-cart-panel {
+        width: 440px !important;
+        max-width: 90vw !important;
+      }
+      .tt-cart-drawer-wrapper .tt-cart-header h2 {
+        font-family: var(--font-heading) !important;
+        font-size: 22px !important;
+        text-transform: none !important;
+        letter-spacing: normal !important;
+        font-weight: normal !important;
+      }
+    </style>
     <div class="tt-cart-overlay" onclick="closeBagDrawer()"></div>
     <div class="tt-cart-panel">
       
@@ -24,7 +37,7 @@
                 <div class="tt-cart-item-details">
                   <h4 class="tt-cart-item-title">{{ item.product.title }}</h4>
                   {% unless item.variant.title contains 'Default' %}
-                    <p class="tt-cart-variant">{{ item.variant.title }}</p>
+                    <p class="tt-cart-variant" style="font-size: 9px !important; color: #888 !important; margin-bottom: 5px !important; text-transform: uppercase !important; letter-spacing: 0.05em !important;">{{ item.variant.title }}</p>
                   {% endunless %}
                   <p class="tt-cart-price">{{ item.final_line_price | money }}</p>
                   
@@ -155,8 +168,8 @@
   .tt-cart-body { flex-grow: 1; overflow-y: auto; overflow-x: hidden; padding: 15px 15px 0 15px; display: flex; flex-direction: column; -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; }
   .tt-cart-items { flex-shrink: 0; }
   .tt-cart-item { display: flex; gap: 20px; margin-bottom: 25px; flex-shrink: 0; }
-  .tt-cart-item-img { width: 80px; flex-shrink: 0; }
-  .tt-cart-item-img img { width: 100%; height: auto; border: 1px solid var(--color-border); }
+  .tt-cart-item-img { width: 110px; flex-shrink: 0; display: flex; align-items: stretch; }
+  .tt-cart-item-img img { width: 100%; height: 100%; object-fit: cover; border: 1px solid var(--color-border); }
   .tt-cart-item-details { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
   .tt-cart-item-title { font-family: var(--font-heading); font-size: 16px; margin: 0 0 5px 0; }
   .tt-cart-variant { font-size: 9px; color: #666; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.05em; }
