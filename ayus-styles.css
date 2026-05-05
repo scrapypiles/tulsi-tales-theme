@@ -1306,7 +1306,7 @@ body {
   .ayus-header-container {
     padding: 7px 16px !important;
     display: grid !important;
-    grid-template-columns: 88px auto 88px;
+    grid-template-columns: 76px auto 76px;
     align-items: center !important;
     justify-content: space-between !important;
     width: 100%;
@@ -1314,11 +1314,11 @@ body {
   }
   .tt-mobile-header-left,
   .ayus-nav-right {
-    width: 88px !important;
-    min-width: 88px !important;
+    width: 76px !important;
+    min-width: 76px !important;
     display: flex !important;
     align-items: center !important;
-    gap: 22px !important;
+    gap: 12px !important;
     z-index: 4;
     padding: 0 !important;
   }
@@ -1415,18 +1415,19 @@ body {
     right: -3px;
     width: 18px;
     height: 18px;
-    font-size: 9px;
+    font-size: 10px;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    line-height: 0 !important;
-    padding-top: 2px !important;
+    line-height: 1 !important;
+    padding: 0 !important;
+    padding-top: 1px !important;
   }
 
   /* 8: Typography scale down */
 
   .tt-shop-by-card h3 {
-    font-size: 26px !important;
+    font-size: 20px !important;
     margin-bottom: 8px !important;
   }
   .tt-shop-by-card p {
