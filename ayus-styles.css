@@ -3130,3 +3130,68 @@ a.tt-card-add-btn:hover,
   opacity: 0.7 !important;
 }
 
+
+
+/* EXTREME OVERRIDE FOR CART QTY & BADGE */
+.tt-cart-badge {
+  line-height: normal !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  padding-top: 1px !important; /* Visual optical adjustment */
+}
+
+@media (max-width: 850px) {
+  .tt-cart-badge {
+    line-height: normal !important;
+    padding-top: 1px !important;
+  }
+  
+  .tt-qty-box.tt-cart-qty {
+    display: inline-flex !important;
+    width: 80px !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    border: 1px solid var(--color-border) !important;
+    background-color: #fff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    gap: 0 !important;
+    align-items: stretch !important;
+  }
+  .tt-qty-box.tt-cart-qty .tt-qty-btn {
+    flex: 0 0 25px !important;
+    width: 25px !important;
+    height: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    color: #333 !important;
+  }
+  .tt-qty-box.tt-cart-qty input {
+    flex: 1 1 auto !important;
+    width: 30px !important;
+    height: 100% !important;
+    min-height: 30px !important;
+    background: transparent !important;
+    border: none !important;
+    border-left: 1px solid var(--color-border) !important;
+    border-right: 1px solid var(--color-border) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: center !important;
+    font-size: 14px !important;
+    line-height: 1 !important;
+    color: #333 !important;
+    border-radius: 0 !important;
+    -webkit-appearance: none !important;
+  }
+}
