@@ -245,11 +245,11 @@
       {% for block in section.blocks %}
                 <div class="contact-info-block {% if block.settings.title == 'Customer Support' %}featured-support{% endif %}" style="{% if block.settings.title == 'Customer Support' %}margin-top: -10px;{% endif %}" {{ block.shopify_attributes }}>
           {% if block.settings.title != 'Customer Support' %}<h3>{{ block.settings.title }}</h3>{% endif %}
+          {% if block.settings.subtitle != blank %}
+            <p style="font-size: 13px; color: #888; margin-bottom: 5px; margin-top: 0;">{{ block.settings.subtitle }}</p>
+          {% endif %}
           {% if block.settings.link_text != blank %}
             <p><a href="{{ block.settings.link_url }}">{{ block.settings.link_text }}</a></p>
-          {% endif %}
-          {% if block.settings.subtitle != blank %}
-            <p style="font-size: 12px; color: #888; margin-top: 5px;">{{ block.settings.subtitle }}</p>
           {% endif %}
           {% if block.settings.text_content != blank %}
             <p>{{ block.settings.text_content }}</p>
