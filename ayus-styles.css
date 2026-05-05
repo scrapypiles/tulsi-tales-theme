@@ -3099,3 +3099,31 @@ details > summary::-webkit-details-marker {
     font-size: 13px !important;
   }
 }
+
+
+/* OVERRIDE FOR ADD TO BAG TEXT LINK ON CARDS */
+button.tt-card-add-btn,
+a.tt-card-add-btn,
+.tt-card-add-btn {
+  border: none !important;
+  border-bottom: 1px solid rgba(0,0,0,0.2) !important;
+  background-color: transparent !important;
+  padding: 4px 0 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.1em !important;
+  min-width: 0 !important;
+  width: auto !important;
+  color: var(--color-text) !important;
+  transition: opacity 0.3s ease !important;
+  text-transform: uppercase !important;
+  font-family: var(--font-body) !important;
+}
+button.tt-card-add-btn:hover,
+a.tt-card-add-btn:hover,
+.tt-card-add-btn:hover {
+  background-color: transparent !important;
+  color: var(--color-text) !important;
+  border-bottom-color: var(--color-accent) !important;
+  opacity: 0.7 !important;
+}
+
