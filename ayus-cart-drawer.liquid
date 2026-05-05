@@ -58,7 +58,7 @@
                       {% endif %}
                     </div>
                     <div class="tt-addon-info">
-                      <p class="tt-addon-title">{{ addon.title | split: '-' | last | strip | truncate: 25 }}</p>
+                      <p class="tt-addon-title">{{ addon.title | split: '-' | last | strip | truncate: 50 }}</p>
                       <p class="tt-addon-price">{{ addon.price | money }}</p>
                     </div>
                     <div class="tt-addon-action">
@@ -93,7 +93,7 @@
                     {% endif %}
                   </div>
                   <div class="tt-addon-info">
-                    <p class="tt-addon-title">{{ addon.title | split: '-' | last | strip | truncate: 25 }}</p>
+                    <p class="tt-addon-title">{{ addon.title | split: '-' | last | strip | truncate: 50 }}</p>
                     <p class="tt-addon-price">{{ addon.price | money }}</p>
                   </div>
                   <div class="tt-addon-action">
@@ -116,7 +116,7 @@
           </div>
           <p class="tt-cart-tax-note">Taxes and shipping calculated at checkout</p>
           <form action="/cart" method="post" id="cart-drawer-form" novalidate>
-            <button type="submit" name="checkout" value="Checkout" class="ayus-btn tt-checkout-btn" style="width:100%; background-color: var(--color-accent); color: #fff; border-color: var(--color-accent); white-space: nowrap;">Proceed to Checkout</button>
+            <button type="submit" name="checkout" value="Checkout" class="ayus-btn tt-checkout-btn" style="width:100%; background-color: var(--color-accent); color: #fff; border-color: var(--color-accent); white-space: nowrap; font-size: 11px; padding: 12px 10px;">Proceed to Checkout</button>
           </form>
         </div>
       {% endif %}
@@ -384,3 +384,63 @@
   "settings": []
 }
 {% endschema %}
+
+
+<!-- Quick Add Modal -->
+<div class="tt-qa-overlay" id="tt-qa-overlay" onclick="closeQuickAdd()"></div>
+<div class="tt-qa-drawer" id="tt-qa-drawer">
+  <div class="tt-qa-header">
+    <h3 id="tt-qa-title" style="margin: 0; font-family: var(--font-heading); font-size: 20px; color: var(--color-accent);">Select Size</h3>
+    <button class="tt-qa-close" onclick="closeQuickAdd()" style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+  </div>
+  <div class="tt-qa-body" id="tt-qa-variants" style="padding: 20px 0;">
+    Loading...
+  </div>
+</div>
+<style>
+  .tt-qa-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 9999998; opacity: 0; visibility: hidden; transition: 0.3s; }
+  .tt-qa-overlay.active { opacity: 1; visibility: visible; }
+  .tt-qa-drawer { position: fixed; bottom: -100%; left: 0; width: 100%; background: #faf8f5; z-index: 9999999; padding: 25px 20px; border-top-left-radius: 20px; border-top-right-radius: 20px; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 -5px 20px rgba(0,0,0,0.1); max-height: 80vh; overflow-y: auto; }
+  .tt-qa-drawer.active { bottom: 0; }
+  .tt-qa-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 15px; }
+  .tt-qa-variant-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
+  .tt-qa-variant-row:hover { opacity: 0.7; }
+  .tt-qa-v-title { font-family: var(--font-body); font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text); }
+  .tt-qa-v-price { font-family: var(--font-body); font-size: 14px; color: var(--color-accent); font-weight: 600; margin-left: auto; margin-right: 20px; }
+  .tt-qa-v-add { font-size: 20px; font-weight: 300; color: var(--color-text); display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 1px solid rgba(0,0,0,0.1); border-radius: 50%; }
+</style>
+<script>
+  function closeQuickAdd() {
+    document.getElementById('tt-qa-overlay').classList.remove('active');
+    document.getElementById('tt-qa-drawer').classList.remove('active');
+  }
+  function openQuickAddModal(handle) {
+    document.getElementById('tt-qa-variants').innerHTML = '<div style="text-align:center; padding: 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #888;">Loading sizes...</div>';
+    document.getElementById('tt-qa-overlay').classList.add('active');
+    document.getElementById('tt-qa-drawer').classList.add('active');
+    
+    fetch('/products/' + handle + '.js')
+      .then(r => r.json())
+      .then(product => {
+        let html = '';
+        product.variants.forEach(v => {
+          let price = (v.price / 100).toFixed(2);
+          html += '<div class="tt-qa-variant-row" onclick="addVariantToCart(' + v.id + ')">';
+          html += '<span class="tt-qa-v-title">' + v.title + '</span>';
+          html += '<span class="tt-qa-v-price">Rs. ' + price + '</span>';
+          html += '<span class="tt-qa-v-add">+</span>';
+          html += '</div>';
+        });
+        document.getElementById('tt-qa-variants').innerHTML = html;
+      });
+  }
+  function addVariantToCart(id) {
+    closeQuickAdd();
+    openBagDrawer();
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: id, quantity: 1 })
+    }).then(() => refreshBagDrawer());
+  }
+</script>
