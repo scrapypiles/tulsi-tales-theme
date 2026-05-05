@@ -41,13 +41,13 @@
                   {% endunless %}
                   <p class="tt-cart-price">{{ item.final_line_price | money }}</p>
                   
-                  <div class="tt-cart-qty-wrapper">
+                  <div class="tt-cart-qty-wrapper" style="display: flex; align-items: flex-end; justify-content: space-between; margin-top: 5px;">
                     <div class="tt-cart-qty" style="display: inline-block !important; width: 90px !important; height: 32px !important; border: 1px solid rgba(0,0,0,0.15) !important; background: #fff !important; box-sizing: border-box !important; position: relative !important; margin: 0 !important; padding: 0 !important; vertical-align: middle !important;">
     <span class="tt-qty-btn minus" onclick="changeCartItem(this, '{{ item.key }}', {{ item.quantity | minus: 1 }})" style="position: absolute !important; left: 0 !important; top: 0 !important; width: 30px !important; height: 30px !important; background: transparent !important; border: none !important; font-size: 18px !important; color: #333 !important; cursor: pointer !important; padding: 0 !important; margin: 0 !important; line-height: 28px !important; text-align: center !important; font-weight: 300 !important; user-select: none !important;">-</span>
     <input type="text" value="{{ item.quantity }}" readonly style="position: absolute !important; left: 30px !important; top: 0 !important; width: 28px !important; height: 30px !important; background: transparent !important; border: none !important; border-left: 1px solid rgba(0,0,0,0.1) !important; border-right: 1px solid rgba(0,0,0,0.1) !important; text-align: center !important; font-size: 12px !important; color: #333 !important; padding: 0 !important; margin: 0 !important; outline: none !important; box-sizing: border-box !important; -webkit-appearance: none !important; border-radius: 0 !important; pointer-events: none !important; display: block !important;">
     <span class="tt-qty-btn plus" onclick="changeCartItem(this, '{{ item.key }}', {{ item.quantity | plus: 1 }})" style="position: absolute !important; right: 0 !important; top: 0 !important; width: 30px !important; height: 30px !important; background: transparent !important; border: none !important; font-size: 16px !important; color: #333 !important; cursor: pointer !important; padding: 0 !important; margin: 0 !important; line-height: 30px !important; text-align: center !important; font-weight: 300 !important; user-select: none !important;">+</span>
   </div>
-                    <a href="#" class="tt-cart-remove" onclick="event.preventDefault(); changeCartItem(this, '{{ item.key }}', 0)">Remove</a>
+                    <a href="#" class="tt-cart-remove" style="font-size: 11px; text-transform: uppercase; color: #888; text-decoration: underline; margin-bottom: 2px;" onclick="event.preventDefault(); changeCartItem(this, '{{ item.key }}', 0)">Remove</a>
                   </div>
                 </div>
               </div>
@@ -174,11 +174,11 @@
   .tt-cart-item-title { font-family: var(--font-heading); font-size: 16px; margin: 0 0 5px 0; }
   .tt-cart-variant { font-size: 9px; color: #666; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.05em; }
   .tt-cart-price { font-size: 14px; font-weight: bold; margin: 0 0 10px 0; }
-  .tt-cart-qty-wrapper { display: flex; align-items: center; justify-content: space-between; }
+  .tt-cart-qty-wrapper { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 10px; }
   .tt-cart-qty { display: inline-block !important; width: 90px !important; height: 32px !important; border: 1px solid rgba(0,0,0,0.15) !important; background: #fff !important; box-sizing: border-box !important; position: relative !important; margin: 0 !important; padding: 0 !important; }
   
   
-  .tt-cart-remove { font-size: 11px; text-transform: uppercase; color: #888; text-decoration: underline; }
+  .tt-cart-remove { font-size: 11px; text-transform: uppercase; color: #888; text-decoration: underline; margin-bottom: 2px; }
   .tt-cart-footer { padding: 30px; border-top: 1px solid var(--color-border); background: #fff; }
   .tt-cart-subtotal { display: flex; justify-content: space-between; font-size: 18px; font-family: var(--font-heading); margin-bottom: 10px; }
   .tt-cart-tax-note { font-size: 12px; color: #666; margin-bottom: 20px; text-align: center; }
