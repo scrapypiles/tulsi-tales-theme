@@ -5,7 +5,7 @@
 
     
     
-  {% assign split_bg = section.settings.image | img_url: 'master' %}
+  {% assign split_bg = section.settings.image | img_url: '800x' %}
   {% if section.settings.image == blank %}
     {% assign split_bg = 'https://images.unsplash.com/photo-1611078449942-9ce28014eeb5?q=80&w=1200' %}
   {% endif %}
@@ -28,7 +28,7 @@
   @media (max-width: 850px) {
     .tt-story-split { flex-direction: column !important; }
     .tt-story-split.tt-reverse { flex-direction: column !important; }
-    .tt-split-img { min-height: 350px !important; }
+    .tt-split-img { min-height: 450px !important; }
     .tt-split-text { padding: 50px 20px !important; }
   }
 </style>

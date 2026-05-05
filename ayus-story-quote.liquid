@@ -11,7 +11,7 @@
     {% else %}
       <img src="{{ 'favicon.png' | asset_url }}" alt="Tulsi Tales Symbol" style="width: 48px; height: 48px; object-fit: contain; margin-bottom: 20px; opacity: 1;">
     {% endif %}
-    <h2 style="font-family: var(--font-heading); font-size: 28px; line-height: 1.4; color: var(--color-text); margin: 0; font-style: italic;">{{ section.settings.quote_text }}</h2>
+    <h2 class="tt-story-quote-text" style="font-family: var(--font-heading); font-size: 28px; line-height: 1.4; color: var(--color-text); margin: 0; font-style: italic;"><style>@media(max-width:850px){.tt-story-quote-text { font-size: 32px !important; }}</style>{{ section.settings.quote_text }}</h2>
   </div>
 </section>
 

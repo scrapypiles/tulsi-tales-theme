@@ -5,11 +5,12 @@
 
     
     
-  {% assign hero_bg = section.settings.hero_image | img_url: 'master' %}
+  {% assign hero_bg = section.settings.hero_image | img_url: '1000x' %}
   {% if section.settings.hero_image == blank %}
     {% assign hero_bg = 'https://images.unsplash.com/photo-1598440947619-2ce15f756627?q=80&w=2000' %}
   {% endif %}
   <div class="tt-story-hero" style="position: relative; height: 60vh; min-height: 400px; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; background-image: url('{{ hero_bg }}'); background-size: cover; background-position: center;">
+<style>@media(max-width:850px){.tt-story-hero { height: 56vh !important; min-height: 400px !important; }}</style>
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3);"></div>
     <div style="position: relative; z-index: 2; padding: 0 20px; max-width: 800px;">
       {% if section.settings.hero_tagline != blank %}
