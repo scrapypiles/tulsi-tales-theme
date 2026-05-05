@@ -1844,8 +1844,8 @@ body {
     z-index: 9999999 !important; /* Must be higher than the mobile menu drawer */
   }
   .tt-cart-panel {
-    width: 85% !important; /* Slightly narrower on mobile for better edge tap */
-    max-width: 320px !important;
+    width: 95% !important;
+    max-width: 95vw !important;
   }
 }
 
