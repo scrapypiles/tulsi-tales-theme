@@ -37,7 +37,7 @@
                 <div class="tt-cart-item-details">
                   <h4 class="tt-cart-item-title">{{ item.product.title }}</h4>
                   {% unless item.variant.title contains 'Default' %}
-                    <p class="tt-cart-variant" style="font-size: 11px !important; color: #888 !important; margin-bottom: 5px !important; text-transform: uppercase !important; letter-spacing: 0.05em !important;">{{ item.variant.title }}</p>
+                    <p class="tt-cart-variant" style="font-size: 13px !important; color: #888 !important; margin-bottom: 5px !important; text-transform: uppercase !important; letter-spacing: 0.05em !important;">{{ item.variant.title }}</p>
                   {% endunless %}
                   <p class="tt-cart-price">{{ item.final_line_price | money }}</p>
                   
