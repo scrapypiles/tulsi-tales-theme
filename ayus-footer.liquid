@@ -273,7 +273,7 @@
 
           {% when 'link_list' %}
             <div class="tt-footer-column tt-footer-links-column" {{ block.shopify_attributes }}>
-              <h4 class="tt-footer-column-title">Contact</h4>
+              <h4 class="tt-footer-column-title">{{ block.settings.heading }}</h4>
               <ul class="tt-footer-link-list">
                 {% assign footer_menu = block.settings.menu %}
                 {% if footer_menu != blank and linklists[footer_menu] != empty and linklists[footer_menu].links.size > 0 %}
@@ -290,7 +290,7 @@
 
           {% when 'contact_newsletter' %}
             <div class="tt-footer-column tt-footer-contact-column" {{ block.shopify_attributes }}>
-              <h4 class="tt-footer-column-title">Contact</h4>
+              <h4 class="tt-footer-column-title">{{ block.settings.heading }}</h4>
               <ul class="tt-footer-contact-list">
                 {% if block.settings.email != blank %}
                   <li>
