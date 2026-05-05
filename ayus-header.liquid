@@ -115,10 +115,20 @@
     </div>
     
     <nav class="ayus-mobile-nav">
+      <div class="tt-mobile-nav-item">
+        <a href="/collections/all" class="tt-mobile-nav-link">All Products</a>
+      </div>
+      <div class="tt-mobile-nav-item">
+        <a href="/pages/contact" class="tt-mobile-nav-link">Contact Us</a>
+      </div>
+      <div class="tt-mobile-nav-item">
+        <a href="/pages/our-story" class="tt-mobile-nav-link">Our Story</a>
+      </div>
       {% for link in linklists[section.settings.menu].links %}
-        {% if link.title == 'Home' or link.title == 'Contact' or link.title == 'Contact Us' or link.url contains 'contact' %}{% continue %}{% endif %}
+        {% assign mobile_title = link.title | downcase %}
+        {% if link.title == 'Home' or mobile_title == 'catalog' or mobile_title == 'all products' or mobile_title == 'contact' or mobile_title == 'contact us' or link.url contains 'contact' or link.url contains 'our-story' %}{% continue %}{% endif %}
         <div class="tt-mobile-nav-item">
-          <a href="{{ link.url }}" class="tt-mobile-nav-link" style="display: flex; justify-content: space-between; align-items: center;">{% if link.title == 'Catalog' %}All Products{% else %}{{ link.title }}{% endif %}</a>
+          <a href="{{ link.url }}" class="tt-mobile-nav-link">{{ link.title }}</a>
           {% if link.links != blank %}
             <div class="tt-mobile-dropdown">
               {% for childlink in link.links %}
@@ -128,9 +138,6 @@
           {% endif %}
         </div>
       {% endfor %}
-      <div class="tt-mobile-nav-item">
-        <a href="/pages/our-story" class="ayus-mobile-link">Our Story</a>
-      </div>
     </nav>
   </div>
 
