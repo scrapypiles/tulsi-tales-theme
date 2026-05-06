@@ -3229,17 +3229,23 @@ a.tt-card-add-btn:hover,
     display: contents !important;
   }
   
-  .ayus-product-header { order: 1 !important; margin-bottom: 20px !important; }
-  .tt-commerce-controls { order: 2 !important; margin-bottom: 20px !important; border-bottom: none !important; padding-bottom: 0 !important; }
-  .ayus-add-to-cart-wrapper { order: 3 !important; margin-bottom: 30px !important; width: 100% !important; }
-  .tt-main-image-zoom { order: 4 !important; margin-bottom: 15px !important; width: 100% !important; }
-  .tt-thumbnail-strip { order: 5 !important; margin-bottom: 30px !important; width: 100% !important; }
-  .ayus-product-description { order: 6 !important; margin-top: 0 !important; margin-bottom: 30px !important; }
+  /* Pure Earth Mobile Layout Order */
+  .tt-main-image-zoom { order: 1 !important; margin-bottom: 15px !important; width: 100% !important; }
+  .tt-thumbnail-strip { order: 2 !important; margin-bottom: 30px !important; width: 100% !important; }
+  
+  .ayus-product-header { order: 3 !important; margin-bottom: 20px !important; width: 100% !important; }
+  
+  .tt-commerce-controls { order: 4 !important; margin-bottom: 20px !important; border-bottom: none !important; padding-bottom: 0 !important; width: 100% !important; }
+  .ayus-add-to-cart-wrapper { order: 5 !important; margin-bottom: 30px !important; width: 100% !important; }
+  
+  .ayus-product-description { order: 6 !important; margin-top: 0 !important; margin-bottom: 30px !important; width: 100% !important; }
   
   .tt-meta-grid { 
     order: 7 !important; 
     grid-template-columns: 1fr 1fr !important; /* Two columns on mobile */
     margin-bottom: 30px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
   .ayus-accordions { order: 8 !important; width: 100% !important; }
 }
