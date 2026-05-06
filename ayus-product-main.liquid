@@ -6,6 +6,40 @@
     
     <!-- Left Column: The Imagery (Thumbnails + Main Image) -->
     <div class="tt-left-column">
+      
+      <!-- Mobile Swipeable Carousel -->
+      <div class="tt-mobile-carousel">
+        <div class="tt-mobile-carousel-track">
+          {% for media in product.media %}
+            <div class="tt-mobile-carousel-slide">
+              <img src="{{ media | img_url: '800x' }}" alt="{{ media.alt | escape }}" loading="lazy">
+            </div>
+          {% endfor %}
+        </div>
+        {% if product.media.size > 1 %}
+        <div class="tt-mobile-carousel-dots">
+          {% for media in product.media %}
+            <div class="tt-dot {% if forloop.first %}active{% endif %}"></div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const track = document.querySelector('.tt-mobile-carousel-track');
+    const dots = document.querySelectorAll('.tt-mobile-carousel-dots .tt-dot');
+    if (track && dots.length > 0) {
+      track.addEventListener('scroll', function() {
+        let index = Math.round(track.scrollLeft / track.clientWidth);
+        dots.forEach(d => d.classList.remove('active'));
+        if(dots[index]) dots[index].classList.add('active');
+      });
+    }
+  });
+</script>
+
+
       <div class="tt-product-media-gallery">
       {% if product.media.size > 1 %}
         <div class="tt-thumbnail-strip">

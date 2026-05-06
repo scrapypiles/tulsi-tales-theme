@@ -3249,3 +3249,54 @@ a.tt-card-add-btn:hover,
   }
   .ayus-accordions { order: 8 !important; width: 100% !important; }
 }
+
+/* --- Mobile Swipeable Carousel --- */
+.tt-mobile-carousel {
+  display: none;
+}
+@media (max-width: 768px) {
+  .tt-product-media-gallery {
+    display: none !important; /* hide desktop gallery */
+  }
+  .tt-mobile-carousel {
+    display: block;
+    width: 100%;
+    order: 1 !important;
+    margin-bottom: 15px !important;
+    position: relative;
+  }
+  .tt-mobile-carousel-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+  .tt-mobile-carousel-track::-webkit-scrollbar {
+    display: none; /* Safari/Chrome */
+  }
+  .tt-mobile-carousel-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+  }
+  .tt-mobile-carousel-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .tt-mobile-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+  }
+  .tt-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ccc;
+  }
+  .tt-dot.active {
+    background: #333;
+  }
+}
