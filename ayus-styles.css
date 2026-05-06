@@ -1269,9 +1269,9 @@ h6 {
 }
 
 /* GLOBAL FIX: Prevent horizontal scroll bounce */
-html,
-body {
-  overflow-x: hidden;
+html, body {
+  /* overflow-x: hidden; breaks sticky */
+  overflow-x: clip; 
   width: 100%;
 }
 * {
