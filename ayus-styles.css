@@ -569,7 +569,7 @@ h6 {
   aspect-ratio: 1; /* Square thumbnails */
   cursor: pointer;
   border: 1px solid var(--color-border);
-  overflow: hidden;
+  /* overflow: hidden removed to fix sticky */
   transition: border-color 0.3s ease;
 }
 
@@ -594,7 +594,7 @@ h6 {
   width: 100%;
   padding-bottom: 125%; /* Elegant 4:5 portrait ratio */
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden removed to fix sticky */
   border-radius: 0; /* Purearth uses sharp edges usually */
   background: #ffffff; /* Soft cream backdrop for cutout products */
   cursor: zoom-in;
@@ -1270,7 +1270,7 @@ h6 {
 
 /* GLOBAL FIX: Prevent horizontal scroll bounce */
 html, body {
-  /* overflow-x: hidden; breaks sticky */
+  /* /* overflow-x: hidden removed to fix sticky */ breaks sticky */
   overflow-x: clip; 
   width: 100%;
 }
@@ -2892,7 +2892,7 @@ details > summary::-webkit-details-marker {
   width: 100% !important;
   height: 0 !important;
   padding-bottom: 125% !important; /* Strict 4:5 ratio for EVERY product card */
-  overflow: hidden !important;
+  /* overflow: hidden removed to fix sticky */
   background: #ffffff !important;
   display: block !important;
   margin-bottom: 0 !important; /* Stitched to info block */
@@ -2953,7 +2953,7 @@ details > summary::-webkit-details-marker {
   .tt-product-media-gallery,
   .ayus-product-info-wrapper {
     max-width: 100vw !important;
-    overflow-x: hidden !important;
+    /* overflow-x: hidden removed to fix sticky */
     min-width: 0 !important;
     box-sizing: border-box !important;
   }
@@ -3203,4 +3203,12 @@ a.tt-card-add-btn:hover,
 .tt-checkout-btn:hover {
   background-color: transparent !important;
   color: var(--color-accent) !important;
+}
+
+/* FORCE STICKY ON SECTION */
+#shopify-section-ayus-header,
+#shopify-section-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9999 !important;
 }
