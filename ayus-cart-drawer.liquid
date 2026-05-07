@@ -465,7 +465,9 @@
   
   .tt-qa-close { position: absolute; top: 15px; right: 15px; background: transparent; border: none; font-size: 32px; font-weight: 300; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--color-text); padding: 0; margin: 0; line-height: 1; z-index: 2; box-shadow: none; border-radius: 0; }
   
-  .tt-qa-header-product { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-right: 20px; }
+  .tt-qa-header-product { margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-right: 20px; }
+  .tt-qa-product-link { display: flex; gap: 20px; align-items: flex-start; width: 100%; color: inherit; text-decoration: none; cursor: pointer; }
+  .tt-qa-product-link:hover { opacity: 0.85; }
   .tt-qa-prod-img { width: 90px; height: 90px; object-fit: cover; border: 1px solid var(--color-border); border-radius: 4px; }
   .tt-qa-prod-info { flex-grow: 1; }
   .tt-qa-prod-vendor { font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: #777; margin-bottom: 6px; display: block; }
@@ -503,6 +505,8 @@
         let descText = descHtml;
         
         let headerHtml = '';
+        let productUrl = '/products/' + product.handle;
+        headerHtml += '<a href="' + productUrl + '" class="tt-qa-product-link" onclick="closeQuickAdd()">';
         if(imgUrl) {
           headerHtml += '<img src="' + imgUrl + '" class="tt-qa-prod-img" alt="' + title + '">';
         }
@@ -512,8 +516,9 @@
         if(descText) {
           headerHtml += '<div class="tt-qa-prod-desc">' + descText + '</div>';
         }
-        headerHtml += '<a href="/products/' + product.handle + '" class="tt-qa-view-product" onclick="closeQuickAdd()">View full details</a>';
         headerHtml += '</div>';
+        headerHtml += '</a>';
+        headerHtml += '<a href="' + productUrl + '" class="tt-qa-view-product" onclick="closeQuickAdd()">View full details</a>';
         
         document.getElementById('tt-qa-header-product').innerHTML = headerHtml;
 
