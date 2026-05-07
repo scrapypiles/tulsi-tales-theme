@@ -63,7 +63,7 @@
                 {% assign addon_id_str = addon.id | append: "" %}
                 {% unless cart_product_ids contains addon_id_str %}
                   <div class="tt-addon-item">
-                    <a href="{{ addon.url }}" class="tt-addon-link" onclick="closeBagDrawer()">
+                    <a href="{{ addon.url }}" class="tt-addon-link" onclick="event.preventDefault(); openQuickAddModal('{{ addon.handle }}')">
                       <div class="tt-addon-img">
                         {% if addon.featured_media %}
                           <img src="{{ addon.featured_media | img_url: '150x' }}" alt="{{ addon.title | escape }}" loading="lazy">
@@ -103,7 +103,7 @@
               {% assign addons_shown = 0 %}
               {% for addon in collections['all'].products %}
                 <div class="tt-addon-item">
-                  <a href="{{ addon.url }}" class="tt-addon-link" onclick="closeBagDrawer()">
+                  <a href="{{ addon.url }}" class="tt-addon-link" onclick="event.preventDefault(); openQuickAddModal('{{ addon.handle }}')">
                     <div class="tt-addon-img">
                       {% if addon.featured_media %}
                         <img src="{{ addon.featured_media | img_url: '150x' }}" alt="{{ addon.title | escape }}" loading="lazy">
