@@ -480,9 +480,8 @@
   .tt-qa-tax { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.1em; }
   .tt-qa-size-label { display: block; margin-bottom: 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: #777; }
   .tt-qa-variant-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
-  .tt-qa-variant-input { display: none; }
   .tt-qa-variant-pill { display: inline-block; padding: 10px 20px; border: 1px solid var(--color-border); background-color: transparent; color: var(--color-text); font-family: var(--font-body); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease; }
-  .tt-qa-variant-input:checked + .tt-qa-variant-pill { background-color: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+  .tt-qa-variant-pill.is-active { background-color: var(--color-accent); color: #fff; border-color: var(--color-accent); }
   .tt-qa-variant-pill.is-disabled { opacity: 0.45; cursor: not-allowed; }
   .tt-qa-add-btn { width: 100%; background-color: var(--color-accent); color: #fff; border: 1px solid var(--color-accent); padding: 14px 18px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-family: var(--font-body); cursor: pointer; transition: opacity 0.3s ease; }
   .tt-qa-add-btn:disabled { opacity: 0.45; cursor: not-allowed; }
@@ -500,19 +499,24 @@
     currentQuickAddVariantId = null;
   }
 
-  function syncQuickAddVariantUI(radio) {
-    if (!radio) return;
+  function syncQuickAddVariantUI(button) {
+    if (!button) return;
 
-    currentQuickAddVariantId = Number(radio.value);
+    currentQuickAddVariantId = Number(button.dataset.variantId);
+
+    document.querySelectorAll('.tt-qa-variant-pill').forEach(pill => {
+      pill.classList.remove('is-active');
+    });
+    button.classList.add('is-active');
 
     const priceEl = document.getElementById('tt-qa-current-price');
-    if (priceEl && radio.dataset.price) {
-      priceEl.textContent = formatQuickAddMoney(Number(radio.dataset.price));
+    if (priceEl && button.dataset.price) {
+      priceEl.textContent = formatQuickAddMoney(Number(button.dataset.price));
     }
 
     const addBtn = document.getElementById('tt-qa-add-btn');
     if (addBtn) {
-      const available = radio.dataset.available === 'true';
+      const available = button.dataset.available === 'true';
       addBtn.disabled = !available;
       addBtn.textContent = available ? 'Add To Bag' : 'Sold Out';
     }
@@ -572,12 +576,11 @@
           vHtml += '<div class="tt-qa-variant-pills">';
           product.variants.forEach(v => {
             const label = v.title === 'Default Title' ? 'Standard Size' : v.title;
-            const inputId = 'tt-qa-variant-' + v.id;
-            const checked = selectedVariant && v.id === selectedVariant.id ? ' checked' : '';
+            const isSelected = selectedVariant && v.id === selectedVariant.id;
             const disabled = v.available ? '' : ' disabled';
+            const activeClass = isSelected ? ' is-active' : '';
             const disabledClass = v.available ? '' : ' is-disabled';
-            vHtml += '<input type="radio" class="tt-qa-variant-input" name="tt-qa-variant" id="' + inputId + '" value="' + v.id + '" data-price="' + v.price + '" data-available="' + v.available + '"' + checked + disabled + '>';
-            vHtml += '<label for="' + inputId + '" class="tt-qa-variant-pill' + disabledClass + '">' + label + '</label>';
+            vHtml += '<button type="button" class="tt-qa-variant-pill' + activeClass + disabledClass + '" data-variant-id="' + v.id + '" data-price="' + v.price + '" data-available="' + v.available + '" onclick="syncQuickAddVariantUI(this)"' + disabled + '>' + label + '</button>';
           });
           vHtml += '</div>';
           vHtml += '</div>';
@@ -587,13 +590,7 @@
         vHtml += '<button type="button" class="tt-qa-add-btn" id="tt-qa-add-btn" onclick="addVariantToCart()"' + (canAdd ? '' : ' disabled') + '>' + (canAdd ? 'Add To Bag' : 'Sold Out') + '</button>';
         document.getElementById('tt-qa-variants').innerHTML = vHtml;
 
-        document.querySelectorAll('.tt-qa-variant-input').forEach(radio => {
-          radio.addEventListener('change', function() {
-            syncQuickAddVariantUI(this);
-          });
-        });
-
-        syncQuickAddVariantUI(document.querySelector('.tt-qa-variant-input:checked'));
+        syncQuickAddVariantUI(document.querySelector('.tt-qa-variant-pill.is-active') || document.querySelector('.tt-qa-variant-pill:not(.is-disabled)'));
       });
   }
   function addVariantToCart(id = currentQuickAddVariantId) {
