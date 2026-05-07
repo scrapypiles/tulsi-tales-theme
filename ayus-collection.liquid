@@ -3,6 +3,26 @@
   .tt-collection-banner::before {
     opacity: 0.42;
   }
+
+  .tt-collection-banner {
+    margin-bottom: 18px !important;
+  }
+
+  .ayus-collection-section .ayus-container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  @media (max-width: 768px) {
+    .tt-collection-banner {
+      margin-bottom: 0 !important;
+    }
+
+    .ayus-collection-section .ayus-container {
+      padding-top: 16px !important;
+      padding-bottom: 0 !important;
+    }
+  }
 </style>
 
 <!-- Hero Banner for Collection -->
@@ -13,7 +33,7 @@
   {% assign hero_bg = 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=1600' %}
 {% endif %}
 
-<div class="contact-banner tt-collection-banner" style="background-image: url('{{ hero_bg }}'); margin-bottom: 40px;">
+<div class="contact-banner tt-collection-banner" style="background-image: url('{{ hero_bg }}');">
   <div class="contact-banner-content">
     <span class="contact-tagline" style="color: #eeeeee;">THE COLLECTION</span>
     <h1 class="contact-title" style="color: #ffffff;">Every product here earned its place.</h1>
