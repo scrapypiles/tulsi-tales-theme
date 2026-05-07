@@ -5,12 +5,24 @@
   }
 
   .tt-collection-banner {
-    margin-bottom: 18px !important;
+    margin-bottom: 40px !important;
   }
 
   .ayus-collection-section .ayus-container {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
+  }
+
+  .ayus-collection-section .ayus-card-title {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .ayus-collection-section .tt-card-add-btn {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   @media (max-width: 768px) {
@@ -21,6 +33,14 @@
     .ayus-collection-section .ayus-container {
       padding-top: 10px !important;
       padding-bottom: 0 !important;
+    }
+
+    .ayus-collection-section .tt-card-action {
+      padding-top: 2px !important;
+    }
+
+    .ayus-collection-section .tt-card-rating {
+      margin-bottom: 3px !important;
     }
   }
 </style>
@@ -162,9 +182,9 @@
                     <p class="ayus-card-price" style="margin-bottom: 0;">{{ product.price | money }}</p>
                   </div>
                 </a>
-                <div class="tt-card-action" style="padding: 2px 0 0 0; margin-top: auto; display: flex; flex-direction: column; width: 100%; align-items: center;">
+                <div class="tt-card-action" style="padding: 5px 0 0 0; margin-top: auto; display: flex; flex-direction: column; width: 100%; align-items: center;">
 <!-- Stars right above Add to Bag -->
-                  <div class="tt-card-rating" style="margin-bottom: 3px; color: #d4af37; display: flex; align-items: center; justify-content: center; gap: 2px;">
+                  <div class="tt-card-rating" style="margin-bottom: 5px; color: #d4af37; display: flex; align-items: center; justify-content: center; gap: 2px;">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>

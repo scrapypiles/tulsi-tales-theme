@@ -62,12 +62,26 @@
         "heading": "Our Promise",
         "text": "We declutter the path—making soulfully chosen, authentic Ayurvedic remedies accessible and affordable within India and Worldwide. Grounded in tradition, purity, and purpose."
       }
+    },
+    "instagram": {
+      "type": "ayus-instagram",
+      "settings": {
+        "show_section": true,
+        "eyebrow": "Instagram",
+        "heading": "Follow our rituals as they unfold",
+        "subheading": "<p>Share ingredient stories, behind the scenes moments, and the quiet rituals that shape Tulsi Tales.</p>",
+        "embed_code": "",
+        "placeholder_text": "Your Instagram feed can go live here whenever you are ready.",
+        "instagram_url": "https://instagram.com/tulsitalesofficial",
+        "button_label": "Follow on Instagram"
+      }
     }
   },
   "order": [
     "hero",
     "shop_by",
     "featured",
-    "philosophy"
+    "philosophy",
+    "instagram"
   ]
 }
