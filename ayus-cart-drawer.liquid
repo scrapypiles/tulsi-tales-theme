@@ -409,6 +409,10 @@
         submitBtn.style.opacity = '0.7';
         submitBtn.disabled = true;
 
+        openBagDrawer();
+        const drawerBody = document.querySelector('.tt-cart-panel');
+        if(drawerBody) drawerBody.style.opacity = '0.5';
+
         fetch(window.Shopify.routes.root + 'cart/add.js', {
           method: 'POST',
           body: new FormData(form)
@@ -426,6 +430,7 @@
         .catch((error) => {
           console.error('Error:', error);
           submitBtn.innerText = 'ERROR';
+          if(drawerBody) drawerBody.style.opacity = '1';
           setTimeout(() => {
             submitBtn.innerText = originalText;
             submitBtn.disabled = false;
