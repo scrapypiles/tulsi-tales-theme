@@ -2339,11 +2339,13 @@ details.ayus-accordion[open] > summary .ayus-icon-plus::after {
 }
 .ayus-pdp-stars-icons {
   letter-spacing: 0.18em;
-  font-size: 24px;
+  font-size: 28px;
   color: #d4af37;
   display: inline-flex;
   align-items: center;
   line-height: 1;
+  position: relative;
+  top: 3px;
 }
 .ayus-pdp-stars-text {
   font-size: 13px;
@@ -3034,7 +3036,12 @@ details > summary::-webkit-details-marker {
 .ayus-pdp-stars .jdgm-star::before,
 .ayus-pdp-stars .jdgm-prev-badge__stars {
   color: #d4af37 !important;
-  font-size: 24px !important;
+  font-size: 28px !important;
+}
+
+.ayus-pdp-stars .jdgm-prev-badge__stars {
+  position: relative;
+  top: 3px;
 }
 
 @media (min-width: 851px) {
@@ -3265,35 +3272,38 @@ details > summary::-webkit-details-marker {
 }
 
 
-/* OVERRIDE FOR ADD TO BAG TEXT LINK ON CARDS */
-button.tt-card-add-btn,
-a.tt-card-add-btn,
-.tt-card-add-btn {
-  border: none !important;
-  text-decoration: underline !important;
-  text-underline-offset: 4px !important;
-  text-decoration-color: var(--color-accent) !important;
-  border-bottom: none !important;
-  background-color: transparent !important;
-  padding: 4px 0 !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.1em !important;
-  min-width: 0 !important;
-  width: auto !important;
-  color: var(--color-accent) !important;
-  transition: opacity 0.3s ease !important;
-  text-transform: uppercase !important;
-  font-family: var(--font-body) !important;
+@media (max-width: 850px) {
+  /* OVERRIDE FOR ADD TO BAG TEXT LINK ON CARDS */
+  button.tt-card-add-btn,
+  a.tt-card-add-btn,
+  .tt-card-add-btn {
+    border: none !important;
+    text-decoration: underline !important;
+    text-underline-offset: 4px !important;
+    text-decoration-color: var(--color-accent) !important;
+    border-bottom: none !important;
+    background-color: transparent !important;
+    padding: 4px 0 !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
+    min-width: 0 !important;
+    width: auto !important;
+    color: var(--color-accent) !important;
+    transition: opacity 0.3s ease !important;
+    text-transform: uppercase !important;
+    font-family: var(--font-body) !important;
+  }
+  button.tt-card-add-btn:hover,
+  a.tt-card-add-btn:hover,
+  .tt-card-add-btn:hover {
+    background-color: transparent !important;
+    color: var(--color-accent) !important;
+    text-decoration-color: var(--color-accent) !important;
+    opacity: 0.7 !important;
+  }
 }
-button.tt-card-add-btn:hover,
-a.tt-card-add-btn:hover,
-.tt-card-add-btn:hover {
-  background-color: transparent !important;
-  color: var(--color-accent) !important;
-  text-decoration-color: var(--color-accent) !important;
-  opacity: 0.7 !important;
-}
+
 /* --- Mobile PDP specific reordering as requested --- */
 @media (max-width: 768px) {
   .ayus-product-container {
