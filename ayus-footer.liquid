@@ -83,7 +83,13 @@
     }
     .tt-site-footer .tt-footer-newsletter {
       margin-top: 26px;
-      max-width: 100%;
+      max-width: 320px;
+    }
+    .tt-site-footer .tt-footer-newsletter--brand {
+      display: none;
+    }
+    .tt-site-footer .tt-footer-newsletter--contact {
+      display: block;
     }
     .tt-site-footer .tt-footer-newsletter-note {
       margin: 0 0 12px 0;
@@ -93,42 +99,40 @@
     .tt-site-footer .tt-footer-newsletter-row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 10px;
       border-bottom: 1px solid #6f6963;
-      padding-bottom: 2px;
+      padding-bottom: 6px;
       width: 100%;
-      max-width: 100%; width: 100%;
       margin-bottom: 0;
       color: #6f6963;
     }
     .tt-site-footer .tt-footer-newsletter-input {
       border: none;
       background: transparent;
-      flex-grow: 1;
+      width: 100%;
       outline: none;
-      padding: 0;
+      padding: 6px 0;
       margin: 0;
       font-family: var(--font-body);
-      font-size: 7px;
-      letter-spacing: 0.05em;
+      font-size: 12px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #6f6963;
-      line-height: 1;
-      height: 12px;
+      line-height: 1.2;
+      min-width: 0;
     }
     .tt-site-footer .tt-footer-newsletter-button {
       border: none;
       background: transparent;
       color: #6f6963;
-      font-size: 16px;
+      font-size: 20px;
       line-height: 1;
-      padding: 0;
+      padding: 4px 0 4px 10px;
       margin: 0;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      height: 12px;
       width: auto;
     }
     .tt-site-footer .tt-footer-newsletter-input::placeholder {
@@ -137,6 +141,36 @@
     }
     .tt-site-footer .tt-footer-newsletter-input:focus::placeholder {
       color: transparent !important;
+    }
+
+    @media (max-width: 850px) {
+      .tt-site-footer .tt-footer-newsletter {
+        max-width: none;
+      }
+      .tt-site-footer .tt-footer-newsletter--brand {
+        display: block;
+      }
+      .tt-site-footer .tt-footer-newsletter--contact {
+        display: none !important;
+      }
+      .tt-site-footer .tt-footer-newsletter-row {
+        justify-content: space-between;
+        gap: 0;
+        padding-bottom: 2px;
+      }
+      .tt-site-footer .tt-footer-newsletter-input {
+        flex-grow: 1;
+        padding: 0;
+        font-size: 7px;
+        letter-spacing: 0.05em;
+        line-height: 1;
+        height: 12px;
+      }
+      .tt-site-footer .tt-footer-newsletter-button {
+        font-size: 16px;
+        padding: 0;
+        height: 12px;
+      }
     }
 
     .tt-site-footer .tt-footer-success {
@@ -242,9 +276,9 @@
               </div>
               {% for newsletter_block in section.blocks %}
                 {% if newsletter_block.type == 'contact_newsletter' and newsletter_block.settings.show_newsletter %}
-                  <div class="tt-footer-newsletter">
+                  <div class="tt-footer-newsletter tt-footer-newsletter--brand">
                     <p class="tt-footer-newsletter-note">Receive gentle notes on new arrivals, restocks, and rituals.</p>
-                    {% form 'customer', id: 'ContactFooter', class: 'tt-footer-newsletter-form' %}
+                    {% form 'customer', id: 'ContactFooterBrand', class: 'tt-footer-newsletter-form' %}
                       <input type="hidden" name="contact[tags]" value="newsletter">
                       <div class="tt-footer-newsletter-row">
                         <input
@@ -317,6 +351,33 @@
                   </li>
                 {% endif %}
               </ul>
+
+              {% if block.settings.show_newsletter %}
+                <div class="tt-footer-newsletter tt-footer-newsletter--contact">
+                  <p class="tt-footer-newsletter-note">Receive gentle notes on new arrivals, restocks, and rituals.</p>
+                  {% form 'customer', id: 'ContactFooterDesktop', class: 'tt-footer-newsletter-form' %}
+                    <input type="hidden" name="contact[tags]" value="newsletter">
+                    <div class="tt-footer-newsletter-row">
+                      <input
+                        type="email"
+                        name="contact[email]"
+                        value="{{ form.email }}"
+                        aria-required="true"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        autocomplete="email"
+                        placeholder="{{ block.settings.newsletter_placeholder | escape }}"
+                        class="tt-footer-newsletter-input"
+                        required
+                      >
+                      <button type="submit" class="tt-footer-newsletter-button" aria-label="Join newsletter">&rarr;</button>
+                    </div>
+                    {%- if form.posted_successfully? -%}
+                      <p class="tt-footer-success">Thanks for subscribing.</p>
+                    {%- endif -%}
+                  {% endform %}
+                </div>
+              {% endif %}
 
             </div>
         {% endcase %}

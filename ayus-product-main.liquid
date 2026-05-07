@@ -2,6 +2,21 @@
 
 <div style="background-color: #ffffff; width: 100%;">
 <section id="MainProduct-{{ section.id }}" class="ayus-product-section" data-section="{{ section.id }}">
+  <style>
+    @media (max-width: 850px) {
+      #MainProduct-{{ section.id }} .tt-commerce-controls {
+        gap: 10px !important;
+        margin-top: 5px !important;
+        margin-bottom: 10px !important;
+        padding-bottom: 10px !important;
+      }
+
+      #MainProduct-{{ section.id }} .ayus-add-to-cart-wrapper {
+        margin-top: 0 !important;
+        margin-bottom: 15px !important;
+      }
+    }
+  </style>
   <div class="ayus-product-container" style="padding-top: {{ section.settings.padding_top }}px !important; padding-bottom: {{ section.settings.padding_bottom }}px !important;">
     
     <!-- Left Column: The Imagery (Thumbnails + Main Image) -->
@@ -104,7 +119,7 @@
         {%- endif -%}
         
         <!-- Pricing & Reviews Wrapper (Purearth Style) -->
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px; padding-bottom: 0; border-bottom: none;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 0; border-bottom: none;">
           
           <!-- Pricing -->
           <div class="ayus-price-block" style="margin: 0; padding: 0; display: flex; align-items: baseline;">
@@ -115,7 +130,47 @@
           <!-- Stars Next to Price -->
           <div class="ayus-pdp-stars" style="margin: 0; display: flex; align-items: center; cursor: pointer;" onclick="document.getElementById('judgeme_product_reviews').scrollIntoView({behavior: 'smooth'})">
             {{ product.metafields.judgeme.badge }}
+            <div class="ayus-pdp-stars-fallback" aria-hidden="true">
+              <span class="ayus-pdp-stars-icons">★★★★★</span>
+              <span class="ayus-pdp-stars-text">No reviews</span>
+            </div>
           </div>
+          <script>
+            (function syncPdpReviewMarkers() {
+              function updateReviewMarkers() {
+                const wrap = document.querySelector('#MainProduct-{{ section.id }} .ayus-pdp-stars');
+                if (!wrap) return false;
+
+                const badge = wrap.querySelector('.jdgm-prev-badge');
+                const fallback = wrap.querySelector('.ayus-pdp-stars-fallback');
+                if (!fallback) return false;
+
+                const reviewCount = badge ? Number(badge.getAttribute('data-number-of-reviews') || '0') : 0;
+
+                if (badge && reviewCount > 0) {
+                  badge.style.setProperty('display', 'inline-flex', 'important');
+                  badge.style.setProperty('align-items', 'center', 'important');
+                  badge.style.setProperty('visibility', 'visible', 'important');
+                  badge.style.setProperty('opacity', '1', 'important');
+                  fallback.style.display = 'none';
+                  return true;
+                }
+
+                fallback.style.display = 'inline-flex';
+                return !!badge;
+              }
+
+              if (updateReviewMarkers()) return;
+
+              let attempts = 0;
+              const interval = setInterval(function() {
+                attempts += 1;
+                if (updateReviewMarkers() || attempts > 40) {
+                  clearInterval(interval);
+                }
+              }, 250);
+            })();
+          </script>
           
         </div>
       </div>
@@ -127,7 +182,7 @@
           
           
 <!-- 3: Size / Quantity Selector block (Purearth style) -->
-          <div class="tt-commerce-controls" style="display:flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 5px; margin-bottom: 10px; border-bottom: 1px solid var(--color-border); padding-bottom: 10px;">
+          <div class="tt-commerce-controls" style="display:flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-bottom: 30px; border-bottom: 1px solid var(--color-border); padding-bottom: 25px;">
             <div class="tt-size-selector" style="width: 100%;">
               <span class="tt-control-label" style="margin-bottom: 10px; display: block;">Size:</span>
               <div class="ayus-variant-pills" style="display: flex; flex-wrap: wrap; gap: 10px;">
@@ -155,8 +210,8 @@
             </div> <!-- end quantity selector -->
           </div> <!-- end commerce controls -->
 
-          <div class="ayus-add-to-cart-wrapper">
-            <button type="submit" name="add" class="ayus-add-to-cart-button" style="width: 100%; display: block; text-align: center;">
+          <div class="ayus-add-to-cart-wrapper" style="margin: 20px 0;">
+            <button type="submit" name="add" class="ayus-add-to-cart-button" style="width: 100%; display: block; text-align: center; background: transparent; color: var(--color-text); border: 1px solid var(--color-text);">
               ADD TO BAG
             </button>
           </div>
@@ -206,7 +261,7 @@
             <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
               DOSAGE & USAGE <span class="tt-icon-toggle"></span>
             </summary>
-            <div class="tt-filter-content rte" style="padding-bottom: 15px;">
+            <div class="tt-filter-content rte" style="padding-bottom: 15px; margin-bottom: 0;">
               {%- if product.metafields.custom.dosage != blank -%}
                 <p><strong>Dosage:</strong> {{ product.metafields.custom.dosage }}</p>
               {%- endif -%}
@@ -223,7 +278,7 @@
             <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
               INDICATIONS & CONTRAINDICATIONS <span class="tt-icon-toggle"></span>
             </summary>
-            <div class="tt-filter-content rte" style="padding-bottom: 15px;">
+            <div class="tt-filter-content rte" style="padding-bottom: 15px; margin-bottom: 0;">
               {%- if product.metafields.custom.indications != blank -%}
                 <p><strong>Indications:</strong> {{ product.metafields.custom.indications }}</p>
               {%- endif -%}
@@ -240,7 +295,7 @@
             <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
               INGREDIENTS <span class="tt-icon-toggle"></span>
             </summary>
-            <div class="tt-filter-content rte" style="padding-bottom: 15px;">
+            <div class="tt-filter-content rte" style="padding-bottom: 15px; margin-bottom: 0;">
               {%- if product.metafields.custom.ingredients_botanical != blank -%}
                 <p><strong>Botanical:</strong> {{ product.metafields.custom.ingredients_botanical }}</p>
               {%- endif -%}
@@ -257,7 +312,7 @@
             <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
               DOSHA PROFILE <span class="tt-icon-toggle"></span>
             </summary>
-            <div class="tt-filter-content rte" style="padding-bottom: 15px;">
+            <div class="tt-filter-content rte" style="padding-bottom: 15px; margin-bottom: 0;">
               {%- if product.metafields.custom.dosha_impact != blank -%}
                 <p><strong>Dosha Impact:</strong> {{ product.metafields.custom.dosha_impact }}</p>
               {%- endif -%}
@@ -506,6 +561,4 @@ document.addEventListener('DOMContentLoaded', function() {
   ]
 }
 {% endschema %}
-
-
 

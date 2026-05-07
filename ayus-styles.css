@@ -2343,6 +2343,22 @@ details.ayus-accordion[open] > summary .ayus-icon-plus::after {
   line-height: 1 !important;
   margin-bottom: 2px !important;
 }
+.ayus-pdp-stars-fallback {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  line-height: 1;
+}
+.ayus-pdp-stars-icons {
+  letter-spacing: 0.16em;
+  font-size: 13px;
+  color: #b6afa8;
+}
+.ayus-pdp-stars-text {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: #7b756f;
+}
 
 /* PERFECT PLUS / MINUS ACCORDION ICONS */
 .ayus-icon-plus {
@@ -2994,6 +3010,26 @@ details > summary::-webkit-details-marker {
   margin-bottom: 15px !important;
 }
 
+.ayus-accordion .tt-filter-content {
+  margin-bottom: 0 !important;
+  padding-bottom: 15px !important;
+}
+
+.ayus-accordion .tt-filter-content > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.ayus-pdp-stars .jdgm-prev-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.ayus-pdp-stars .jdgm-prev-badge__stars {
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
 /* Global Banner Styles (from Contact) */
 .contact-banner {
   position: relative;
@@ -3075,6 +3111,8 @@ details > summary::-webkit-details-marker {
   font-size: 17px !important;
   line-height: 1.3 !important;
   margin-bottom: 8px !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
 }
 
 .ayus-card-price {
