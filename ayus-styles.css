@@ -733,9 +733,9 @@ h6 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding: 5px 20px 15px 20px;
+  margin-top: 0px;
+  margin-bottom: 40px;
+  padding: 20px 20px 15px 20px;
   background: var(--color-background);
   border: none;
 }
@@ -2353,7 +2353,7 @@ details.ayus-accordion[open] > summary .ayus-icon-plus::after {
   color: #7b756f;
   line-height: 1;
   position: relative;
-  top: -5px;
+  top: 1px;
 }
 
 /* PERFECT PLUS / MINUS ACCORDION ICONS */
