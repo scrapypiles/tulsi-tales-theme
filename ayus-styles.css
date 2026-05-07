@@ -733,8 +733,9 @@ h6 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
-  margin-bottom: 40px;
-  padding: 20px 20px 15px 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 5px 20px 15px 20px;
   background: var(--color-background);
   border: none;
 }
@@ -2328,8 +2329,8 @@ details.ayus-accordion[open] > summary .ayus-icon-plus::after {
   line-height: 1 !important;
 }
 .ayus-pdp-stars .jdgm-prev-badge__text {
-  line-height: 1 !important;
-  margin-bottom: 2px !important;
+  position: relative !important;
+  top: -5px !important;
 }
 .ayus-pdp-stars-fallback {
   display: none;
@@ -2339,13 +2340,11 @@ details.ayus-accordion[open] > summary .ayus-icon-plus::after {
 }
 .ayus-pdp-stars-icons {
   letter-spacing: 0.18em;
-  font-size: 28px;
+  font-size: 32px;
   color: #d4af37;
   display: inline-flex;
   align-items: center;
   line-height: 1;
-  position: relative;
-  top: 3px;
 }
 .ayus-pdp-stars-text {
   font-size: 13px;
@@ -2353,7 +2352,7 @@ details.ayus-accordion[open] > summary .ayus-icon-plus::after {
   color: #7b756f;
   line-height: 1;
   position: relative;
-  top: 1px;
+  top: -5px;
 }
 
 /* PERFECT PLUS / MINUS ACCORDION ICONS */
@@ -3036,12 +3035,7 @@ details > summary::-webkit-details-marker {
 .ayus-pdp-stars .jdgm-star::before,
 .ayus-pdp-stars .jdgm-prev-badge__stars {
   color: #d4af37 !important;
-  font-size: 28px !important;
-}
-
-.ayus-pdp-stars .jdgm-prev-badge__stars {
-  position: relative;
-  top: 3px;
+  font-size: 32px !important;
 }
 
 @media (min-width: 851px) {
