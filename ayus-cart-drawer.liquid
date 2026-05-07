@@ -63,17 +63,19 @@
                 {% assign addon_id_str = addon.id | append: "" %}
                 {% unless cart_product_ids contains addon_id_str %}
                   <div class="tt-addon-item">
-                    <div class="tt-addon-img">
-                      {% if addon.featured_media %}
-                        <img src="{{ addon.featured_media | img_url: '150x' }}" alt="{{ addon.title | escape }}" loading="lazy">
-                      {% else %}
-                        <div class="ayus-placeholder" style="width:100%; height:100%;"></div>
-                      {% endif %}
-                    </div>
-                    <div class="tt-addon-info">
-                      <p class="tt-addon-title">{{ addon.title | split: '-' | last | strip | truncate: 50 }}</p>
-                      <p class="tt-addon-price">{{ addon.price | money }}</p>
-                    </div>
+                    <a href="{{ addon.url }}" class="tt-addon-link" onclick="closeBagDrawer()">
+                      <div class="tt-addon-img">
+                        {% if addon.featured_media %}
+                          <img src="{{ addon.featured_media | img_url: '150x' }}" alt="{{ addon.title | escape }}" loading="lazy">
+                        {% else %}
+                          <div class="ayus-placeholder" style="width:100%; height:100%;"></div>
+                        {% endif %}
+                      </div>
+                      <div class="tt-addon-info">
+                        <p class="tt-addon-title">{{ addon.title | split: '-' | last | strip | truncate: 50 }}</p>
+                        <p class="tt-addon-price">{{ addon.price | money }}</p>
+                      </div>
+                    </a>
                     <div class="tt-addon-action">
                       <button type="button" class="tt-addon-add-btn" style="background: transparent !important; border: none !important; text-decoration: underline !important; text-underline-offset: 4px !important; border-bottom: none !important; font-size: 11px !important; text-transform: uppercase !important; color: var(--color-accent) !important; letter-spacing: 0.1em !important; cursor: pointer !important; padding: 2px 0 !important; font-weight: 600 !important; min-width: 0 !important; width: auto !important; display: inline-block !important; height: auto !important; line-height: 1.2 !important;" onclick="addAddonToCart(this, {{ addon.selected_or_first_available_variant.id }})">ADD TO BAG</button>
                     </div>
@@ -101,17 +103,19 @@
               {% assign addons_shown = 0 %}
               {% for addon in collections['all'].products %}
                 <div class="tt-addon-item">
-                  <div class="tt-addon-img">
-                    {% if addon.featured_media %}
-                      <img src="{{ addon.featured_media | img_url: '150x' }}" alt="{{ addon.title | escape }}" loading="lazy">
-                    {% else %}
-                      <div class="ayus-placeholder" style="width:100%; height:100%;"></div>
-                    {% endif %}
-                  </div>
-                  <div class="tt-addon-info">
-                    <p class="tt-addon-title">{{ addon.title | split: '-' | last | strip | truncate: 50 }}</p>
-                    <p class="tt-addon-price">{{ addon.price | money }}</p>
-                  </div>
+                  <a href="{{ addon.url }}" class="tt-addon-link" onclick="closeBagDrawer()">
+                    <div class="tt-addon-img">
+                      {% if addon.featured_media %}
+                        <img src="{{ addon.featured_media | img_url: '150x' }}" alt="{{ addon.title | escape }}" loading="lazy">
+                      {% else %}
+                        <div class="ayus-placeholder" style="width:100%; height:100%;"></div>
+                      {% endif %}
+                    </div>
+                    <div class="tt-addon-info">
+                      <p class="tt-addon-title">{{ addon.title | split: '-' | last | strip | truncate: 50 }}</p>
+                      <p class="tt-addon-price">{{ addon.price | money }}</p>
+                    </div>
+                  </a>
                   <div class="tt-addon-action">
                     <button type="button" class="tt-addon-add-btn" style="background: transparent !important; border: none !important; text-decoration: underline !important; text-underline-offset: 4px !important; border-bottom: none !important; font-size: 11px !important; text-transform: uppercase !important; color: var(--color-accent) !important; letter-spacing: 0.1em !important; cursor: pointer !important; padding: 2px 0 !important; font-weight: 600 !important; min-width: 0 !important; width: auto !important; display: inline-block !important; height: auto !important; line-height: 1.2 !important;" onclick="addAddonToCart(this, {{ addon.selected_or_first_available_variant.id }})">ADD TO BAG</button>
                   </div>
@@ -196,6 +200,7 @@
   .tt-addons-list::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 6px; }
   
   .tt-addon-item { display: flex; flex-direction: column; align-items: center; width: 140px; flex-shrink: 0; padding: 12px; background: #fff; border: 1px solid var(--color-border); text-align: center; }
+  .tt-addon-link { display: block; width: 100%; color: inherit; text-decoration: none; cursor: pointer; }
   
   .tt-addon-img { width: 100%; aspect-ratio: 1; margin-bottom: 10px; }
   .tt-addon-img img { width: 100%; height: 100%; object-fit: cover; display: block; border: 1px solid var(--color-border); }
