@@ -1,11 +1,11 @@
 {
   "sections": {
-    "main": {
+    "main_product": {
       "type": "ayus-product-main",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "main_product"
   ]
 }

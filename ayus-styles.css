@@ -1965,7 +1965,7 @@ details[open] > summary .tt-icon-plus::before {
   font-family: var(--font-body) !important;
 }
 .jdgm-star {
-  color: #c16552 !important;
+  color: #d4af37 !important;
 }
 .jdgm-preview-badge .jdgm-star {
   font-size: 14px !important;
@@ -2092,7 +2092,7 @@ details[open] > summary .tt-icon-plus::before {
   background: #f1f1f1;
 }
 .jdgm-rev-widg__reviews::-webkit-scrollbar-thumb {
-  background: #c16552;
+  background: #d4af37;
 }
 
 /* Review Cards */
@@ -2350,12 +2350,12 @@ details.ayus-accordion[open] > summary .ayus-icon-plus::after {
   line-height: 1;
 }
 .ayus-pdp-stars-icons {
-  letter-spacing: 0.16em;
-  font-size: 13px;
-  color: #b6afa8;
+  letter-spacing: 0.18em;
+  font-size: 16px;
+  color: #d4af37;
 }
 .ayus-pdp-stars-text {
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.04em;
   color: #7b756f;
 }
@@ -2614,7 +2614,7 @@ details > summary::-webkit-details-marker {
 
 /* Elegant Stars */
 .jdgm-star {
-  color: #c16552 !important;
+  color: #d4af37 !important;
 } /* Muted Earthy Gold */
 .jdgm-rev-widg__summary-stars .jdgm-star {
   font-size: 20px !important;
@@ -3011,7 +3011,9 @@ details > summary::-webkit-details-marker {
 }
 
 .ayus-accordion .tt-filter-content {
+  margin-top: 0 !important;
   margin-bottom: 0 !important;
+  padding-top: 15px !important;
   padding-bottom: 15px !important;
 }
 
@@ -3028,6 +3030,24 @@ details > summary::-webkit-details-marker {
 .ayus-pdp-stars .jdgm-prev-badge__stars {
   display: inline-flex !important;
   align-items: center !important;
+}
+
+.ayus-pdp-stars .jdgm-star,
+.ayus-pdp-stars .jdgm-star::before,
+.ayus-pdp-stars .jdgm-prev-badge__stars {
+  color: #d4af37 !important;
+  font-size: 16px !important;
+}
+
+@media (min-width: 851px) {
+  .ayus-add-to-cart-button {
+    background: transparent !important;
+    color: var(--color-text) !important;
+    border: 1px solid var(--color-text) !important;
+    box-shadow: none !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+  }
 }
 
 /* Global Banner Styles (from Contact) */

@@ -50,8 +50,8 @@
         --global-border-radius: {{ settings.border_radius | default: 0 }}px;
       }
     {%- endstyle -%}
-    {{ 'ayus-styles.css' | asset_url | stylesheet_tag }}
-    <!-- tt-refresh-20260507b -->
+    <link rel="stylesheet" href="{{ 'ayus-styles.css' | asset_url }}&v=20260507d">
+    <!-- tt-refresh-20260507c -->
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
