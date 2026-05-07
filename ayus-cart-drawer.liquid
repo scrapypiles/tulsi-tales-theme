@@ -475,18 +475,49 @@
   .tt-qa-prod-desc { font-size: 13px; color: #666; margin: 0; line-height: 1.4; }
   .tt-qa-view-product { display: inline-flex; align-items: center; margin-top: 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-accent); text-decoration: underline; text-underline-offset: 4px; }
 
-  .tt-qa-variant-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
-  .tt-qa-variant-row:last-child { border-bottom: none; padding-bottom: 0; }
-  .tt-qa-variant-row:hover { opacity: 0.7; }
-  .tt-qa-v-title { font-family: var(--font-body); font-size: 15px; letter-spacing: 0.05em; color: var(--color-text); }
-  .tt-qa-v-price { font-family: var(--font-body); font-size: 15px; color: var(--color-text); margin-left: auto; margin-right: 20px; }
-  .tt-qa-v-add { font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; color: #fff; background: var(--color-accent); display: flex; align-items: center; justify-content: center; padding: 8px 16px; border-radius: 4px; border: 1px solid var(--color-accent); }
+  .tt-qa-meta { display: flex; align-items: baseline; gap: 10px; margin-bottom: 18px; }
+  .tt-qa-price { font-family: var(--font-body); font-size: 20px; letter-spacing: 0.04em; color: var(--color-text); }
+  .tt-qa-tax { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.1em; }
+  .tt-qa-size-label { display: block; margin-bottom: 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: #777; }
+  .tt-qa-variant-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+  .tt-qa-variant-input { display: none; }
+  .tt-qa-variant-pill { display: inline-block; padding: 10px 20px; border: 1px solid var(--color-border); background-color: transparent; color: var(--color-text); font-family: var(--font-body); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease; }
+  .tt-qa-variant-input:checked + .tt-qa-variant-pill { background-color: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+  .tt-qa-variant-pill.is-disabled { opacity: 0.45; cursor: not-allowed; }
+  .tt-qa-add-btn { width: 100%; background-color: var(--color-accent); color: #fff; border: 1px solid var(--color-accent); padding: 14px 18px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-family: var(--font-body); cursor: pointer; transition: opacity 0.3s ease; }
+  .tt-qa-add-btn:disabled { opacity: 0.45; cursor: not-allowed; }
 </style>
 <script>
+  let currentQuickAddVariantId = null;
+
+  function formatQuickAddMoney(cents) {
+    return 'Rs. ' + (cents / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
   function closeQuickAdd() {
     document.getElementById('tt-qa-overlay').classList.remove('active');
     document.getElementById('tt-qa-drawer').classList.remove('active');
+    currentQuickAddVariantId = null;
   }
+
+  function syncQuickAddVariantUI(radio) {
+    if (!radio) return;
+
+    currentQuickAddVariantId = Number(radio.value);
+
+    const priceEl = document.getElementById('tt-qa-current-price');
+    if (priceEl && radio.dataset.price) {
+      priceEl.textContent = formatQuickAddMoney(Number(radio.dataset.price));
+    }
+
+    const addBtn = document.getElementById('tt-qa-add-btn');
+    if (addBtn) {
+      const available = radio.dataset.available === 'true';
+      addBtn.disabled = !available;
+      addBtn.textContent = available ? 'Add To Bag' : 'Sold Out';
+    }
+  }
+
   function openQuickAddModal(handle) {
     document.getElementById('tt-qa-header-product').innerHTML = '';
     document.getElementById('tt-qa-variants').innerHTML = '<div style="text-align:center; padding: 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #888;">Loading...</div>';
@@ -522,20 +553,51 @@
         
         document.getElementById('tt-qa-header-product').innerHTML = headerHtml;
 
-        // Build Variants
+        // Build Variant Selector + Single CTA
+        const selectedVariant = product.variants.find(v => v.available) || product.variants[0];
+        currentQuickAddVariantId = selectedVariant ? selectedVariant.id : null;
+
         let vHtml = '';
-        product.variants.forEach(v => {
-          let price = (v.price / 100).toFixed(2);
-          vHtml += '<div class="tt-qa-variant-row" onclick="addVariantToCart(' + v.id + ')">';
-          vHtml += '<span class="tt-qa-v-title">' + v.title + '</span>';
-          vHtml += '<span class="tt-qa-v-price">Rs. ' + price + '</span>';
-          vHtml += '<span class="tt-qa-v-add">ADD TO BAG</span>';
+        if (selectedVariant) {
+          vHtml += '<div class="tt-qa-meta">';
+          vHtml += '<span class="tt-qa-price" id="tt-qa-current-price">' + formatQuickAddMoney(selectedVariant.price) + '</span>';
+          vHtml += '<span class="tt-qa-tax">Inclusive of taxes</span>';
           vHtml += '</div>';
-        });
+        }
+
+        const showVariantChoices = product.variants.length > 1 || (product.variants[0] && product.variants[0].title !== 'Default Title');
+        if (showVariantChoices) {
+          vHtml += '<div class="tt-qa-size-selector">';
+          vHtml += '<span class="tt-qa-size-label">Size</span>';
+          vHtml += '<div class="tt-qa-variant-pills">';
+          product.variants.forEach(v => {
+            const label = v.title === 'Default Title' ? 'Standard Size' : v.title;
+            const inputId = 'tt-qa-variant-' + v.id;
+            const checked = selectedVariant && v.id === selectedVariant.id ? ' checked' : '';
+            const disabled = v.available ? '' : ' disabled';
+            const disabledClass = v.available ? '' : ' is-disabled';
+            vHtml += '<input type="radio" class="tt-qa-variant-input" name="tt-qa-variant" id="' + inputId + '" value="' + v.id + '" data-price="' + v.price + '" data-available="' + v.available + '"' + checked + disabled + '>';
+            vHtml += '<label for="' + inputId + '" class="tt-qa-variant-pill' + disabledClass + '">' + label + '</label>';
+          });
+          vHtml += '</div>';
+          vHtml += '</div>';
+        }
+
+        const canAdd = selectedVariant && selectedVariant.available;
+        vHtml += '<button type="button" class="tt-qa-add-btn" id="tt-qa-add-btn" onclick="addVariantToCart()"' + (canAdd ? '' : ' disabled') + '>' + (canAdd ? 'Add To Bag' : 'Sold Out') + '</button>';
         document.getElementById('tt-qa-variants').innerHTML = vHtml;
+
+        document.querySelectorAll('.tt-qa-variant-input').forEach(radio => {
+          radio.addEventListener('change', function() {
+            syncQuickAddVariantUI(this);
+          });
+        });
+
+        syncQuickAddVariantUI(document.querySelector('.tt-qa-variant-input:checked'));
       });
   }
-  function addVariantToCart(id) {
+  function addVariantToCart(id = currentQuickAddVariantId) {
+    if (!id) return;
     closeQuickAdd();
     openBagDrawer();
     fetch(window.Shopify.routes.root + 'cart/add.js', {
