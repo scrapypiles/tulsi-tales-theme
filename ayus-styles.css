@@ -1593,9 +1593,10 @@ html, body {
   .ayus-card-info {
     padding: 10px !important;
   }
-  .tt-card-action { padding-top: 0 !important; margin-top: -2px !important; }
+  .tt-card-action { padding-top: 5px !important; }
   .tt-card-action .tt-card-rating {
-    margin-bottom: 4px !important;
+    margin-top: auto !important;
+    margin-bottom: 25px !important;
   }
   .tt-collection-hero { height: 350px !important;
     min-height: 120px !important;
