@@ -373,10 +373,21 @@
       const newDrawerWrapper = doc.getElementById('shopify-section-ayus-cart-drawer');
       
       if(newDrawerWrapper) {
-        document.getElementById('shopify-section-ayus-cart-drawer').innerHTML = newDrawerWrapper.innerHTML;
-        document.getElementById('tt-cart-drawer').classList.add('is-open');
+        const newPanel = newDrawerWrapper.querySelector('.tt-cart-panel');
+        const oldPanel = document.querySelector('.tt-cart-panel');
         
-        const newCount = document.getElementById('shopify-section-cart-drawer')?.getAttribute('data-cart-count');
+        if(newPanel && oldPanel) {
+          oldPanel.innerHTML = newPanel.innerHTML;
+        } else {
+          document.getElementById('shopify-section-ayus-cart-drawer').innerHTML = newDrawerWrapper.innerHTML;
+        }
+        
+        const cartDrawer = document.getElementById('tt-cart-drawer');
+        if (cartDrawer && !cartDrawer.classList.contains('is-open')) {
+          cartDrawer.classList.add('is-open');
+        }
+        
+        const newCount = newDrawerWrapper.querySelector('#shopify-section-cart-drawer')?.getAttribute('data-cart-count');
         const countElements = document.querySelectorAll('.ayus-cart-link');
         countElements.forEach(el => {
           if(el.querySelector('.tt-cart-badge')) { el.querySelector('.tt-cart-badge').innerText = newCount || document.querySelector('.tt-cart-drawer-wrapper').getAttribute('data-cart-count'); }
@@ -388,13 +399,14 @@
   document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('submit', function(e) {
       const form = e.target;
-      if (form.action && form.action.indexOf('/cart/add') !== -1) {
+      if (form.action && form.action.indexOf('/cart/add') !== -1 && !form.closest('.tt-qa-modal')) {
         e.preventDefault();
         
-        const submitBtn = form.querySelector('[type="submit"]');
+        const submitBtn = form.querySelector('[type="submit"]') || form.querySelector('button');
         if(!submitBtn) return;
         const originalText = submitBtn.innerText;
-        submitBtn.innerText = 'Adding...';
+        submitBtn.innerText = 'ADDING...';
+        submitBtn.style.opacity = '0.7';
         submitBtn.disabled = true;
 
         fetch(window.Shopify.routes.root + 'cart/add.js', {
@@ -403,15 +415,22 @@
         })
         .then(response => response.json())
         .then(data => {
+          submitBtn.innerText = 'ADDED';
           refreshBagDrawer();
-          openBagDrawer();
-          submitBtn.innerText = originalText;
-          submitBtn.disabled = false;
+          setTimeout(() => {
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+          }, 500);
         })
         .catch((error) => {
           console.error('Error:', error);
-          submitBtn.innerText = originalText;
-          submitBtn.disabled = false;
+          submitBtn.innerText = 'ERROR';
+          setTimeout(() => {
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+          }, 1000);
         });
       }
     });
@@ -638,11 +657,8 @@
     .then(res => res.json())
     .then(() => {
       if (btn) btn.innerText = 'ADDED';
+      closeQuickAdd();
       refreshBagDrawer();
-      setTimeout(() => {
-        closeQuickAdd();
-        openBagDrawer();
-      }, 150);
     })
     .catch(err => {
       console.error(err);

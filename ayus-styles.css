@@ -1591,12 +1591,12 @@ html, body {
     line-height: 1.4 !important;
   }
   .ayus-card-info {
-    padding: 10px !important;
+    padding: 10px 10px 4px 10px !important;
   }
-  .tt-card-action { padding-top: 5px !important; margin-top: auto !important; }
+  .tt-card-action { padding-top: 0px !important; margin-top: auto !important; }
   .tt-card-action .tt-card-rating {
-    margin-top: 0px !important;
-    margin-bottom: 30px !important;
+    margin-top: 4px !important;
+    margin-bottom: 12px !important;
   }
   .tt-collection-hero { height: 350px !important;
     min-height: 120px !important;
