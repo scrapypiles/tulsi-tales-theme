@@ -734,7 +734,7 @@ h6 {
   grid-template-columns: 1fr 1fr;
   gap: 15px;
   margin-bottom: 40px;
-  padding: 20px;
+  padding: 20px 20px 15px 20px;
   background: var(--color-background);
   border: none;
 }
@@ -2339,13 +2339,19 @@ details.ayus-accordion[open] > summary .ayus-icon-plus::after {
 }
 .ayus-pdp-stars-icons {
   letter-spacing: 0.18em;
-  font-size: 20px;
+  font-size: 24px;
   color: #d4af37;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
 }
 .ayus-pdp-stars-text {
   font-size: 13px;
   letter-spacing: 0.04em;
   color: #7b756f;
+  line-height: 1;
+  position: relative;
+  top: 1px;
 }
 
 /* PERFECT PLUS / MINUS ACCORDION ICONS */
@@ -3028,8 +3034,32 @@ details > summary::-webkit-details-marker {
 .ayus-pdp-stars .jdgm-star::before,
 .ayus-pdp-stars .jdgm-prev-badge__stars {
   color: #d4af37 !important;
-  font-size: 20px !important;
+  font-size: 24px !important;
 }
+
+@media (min-width: 851px) {
+  .tt-card-add-btn,
+  button.tt-card-add-btn,
+  a.tt-card-add-btn {
+    border: 1px solid var(--color-text) !important;
+    text-decoration: none !important;
+    background-color: transparent !important;
+    padding: 12px 25px !important;
+    color: var(--color-text) !important;
+    font-size: 11px !important;
+    width: auto !important;
+    min-width: 152px !important;
+  }
+  .tt-card-add-btn:hover,
+  button.tt-card-add-btn:hover,
+  a.tt-card-add-btn:hover {
+    background-color: var(--color-accent) !important;
+    color: #ffffff !important;
+    border-color: var(--color-accent) !important;
+    opacity: 1 !important;
+  }
+}
+
 
 @media (min-width: 851px) {
   .ayus-add-to-cart-button {
