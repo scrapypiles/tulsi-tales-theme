@@ -30,12 +30,14 @@
               {% assign cart_product_ids = cart_product_ids | append: item.product_id | append: "," %}
               <div class="tt-cart-item" data-key="{{ item.key }}">
                 <div class="tt-cart-item-img">
-                  {% if item.image %}
-                    <img src="{{ item.image | img_url: '200x' }}" alt="{{ item.title | escape }}" loading="lazy">
-                  {% endif %}
+                  <a href="{{ item.url }}" target="_blank" style="display: block; width: 100%; height: 100%;">
+                    {% if item.image %}
+                      <img src="{{ item.image | img_url: '200x' }}" alt="{{ item.title | escape }}" loading="lazy">
+                    {% endif %}
+                  </a>
                 </div>
                 <div class="tt-cart-item-details">
-                  <h4 class="tt-cart-item-title">{{ item.product.title }}</h4>
+                  <h4 class="tt-cart-item-title"><a href="{{ item.url }}" target="_blank" style="text-decoration: none; color: inherit;">{{ item.product.title }}</a></h4>
                   {% unless item.variant.title contains 'Default' %}
                     <p class="tt-cart-variant" style="font-size: 13px !important; color: #888 !important; margin-bottom: 5px !important; text-transform: uppercase !important; letter-spacing: 0.05em !important;">{{ item.variant.title }}</p>
                   {% endunless %}
@@ -171,14 +173,14 @@
   .tt-cart-close { background: transparent; border: none; font-size: 28px; cursor: pointer; color: var(--color-text); margin-right: -5px; }
   .tt-cart-body { flex-grow: 1; overflow-y: auto; overflow-x: hidden; padding: 15px 15px 0 15px; display: flex; flex-direction: column; -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; }
   .tt-cart-items { flex-shrink: 0; }
-  .tt-cart-item { display: flex; gap: 20px; margin-bottom: 25px; flex-shrink: 0; }
+  .tt-cart-item { display: flex; gap: 20px; margin-bottom: 25px; flex-shrink: 0; align-items: stretch; }
   .tt-cart-item-img { width: 110px; height: 110px; flex-shrink: 0; display: flex; align-items: flex-start; }
   .tt-cart-item-img img { width: 100%; height: 110px; object-fit: cover; border: 1px solid var(--color-border); }
-  .tt-cart-item-details { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+  .tt-cart-item-details { flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 2px 0; }
   .tt-cart-item-title { font-family: var(--font-heading); font-size: 16px; margin: 0 0 5px 0; }
   .tt-cart-variant { font-size: 9px; color: #666; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.05em; }
-  .tt-cart-price { font-size: 14px; font-weight: bold; margin: 0 0 10px 0; }
-  .tt-cart-qty-wrapper { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 10px; }
+  .tt-cart-price { font-size: 14px; font-weight: bold; margin: 0 0 5px 0; }
+  .tt-cart-qty-wrapper { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 0; }
   .tt-cart-qty { display: inline-block !important; width: 90px !important; height: 32px !important; border: 1px solid rgba(0,0,0,0.15) !important; background: #fff !important; box-sizing: border-box !important; position: relative !important; margin: 0 !important; padding: 0 !important; }
   
   
@@ -621,12 +623,34 @@
   }
   function addVariantToCart(id = currentQuickAddVariantId) {
     if (!id) return;
-    closeQuickAdd();
-    openBagDrawer();
+    const btn = document.getElementById('tt-qa-add-btn');
+    if (btn) {
+      btn.innerText = 'ADDING...';
+      btn.style.opacity = '0.7';
+      btn.disabled = true;
+    }
+    
     fetch(window.Shopify.routes.root + 'cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: id, quantity: 1 })
-    }).then(() => refreshBagDrawer());
+    })
+    .then(res => res.json())
+    .then(() => {
+      if (btn) btn.innerText = 'ADDED';
+      refreshBagDrawer();
+      setTimeout(() => {
+        closeQuickAdd();
+        openBagDrawer();
+      }, 150);
+    })
+    .catch(err => {
+      console.error(err);
+      if (btn) {
+        btn.innerText = 'ERROR';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      }
+    });
   }
 </script>
