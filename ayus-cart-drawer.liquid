@@ -482,7 +482,7 @@
   .tt-qa-variant-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
   .tt-qa-variant-pill { display: inline-block; padding: 10px 20px; border: 1px solid var(--color-border); background-color: transparent; color: var(--color-text); font-family: var(--font-body); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease; }
   .tt-qa-variant-pill.is-active { background-color: var(--color-accent); color: #fff; border-color: var(--color-accent); }
-  .tt-qa-variant-pill.is-disabled { opacity: 0.45; cursor: not-allowed; }
+  .tt-qa-variant-pill.is-disabled { opacity: 0.6; }
   .tt-qa-add-btn { width: 100%; background-color: var(--color-accent); color: #fff; border: 1px solid var(--color-accent); padding: 14px 18px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-family: var(--font-body); cursor: pointer; transition: opacity 0.3s ease; }
   .tt-qa-add-btn:disabled { opacity: 0.45; cursor: not-allowed; }
 </style>
@@ -577,10 +577,9 @@
           product.variants.forEach(v => {
             const label = v.title === 'Default Title' ? 'Standard Size' : v.title;
             const isSelected = selectedVariant && v.id === selectedVariant.id;
-            const disabled = v.available ? '' : ' disabled';
             const activeClass = isSelected ? ' is-active' : '';
             const disabledClass = v.available ? '' : ' is-disabled';
-            vHtml += '<button type="button" class="tt-qa-variant-pill' + activeClass + disabledClass + '" data-variant-id="' + v.id + '" data-price="' + v.price + '" data-available="' + v.available + '" onclick="syncQuickAddVariantUI(this)"' + disabled + '>' + label + '</button>';
+            vHtml += '<button type="button" class="tt-qa-variant-pill' + activeClass + disabledClass + '" data-variant-id="' + v.id + '" data-price="' + v.price + '" data-available="' + v.available + '" onclick="syncQuickAddVariantUI(this)">' + label + '</button>';
           });
           vHtml += '</div>';
           vHtml += '</div>';
