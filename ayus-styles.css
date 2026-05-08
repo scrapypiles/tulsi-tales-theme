@@ -1246,14 +1246,15 @@ h6 {
   right: -10px;
   background: var(--color-accent);
   color: #fff;
-  font-size: 9px;
+  font-size: 10px;
   font-family: var(--font-body);
   border-radius: 50%;
   width: 17px;
   height: 17px;
-  display: grid;
-  place-items: center;
-  line-height: 1;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 0 !important;
   text-align: center;
   padding: 0;
   font-weight: 700;
@@ -3203,18 +3204,17 @@ details > summary::-webkit-details-marker {
 
 /* EXTREME OVERRIDE FOR CART QTY & BADGE */
 .tt-cart-badge {
-  line-height: normal !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   padding: 0 !important;
-  padding-top: 1px !important; /* Visual optical adjustment */
+  line-height: 0 !important;
 }
 
 @media (max-width: 850px) {
   .tt-cart-badge {
-    line-height: normal !important;
-    padding-top: 1px !important;
+    line-height: 0 !important;
+    padding: 0 !important;
   }
   
   .tt-qty-box.tt-cart-qty {
