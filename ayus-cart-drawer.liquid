@@ -312,15 +312,33 @@
     fetch(window.Shopify.routes.root + 'cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: variantId, quantity: 1 })
+      body: JSON.stringify({ id: variantId, quantity: 1, sections: 'ayus-cart-drawer' })
     })
     .then(res => {
       if (!res.ok) throw new Error('Add to cart failed');
       return res.json();
     })
-    .then(() => {
+    .then(data => {
       btn.innerText = 'ADDED';
-      refreshBagDrawer();
+      if (data.sections && data.sections['ayus-cart-drawer']) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data.sections['ayus-cart-drawer'], 'text/html');
+        const newDrawerWrapper = doc.querySelector('.tt-cart-drawer-wrapper') || doc.body.firstElementChild;
+        
+        if(newDrawerWrapper) {
+          const newPanel = newDrawerWrapper.querySelector('.tt-cart-panel');
+          const oldPanel = document.querySelector('.tt-cart-panel');
+          if(newPanel && oldPanel) oldPanel.innerHTML = newPanel.innerHTML;
+          
+          const newCount = newDrawerWrapper.querySelector('#shopify-section-cart-drawer')?.getAttribute('data-cart-count') || newDrawerWrapper.getAttribute('data-cart-count');
+          const countElements = document.querySelectorAll('.ayus-cart-link');
+          countElements.forEach(el => {
+            if(el.querySelector('.tt-cart-badge')) { el.querySelector('.tt-cart-badge').innerText = newCount || document.querySelector('.tt-cart-drawer-wrapper').getAttribute('data-cart-count'); }
+          });
+        }
+      } else {
+        refreshBagDrawer();
+      }
     })
     .catch(err => {
       console.error(err);
@@ -409,18 +427,46 @@
         submitBtn.style.opacity = '0.7';
         submitBtn.disabled = true;
 
-        openBagDrawer();
-        const drawerBody = document.querySelector('.tt-cart-panel');
-        if(drawerBody) drawerBody.style.opacity = '0.5';
+        const formData = new FormData(form);
+        formData.append('sections', 'ayus-cart-drawer');
 
         fetch(window.Shopify.routes.root + 'cart/add.js', {
           method: 'POST',
-          body: new FormData(form)
+          body: formData
         })
         .then(response => response.json())
         .then(data => {
           submitBtn.innerText = 'ADDED';
-          refreshBagDrawer();
+          if (data.sections && data.sections['ayus-cart-drawer']) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data.sections['ayus-cart-drawer'], 'text/html');
+            const newDrawerWrapper = doc.querySelector('.tt-cart-drawer-wrapper') || doc.body.firstElementChild;
+            
+            if(newDrawerWrapper) {
+              const newPanel = newDrawerWrapper.querySelector('.tt-cart-panel');
+              const oldPanel = document.querySelector('.tt-cart-panel');
+              
+              if(newPanel && oldPanel) {
+                oldPanel.innerHTML = newPanel.innerHTML;
+              } else {
+                document.getElementById('shopify-section-ayus-cart-drawer').innerHTML = newDrawerWrapper.innerHTML || data.sections['ayus-cart-drawer'];
+              }
+              
+              const cartDrawer = document.getElementById('tt-cart-drawer');
+              if (cartDrawer && !cartDrawer.classList.contains('is-open')) {
+                cartDrawer.classList.add('is-open');
+              }
+              
+              const newCount = newDrawerWrapper.querySelector('#shopify-section-cart-drawer')?.getAttribute('data-cart-count') || newDrawerWrapper.getAttribute('data-cart-count');
+              const countElements = document.querySelectorAll('.ayus-cart-link');
+              countElements.forEach(el => {
+                if(el.querySelector('.tt-cart-badge')) { el.querySelector('.tt-cart-badge').innerText = newCount || document.querySelector('.tt-cart-drawer-wrapper').getAttribute('data-cart-count'); }
+              });
+            }
+          } else {
+            refreshBagDrawer();
+          }
+          
           setTimeout(() => {
             submitBtn.innerText = originalText;
             submitBtn.disabled = false;
@@ -657,13 +703,36 @@
     fetch(window.Shopify.routes.root + 'cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: id, quantity: 1 })
+      body: JSON.stringify({ id: id, quantity: 1, sections: 'ayus-cart-drawer' })
     })
     .then(res => res.json())
-    .then(() => {
+    .then(data => {
       if (btn) btn.innerText = 'ADDED';
       closeQuickAdd();
-      refreshBagDrawer();
+      if (data.sections && data.sections['ayus-cart-drawer']) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data.sections['ayus-cart-drawer'], 'text/html');
+        const newDrawerWrapper = doc.querySelector('.tt-cart-drawer-wrapper') || doc.body.firstElementChild;
+        
+        if(newDrawerWrapper) {
+          const newPanel = newDrawerWrapper.querySelector('.tt-cart-panel');
+          const oldPanel = document.querySelector('.tt-cart-panel');
+          if(newPanel && oldPanel) oldPanel.innerHTML = newPanel.innerHTML;
+          
+          const cartDrawer = document.getElementById('tt-cart-drawer');
+          if (cartDrawer && !cartDrawer.classList.contains('is-open')) {
+            cartDrawer.classList.add('is-open');
+          }
+          
+          const newCount = newDrawerWrapper.querySelector('#shopify-section-cart-drawer')?.getAttribute('data-cart-count') || newDrawerWrapper.getAttribute('data-cart-count');
+          const countElements = document.querySelectorAll('.ayus-cart-link');
+          countElements.forEach(el => {
+            if(el.querySelector('.tt-cart-badge')) { el.querySelector('.tt-cart-badge').innerText = newCount || document.querySelector('.tt-cart-drawer-wrapper').getAttribute('data-cart-count'); }
+          });
+        }
+      } else {
+        refreshBagDrawer();
+      }
     })
     .catch(err => {
       console.error(err);

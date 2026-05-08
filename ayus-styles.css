@@ -1591,11 +1591,11 @@ html, body {
     line-height: 1.4 !important;
   }
   .ayus-card-info {
-    padding: 10px 10px 4px 10px !important;
+    padding: 8px 10px 0px 10px !important;
   }
   .tt-card-action { padding-top: 0px !important; margin-top: auto !important; }
   .tt-card-action .tt-card-rating {
-    margin-top: 4px !important;
+    margin-top: 2px !important;
     margin-bottom: 12px !important;
   }
   .tt-collection-hero { height: 350px !important;
@@ -1645,10 +1645,22 @@ html, body {
     margin-bottom: 15px !important;
   }
   .ayus-price-block .ayus-regular-price {
-    font-size: 24px !important;
+    font-size: 20px !important;
     line-height: 1 !important;
     font-family: var(--font-body) !important;
     color: var(--color-text) !important;
+  }
+  .ayus-pdp-stars .jdgm-star,
+  .ayus-pdp-stars .jdgm-star::before,
+  .ayus-pdp-stars .jdgm-prev-badge__stars {
+    font-size: 24px !important;
+  }
+  .ayus-pdp-stars-icons {
+    font-size: 24px !important;
+  }
+  .ayus-pdp-stars-text {
+    font-size: 13px !important;
+    top: 0px !important;
   }
   .ayus-brand-name {
     font-size: 11px !important;
@@ -3320,15 +3332,17 @@ details > summary::-webkit-details-marker {
   
   .ayus-product-header { order: 3 !important; margin-bottom: 10px !important; padding-bottom: 0 !important; width: 100% !important; border-bottom: none !important; }
   
-  .tt-commerce-controls { order: 4 !important; margin-bottom: 15px !important; border-bottom: none !important; padding-bottom: 0 !important; width: 100% !important; }
-  .ayus-add-to-cart-wrapper { order: 5 !important; margin-bottom: 15px !important; width: 100% !important; }
+  .tt-commerce-controls { order: 4 !important; margin-bottom: 10px !important; border-bottom: none !important; padding-bottom: 0 !important; width: 100% !important; }
+  .ayus-add-to-cart-wrapper { order: 5 !important; margin-bottom: 10px !important; width: 100% !important; }
   
-  .ayus-product-description { order: 6 !important; margin-top: 0 !important; margin-bottom: 15px !important; width: 100% !important; }
+  .ayus-product-description { order: 6 !important; margin-top: 0 !important; margin-bottom: 30px !important; width: 100% !important; }
   
   .tt-meta-grid { 
     order: 7 !important; 
     grid-template-columns: 1fr 1fr !important; /* Two columns on mobile */
+    margin-top: 0 !important;
     margin-bottom: 15px !important;
+    padding: 15px 15px 10px 15px !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
