@@ -1650,13 +1650,16 @@ html, body {
     font-family: var(--font-body) !important;
     color: var(--color-text) !important;
   }
+  .ayus-pdp-price-reviews-wrap {
+    margin-bottom: 0px !important;
+  }
   .ayus-pdp-stars .jdgm-star,
   .ayus-pdp-stars .jdgm-star::before,
   .ayus-pdp-stars .jdgm-prev-badge__stars {
-    font-size: 24px !important;
+    font-size: 18px !important;
   }
   .ayus-pdp-stars-icons {
-    font-size: 24px !important;
+    font-size: 18px !important;
   }
   .ayus-pdp-stars-text {
     font-size: 13px !important;
@@ -3330,12 +3333,12 @@ details > summary::-webkit-details-marker {
   .tt-main-image-zoom { order: 1 !important; margin-bottom: 15px !important; width: 100% !important; }
   .tt-thumbnail-strip { order: 2 !important; margin-bottom: 15px !important; width: 100% !important; }
   
-  .ayus-product-header { order: 3 !important; margin-bottom: 10px !important; padding-bottom: 0 !important; width: 100% !important; border-bottom: none !important; }
+  .ayus-product-header { order: 3 !important; margin-bottom: 0px !important; padding-bottom: 0 !important; width: 100% !important; border-bottom: none !important; }
   
-  .tt-commerce-controls { order: 4 !important; margin-bottom: 10px !important; border-bottom: none !important; padding-bottom: 0 !important; width: 100% !important; }
-  .ayus-add-to-cart-wrapper { order: 5 !important; margin-bottom: 10px !important; width: 100% !important; }
+  .tt-commerce-controls { order: 4 !important; margin-top: 0px !important; margin-bottom: 10px !important; border-bottom: none !important; padding-bottom: 0 !important; width: 100% !important; }
+  .ayus-add-to-cart-wrapper { order: 5 !important; margin-bottom: 25px !important; width: 100% !important; }
   
-  .ayus-product-description { order: 6 !important; margin-top: 0 !important; margin-bottom: 30px !important; width: 100% !important; }
+  .ayus-product-description { order: 6 !important; margin-top: 0 !important; margin-bottom: 25px !important; width: 100% !important; }
   
   .tt-meta-grid { 
     order: 7 !important; 
