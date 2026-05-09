@@ -1588,7 +1588,7 @@ html, body {
   .ayus-card-price {
     font-size: 12px !important;
     margin-top: auto !important;
-    margin-bottom: auto !important;
+    margin-bottom: 8px !important;
     line-height: 1.4 !important;
   }
   .ayus-card-info {
@@ -2727,9 +2727,9 @@ details > summary::-webkit-details-marker {
   margin-top: 0 !important; /* Ensure brand is flush against top padding */
 }
 
-/* Ensure the title itself has a standard margin bottom */
+  /* Ensure the title itself has a standard margin bottom */
 .ayus-card-title {
-  margin-bottom: auto !important; /* Push the price and button down to the bottom */
+  margin-bottom: 8px !important;
 }
 
 /* Price margin handled by hierarchy patch */
@@ -3180,7 +3180,7 @@ details > summary::-webkit-details-marker {
 .ayus-card-price {
   font-size: 14px !important;
   margin-top: auto !important;
-  margin-bottom: auto !important; /* Distribute space equally above and below the price */
+  margin-bottom: 8px !important;
   font-weight: 600 !important;
   color: #333 !important;
 }
