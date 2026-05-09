@@ -2,10 +2,44 @@
   "sections": {
     "main_product": {
       "type": "ayus-product-main",
+      "settings": {
+        "show_section": true,
+        "padding_top": 0,
+        "padding_bottom": 60,
+        "size_label": "Size:",
+        "quantity_label": "QTY:",
+        "add_to_bag_label": "ADD TO BAG"
+      }
+    },
+    "recommendations": {
+      "type": "ayus-product-recommendations",
+      "settings": {
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "reviews": {
+      "type": "ayus-product-reviews",
+      "blocks": {
+        "judge_me_reviews_review_widget_CweJGc": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 650,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_CweJGc"
+      ],
       "settings": {}
     }
   },
   "order": [
-    "main_product"
+    "main_product",
+    "recommendations",
+    "reviews"
   ]
 }

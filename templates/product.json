@@ -5,7 +5,10 @@
       "settings": {
         "show_section": true,
         "padding_top": 0,
-        "padding_bottom": 60
+        "padding_bottom": 60,
+        "size_label": "Size:",
+        "quantity_label": "QTY:",
+        "add_to_bag_label": "ADD TO BAG"
       }
     },
     "recommendations": {
