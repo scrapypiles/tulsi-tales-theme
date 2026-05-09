@@ -76,9 +76,9 @@
 
 <div class="contact-banner tt-collection-banner" style="background-image: url('{{ hero_bg }}');">
   <div class="contact-banner-content">
-    <span class="contact-tagline" style="color: #eeeeee;">THE COLLECTION</span>
-    <h1 class="contact-title" style="color: #ffffff;">Every product here earned its place.</h1>
-    <div class="contact-subtitle" style="color: #ffffff; opacity: 0.9;"><p>Curated from India's finest Ayurvedic makers. Nothing we wouldn't use ourselves.</p></div>
+    <span class="contact-tagline" style="color: #eeeeee;">{{ section.settings.hero_tagline | default: 'THE COLLECTION' }}</span>
+    <h1 class="contact-title" style="color: #ffffff;">{{ section.settings.hero_heading | default: 'Every product here earned its place.' }}</h1>
+    <div class="contact-subtitle" style="color: #ffffff; opacity: 0.9;"><p>{{ section.settings.hero_subtitle | default: "Curated from India's finest Ayurvedic makers. Nothing we wouldn't use ourselves." }}</p></div>
   </div>
 </div>
 
@@ -400,6 +400,24 @@
       "type": "image_picker",
       "id": "image",
       "label": "Default Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "hero_tagline",
+      "label": "Hero tagline",
+      "default": "THE COLLECTION"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero heading",
+      "default": "Every product here earned its place."
+    },
+    {
+      "type": "text",
+      "id": "hero_subtitle",
+      "label": "Hero subtitle",
+      "default": "Curated from India's finest Ayurvedic makers. Nothing we wouldn't use ourselves."
     },
     {
       "type": "textarea",
