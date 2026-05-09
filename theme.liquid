@@ -61,6 +61,9 @@
     {% else %}
       <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png">
     {% endif %}
+
+    <!-- Judge.me Core -->
+    {% render 'judgeme_core' %}
   </head>
   <body class="ayus-body-template template-{{ template.name }}">
     
