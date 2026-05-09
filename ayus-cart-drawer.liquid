@@ -231,10 +231,11 @@
   @media (max-width: 850px) {
     .tt-cart-drawer-wrapper .tt-cart-panel,
     .tt-cart-panel {
-      width: 100vw !important;
-      max-width: 100vw !important;
-      right: -100vw !important;
+      width: 94vw !important;
+      max-width: 94vw !important;
+      right: -94vw !important;
       height: 100dvh !important;
+      overflow: hidden !important;
     }
     .tt-cart-drawer.is-open .tt-cart-panel {
       right: 0 !important;
@@ -264,6 +265,8 @@
       background: #FAF8F5;
       padding: 22px 20px calc(22px + env(safe-area-inset-bottom));
       box-shadow: 0 -6px 20px rgba(0,0,0,0.04);
+      width: 100%;
+      box-sizing: border-box;
     }
     .tt-checkout-btn {
       position: relative;
