@@ -128,50 +128,55 @@
           
           <!-- Stars Next to Price -->
           <div class="ayus-pdp-stars" style="margin: 0; display: flex; align-items: center; cursor: pointer;" onclick="document.getElementById('judgeme_product_reviews').scrollIntoView({behavior: 'smooth'})">
+            {{ product.metafields.judgeme.badge }}
             
-            {% if product.metafields.judgeme.badge %}
-              <!-- Raw data fallback wrapper if Judgeme doesn't mount -->
-              <div class="ayus-pdp-stars-custom" style="display: flex; align-items: center; gap: 10px; line-height: 1; position: relative; top: 3px;">
-                <span class="ayus-pdp-stars-icons" style="gap: 2px;">
-                  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </span>
-                <span class="ayus-pdp-stars-text" id="ayus-review-text-custom">Reviews</span>
-              </div>
-            {% else %}
-              <div class="ayus-pdp-stars-fallback" aria-hidden="true" style="display: flex; align-items: center; gap: 10px; line-height: 1; position: relative; top: 3px;">
-                <span class="ayus-pdp-stars-icons" style="gap: 2px;">
-                  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </span>
-                <span class="ayus-pdp-stars-text">No reviews</span>
-              </div>
-            {% endif %}
-
-            <div style="display: none;" id="judgeme-raw-badge">
-              {{ product.metafields.judgeme.badge }}
+            <div class="ayus-pdp-stars-fallback" aria-hidden="true" style="display: none;">
+              <span class="ayus-pdp-stars-icons" style="gap: 2px;">
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </span>
+              <span class="ayus-pdp-stars-text">No reviews</span>
             </div>
           </div>
           <script>
             (function syncPdpReviewMarkers() {
-              const rawData = document.getElementById('judgeme-raw-badge');
-              if(rawData) {
-                const badge = rawData.querySelector('.jdgm-prev-badge');
-                if(badge) {
-                  const num = badge.getAttribute('data-number-of-reviews') || '0';
-                  const textEl = document.getElementById('ayus-review-text-custom');
-                  if(textEl) {
-                    textEl.innerText = num === '1' ? '1 REVIEW' : num + ' REVIEWS';
-                    if(num === '0') textEl.innerText = 'NO REVIEWS';
-                  }
+              function updateReviewMarkers() {
+                const wrap = document.querySelector('#MainProduct-{{ section.id }} .ayus-pdp-stars');
+                if (!wrap) return false;
+
+                const badge = wrap.querySelector('.jdgm-prev-badge');
+                const fallback = wrap.querySelector('.ayus-pdp-stars-fallback');
+                if (!fallback) return false;
+
+                const reviewCount = badge ? Number(badge.getAttribute('data-number-of-reviews') || '0') : 0;
+
+                if (badge && reviewCount > 0) {
+                  badge.style.setProperty('display', 'inline-flex', 'important');
+                  badge.style.setProperty('align-items', 'center', 'important');
+                  badge.style.setProperty('visibility', 'visible', 'important');
+                  badge.style.setProperty('opacity', '1', 'important');
+                  fallback.style.display = 'none';
+                  return true;
                 }
+
+                if (!badge) {
+                  fallback.style.display = 'inline-flex';
+                }
+                return !!badge;
               }
+
+              if (updateReviewMarkers()) return;
+
+              let attempts = 0;
+              const interval = setInterval(function() {
+                attempts += 1;
+                if (updateReviewMarkers() || attempts > 40) {
+                  clearInterval(interval);
+                }
+              }, 250);
             })();
           </script>
           
