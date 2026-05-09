@@ -3411,7 +3411,7 @@ details > summary::-webkit-details-marker {
   font-family: var(--font-body) !important;
 }
 
-.jdgm-widget * {
+.jdgm-widget *:not(.jdgm-star):not(.jdgm-star::before) {
   font-family: var(--font-body) !important;
 }
 
@@ -3419,6 +3419,7 @@ details > summary::-webkit-details-marker {
 .jdgm-star,
 .jdgm-star::before {
   color: var(--color-accent) !important;
+  font-family: 'JudgemeIcon' !important;
 }
 
 /* Make widget title fancy serif */
@@ -3476,4 +3477,28 @@ details > summary::-webkit-details-marker {
 .jdgm-form__fieldset input:focus, .jdgm-form__fieldset textarea:focus {
   border-color: var(--color-text) !important;
   outline: none !important;
+}
+
+/* Buttons */
+.jdgm-widget .jdgm-write-rev-link, 
+.jdgm-widget .jdgm-submit-rev,
+.jdgm-widget .jdgm-paginate__page {
+  background-color: transparent !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-text) !important;
+  border-radius: 0 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  font-family: var(--font-body) !important;
+  padding: 12px 30px !important;
+  transition: all 0.3s ease !important;
+  font-size: 13px !important;
+}
+
+.jdgm-widget .jdgm-write-rev-link:hover, 
+.jdgm-widget .jdgm-submit-rev:hover,
+.jdgm-widget .jdgm-paginate__page:hover {
+  background-color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+  color: #fff !important;
 }
