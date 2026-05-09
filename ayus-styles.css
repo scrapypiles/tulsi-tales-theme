@@ -60,8 +60,7 @@ h6 {
   max-width: 550px;
   display: flex;
   flex-direction: column;
-  position: sticky;
-  top: 120px;
+  position: relative;
   align-self: flex-start;
 }
 
