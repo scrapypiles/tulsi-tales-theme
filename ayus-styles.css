@@ -2661,23 +2661,38 @@ details > summary::-webkit-details-marker {
 }
 
 /* Elegant Bottom Button */
+.ayus-reviews-title {
+  margin: 0 0 30px 0;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--color-text);
+}
 .ayus-review-bottom-action {
   text-align: center;
   margin-top: 20px;
 }
 .ayus-btn-elegant {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
   background: transparent;
   border: none;
-  border-bottom: 1px solid var(--color-text);
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  padding: 0 0 5px 0;
+  padding: 0;
   cursor: pointer;
   transition: opacity 0.3s;
   border-radius: 0;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-skip-ink: none;
 }
 .ayus-btn-elegant:hover {
   opacity: 0.5;

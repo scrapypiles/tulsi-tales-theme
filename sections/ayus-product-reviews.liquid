@@ -3,6 +3,10 @@
 <div style="width: 100%; background-color: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
 <div class="ayus-container" style="max-width: 1440px; margin: 0 auto; padding: 0 40px;">
   
+  {% if section.settings.heading != blank %}
+    <h2 class="ayus-reviews-title">{{ section.settings.heading }}</h2>
+  {% endif %}
+
   <!-- Judge.me Main Widget -->
   <div style="position: relative; max-width: 100%;" id="ayus-reviews-wrapper">
     
@@ -17,7 +21,7 @@
   </div>
 
   <div class="ayus-review-bottom-action">
-    <button id="ayus-trigger-review" class="ayus-btn-elegant">Write a Review</button>
+    <button id="ayus-trigger-review" class="ayus-btn-elegant">{{ section.settings.button_label | default: 'Write a Review' }}</button>
   </div>
 
   <script>
@@ -81,6 +85,18 @@
       "unit": "px",
       "label": "Padding Bottom",
       "default": 80
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Write a Review"
     }
   ],
   "blocks": [
