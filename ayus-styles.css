@@ -3211,7 +3211,8 @@ details > summary::-webkit-details-marker {
   justify-content: center !important;
   padding: 0 !important;
   padding-top: 1.5px !important; /* Optical adjustment for font baseline */
-  padding-left: 1px !important;
+  padding-left: 2.5px !important; /* Push further right */
+  letter-spacing: 0 !important; /* Ensure no tracking pushes it left */
   line-height: normal !important;
   box-sizing: border-box !important;
 }
@@ -3220,7 +3221,8 @@ details > summary::-webkit-details-marker {
   .tt-cart-badge {
     padding: 0 !important;
     padding-top: 1.5px !important;
-    padding-left: 1px !important;
+    padding-left: 2.5px !important;
+    letter-spacing: 0 !important;
     line-height: normal !important;
     box-sizing: border-box !important;
   }
