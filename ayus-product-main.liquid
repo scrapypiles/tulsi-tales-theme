@@ -5,15 +5,20 @@
   <style>
     @media (max-width: 850px) {
       #MainProduct-{{ section.id }} .tt-commerce-controls {
-        gap: 10px !important;
-        margin-top: 5px !important;
-        margin-bottom: 10px !important;
-        padding-bottom: 10px !important;
+        gap: 6px !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
       }
 
       #MainProduct-{{ section.id }} .ayus-add-to-cart-wrapper {
         margin-top: 0 !important;
-        margin-bottom: 15px !important;
+        margin-bottom: 0 !important;
+      }
+      
+      #MainProduct-{{ section.id }} .tt-meta-grid {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
       }
     }
   </style>
@@ -128,9 +133,9 @@
           
           <!-- Stars Next to Price -->
           <div class="ayus-pdp-stars" style="margin: 0; display: flex; align-items: center; cursor: pointer;" onclick="document.getElementById('judgeme_product_reviews').scrollIntoView({behavior: 'smooth'})">
-            {{ product.metafields.judgeme.badge }}
             
-            <div class="ayus-pdp-stars-fallback" aria-hidden="true" style="display: none;">
+            <!-- Raw data fallback wrapper if Judgeme doesn't mount -->
+            <div class="ayus-pdp-stars-custom" style="display: flex; align-items: center; gap: 10px; line-height: 1; position: relative; top: 3px;">
               <span class="ayus-pdp-stars-icons" style="gap: 2px;">
                 <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                 <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -138,45 +143,27 @@
                 <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                 <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               </span>
-              <span class="ayus-pdp-stars-text">No reviews</span>
+              <span class="ayus-pdp-stars-text" id="ayus-review-text-custom">No reviews</span>
+            </div>
+
+            <div style="display: none;" id="judgeme-raw-badge">
+              {{ product.metafields.judgeme.badge }}
             </div>
           </div>
           <script>
             (function syncPdpReviewMarkers() {
-              function updateReviewMarkers() {
-                const wrap = document.querySelector('#MainProduct-{{ section.id }} .ayus-pdp-stars');
-                if (!wrap) return false;
-
-                const badge = wrap.querySelector('.jdgm-prev-badge') || wrap.querySelector('.jdgm-preview-badge');
-                const fallback = wrap.querySelector('.ayus-pdp-stars-fallback');
-                if (!fallback) return false;
-
-                const reviewCount = badge ? Number(badge.getAttribute('data-number-of-reviews') || '0') : 0;
-
-                if (badge && reviewCount > 0) {
-                  badge.style.setProperty('display', 'inline-flex', 'important');
-                  badge.style.setProperty('align-items', 'center', 'important');
-                  badge.style.setProperty('visibility', 'visible', 'important');
-                  badge.style.setProperty('opacity', '1', 'important');
-                  fallback.style.display = 'none';
-                  return true;
+              const rawData = document.getElementById('judgeme-raw-badge');
+              if(rawData) {
+                const badge = rawData.querySelector('.jdgm-prev-badge') || rawData.querySelector('.jdgm-preview-badge');
+                if(badge) {
+                  const num = badge.getAttribute('data-number-of-reviews') || '0';
+                  const textEl = document.getElementById('ayus-review-text-custom');
+                  if(textEl) {
+                    textEl.innerText = num === '1' ? '1 REVIEW' : num + ' REVIEWS';
+                    if(num === '0') textEl.innerText = 'NO REVIEWS';
+                  }
                 }
-
-                if (!badge || reviewCount === 0) {
-                  fallback.style.display = 'inline-flex';
-                }
-                return !!badge;
               }
-
-              if (updateReviewMarkers()) return;
-
-              let attempts = 0;
-              const interval = setInterval(function() {
-                attempts += 1;
-                if (updateReviewMarkers() || attempts > 40) {
-                  clearInterval(interval);
-                }
-              }, 250);
             })();
           </script>
           
@@ -218,7 +205,7 @@
             </div> <!-- end quantity selector -->
           </div> <!-- end commerce controls -->
 
-          <div class="ayus-add-to-cart-wrapper" style="margin: 10px 0 10px 0;">
+          <div class="ayus-add-to-cart-wrapper" style="margin: 0;">
             <button type="submit" name="add" class="ayus-add-to-cart-button" style="width: 100%; display: inline-flex; justify-content: center; text-align: center; background: transparent; color: var(--color-text); border: 1px solid var(--color-text); box-shadow: none; appearance: none; -webkit-appearance: none;">
               ADD TO BAG
             </button>
@@ -226,8 +213,8 @@
         </form>
       </div>
 
-      <div class="tt-meta-grid" style="padding-bottom: 10px; margin-bottom: 0;">
-        <div style="background: var(--color-background); padding: 25px 25px 20px 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div class="tt-meta-grid" style="padding-bottom: 0; margin-bottom: 0;">
+        <div style="background: var(--color-background); padding: 18px 20px 10px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
           {%- if product.metafields.custom.product_type != blank -%}
             <div class="tt-meta-item">
               <span class="tt-meta-key">Type</span>

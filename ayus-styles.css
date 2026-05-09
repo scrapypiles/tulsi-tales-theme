@@ -93,7 +93,7 @@ h6 {
 
 /* Button */
 .ayus-add-to-cart-wrapper {
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 
 /* Hook Description */
@@ -723,7 +723,7 @@ h6 {
 /* Update 3b: Metafield Grid */
 .tt-meta-grid {
   margin-top: 0px;
-  margin-bottom: 40px;
+  margin-bottom: 0px;
 }
 .tt-meta-item {
   display: flex;
@@ -3331,17 +3331,17 @@ details > summary::-webkit-details-marker {
   
   .ayus-product-header { order: 3 !important; margin-bottom: 0px !important; padding-bottom: 0 !important; width: 100% !important; border-bottom: none !important; }
   
-  .tt-commerce-controls { order: 4 !important; margin-top: 0px !important; margin-bottom: 0px !important; border-bottom: none !important; padding-bottom: 0 !important; width: 100% !important; }
-  .ayus-add-to-cart-wrapper { order: 5 !important; margin-top: 15px !important; margin-bottom: 15px !important; width: 100% !important; }
+  .tt-commerce-controls { order: 4 !important; margin-top: 0px !important; margin-bottom: 0px !important; border-bottom: none !important; padding-bottom: 0 !important; width: 100% !important; gap: 6px !important; }
+  .ayus-add-to-cart-wrapper { order: 5 !important; margin-top: 0px !important; margin-bottom: 0px !important; width: 100% !important; }
   
-  .ayus-product-description { order: 6 !important; margin-top: 0 !important; margin-bottom: 15px !important; width: 100% !important; }
+  .ayus-product-description { order: 6 !important; margin-top: 0 !important; margin-bottom: 0px !important; width: 100% !important; }
   
   .tt-meta-grid { 
     order: 7 !important; 
     grid-template-columns: 1fr 1fr !important; /* Two columns on mobile */
     margin-top: 0 !important;
-    margin-bottom: 15px !important;
-    padding-bottom: 15px !important;
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
@@ -3391,7 +3391,7 @@ details > summary::-webkit-details-marker {
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-top: 10px;
+    margin-top: 16px;
   }
   .tt-dot {
     width: 6px;
