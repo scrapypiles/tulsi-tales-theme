@@ -3044,6 +3044,7 @@ details > summary::-webkit-details-marker {
 .ayus-pdp-stars .jdgm-prev-badge__stars {
   color: #d4af37 !important;
   font-size: 16px !important;
+  font-family: 'JudgemeIcon' !important;
 }
 
 @media (min-width: 851px) {

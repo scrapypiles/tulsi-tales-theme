@@ -484,7 +484,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   <!-- Judge.me Main Widget Wrapped for Arrows -->
   <div style="position: relative; max-width: 100%;" id="ayus-reviews-wrapper">
-    <button class="ayus-rev-arrow ayus-rev-prev">&#8592;</button>
     
     {%- for block in section.blocks -%}
       {%- render block -%}
@@ -494,7 +493,6 @@ document.addEventListener('DOMContentLoaded', function() {
       {{ product.metafields.judgeme.widget }}
     </div>
     
-    <button class="ayus-rev-arrow ayus-rev-next">&#8594;</button>
   </div>
 
   <div class="ayus-review-bottom-action">
@@ -508,17 +506,6 @@ document.addEventListener('DOMContentLoaded', function() {
           const realBtn = document.querySelector('.jdgm-write-rev-link');
           
           if (carousel) {
-             // Arrows Logic
-             const prev = document.querySelector('.ayus-rev-prev');
-             const next = document.querySelector('.ayus-rev-next');
-             
-             prev.addEventListener('click', () => {
-               carousel.scrollBy({ left: -320, behavior: 'smooth' });
-             });
-             next.addEventListener('click', () => {
-               carousel.scrollBy({ left: 320, behavior: 'smooth' });
-             });
-             
              // If Judge.me hasn't generated the button yet, keep waiting
              if (realBtn) {
                clearInterval(interval);
