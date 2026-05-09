@@ -69,6 +69,7 @@
   .ayus-contact-info {
     flex: 1;
     min-width: 300px;
+    padding-top: 40px;
   }
   .ayus-contact-form-wrapper {
     flex: 1.5;
@@ -94,7 +95,8 @@
       margin: 0 !important;
       font-style: italic !important;
       letter-spacing: 1px !important;
-    }
+  }
+  @media (max-width: 850px) {
     .ayus-contact-container {
       margin-top: -20px !important; 
       padding-top: 0 !important;
@@ -252,7 +254,7 @@
     <!-- Left: Contact Details -->
     <div class="ayus-contact-info">
       {% for block in section.blocks %}
-                <div class="contact-info-block {% if block.settings.title == 'Customer Support' %}featured-support{% endif %}" style="{% if block.settings.title == 'Customer Support' %}margin-top: -10px;{% endif %}" {{ block.shopify_attributes }}>
+        <div class="contact-info-block {% if block.settings.title == 'Customer Support' %}featured-support{% endif %}" {{ block.shopify_attributes }}>
           {% if block.settings.title != 'Customer Support' %}<h3>{{ block.settings.title }}</h3>{% endif %}
           
           {% if block.settings.link_text != blank %}
