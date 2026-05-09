@@ -1587,8 +1587,8 @@ html, body {
   }
   .ayus-card-price {
     font-size: 12px !important;
-    margin-top: 8px !important;
-    margin-bottom: 2px !important;
+    margin-top: auto !important;
+    margin-bottom: auto !important;
     line-height: 1.4 !important;
   }
   .ayus-card-info {
@@ -3179,8 +3179,8 @@ details > summary::-webkit-details-marker {
 
 .ayus-card-price {
   font-size: 14px !important;
-  margin-top: 0 !important;
-  margin-bottom: auto !important; /* Push everything below it down */
+  margin-top: auto !important;
+  margin-bottom: auto !important; /* Distribute space equally above and below the price */
   font-weight: 600 !important;
   color: #333 !important;
 }
