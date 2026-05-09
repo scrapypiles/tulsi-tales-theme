@@ -58,7 +58,7 @@
           
           <!-- In-Cart Cross-sells / Add-ons -->
           <div class="tt-cart-addons">
-            <div class="tt-addons-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;"><h4 class="tt-addons-title" style="margin: 0;">You May Also Like</h4><div class="tt-addons-dots"></div></div>
+            <div class="tt-addons-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;"><h4 class="tt-addons-title" style="margin: 0;">{{ section.settings.cart_upsell_heading | default: 'You May Also Like' }}</h4><div class="tt-addons-dots"></div></div>
             <div class="tt-addons-list">
               {% assign addons_shown = 0 %}
               {% for addon in collections['all'].products %}
@@ -100,7 +100,7 @@
           
           <!-- Add-ons even when empty -->
           <div class="tt-cart-addons">
-            <div class="tt-addons-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;"><h4 class="tt-addons-title" style="margin: 0;">Discover Favorites</h4><div class="tt-addons-dots"></div></div>
+            <div class="tt-addons-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;"><h4 class="tt-addons-title" style="margin: 0;">{{ section.settings.cart_empty_upsell_heading | default: 'Discover Favorites' }}</h4><div class="tt-addons-dots"></div></div>
             <div class="tt-addons-list">
               {% assign addons_shown = 0 %}
               {% for addon in collections['all'].products %}
@@ -546,7 +546,20 @@
 {% schema %}
 {
   "name": "Cart Drawer",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "cart_upsell_heading",
+      "label": "Cart Upsell Heading",
+      "default": "You May Also Like"
+    },
+    {
+      "type": "text",
+      "id": "cart_empty_upsell_heading",
+      "label": "Empty Cart Upsell Heading",
+      "default": "Discover Favorites"
+    }
+  ]
 }
 {% endschema %}
 
