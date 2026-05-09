@@ -1,0 +1,114 @@
+{% if section.settings.show_section %}
+<!-- Related Product Recommendations -->
+<section class="tt-recommendations" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; background-color: {{ section.settings.bg_color }};">
+  <div class="ayus-container">
+    <h2 style="text-align: center; font-family: var(--font-heading); margin-bottom: 40px; font-size: 32px;">{{ section.settings.heading | default: 'You May Also Like' }}</h2>
+    <div class="tt-horizontal-carousel">
+      {% assign related_count = 0 %}
+      {% assign current_tags = product.tags | join: '|||' | downcase %}
+      {% for related in collections['all'].products %}
+        {% if related.id == product.id %}{% continue %}{% endif %}
+        
+        {% assign is_match = false %}
+        {% for tag in related.tags %}
+          {% assign down_tag = tag | downcase %}
+          {% if down_tag != 'ayurvedic' and down_tag != 'vaidyaratnam' and down_tag != 'wellness' %}
+            {% if current_tags contains down_tag %}
+              {% assign is_match = true %}
+              {% break %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+
+        {% if is_match and related_count < 8 %}
+          <div class="tt-carousel-card ayus-product-card">
+          <div style="flex-grow: 1; display: flex; flex-direction: column;">
+            
+            <a href="{{ related.url }}" style="position: relative; width: 100%; padding-bottom: 125%; background: #eee; overflow: hidden; margin-bottom: 15px; display: block;">
+              {% if related.featured_media %}
+                <img src="{{ related.featured_media | img_url: '600x' }}" alt="{{ related.title | escape }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+              {% else %}
+                <div class="ayus-placeholder" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+              {% endif %}
+            </a>
+            
+            <div class="ayus-card-info" style="flex-grow: 1; display: flex; flex-direction: column; text-align: center; align-items: center; padding-top: 10px;">
+              <span class="ayus-brand-text" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-accent); margin-bottom: 5px;">{{ related.vendor }}</span>
+              <a href="{{ related.url }}" style="text-decoration: none; color: inherit; margin-bottom: auto;">
+                <h3 class="ayus-card-title" style="font-size: 16px; font-family: var(--font-body); margin-bottom: 8px;">{{ related.title | split: '-' | last | strip }}</h3>
+              </a>
+              <p class="ayus-card-price" style="margin-top: 10px; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: #333;">{{ related.price | money }}</p>
+            </div>
+            
+          </div>
+          
+          <div class="tt-card-action" style="padding: 0px 0 0 0; margin-top: auto; display: flex; flex-direction: column; width: 100%; align-items: center;">
+            <div class="tt-card-rating" style="margin-top: 2px; margin-bottom: 8px; color: #d4af37; display: flex; align-items: center; justify-content: center; gap: 2px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span style="color: #888; font-size: 11px; margin-left: 6px; font-weight: normal; letter-spacing: 0.1em; text-transform: uppercase;">(0 REVIEWS)</span>
+            </div>
+            <button type="button" class="tt-card-add-btn" onclick="event.preventDefault(); openQuickAddModal('{{ related.handle }}')">ADD TO BAG</button>
+          </div>
+        </div>
+            {% assign related_count = related_count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+      </div>
+  </div>
+
+</section>
+{% endif %}
+{% schema %}
+{
+  "name": "Product Recommendations",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "You May Also Like"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Recommendations"
+    }
+  ]
+}
+{% endschema %}

@@ -379,157 +379,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </section>
 </div>
-
-<!-- Related Product Recommendations -->
-<section class="tt-recommendations">
-  <div class="ayus-container">
-    <h2 style="text-align: center; font-family: var(--font-heading); margin-bottom: 40px; font-size: 32px;">{{ section.settings.recommendations_heading | default: 'You May Also Like' }}</h2>
-    <div class="tt-horizontal-carousel">
-      {% assign related_count = 0 %}
-      {% assign current_tags = product.tags | join: '|||' | downcase %}
-      {% for related in collections['all'].products %}
-        {% if related.id == product.id %}{% continue %}{% endif %}
-        
-        {% assign is_match = false %}
-        {% for tag in related.tags %}
-          {% assign down_tag = tag | downcase %}
-          {% if down_tag != 'ayurvedic' and down_tag != 'vaidyaratnam' and down_tag != 'wellness' %}
-            {% if current_tags contains down_tag %}
-              {% assign is_match = true %}
-              {% break %}
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-
-        {% if is_match and related_count < 8 %}
-          <div class="tt-carousel-card ayus-product-card">
-          <div style="flex-grow: 1; display: flex; flex-direction: column;">
-            
-            <a href="{{ related.url }}" style="position: relative; width: 100%; padding-bottom: 125%; background: #eee; overflow: hidden; margin-bottom: 15px; display: block;">
-              {% if related.featured_media %}
-                <img src="{{ related.featured_media | img_url: '600x' }}" alt="{{ related.title | escape }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" loading="lazy">
-              {% else %}
-                <div class="ayus-placeholder" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
-              {% endif %}
-            </a>
-            
-            <div class="ayus-card-info" style="flex-grow: 1; display: flex; flex-direction: column; text-align: center; align-items: center; padding-top: 10px;">
-              <span class="ayus-brand-text" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-accent); margin-bottom: 5px;">{{ related.vendor }}</span>
-              <a href="{{ related.url }}" style="text-decoration: none; color: inherit; margin-bottom: auto;">
-                <h3 class="ayus-card-title" style="font-size: 16px; font-family: var(--font-body); margin-bottom: 8px;">{{ related.title | split: '-' | last | strip }}</h3>
-              </a>
-              <p class="ayus-card-price" style="margin-top: 10px; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: #333;">{{ related.price | money }}</p>
-            </div>
-            
-          </div>
-          
-          <div class="tt-card-action" style="padding: 0px 0 0 0; margin-top: auto; display: flex; flex-direction: column; width: 100%; align-items: center;">
-            <div class="tt-card-rating" style="margin-top: 2px; margin-bottom: 8px; color: #d4af37; display: flex; align-items: center; justify-content: center; gap: 2px;">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <span style="color: #888; font-size: 11px; margin-left: 6px; font-weight: normal; letter-spacing: 0.1em; text-transform: uppercase;">(0 REVIEWS)</span>
-            </div>
-            <button type="button" class="tt-card-add-btn" onclick="event.preventDefault(); openQuickAddModal('{{ related.handle }}')">ADD TO BAG</button>
-          </div>
-        </div>
-            {% assign related_count = related_count | plus: 1 %}
-          {% endif %}
-        {% endfor %}
-      </div>
-  </div>
-
-</section>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const zoomContainer = document.querySelector('.tt-main-image-zoom');
-    if(zoomContainer) {
-      zoomContainer.addEventListener('mousemove', function(e) {
-        const primaryImg = document.getElementById('tt-primary-image');
-        if(!primaryImg) return;
-        const rect = zoomContainer.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const xPercent = (x / rect.width) * 100;
-        const yPercent = (y / rect.height) * 100;
-        primaryImg.style.transformOrigin = `${xPercent}% ${yPercent}%`;
-        primaryImg.style.transform = 'scale(1.5)';
-      });
-      zoomContainer.addEventListener('mouseleave', function() {
-        const primaryImg = document.getElementById('tt-primary-image');
-        if(primaryImg) {
-          primaryImg.style.transformOrigin = 'center center';
-          primaryImg.style.transform = 'scale(1)';
-        }
-      });
-    }
-  });
-
-  window.changeMainImage = function(url) {
-    const primaryImg = document.getElementById('tt-primary-image');
-    if(primaryImg) {
-      primaryImg.src = url;
-    }
-  }
-</script>
-
-<!-- Customer Reviews Horizontal Section -->
-<div style="width: 100%; background-color: #ffffff; padding: 60px 0 80px 0;">
-<div class="ayus-container" style="max-width: 1440px; margin: 0 auto; padding: 0 40px;">
-  
-
-  
-  <!-- Judge.me Main Widget Wrapped for Arrows -->
-  <div style="position: relative; max-width: 100%;" id="ayus-reviews-wrapper">
-    
-    {%- for block in section.blocks -%}
-      {%- render block -%}
-    {%- endfor -%}
-
-    <div id='judgeme_product_reviews' class='jdgm-widget jdgm-review-widget' data-product-title='{{ product.title | escape }}' data-id='{{ product.id }}'>
-      {{ product.metafields.judgeme.widget }}
-    </div>
-    
-  </div>
-
-  <div class="ayus-review-bottom-action">
-    <button id="ayus-trigger-review" class="ayus-btn-elegant">Write a Review</button>
-  </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-       const interval = setInterval(() => {
-          const carousel = document.querySelector('.jdgm-rev-widg__reviews');
-          const realBtn = document.querySelector('.jdgm-write-rev-link');
-          
-          if (carousel) {
-             // If Judge.me hasn't generated the button yet, keep waiting
-             if (realBtn) {
-               clearInterval(interval);
-               document.getElementById('ayus-trigger-review').addEventListener('click', function(e) {
-                  e.preventDefault();
-                  realBtn.click();
-               });
-             }
-          }
-       }, 500);
-       
-       // Fallback clear
-       setTimeout(() => clearInterval(interval), 10000);
-    });
-  </script>
-
-</div>
-</div>
-
 {% endif %}
 
 {% schema %}
 {
-  "name": "Ayus Product Layout",
+  "name": "Product Information",
   "settings": [
     {
       "type": "checkbox",
@@ -559,13 +413,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       "type": "header",
-      "content": "Headings"
-    },
-    {
-      "type": "text",
-      "id": "recommendations_heading",
-      "label": "Recommendations Heading",
-      "default": "You May Also Like"
+      "content": "Accordions"
     },
     {
       "type": "text",
