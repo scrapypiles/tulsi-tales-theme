@@ -162,7 +162,7 @@
                   return true;
                 }
 
-                if (!badge) {
+                if (!badge || reviewCount === 0) {
                   fallback.style.display = 'inline-flex';
                 }
                 return !!badge;

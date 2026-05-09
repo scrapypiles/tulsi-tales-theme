@@ -3416,7 +3416,6 @@ details > summary::-webkit-details-marker {
 .jdgm-star,
 .jdgm-star::before {
   color: var(--color-accent) !important;
-  font-family: 'JudgemeIcon' !important;
 }
 
 /* Make widget title fancy serif */
