@@ -1583,7 +1583,7 @@ html, body {
   .ayus-card-info {
     padding: 8px 10px 0px 10px !important;
   }
-  .tt-card-action { padding-top: 0px !important; margin-top: 0px !important; }
+  .tt-card-action { padding-top: 0px !important; margin-top: auto !important; }
   .tt-card-action .tt-card-rating {
     margin-top: 2px !important;
     margin-bottom: 8px !important;
@@ -3168,8 +3168,8 @@ details > summary::-webkit-details-marker {
 
 .ayus-card-price {
   font-size: 14px !important;
-  margin-top: auto !important;
-  margin-bottom: 4px !important;
+  margin-top: 10px !important;
+  margin-bottom: 8px !important;
   font-weight: 600 !important;
   color: #333 !important;
 }
