@@ -3043,7 +3043,7 @@ details > summary::-webkit-details-marker {
 .ayus-pdp-stars .jdgm-star::before,
 .ayus-pdp-stars .jdgm-prev-badge__stars {
   color: #d4af37 !important;
-  font-size: 32px !important;
+  font-size: 24px !important;
 }
 
 @media (min-width: 851px) {
