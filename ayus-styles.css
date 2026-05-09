@@ -730,14 +730,8 @@ h6 {
 
 /* Update 3b: Metafield Grid */
 .tt-meta-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
   margin-top: 0px;
   margin-bottom: 40px;
-  padding: 20px 20px 15px 20px;
-  background: var(--color-background);
-  border: none;
 }
 .tt-meta-item {
   display: flex;
@@ -3355,7 +3349,7 @@ details > summary::-webkit-details-marker {
     grid-template-columns: 1fr 1fr !important; /* Two columns on mobile */
     margin-top: 0 !important;
     margin-bottom: 25px !important;
-    padding: 15px 15px 10px 15px !important;
+    padding-bottom: 25px !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }

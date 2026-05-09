@@ -95,7 +95,7 @@
     <div class="ayus-product-info-wrapper">
       
       <!-- Brand & Title -->
-      <div class="ayus-product-header">
+      <div class="ayus-product-header" style="padding-bottom: 30px; border-bottom: 1px solid var(--color-border); margin-bottom: 30px;">
         {%- if product.metafields.custom.brand_name -%}
           <p class="ayus-brand-name">{{ product.metafields.custom.brand_name }}</p>
         {%- else -%}
@@ -187,7 +187,7 @@
           
           
 <!-- 3: Size / Quantity Selector block (Purearth style) -->
-          <div class="tt-commerce-controls" style="display:flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-top: 5px; margin-bottom: 30px; border-bottom: 1px solid var(--color-border); padding-bottom: 25px;">
+          <div class="tt-commerce-controls" style="display:flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-top: 0;">
             <div class="tt-size-selector" style="width: 100%;">
               <span class="tt-control-label" style="margin-bottom: 10px; display: block;">Size:</span>
               <div class="ayus-variant-pills" style="display: flex; flex-wrap: wrap; gap: 10px;">
@@ -223,11 +223,11 @@
         </form>
       </div>
 
-      <!-- 3: Non-Accordion Metafields Grid -->
-<div class="tt-meta-grid">
-        {%- if product.metafields.custom.product_type != blank -%}
-          <div class="tt-meta-item">
-            <span class="tt-meta-key">Type</span>
+      <div class="tt-meta-grid" style="border-bottom: 1px solid var(--color-border); padding-bottom: 40px; margin-bottom: 0;">
+        <div style="background: var(--color-background); padding: 25px 25px 20px 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          {%- if product.metafields.custom.product_type != blank -%}
+            <div class="tt-meta-item">
+              <span class="tt-meta-key">Type</span>
             <span class="tt-meta-val">{{ product.metafields.custom.product_type }}</span>
           </div>
         {%- endif -%}
@@ -255,6 +255,7 @@
             <span class="tt-meta-val">{{ product.metafields.custom.expiry | replace: "Months", "" | replace: "months", "" | strip }} Months</span>
           </div>
         {%- endif -%}
+        </div>
       </div>
 
       <!-- Accordions / Dropdowns -->
