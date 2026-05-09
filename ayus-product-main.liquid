@@ -485,9 +485,15 @@ document.addEventListener('DOMContentLoaded', function() {
   <!-- Judge.me Main Widget Wrapped for Arrows -->
   <div style="position: relative; max-width: 100%;" id="ayus-reviews-wrapper">
     <button class="ayus-rev-arrow ayus-rev-prev">&#8592;</button>
-    <div id='judgeme_product_reviews' class='jdgm-widget jdgm-review-widget' data-id='{{ product.id }}' data-product-title='{{ product.title | escape }}' data-product-handle='{{ product.handle }}' data-auto-install='false'>
+    
+    {%- for block in section.blocks -%}
+      {%- render block -%}
+    {%- endfor -%}
+
+    <div id='judgeme_product_reviews' class='jdgm-widget jdgm-review-widget' data-product-title='{{ product.title | escape }}' data-id='{{ product.id }}'>
       {{ product.metafields.judgeme.widget }}
     </div>
+    
     <button class="ayus-rev-arrow ayus-rev-next">&#8594;</button>
   </div>
 
@@ -563,6 +569,11 @@ document.addEventListener('DOMContentLoaded', function() {
       "unit": "px",
       "label": "Padding bottom",
       "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
     }
   ]
 }
