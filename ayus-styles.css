@@ -1254,7 +1254,7 @@ h6 {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  line-height: 0 !important;
+  line-height: normal !important;
   text-align: center;
   padding: 0;
   font-weight: 700;
@@ -1419,7 +1419,7 @@ html, body {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    line-height: 0 !important;
+    line-height: normal !important;
     padding: 0 !important;
     border-radius: 50% !important;
   }
@@ -3210,13 +3210,17 @@ details > summary::-webkit-details-marker {
   align-items: center !important;
   justify-content: center !important;
   padding: 0 !important;
-  line-height: 0 !important;
+  padding-top: 1.5px !important; /* Optical adjustment for font baseline */
+  line-height: normal !important;
+  box-sizing: border-box !important;
 }
 
 @media (max-width: 850px) {
   .tt-cart-badge {
-    line-height: 0 !important;
     padding: 0 !important;
+    padding-top: 1.5px !important;
+    line-height: normal !important;
+    box-sizing: border-box !important;
   }
   
   .tt-qty-box.tt-cart-qty {
