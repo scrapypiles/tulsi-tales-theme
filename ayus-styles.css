@@ -3366,7 +3366,7 @@ details > summary::-webkit-details-marker {
   .tt-mobile-carousel-track {
     display: flex;
     overflow-x: auto;
-    scroll-snap-type: x proximity;
+    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none; /* Firefox */
   }
@@ -3376,17 +3376,22 @@ details > summary::-webkit-details-marker {
   .tt-mobile-carousel-slide {
     flex: 0 0 100%;
     scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .tt-mobile-carousel-slide img {
     width: 100%;
     height: auto;
+    object-fit: cover;
     display: block;
+    aspect-ratio: 1 / 1;
   }
   .tt-mobile-carousel-dots {
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-top: 15px;
+    margin-top: 10px;
   }
   .tt-dot {
     width: 6px;
