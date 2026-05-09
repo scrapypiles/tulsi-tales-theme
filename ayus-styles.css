@@ -3168,7 +3168,7 @@ details > summary::-webkit-details-marker {
 
 .ayus-card-price {
   font-size: 14px !important;
-  margin-top: 10px !important;
+  margin-top: auto !important;
   margin-bottom: 8px !important;
   font-weight: 600 !important;
   color: #333 !important;
