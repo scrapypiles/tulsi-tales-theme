@@ -76,8 +76,15 @@ function uploadAsset(key, localPath, attempt = 1) {
 }
 
 async function main() {
-  const files = SOURCE_DIRS.flatMap((dir) => walk(path.join(ROOT, dir))).sort();
+  const requested = process.argv.slice(2);
+  const files = requested.length
+    ? requested.map((relativePath) => path.join(ROOT, relativePath))
+    : SOURCE_DIRS.flatMap((dir) => walk(path.join(ROOT, dir))).sort();
+
   for (const file of files) {
+    if (!fs.existsSync(file)) {
+      throw new Error(`Missing local file: ${file}`);
+    }
     const key = path.relative(ROOT, file).split(path.sep).join('/');
     await uploadAsset(key, file);
     await sleep(600);

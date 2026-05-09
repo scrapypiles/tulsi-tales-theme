@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="canonical" href="{% if template == 'index' %}https://www.tulsitales.com{% else %}{{ canonical_url }}{% endif %}">
+    <link rel="canonical" href="{{ canonical_url }}">
     <title>{% if template == 'index' %}Tulsi Tales | Authentic Ayurvedic Products from India{% else %}{{ page_title }} | Tulsi Tales{% endif %}</title>
 
     <meta property="og:type" content="website">
@@ -13,6 +13,9 @@
     <meta property="og:description" content="{% if page_description %}{{ page_description | escape }}{% else %}A curated Ayurvedic marketplace sourcing authentic herbs, supplements, oils, and wellness products from India. Delivered across India and worldwide.{% endif %}">
     <meta property="og:url" content="{{ canonical_url }}">
     <meta name="description" content="{% if page_description %}{{ page_description | escape }}{% else %}A curated Ayurvedic marketplace sourcing authentic herbs, supplements, oils, and wellness products from India. Delivered across India and worldwide.{% endif %}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% if template == 'index' %}Tulsi Tales | Authentic Ayurvedic Products from India{% else %}{{ page_title }}{% endif %}">
+    <meta name="twitter:description" content="{% if page_description %}{{ page_description | escape }}{% else %}A curated Ayurvedic marketplace sourcing authentic herbs, supplements, oils, and wellness products from India. Delivered across India and worldwide.{% endif %}">
 
 
     {%- assign social_img = settings.share_image | default: 'seo-image.jpg' -%}
@@ -25,9 +28,32 @@
       <meta property="og:image:secure_url" content="{{ 'seo-image.jpg' | asset_url }}">
       <meta name="twitter:image" content="{{ 'seo-image.jpg' | asset_url }}">
     {%- endif -%}
+    {%- assign website_search_target = shop.url | append: routes.search_url | append: '?q={search_term_string}' -%}
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Tulsi Tales — curated Ayurvedic products from India">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": {{ shop.name | json }},
+        "url": {{ shop.url | json }},
+        "logo": {{ settings.share_image | image_url: width: 512 | json }}
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": {{ shop.name | json }},
+        "url": {{ shop.url | json }},
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {{ website_search_target | json }},
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
 
     {{ content_for_header }}
     
@@ -62,8 +88,6 @@
       <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png">
     {% endif %}
 
-    <!-- Judge.me Core -->
-    {% render 'judgeme_core' %}
   </head>
   <body class="ayus-body-template template-{{ template.name }}">
     
