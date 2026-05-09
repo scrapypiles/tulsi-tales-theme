@@ -11,7 +11,7 @@
     {% assign split_bg = 'https://images.unsplash.com/photo-1611078449942-9ce28014eeb5?q=80&w=1200' %}
   {% endif %}
   <div class="tt-story-split {% if section.settings.image_position == 'right' %}tt-reverse{% endif %}" style="display: flex; flex-wrap: wrap; align-items: stretch; {% if section.settings.image_position == 'right' %}flex-direction: row-reverse;{% endif %}">
-    <div class="tt-split-img" role="img" aria-label="{{ section.settings.heading | escape }}" style="flex: 1; min-width: 300px; min-height: 420px; background-image: url('{{ split_bg }}'); background-size: contain; background-repeat: no-repeat; background-position: center center;"></div>
+    <div class="tt-split-img" role="img" aria-label="{{ section.settings.heading | escape }}" style="flex: 1; min-width: 300px; background-image: url('{{ split_bg }}'); background-size: cover; background-repeat: no-repeat; background-position: center center;"></div>
     <div class="tt-split-text" style="flex: 1; min-width: 300px; padding: 60px 8%; display: flex; flex-direction: column; justify-content: center;">
       {% if section.settings.label != blank %}
         <span style="font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.15em; font-size: 12px; color: var(--color-accent); margin-bottom: 10px; display: block;">{{ section.settings.label }}</span>
@@ -36,7 +36,7 @@
     .tt-split-img {
       flex: 0 0 50% !important;
       max-width: 50% !important;
-      min-height: 600px !important;
+      min-height: 100% !important; /* Let it match the text height naturally */
     }
 
     .tt-split-text {
