@@ -4,7 +4,7 @@
   <div style="max-width: 800px; margin: 0 auto;">
     <div style="text-align: center; margin-bottom: 50px;">
       {% if section.settings.label != blank %}
-        <span style="font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.15em; font-size: 10px; color: var(--color-accent); margin-bottom: 15px; display: block;">{{ section.settings.label }}</span>
+        <span class="tt-story-label" style="font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.15em; font-size: 10px; color: var(--color-accent); margin-bottom: 15px; display: block;">{{ section.settings.label }}</span>
       {% endif %}
       <h2 style="font-family: var(--font-heading); font-size: 32px; color: var(--color-text);">{{ section.settings.heading }}</h2>
     </div>
@@ -43,6 +43,12 @@ details.tt-filter-group summary .tt-icon-toggle {
 
 details.tt-filter-group:not([open]) summary .tt-icon-toggle::before { content: "+"; }
 details.tt-filter-group[open] summary .tt-icon-toggle::before { content: "−"; } /* using minus sign instead of hyphen */
+
+@media (max-width: 850px) {
+  .ayus-story-faq .tt-story-label {
+    font-size: 12px !important;
+  }
+}
 </style>
 
 {% endif %}

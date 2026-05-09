@@ -7,7 +7,7 @@
     
   <div style="max-width: 800px; margin: 0 auto;">
     {% if section.settings.label != blank %}
-      <span style="font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.15em; font-size: 12px; color: var(--color-accent); margin-bottom: 15px; display: block;">{{ section.settings.label }}</span>
+      <span class="tt-story-label" style="font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.15em; font-size: 12px; color: var(--color-accent); margin-bottom: 15px; display: block;">{{ section.settings.label }}</span>
     {% endif %}
     {% if section.settings.heading != blank %}
       <h2 style="font-family: var(--font-heading); font-size: 32px; margin-bottom: 30px; color: var(--color-text);">{{ section.settings.heading }}</h2>
@@ -19,6 +19,14 @@
     {% endif %}
   </div>
 </section>
+
+<style>
+  @media (max-width: 850px) {
+    .ayus-story-text .tt-story-label {
+      font-size: 13px !important;
+    }
+  }
+</style>
 
 {% endif %}
 
