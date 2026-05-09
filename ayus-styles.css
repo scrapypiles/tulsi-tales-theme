@@ -3210,7 +3210,7 @@ details > summary::-webkit-details-marker {
   align-items: center !important;
   justify-content: center !important;
   padding: 0 !important;
-  padding-top: 1.5px !important; /* Optical adjustment for font baseline */
+  padding-top: 0.5px !important; /* Optical adjustment for font baseline */
   padding-left: 1px !important; /* Push slightly right */
   letter-spacing: 0 !important; /* Ensure no tracking pushes it left */
   line-height: normal !important;
@@ -3220,7 +3220,7 @@ details > summary::-webkit-details-marker {
 @media (max-width: 850px) {
   .tt-cart-badge {
     padding: 0 !important;
-    padding-top: 1.5px !important;
+    padding-top: 0.5px !important;
     padding-left: 1px !important;
     letter-spacing: 0 !important;
     line-height: normal !important;
