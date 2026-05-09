@@ -2336,8 +2336,8 @@ details.ayus-accordion[open] > summary .ayus-icon-plus::after {
   position: relative !important;
   top: -2px !important;
 }
-.ayus-pdp-stars-fallback {
-  display: none;
+.ayus-pdp-stars-custom {
+  display: flex;
   align-items: center;
   gap: 10px;
   line-height: 1;
@@ -3042,7 +3042,6 @@ details > summary::-webkit-details-marker {
 .ayus-pdp-stars .jdgm-prev-badge__stars {
   color: #d4af37 !important;
   font-size: 16px !important;
-  font-family: 'JudgemeIcon' !important;
 }
 
 @media (min-width: 851px) {
@@ -3418,7 +3417,6 @@ details > summary::-webkit-details-marker {
 .jdgm-star,
 .jdgm-star::before {
   color: var(--color-accent) !important;
-  font-family: 'JudgemeIcon' !important;
 }
 
 /* Make widget title fancy serif */
