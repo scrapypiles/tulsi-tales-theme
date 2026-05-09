@@ -1588,16 +1588,16 @@ html, body {
   .ayus-card-price {
     font-size: 12px !important;
     margin-top: auto !important;
-    margin-bottom: 8px !important;
+    margin-bottom: 4px !important;
     line-height: 1.4 !important;
   }
   .ayus-card-info {
     padding: 8px 10px 0px 10px !important;
   }
-  .tt-card-action { padding-top: 0px !important; margin-top: auto !important; }
+  .tt-card-action { padding-top: 0px !important; margin-top: 0px !important; }
   .tt-card-action .tt-card-rating {
     margin-top: 2px !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 8px !important;
   }
   .tt-collection-hero { height: 350px !important;
     min-height: 120px !important;
@@ -3180,7 +3180,7 @@ details > summary::-webkit-details-marker {
 .ayus-card-price {
   font-size: 14px !important;
   margin-top: auto !important;
-  margin-bottom: 8px !important;
+  margin-bottom: 4px !important;
   font-weight: 600 !important;
   color: #333 !important;
 }
