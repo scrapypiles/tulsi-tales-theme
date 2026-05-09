@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "ayus-page",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

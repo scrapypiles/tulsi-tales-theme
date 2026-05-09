@@ -1,0 +1,283 @@
+{
+  "sections": {
+    "hero": {
+      "type": "ayus-story-hero",
+      "settings": {
+        "header_placement": "center",
+        "border_placement": "none",
+        "heading_size": "36px",
+        "text_color": "#333333",
+        "bg_color": "#faf8f5",
+        "hero_image": "shopify:\/\/shop_images\/Rustic_wellness_with_tulsi_sprigs.png",
+        "hero_tagline": "Unfold a Tale of India",
+        "hero_heading": "We found something that worked. We wanted to share it.",
+        "hero_subheading": "<p>Tulsi Tales is a curated Ayurvedic marketplace. We don't make the products — we find the ones worth trusting, and bring them to you.<\/p>"
+      }
+    },
+    "quote": {
+      "type": "ayus-story-quote",
+      "settings": {
+        "bg_color": "#faf8f5",
+        "header_placement": "center",
+        "border_placement": "none",
+        "heading_size": "36px",
+        "text_color": "#333333",
+        "layout_bg_color": "#faf8f5",
+        "quote_text": "<p>Ayurveda doesn't only treat your illness. It works to restore the conditions in which health is your natural state.<\/p>"
+      }
+    },
+    "how_it_started": {
+      "type": "ayus-story-split",
+      "settings": {
+        "bg_color": "",
+        "header_placement": "center",
+        "border_placement": "none",
+        "heading_size": "36px",
+        "text_color": "#333333",
+        "layout_bg_color": "#faf8f5",
+        "image": "shopify:\/\/shop_images\/Cultivating_tulsi__hands_tradition_harvest1.png",
+        "image_position": "right",
+        "label": "Where this began",
+        "heading": "A personal experience, not a business plan",
+        "text": "<p>Tulsi Tales didn't start with a pitch deck. It started with a genuine encounter with Ayurveda — and the frustration of watching people struggle to find authentic products in a space full of noise.<\/p><p>Our founders had both experienced the difference that real, well-sourced Ayurvedic remedies can make. Not as a quick fix, but as a slow, steady return to feeling like yourself. The kind of shift that makes you want to tell people about it.<\/p><p>The problem was clear: finding genuinely good Ayurvedic products — whether you're in India or anywhere else in the world — is harder than it should be. The market is cluttered. Labels are confusing. Trust is in short supply.<\/p><p>So we decided to do the vetting ourselves, and build something we'd actually want to use.<\/p>"
+      }
+    },
+    "what_is_ayurveda": {
+      "type": "ayus-story-text",
+      "settings": {
+        "bg_color": "",
+        "header_placement": "center",
+        "border_placement": "none",
+        "heading_size": "36px",
+        "text_color": "#333333",
+        "layout_bg_color": "#faf8f5",
+        "label": "A little background",
+        "heading": "Ayurveda — what it actually is, and why it matters",
+        "text": "<p>Ayurveda is a system of medicine that originated in India over 5,000 years ago. The word itself means \"the science of life\" in Sanskrit. At its core, it is built on the idea that health is not just the absence of illness — it is a state of genuine balance between body, mind, and environment.<\/p><p>It works through understanding your individual constitution — your unique mix of three energies called doshas: Vata (movement and the nervous system), Pitta (digestion and metabolism), and Kapha (structure and immunity). Most chronic imbalances, according to Ayurveda, come from ignoring this constitution for long enough.<\/p><p>The remedies Ayurveda uses are largely plant-based — herbs, roots, oils, and formulations that have been studied, refined, and passed down for millennia. Many of the active compounds in these plants are now being validated by modern research.<\/p><p>This is not mysticism. It is one of the world's oldest evidence-informed systems of care, and it is still deeply relevant.<\/p>"
+      }
+    },
+    "the_problem": {
+      "type": "ayus-story-split",
+      "settings": {
+        "bg_color": "",
+        "header_placement": "center",
+        "border_placement": "none",
+        "heading_size": "36px",
+        "text_color": "#333333",
+        "layout_bg_color": "#faf8f5",
+        "image": "shopify:\/\/shop_images\/Gemini_Generated_Image_v88x7uv88x7uv88x.png",
+        "image_position": "left",
+        "label": "Why Tulsi Tales exists",
+        "heading": "Good Ayurvedic products exist. Finding them is the hard part.",
+        "text": "<p>India produces some of the finest Ayurvedic herbs, formulations, and wellness products in the world. The knowledge, the ingredients, the makers — they're all there.<\/p><p>But the market is a mess.<\/p><p>Walk into any pharmacy or wellness store — in India or abroad — and you'll find shelves full of products making big claims. Some are excellent. Many are not. Ingredients are diluted, sourcing is opaque, and the stories behind products are either missing or manufactured for marketing.<\/p><p>For someone new to Ayurveda, it's overwhelming. For someone who knows what they're looking for, it's exhausting.<\/p><p>Internationally, the problem is even more pronounced. Authentic Indian wellness products are hard to find, expensive to import, and rarely come with any real context or guidance.<\/p><p>This is the gap Tulsi Tales is here to close — not by making products, but by finding the right ones, checking them properly, and making them easy to access whether you're in India or on the other side of the world.<\/p>"
+      }
+    },
+    "the_bigger_picture": {
+      "type": "ayus-story-text",
+      "settings": {
+        "bg_color": "",
+        "header_placement": "center",
+        "border_placement": "none",
+        "heading_size": "36px",
+        "text_color": "#333333",
+        "layout_bg_color": "#faf8f5",
+        "label": "Our curation process",
+        "heading": "We don't list everything. We list what we'duse ourselves.",
+        "text": "<p>We are not a platform where any brand can list their products. Everything on Tulsi Tales is there because we chose it — and choosing takes work.<\/p><p>Before a product makes it onto the site, we look at the ingredients and whether they are what they claim to be, the sourcing and manufacturing practices behind it, whether the formulation is grounded in genuine Ayurvedic tradition, and whether the brand behind it operates with honesty and care.<\/p><p>We also look at whether we can tell the product's story clearly — where it comes from, what it's for, and how to use it. If we can't explain it simply and honestly, it's not ready to be on Tulsi Tales.<\/p><p>This is ongoing. We revisit products, ask questions, and remove things that no longer meet our standard. Curation is not a one-time act.<\/p>"
+      }
+    },
+    "curation": {
+      "type": "ayus-story-split",
+      "settings": {
+        "bg_color": "",
+        "header_placement": "center",
+        "border_placement": "none",
+        "heading_size": "36px",
+        "text_color": "#333333",
+        "layout_bg_color": "#faf8f5",
+        "image": "shopify:\/\/shop_images\/Cultivating-tulsi_-hands_-tradition_-harvest2.jpg",
+        "image_position": "right",
+        "label": "Where we're headed",
+        "heading": "Making Ayurveda accessible — in India, and everywhere else",
+        "text": "<p>Right now, Tulsi Tales is focused on one thing: building a curated collection of Ayurvedic products that people can trust.<\/p><p>But the longer vision is bigger than that.<\/p><p>We want Tulsi Tales to be the place people go when they want to understand Ayurveda — not just buy something from it. A resource. A starting point. A place that explains the tradition honestly and helps people find what's actually right for them, based on who they are, not what's trending.<\/p><p>We also believe that the makers and growers behind authentic Ayurvedic products — many of them small producers working with generational knowledge — deserve more visibility and more support. A marketplace that does right by them is one that does right by the tradition itself.<\/p><p>This is a long project. We're at the beginning of it.<\/p>"
+      }
+    },
+    "values": {
+      "type": "ayus-story-values",
+      "blocks": {
+        "val1": {
+          "type": "value",
+          "settings": {
+            "title": "Honesty",
+            "text": "<p>We tell you what a product is, what it isn't, and what to expect from it. No exaggerated claims.<\/p>"
+          }
+        },
+        "val2": {
+          "type": "value",
+          "settings": {
+            "title": "Rigorous curation",
+            "text": "<p>We would rather have fewer products on the site than carry something we aren't confident in.<\/p>"
+          }
+        },
+        "val3": {
+          "type": "value",
+          "settings": {
+            "title": "Accessibility",
+            "text": "<p>Authentic Ayurveda should be understandable and affordable, not gatekept or overcomplicated.<\/p>"
+          }
+        },
+        "val4": {
+          "type": "value",
+          "settings": {
+            "title": "Respect for tradition",
+            "text": "<p>We take the source material seriously. Ayurveda is a living science and we engage with it carefully.<\/p>"
+          }
+        },
+        "val5": {
+          "type": "value",
+          "settings": {
+            "title": "Transparency about sourcing",
+            "text": "<p>We want to know where things come from, and we want you to know too.<\/p>"
+          }
+        },
+        "val6": {
+          "type": "value",
+          "settings": {
+            "title": "No pressure",
+            "text": "<p>Wellness is personal. We offer information and options, not prescriptions or quick fixes.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "val1",
+        "val2",
+        "val3",
+        "val4",
+        "val5",
+        "val6"
+      ],
+      "settings": {
+        "bg_color": "",
+        "header_placement": "center",
+        "border_placement": "none",
+        "heading_size": "36px",
+        "text_color": "#333333",
+        "layout_bg_color": "#faf8f5",
+        "label": "Our values",
+        "heading": "What guides every decision we make",
+        "text": ""
+      }
+    },
+    "faqs": {
+      "type": "ayus-story-faq",
+      "blocks": {
+        "faq1": {
+          "type": "faq",
+          "settings": {
+            "question": "What is Ayurveda?",
+            "answer": "Ayurveda is a traditional system of medicine that originated in India more than 5,000 years ago. It focuses on maintaining health through balance — between your body, mind, and environment — rather than simply treating illness after it appears. It uses herbs, diet, daily routines, and lifestyle practices tailored to your individual constitution."
+          }
+        },
+        "faq2": {
+          "type": "faq",
+          "settings": {
+            "question": "What are Vata, Pitta, and Kapha?",
+            "answer": "These are the three doshas — the core energies in Ayurvedic philosophy. Vata governs movement and the nervous system. Pitta governs digestion, metabolism, and transformation. Kapha governs structure, immunity, and stability. Every person has a unique combination of all three, and understanding yours helps explain a lot about how your body and mind naturally function."
+          }
+        },
+        "faq3": {
+          "type": "faq",
+          "settings": {
+            "question": "Is Ayurveda scientifically backed?",
+            "answer": "Ayurveda has a long empirical tradition — thousands of years of documented observation and refinement. Many of its key herbs and compounds, such as ashwagandha, turmeric, and triphala, have been studied in modern clinical research and show measurable effects. That said, Ayurveda is a whole system of medicine — it works best understood on its own terms, not just as a source of individual ingredients."
+          }
+        },
+        "faq4": {
+          "type": "faq",
+          "settings": {
+            "question": "Are Ayurvedic products safe to use?",
+            "answer": "When sourced properly and used as directed, Ayurvedic products are generally safe for most people. Quality matters enormously ��� which is why curation is the foundation of what we do. As with any supplement or wellness product, if you are pregnant, breastfeeding, managing a medical condition, or taking medication, please consult your doctor before use."
+          }
+        },
+        "faq5": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you make the products yourself?",
+            "answer": "No. We are a curated marketplace. We source and vet products from trusted Ayurvedic brands and producers — we do not manufacture anything ourselves. Our role is to do the due diligence so you don't have to."
+          }
+        },
+        "faq6": {
+          "type": "faq",
+          "settings": {
+            "question": "Where do your products come from?",
+            "answer": "All products on Tulsi Tales are sourced from India. We work to ensure that the brands and producers we carry operate with transparency about their ingredients, sourcing, and manufacturing standards."
+          }
+        },
+        "faq7": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": "Yes. We ship to customers both within India and internationally. Shipping details and costs are available at checkout."
+          }
+        },
+        "faq8": {
+          "type": "faq",
+          "settings": {
+            "question": "I'm new to Ayurveda. Where do I start?",
+            "answer": "Start simple. You don't need to overhaul your life or understand every concept before you begin. Pick one area — sleep, digestion, stress, skin — and look for a product designed to support it. Read the product page, understand what's in it and why, and see how your body responds. We'll add more guidance and resources over time to help you find your footing."
+          }
+        },
+        "faq9": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I know if a product is right for my dosha?",
+            "answer": "Each product page on Tulsi Tales includes information about which doshas it is best suited for and what imbalance it is traditionally used to address. If you're not sure of your dosha yet, that's fine — many products are suitable for all constitutions, and we'll always tell you when something is more specific."
+          }
+        }
+      },
+      "block_order": [
+        "faq1",
+        "faq2",
+        "faq3",
+        "faq4",
+        "faq5",
+        "faq6",
+        "faq7",
+        "faq8",
+        "faq9"
+      ],
+      "settings": {
+        "bg_color": "",
+        "label": "FAQs",
+        "heading": "Questions we get asked a lot"
+      }
+    },
+    "cta": {
+      "type": "ayus-story-cta",
+      "settings": {
+        "bg_color": "",
+        "header_placement": "center",
+        "border_placement": "none",
+        "heading_size": "36px",
+        "text_color": "#333333",
+        "layout_bg_color": "#faf8f5",
+        "heading": "This is just the beginning.",
+        "text": "<p>We are a small team with a clear purpose — make it easier for people to find and trust authentic Ayurvedic products, wherever they are in the world.<\/p><p>If you've been curious about Ayurveda and didn't know where to start, you're in the right place. If you already know what you're looking for, we hope you find it here.<\/p><p>Either way, welcome.<\/p>",
+        "btn_label": "Shop the Collection →",
+        "btn_link": "shopify:\/\/collections\/all"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "quote",
+    "how_it_started",
+    "what_is_ayurveda",
+    "the_problem",
+    "the_bigger_picture",
+    "curation",
+    "values",
+    "faqs",
+    "cta"
+  ]
+}

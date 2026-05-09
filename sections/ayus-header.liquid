@@ -1,0 +1,222 @@
+{% if section.settings.show_section %}
+
+
+<!-- Top Announcement Bar -->
+{% if section.settings.show_announcement %}
+<div class="tt-announcement-bar">
+  <p>{{ section.settings.announcement_text | escape }}</p>
+</div>
+{% endif %}
+
+<header class="ayus-header" style="padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px !important;">
+  <div class="ayus-header-container">
+    <div class="tt-mobile-header-left">
+      <div class="ayus-mobile-toggle" onclick="openMobileMenu();" aria-label="Open menu" role="button">
+        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="17" x2="20" y2="17"></line>
+        </svg>
+      </div>
+      <a href="#" class="tt-icon-link tt-mobile-search-toggle" data-search-toggle="true" aria-label="Search">
+        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </a>
+    </div>
+
+    <!-- Desktop Nav Left -->
+    
+
+    <!-- Logo -->
+    <div class="ayus-nav-left desktop-only">
+      {% for link in linklists[section.settings.menu].links %}
+        {% if link.title == 'Home' or link.title == 'Contact' or link.title == 'Contact Us' or link.url contains 'contact' %}{% continue %}{% endif %}
+        <div class="ayus-nav-item tt-desktop-dropdown">
+          <a href="{{ link.url }}" class="ayus-nav-link tt-desktop-link">{% if link.title == 'Catalog' %}All Products{% else %}{{ link.title }}{% endif %}{% if link.links != blank %} <svg style="margin-left:5px; width:10px; height:10px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>{% endif %}</a>
+          {% if link.links != blank %}
+            <div class="ayus-dropdown tt-desktop-menu">
+              {% for childlink in link.links %}
+                <a href="{{ childlink.url }}" style="text-transform: none; letter-spacing: 0.05em; margin: 0; padding: 5px 0;">{{ childlink.title }}</a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+      <div class="ayus-nav-item tt-desktop-dropdown">
+        <a href="/pages/our-story" class="ayus-nav-link tt-desktop-link">Our Story</a>
+      </div>
+    </div>
+    <div class="ayus-logo">
+      <a href="/" class="tt-logo-link">
+        {% assign logo_url = section.settings.logo | default: 'tulsi-tales-logo.png' %}
+        {% if logo_url %}
+          <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" style="max-height: {{ section.settings.logo_height }}px; width: auto; display: block;">
+        {% else %}
+          {{ shop.name }}
+        {% endif %}
+      </a>
+    </div>
+
+    <!-- Nav Right (Desktop + Mobile Cart) -->
+    <div class="ayus-nav-right">
+      
+
+      <a href="#" class="tt-icon-link tt-desktop-search-toggle desktop-only" data-search-toggle="true" aria-label="Search"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></a>
+      {% if customer %}
+        <a href="{{ routes.account_url }}" class="ayus-account-link tt-icon-link" title="Account"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
+      {% else %}
+        <a href="{{ routes.account_login_url }}" class="ayus-account-link tt-icon-link" title="Log In"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
+      {% endif %}
+      <a href="#" class="ayus-cart-link tt-icon-link" onclick="openBagDrawer(); return false;"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg><span class="tt-cart-badge" id="tt-cart-badge" style="position: absolute; top: -5px; right: -5px; width: 18px !important; height: 18px !important; font-size: 10px !important; font-family: var(--font-body) !important; display: flex !important; align-items: center !important; justify-content: center !important; margin: 0 !important; border-radius: 50% !important; background: var(--color-accent) !important; color: #fff !important; line-height: normal !important; box-sizing: border-box !important;">{{ cart.item_count }}</span></a>
+    </div>
+  </div>
+
+  <!-- Dropdown Search Bar -->
+  <div id="tt-search-bar" class="tt-search-bar-dropdown">
+    <form action="{{ routes.search_url }}" method="get" class="tt-search-form">
+      <input type="text" name="q" placeholder="Search remedies..." class="tt-search-input">
+      <input type="hidden" name="options[prefix]" value="last">
+      <button type="submit" class="tt-search-submit">Search</button>
+      <button type="button" id="tt-search-close" class="tt-search-close">&times;</button>
+    </form>
+  </div>
+</header>
+
+<script>
+  function openMobileMenu() {
+    document.getElementById('ayus-mobile-drawer').classList.add('active');
+    document.getElementById('ayus-mobile-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileMenu() {
+    document.getElementById('ayus-mobile-drawer').classList.remove('active');
+    document.getElementById('ayus-mobile-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+</script>
+
+
+<div id="ayus-mobile-overlay" class="ayus-mobile-overlay" onclick="closeMobileMenu();"></div>
+<!-- Mobile Navigation Drawer -->
+<div id="ayus-mobile-drawer" class="ayus-mobile-drawer">
+  <div class="ayus-mobile-drawer-header">
+    <span class="tt-mobile-drawer-logo">Menu</span>
+    <button class="ayus-mobile-drawer-close" onclick="closeMobileMenu();">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+  
+  <div class="ayus-mobile-drawer-body">
+    <div class="tt-mobile-search-container">
+      <form action="{{ routes.search_url }}" method="get" class="tt-mobile-search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" name="q" placeholder="Search remedies..." class="tt-mobile-search-input">
+        <input type="hidden" name="options[prefix]" value="last">
+      </form>
+    </div>
+    
+    <nav class="ayus-mobile-nav">
+      <div class="tt-mobile-nav-item">
+        <a href="/collections/all" class="tt-mobile-nav-link">All Products</a>
+      </div>
+      <div class="tt-mobile-nav-item">
+        <a href="/pages/our-story" class="tt-mobile-nav-link">Our Story</a>
+      </div>
+      <div class="tt-mobile-nav-item">
+        <a href="/pages/contact" class="tt-mobile-nav-link">Contact Us</a>
+      </div>
+      {% for link in linklists[section.settings.menu].links %}
+        {% assign mobile_title = link.title | downcase %}
+        {% if link.title == 'Home' or mobile_title == 'catalog' or mobile_title == 'all products' or mobile_title == 'contact' or mobile_title == 'contact us' or link.url contains 'contact' or link.url contains 'our-story' %}{% continue %}{% endif %}
+        <div class="tt-mobile-nav-item">
+          <a href="{{ link.url }}" class="tt-mobile-nav-link">{{ link.title }}</a>
+          {% if link.links != blank %}
+            <div class="tt-mobile-dropdown">
+              {% for childlink in link.links %}
+                <a href="{{ childlink.url }}" class="tt-mobile-sublink">{{ childlink.title }}</a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </nav>
+  </div>
+
+  <div class="ayus-mobile-drawer-footer">
+    <p style="font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 10px 0;">Account</p>
+    {% if customer %}
+      <a href="{{ routes.account_url }}" class="tt-mobile-auth-link">My Account</a>
+    {% else %}
+      <a href="{{ routes.account_login_url }}" class="tt-mobile-auth-link">Sign In</a>
+      <a href="{{ routes.account_register_url }}" class="tt-mobile-auth-link">Create Account</a>
+    {% endif %}
+  </div>
+</div>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 16
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show Announcement",
+      "default": true
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "We guide with love. Reach us: Tulsitales@gmail.com | +91 7832980384"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Logo height",
+      "default": 60
+    }
+  ]
+}
+{% endschema %}

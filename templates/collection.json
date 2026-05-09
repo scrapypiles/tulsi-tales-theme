@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "ayus-collection",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Tulsi_sprig_on_textured_stone.png",
+        "concerns": "Immunity, Digestion, Skin Care, Hair Care, Stress Relief, Detox, Pain Relief, Respiratory, Sleep"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

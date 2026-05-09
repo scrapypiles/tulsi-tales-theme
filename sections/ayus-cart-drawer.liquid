@@ -1,0 +1,812 @@
+
+<div id="shopify-section-cart-drawer" class="tt-cart-drawer-wrapper" data-cart-count="{{ cart.item_count }}">
+  <div id="tt-cart-drawer" class="tt-cart-drawer">
+    <style>
+      .tt-cart-drawer-wrapper .tt-cart-panel {
+        width: 440px !important;
+        max-width: 90vw !important;
+      }
+      .tt-cart-drawer-wrapper .tt-cart-header h2 {
+        font-family: var(--font-heading) !important;
+        font-size: 22px !important;
+        text-transform: none !important;
+        letter-spacing: normal !important;
+        font-weight: normal !important;
+      }
+    </style>
+    <div class="tt-cart-overlay" onclick="closeBagDrawer()"></div>
+    <div class="tt-cart-panel">
+      
+      <div class="tt-cart-header">
+        <h2 style="font-size: 22px; text-transform: none; letter-spacing: normal; font-family: var(--font-heading); margin: 0; font-weight: normal;">Your Bag</h2>
+        <button class="tt-cart-close" onclick="closeBagDrawer()">&times;</button>
+      </div>
+      
+      <div class="tt-cart-body" id="tt-cart-body-content">
+        {% if cart.item_count > 0 %}
+          <div class="tt-cart-items">
+            {% assign cart_product_ids = "" %}
+            {% for item in cart.items %}
+              {% assign cart_product_ids = cart_product_ids | append: item.product_id | append: "," %}
+              <div class="tt-cart-item" data-key="{{ item.key }}">
+                <div class="tt-cart-item-img">
+                  <a href="{{ item.url }}" target="_blank" style="display: block; width: 100%; height: 100%;">
+                    {% if item.image %}
+                      <img src="{{ item.image | img_url: '200x' }}" alt="{{ item.title | escape }}" loading="lazy">
+                    {% endif %}
+                  </a>
+                </div>
+                <div class="tt-cart-item-details">
+                  <h4 class="tt-cart-item-title"><a href="{{ item.url }}" target="_blank" style="text-decoration: none; color: inherit;">{{ item.product.title }}</a></h4>
+                  {% unless item.variant.title contains 'Default' %}
+                    <p class="tt-cart-variant" style="font-size: 13px !important; color: #888 !important; margin-bottom: 5px !important; text-transform: uppercase !important; letter-spacing: 0.05em !important;">{{ item.variant.title }}</p>
+                  {% endunless %}
+                  <p class="tt-cart-price">{{ item.final_line_price | money }}</p>
+                  
+                  <div class="tt-cart-qty-wrapper" style="display: flex; align-items: flex-end; justify-content: space-between; margin-top: 5px;">
+                    <div class="tt-cart-qty" style="display: inline-block !important; width: 90px !important; height: 32px !important; border: 1px solid rgba(0,0,0,0.15) !important; background: #fff !important; box-sizing: border-box !important; position: relative !important; margin: 0 !important; padding: 0 !important; vertical-align: middle !important;">
+    <span class="tt-qty-btn minus" onclick="changeCartItem(this, '{{ item.key }}', {{ item.quantity | minus: 1 }})" style="position: absolute !important; left: 0 !important; top: 0 !important; width: 30px !important; height: 30px !important; background: transparent !important; border: none !important; font-size: 18px !important; color: #333 !important; cursor: pointer !important; padding: 0 !important; margin: 0 !important; line-height: 28px !important; text-align: center !important; font-weight: 300 !important; user-select: none !important;">-</span>
+    <input type="text" value="{{ item.quantity }}" readonly style="position: absolute !important; left: 30px !important; top: 0 !important; width: 28px !important; height: 30px !important; background: transparent !important; border: none !important; border-left: 1px solid rgba(0,0,0,0.1) !important; border-right: 1px solid rgba(0,0,0,0.1) !important; text-align: center !important; font-size: 12px !important; color: #333 !important; padding: 0 !important; margin: 0 !important; outline: none !important; box-sizing: border-box !important; -webkit-appearance: none !important; border-radius: 0 !important; pointer-events: none !important; display: block !important;">
+    <span class="tt-qty-btn plus" onclick="changeCartItem(this, '{{ item.key }}', {{ item.quantity | plus: 1 }})" style="position: absolute !important; right: 0 !important; top: 0 !important; width: 30px !important; height: 30px !important; background: transparent !important; border: none !important; font-size: 16px !important; color: #333 !important; cursor: pointer !important; padding: 0 !important; margin: 0 !important; line-height: 30px !important; text-align: center !important; font-weight: 300 !important; user-select: none !important;">+</span>
+  </div>
+                    <a href="#" class="tt-cart-remove" style="font-size: 11px; text-transform: uppercase; color: #888; text-decoration: underline; margin-bottom: 2px;" onclick="event.preventDefault(); changeCartItem(this, '{{ item.key }}', 0)">Remove</a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          
+          <!-- In-Cart Cross-sells / Add-ons -->
+          <div class="tt-cart-addons">
+            <div class="tt-addons-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;"><h4 class="tt-addons-title" style="margin: 0;">{{ section.settings.cart_upsell_heading | default: 'You May Also Like' }}</h4><div class="tt-addons-dots"></div></div>
+            <div class="tt-addons-list">
+              {% assign addons_shown = 0 %}
+              {% for addon in collections['all'].products %}
+                {% assign addon_id_str = addon.id | append: "" %}
+                {% unless cart_product_ids contains addon_id_str %}
+                  <div class="tt-addon-item" role="button" tabindex="0" onclick="handleAddonCardActivate(event, '{{ addon.handle }}', '{{ addon.url }}')" onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); handleAddonCardActivate(event, '{{ addon.handle }}', '{{ addon.url }}'); }">
+                    <a href="{{ addon.url }}" target="_blank" rel="noopener" class="tt-addon-link" onclick="return handleAddonLinkClick(event, '{{ addon.handle }}', '{{ addon.url }}')">
+                      <div class="tt-addon-img">
+                        {% if addon.featured_media %}
+                          <img src="{{ addon.featured_media | img_url: '150x' }}" alt="{{ addon.title | escape }}" loading="lazy">
+                        {% else %}
+                          <div class="ayus-placeholder" style="width:100%; height:100%;"></div>
+                        {% endif %}
+                      </div>
+                      <div class="tt-addon-info">
+                        <p class="tt-addon-title">{{ addon.title | split: '-' | last | strip | truncate: 50 }}</p>
+                        <p class="tt-addon-price">{{ addon.price | money }}</p>
+                      </div>
+                    </a>
+                    <div class="tt-addon-action">
+                      <button type="button" class="tt-addon-add-btn" style="background: transparent !important; border: none !important; text-decoration: underline !important; text-underline-offset: 4px !important; border-bottom: none !important; font-size: 11px !important; text-transform: uppercase !important; color: var(--color-accent) !important; letter-spacing: 0.1em !important; cursor: pointer !important; padding: 2px 0 !important; font-weight: 600 !important; min-width: 0 !important; width: auto !important; display: inline-block !important; height: auto !important; line-height: 1.2 !important;" onclick="event.stopPropagation(); addAddonToCart(this, {{ addon.selected_or_first_available_variant.id }})">ADD TO BAG</button>
+                    </div>
+                  </div>
+                  {% assign addons_shown = addons_shown | plus: 1 %}
+                  {% if addons_shown >= 4 %}{% break %}{% endif %}
+                {% endunless %}
+              {% endfor %}
+            </div>
+
+            
+
+          </div>
+
+        {% else %}
+          <div class="tt-cart-empty">
+            <p>Your bag is currently empty.</p>
+            <a href="/collections/all" class="ayus-btn" style="display:inline-block; background-color: var(--color-accent); color: #fff; border-color: var(--color-accent);" onclick="closeBagDrawer()">Continue Shopping</a>
+          </div>
+          
+          <!-- Add-ons even when empty -->
+          <div class="tt-cart-addons">
+            <div class="tt-addons-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;"><h4 class="tt-addons-title" style="margin: 0;">{{ section.settings.cart_empty_upsell_heading | default: 'Discover Favorites' }}</h4><div class="tt-addons-dots"></div></div>
+            <div class="tt-addons-list">
+              {% assign addons_shown = 0 %}
+              {% for addon in collections['all'].products %}
+                <div class="tt-addon-item" role="button" tabindex="0" onclick="handleAddonCardActivate(event, '{{ addon.handle }}', '{{ addon.url }}')" onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); handleAddonCardActivate(event, '{{ addon.handle }}', '{{ addon.url }}'); }">
+                  <a href="{{ addon.url }}" target="_blank" rel="noopener" class="tt-addon-link" onclick="return handleAddonLinkClick(event, '{{ addon.handle }}', '{{ addon.url }}')">
+                    <div class="tt-addon-img">
+                      {% if addon.featured_media %}
+                        <img src="{{ addon.featured_media | img_url: '150x' }}" alt="{{ addon.title | escape }}" loading="lazy">
+                      {% else %}
+                        <div class="ayus-placeholder" style="width:100%; height:100%;"></div>
+                      {% endif %}
+                    </div>
+                    <div class="tt-addon-info">
+                      <p class="tt-addon-title">{{ addon.title | split: '-' | last | strip | truncate: 50 }}</p>
+                      <p class="tt-addon-price">{{ addon.price | money }}</p>
+                    </div>
+                  </a>
+                  <div class="tt-addon-action">
+                    <button type="button" class="tt-addon-add-btn" style="background: transparent !important; border: none !important; text-decoration: underline !important; text-underline-offset: 4px !important; border-bottom: none !important; font-size: 11px !important; text-transform: uppercase !important; color: var(--color-accent) !important; letter-spacing: 0.1em !important; cursor: pointer !important; padding: 2px 0 !important; font-weight: 600 !important; min-width: 0 !important; width: auto !important; display: inline-block !important; height: auto !important; line-height: 1.2 !important;" onclick="event.stopPropagation(); addAddonToCart(this, {{ addon.selected_or_first_available_variant.id }})">ADD TO BAG</button>
+                  </div>
+                </div>
+                {% assign addons_shown = addons_shown | plus: 1 %}
+                {% if addons_shown >= 4 %}{% break %}{% endif %}
+              {% endfor %}
+            </div>
+
+            
+
+          </div>
+        {% endif %}
+      </div>
+      
+      {% if cart.item_count > 0 %}
+        <div class="tt-cart-footer">
+          <div class="tt-cart-subtotal">
+            <span>Subtotal</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          <p class="tt-cart-tax-note">Taxes and shipping calculated at checkout</p>
+          <form action="/cart" method="post" id="cart-drawer-form" novalidate>
+            <button type="submit" name="checkout" value="Checkout" class="tt-checkout-btn" style="width: 100% !important; background-color: var(--color-accent) !important; color: #ffffff !important; border: 1px solid var(--color-accent) !important; white-space: nowrap !important; font-size: 12px !important; padding: 14px 10px !important; letter-spacing: 0.1em !important; text-transform: uppercase !important; font-family: var(--font-body) !important; cursor: pointer !important; display: block !important;">PROCEED TO CHECKOUT</button>
+          </form>
+        </div>
+      {% endif %}
+      
+    </div>
+  </div>
+</div>
+
+<style>
+  .tt-cart-drawer {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 99999; pointer-events: none; opacity: 0; visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .tt-cart-drawer.is-open { pointer-events: auto; opacity: 1; visibility: visible; }
+  .tt-cart-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+  }
+  .tt-cart-panel { position: absolute; top: 0; right: -500px; width: 440px; max-width: 90vw; height: 100%;
+    background: #FAF8F5 !important;
+    box-shadow: -2px 0 15px rgba(0,0,0,0.1);
+    transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex; flex-direction: column;
+  }
+  .tt-cart-drawer.is-open .tt-cart-panel { right: 0; }
+  .tt-cart-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px 5px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+  .tt-cart-header h2 { font-family: var(--font-heading); font-size: 22px; margin: 0; font-weight: normal; text-transform: none; letter-spacing: normal; }
+  .tt-cart-close { background: transparent; border: none; font-size: 28px; cursor: pointer; color: var(--color-text); margin-right: -5px; }
+  .tt-cart-body { flex-grow: 1; overflow-y: auto; overflow-x: hidden; padding: 15px 15px 0 15px; display: flex; flex-direction: column; -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; }
+  .tt-cart-items { flex-shrink: 0; }
+  .tt-cart-item { display: flex; gap: 20px; margin-bottom: 25px; flex-shrink: 0; align-items: stretch; }
+  .tt-cart-item-img { width: 110px; min-height: 110px; flex-shrink: 0; display: flex; align-items: stretch; }
+  .tt-cart-item-img a { display: block; width: 100%; height: 100%; }
+  .tt-cart-item-img img { width: 100%; height: 100%; object-fit: cover; border: 1px solid var(--color-border); display: block; }
+  .tt-cart-item-details { flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 2px 0; min-height: 110px; }
+  .tt-cart-item-title { font-family: var(--font-heading); font-size: 16px; margin: 0 0 5px 0; }
+  .tt-cart-variant { font-size: 9px; color: #666; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.05em; }
+  .tt-cart-price { font-size: 14px; font-weight: bold; margin: 0 0 5px 0; }
+  .tt-cart-qty-wrapper { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 0; }
+  .tt-cart-qty { display: inline-block !important; width: 90px !important; height: 32px !important; border: 1px solid rgba(0,0,0,0.15) !important; background: #fff !important; box-sizing: border-box !important; position: relative !important; margin: 0 !important; padding: 0 !important; }
+  
+  
+  .tt-cart-remove { font-size: 11px; text-transform: uppercase; color: #888; text-decoration: underline; margin-bottom: 2px; }
+  .tt-cart-footer { padding: 30px; border-top: 1px solid var(--color-border); background: #fff; }
+  .tt-cart-subtotal { display: flex; justify-content: space-between; font-size: 18px; font-family: var(--font-heading); margin-bottom: 10px; }
+  .tt-cart-tax-note { font-size: 12px; color: #666; margin-bottom: 20px; text-align: center; }
+  .tt-cart-empty { text-align: center; padding-top: 50px; }
+  .tt-cart-empty p { font-size: 16px; color: #555; margin-bottom: 20px; }
+  
+  /* Add-ons Styles */
+  .tt-cart-addons { margin-top: auto; border-top: 1px solid var(--color-border); padding-top: 25px; padding-bottom: 20px; flex-shrink: 0; }
+  .tt-addons-title { font-family: var(--font-heading); font-size: 15px; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text); }
+  @media (min-width: 851px) {
+    .tt-addons-title { font-size: 16px; }
+  }
+  
+  .tt-addons-list { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; }
+  .tt-addon-item { scroll-snap-align: start; }
+  .tt-addons-list::-webkit-scrollbar { height: 6px; }
+  .tt-addons-list::-webkit-scrollbar-thumb { background: var(--color-accent); border-radius: 6px; }
+  .tt-addons-list::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 6px; }
+  
+  .tt-addon-item { display: flex; flex-direction: column; align-items: center; width: 140px; flex-shrink: 0; padding: 12px; background: #fff; border: 1px solid var(--color-border); text-align: center; cursor: pointer; }
+  .tt-addon-link { display: block; width: 100%; color: inherit; text-decoration: none; cursor: pointer; }
+  
+  .tt-addon-img { width: 100%; aspect-ratio: 1; margin-bottom: 10px; }
+  .tt-addon-img img { width: 100%; height: 100%; object-fit: cover; display: block; border: 1px solid var(--color-border); }
+  
+  .tt-addon-info { flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start; margin-bottom: 2px; width: 100%; }
+  .tt-addon-title { font-family: var(--font-body); font-size: 11px; margin: 0 0 5px 0; color: var(--color-text); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; white-space: normal; height: auto; }
+  @media (min-width: 851px) {
+    .tt-addon-title { font-size: 14px !important; line-height: 1.3 !important; }
+  }
+  .tt-addon-price { font-size: 12px; margin: 0; color: var(--color-accent); font-weight: normal; }
+  
+  .tt-addon-action { width: 100%; margin-top: auto; }
+  .tt-addon-add-btn { width: 100%; border: none !important; border-bottom: 1px solid rgba(0,0,0,0.2) !important; background-color: transparent !important; padding: 4px 0 !important; font-size: 11px !important; letter-spacing: 0.1em !important; text-transform: uppercase; cursor: pointer; transition: 0.3s; } 
+.tt-addon-add-btn:hover { border-bottom-color: var(--color-accent) !important; opacity: 0.7; }
+  .tt-addon-add-btn:hover { opacity: 0.8; }
+  .tt-addons-dots { display: flex; justify-content: flex-end; gap: 6px; margin: 0; }
+  .tt-addons-dots .tt-dot { width: 6px; height: 6px; border-radius: 50%; background: #ccc; transition: 0.3s; }
+  .tt-addons-dots .tt-dot.active { background: var(--color-accent); }
+  .tt-addons-list::-webkit-scrollbar { display: none; } /* Hide native scrollbar since we have dots */
+  .tt-addons-list { scrollbar-width: none; }
+
+  @media (max-width: 850px) {
+    .tt-cart-drawer-wrapper .tt-cart-panel,
+    .tt-cart-panel {
+      width: 94vw !important;
+      max-width: 94vw !important;
+      right: -94vw !important;
+      height: 100dvh !important;
+      overflow: hidden !important;
+    }
+    .tt-cart-drawer.is-open .tt-cart-panel {
+      right: 0 !important;
+    }
+    .tt-cart-body {
+      padding: 15px 15px 0 15px;
+    }
+    .tt-cart-item {
+      gap: 16px;
+      align-items: stretch;
+    }
+    .tt-cart-item-img {
+      width: 112px;
+      min-height: 146px;
+    }
+    .tt-cart-item-details {
+      min-height: 146px;
+    }
+    .tt-cart-qty-wrapper {
+      align-items: flex-end;
+      margin-top: auto !important;
+    }
+    .tt-cart-footer {
+      position: sticky;
+      bottom: 0;
+      z-index: 3;
+      background: #FAF8F5;
+      padding: 22px 20px calc(22px + env(safe-area-inset-bottom));
+      box-shadow: 0 -6px 20px rgba(0,0,0,0.04);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .tt-checkout-btn {
+      position: relative;
+      z-index: 2;
+    }
+  }
+</style>
+
+<script>
+  function openBagDrawer() {
+    document.getElementById('tt-cart-drawer').classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeBagDrawer() {
+    document.getElementById('tt-cart-drawer').classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  
+  function changeCartItem(btn, key, qty) {
+    if (qty < 0) return;
+    
+    const itemWrapper = btn.closest('.tt-cart-item');
+    const input = itemWrapper ? itemWrapper.querySelector('input') : null;
+    
+    // 1. Instantly update the input visually (Butter Smooth)
+    if (input && qty > 0) {
+      input.value = qty;
+    }
+    
+    // If removing the item (qty 0), smoothly fade it out
+    if (qty === 0 && itemWrapper) {
+      itemWrapper.style.transition = 'opacity 0.3s ease, height 0.3s ease, margin 0.3s ease';
+      itemWrapper.style.opacity = '0';
+      itemWrapper.style.height = '0px';
+      itemWrapper.style.margin = '0px';
+      itemWrapper.style.overflow = 'hidden';
+    }
+
+    fetch(window.Shopify.routes.root + 'cart/change.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: key, quantity: qty })
+    })
+    .then(response => response.json())
+    .then(cart => {
+       // 2. Parse the cart JSON and update the DOM directly without refreshing the whole section
+       
+       // Update overall cart badge counts
+       const countElements = document.querySelectorAll('.ayus-cart-link .tt-cart-badge');
+       countElements.forEach(el => el.innerText = cart.item_count);
+       
+       if (cart.item_count === 0) {
+         // If cart is completely empty, trigger a full HTML refresh to show the empty state graphic
+         refreshBagDrawer();
+         return;
+       }
+       
+       // Format money helper (Assuming Rs. format)
+       const formatMoney = (cents) => 'Rs. ' + (cents / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+       
+       // Update Subtotal
+       const subtotalEl = document.querySelector('.tt-cart-subtotal span:last-child');
+       if (subtotalEl) {
+         subtotalEl.innerText = formatMoney(cart.total_price);
+       }
+       
+       // Update individual line item prices
+       if (qty > 0 && itemWrapper) {
+         const lineItem = cart.items.find(i => i.key === key);
+         if (lineItem) {
+           const priceEl = itemWrapper.querySelector('.tt-cart-price');
+           if (priceEl) {
+             priceEl.innerText = formatMoney(lineItem.final_line_price);
+           }
+         }
+       } else if (qty === 0 && itemWrapper) {
+         // Remove it from the DOM completely now that the fade out is done
+         setTimeout(() => itemWrapper.remove(), 300);
+       }
+    })
+    .catch(error => {
+       console.error('Error updating cart:', error);
+       // Revert UI on failure
+       refreshBagDrawer();
+    });
+  }
+
+  function addAddonToCart(btn, variantId) {
+    const originalText = btn.dataset.originalText || btn.innerText;
+    btn.dataset.originalText = originalText;
+    btn.innerText = "ADDING...";
+    btn.style.opacity = "0.7";
+    btn.disabled = true;
+
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: variantId, quantity: 1, sections: 'ayus-cart-drawer' })
+    })
+    .then(res => {
+      if (!res.ok) throw new Error('Add to cart failed');
+      return res.json();
+    })
+    .then(data => {
+      btn.innerText = 'ADDED';
+      if (data.sections && data.sections['ayus-cart-drawer']) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data.sections['ayus-cart-drawer'], 'text/html');
+        const newDrawerWrapper = doc.querySelector('.tt-cart-drawer-wrapper') || doc.body.firstElementChild;
+        
+        if(newDrawerWrapper) {
+          const newPanel = newDrawerWrapper.querySelector('.tt-cart-panel');
+          const oldPanel = document.querySelector('.tt-cart-panel');
+          if(newPanel && oldPanel) oldPanel.innerHTML = newPanel.innerHTML;
+          
+          const newCount = newDrawerWrapper.querySelector('#shopify-section-cart-drawer')?.getAttribute('data-cart-count') || newDrawerWrapper.getAttribute('data-cart-count');
+          const countElements = document.querySelectorAll('.ayus-cart-link');
+          countElements.forEach(el => {
+            if(el.querySelector('.tt-cart-badge')) { el.querySelector('.tt-cart-badge').innerText = newCount || document.querySelector('.tt-cart-drawer-wrapper').getAttribute('data-cart-count'); }
+          });
+        }
+      } else {
+        refreshBagDrawer();
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      btn.innerText = originalText;
+      btn.style.opacity = "1";
+      btn.disabled = false;
+    })
+    .finally(() => {
+      setTimeout(() => {
+        if (btn && btn.isConnected) {
+          btn.innerText = originalText;
+          btn.style.opacity = "1";
+          btn.disabled = false;
+        }
+      }, 150);
+    });
+  }
+
+  function shouldUseAddonQuickAdd() {
+    return window.matchMedia('(max-width: 850px)').matches;
+  }
+
+  function handleAddonCardActivate(event, handle, url) {
+    if (event && event.target && event.target.closest('.tt-addon-add-btn')) return;
+
+    if (shouldUseAddonQuickAdd()) {
+      openQuickAddModal(handle);
+      return;
+    }
+
+    window.open(url, '_blank', 'noopener');
+  }
+
+  function handleAddonLinkClick(event, handle, url) {
+    if (shouldUseAddonQuickAdd()) {
+      event.preventDefault();
+      openQuickAddModal(handle);
+      return false;
+    }
+
+    return true;
+  }
+  
+  function refreshBagDrawer() {
+    fetch(window.location.pathname + '?section_id=ayus-cart-drawer')
+    .then(res => res.text())
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const newDrawerWrapper = doc.getElementById('shopify-section-ayus-cart-drawer');
+      
+      if(newDrawerWrapper) {
+        const newPanel = newDrawerWrapper.querySelector('.tt-cart-panel');
+        const oldPanel = document.querySelector('.tt-cart-panel');
+        
+        if(newPanel && oldPanel) {
+          oldPanel.innerHTML = newPanel.innerHTML;
+        } else {
+          document.getElementById('shopify-section-ayus-cart-drawer').innerHTML = newDrawerWrapper.innerHTML;
+        }
+        
+        const cartDrawer = document.getElementById('tt-cart-drawer');
+        if (cartDrawer && !cartDrawer.classList.contains('is-open')) {
+          cartDrawer.classList.add('is-open');
+        }
+        
+        const newCount = newDrawerWrapper.querySelector('#shopify-section-cart-drawer')?.getAttribute('data-cart-count');
+        const countElements = document.querySelectorAll('.ayus-cart-link');
+        countElements.forEach(el => {
+          if(el.querySelector('.tt-cart-badge')) { el.querySelector('.tt-cart-badge').innerText = newCount || document.querySelector('.tt-cart-drawer-wrapper').getAttribute('data-cart-count'); }
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('submit', function(e) {
+      const form = e.target;
+      if (form.action && form.action.indexOf('/cart/add') !== -1 && !form.closest('.tt-qa-modal')) {
+        e.preventDefault();
+        
+        const submitBtn = form.querySelector('[type="submit"]') || form.querySelector('button');
+        if(!submitBtn) return;
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = 'ADDING...';
+        submitBtn.style.opacity = '0.7';
+        submitBtn.disabled = true;
+
+        const formData = new FormData(form);
+        formData.append('sections', 'ayus-cart-drawer');
+
+        fetch(window.Shopify.routes.root + 'cart/add.js', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          submitBtn.innerText = 'ADDED';
+          if (data.sections && data.sections['ayus-cart-drawer']) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data.sections['ayus-cart-drawer'], 'text/html');
+            const newDrawerWrapper = doc.querySelector('.tt-cart-drawer-wrapper') || doc.body.firstElementChild;
+            
+            if(newDrawerWrapper) {
+              const newPanel = newDrawerWrapper.querySelector('.tt-cart-panel');
+              const oldPanel = document.querySelector('.tt-cart-panel');
+              
+              if(newPanel && oldPanel) {
+                oldPanel.innerHTML = newPanel.innerHTML;
+              } else {
+                document.getElementById('shopify-section-ayus-cart-drawer').innerHTML = newDrawerWrapper.innerHTML || data.sections['ayus-cart-drawer'];
+              }
+              
+              const cartDrawer = document.getElementById('tt-cart-drawer');
+              if (cartDrawer && !cartDrawer.classList.contains('is-open')) {
+                cartDrawer.classList.add('is-open');
+              }
+              
+              const newCount = newDrawerWrapper.querySelector('#shopify-section-cart-drawer')?.getAttribute('data-cart-count') || newDrawerWrapper.getAttribute('data-cart-count');
+              const countElements = document.querySelectorAll('.ayus-cart-link');
+              countElements.forEach(el => {
+                if(el.querySelector('.tt-cart-badge')) { el.querySelector('.tt-cart-badge').innerText = newCount || document.querySelector('.tt-cart-drawer-wrapper').getAttribute('data-cart-count'); }
+              });
+            }
+          } else {
+            refreshBagDrawer();
+          }
+          
+          setTimeout(() => {
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+          }, 500);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          submitBtn.innerText = 'ERROR';
+          if(drawerBody) drawerBody.style.opacity = '1';
+          setTimeout(() => {
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+          }, 1000);
+        });
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      // Find the closest ancestor that matches our cart link class
+      const cartLink = e.target.closest('.ayus-cart-link');
+      if (cartLink) {
+        e.preventDefault();
+        openBagDrawer();
+      }
+    });
+  });
+
+  function initCartDots() {
+    const lists = document.querySelectorAll('.tt-addons-list');
+    lists.forEach(list => {
+      const parent = list.parentElement;
+      const dotsContainer = parent.querySelector('.tt-addons-dots');
+      if (!dotsContainer) return;
+      
+      const updateDots = () => {
+        const items = list.querySelectorAll('.tt-addon-item');
+        if (items.length <= 1) return;
+        
+        const scrollW = list.scrollWidth - list.clientWidth;
+        const scrollL = list.scrollLeft;
+        const percent = scrollW > 0 ? (scrollL / scrollW) : 0;
+        
+        // We'll just show 3 dots for simplicity, or 1 dot per item. Let's do 1 dot per item.
+        let numDots = items.length;
+        let activeIndex = Math.round(percent * (numDots - 1));
+        
+        let html = '';
+        for(let i=0; i<numDots; i++) {
+          html += '<span class="tt-dot ' + (i === activeIndex ? 'active' : '') + '"></span>';
+        }
+        dotsContainer.innerHTML = html;
+      };
+      
+      list.addEventListener('scroll', updateDots);
+      updateDots();
+    });
+  }
+  
+  // Call it when drawer opens and initially
+  document.addEventListener('DOMContentLoaded', initCartDots);
+  const oldOpenBag = openBagDrawer;
+  openBagDrawer = function() {
+    oldOpenBag();
+    setTimeout(initCartDots, 100);
+  };
+</script>
+
+
+{% schema %}
+{
+  "name": "Cart Drawer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cart_upsell_heading",
+      "label": "Cart Upsell Heading",
+      "default": "You May Also Like"
+    },
+    {
+      "type": "text",
+      "id": "cart_empty_upsell_heading",
+      "label": "Empty Cart Upsell Heading",
+      "default": "Discover Favorites"
+    }
+  ]
+}
+{% endschema %}
+
+
+
+<!-- Quick Add Modal -->
+<div class="tt-qa-overlay" id="tt-qa-overlay" onclick="closeQuickAdd()"></div>
+<div class="tt-qa-drawer" id="tt-qa-drawer">
+  <button class="tt-qa-close" onclick="closeQuickAdd()">&times;</button>
+  <div class="tt-qa-header-product" id="tt-qa-header-product">
+    <!-- Populated by JS -->
+  </div>
+  <div class="tt-qa-body" id="tt-qa-variants">
+    <div style="text-align:center; padding: 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #888;">Loading...</div>
+  </div>
+</div>
+<style>
+  .tt-qa-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 9999998; opacity: 0; visibility: hidden; transition: 0.3s; }
+  .tt-qa-overlay.active { opacity: 1; visibility: visible; }
+  .tt-qa-drawer { position: fixed; bottom: -100%; left: 0; width: 100%; background: #faf8f5; z-index: 9999999; padding: 30px 24px; border-top-left-radius: 20px; border-top-right-radius: 20px; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 -5px 20px rgba(0,0,0,0.1); max-height: 85vh; overflow-y: auto; display: flex; flex-direction: column; }
+  .tt-qa-drawer.active { bottom: 0; }
+  
+  .tt-qa-close { position: absolute; top: 15px; right: 15px; background: transparent; border: none; font-size: 32px; font-weight: 300; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--color-text); padding: 0; margin: 0; line-height: 1; z-index: 2; box-shadow: none; border-radius: 0; }
+  
+  .tt-qa-header-product { margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-right: 20px; }
+  .tt-qa-product-link { display: flex; gap: 20px; align-items: flex-start; width: 100%; color: inherit; text-decoration: none; cursor: pointer; }
+  .tt-qa-product-link:hover { opacity: 0.85; }
+  .tt-qa-prod-img { width: 90px; height: 90px; object-fit: cover; border: 1px solid var(--color-border); border-radius: 4px; }
+  .tt-qa-prod-info { flex-grow: 1; }
+  .tt-qa-prod-vendor { font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: #777; margin-bottom: 6px; display: block; }
+  .tt-qa-prod-title { font-family: var(--font-body); font-size: 18px; margin: 0 0 8px 0; color: var(--color-text); line-height: 1.2; font-weight: bold; }
+  .tt-qa-prod-desc { font-size: 13px; color: #666; margin: 0; line-height: 1.4; }
+  .tt-qa-view-product { display: inline-flex; align-items: center; margin-top: 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-accent); text-decoration: underline; text-underline-offset: 4px; }
+
+  .tt-qa-meta { display: flex; align-items: baseline; gap: 10px; margin-bottom: 18px; }
+  .tt-qa-price { font-family: var(--font-body); font-size: 20px; letter-spacing: 0.04em; color: var(--color-text); }
+  .tt-qa-tax { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.1em; }
+  .tt-qa-size-label { display: block; margin-bottom: 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: #777; }
+  .tt-qa-variant-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+  .tt-qa-variant-pill { display: inline-block; padding: 10px 20px; border: 1px solid var(--color-border); background-color: transparent; color: var(--color-text); font-family: var(--font-body); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease; }
+  .tt-qa-variant-pill.is-active { background-color: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+  .tt-qa-variant-pill.is-disabled { opacity: 0.6; }
+  .tt-qa-add-btn { width: 100%; background-color: var(--color-accent); color: #fff; border: 1px solid var(--color-accent); padding: 14px 18px; text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-family: var(--font-body); cursor: pointer; transition: opacity 0.3s ease; }
+  .tt-qa-add-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+</style>
+<script>
+  let currentQuickAddVariantId = null;
+
+  function formatQuickAddMoney(cents) {
+    return 'Rs. ' + (cents / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function closeQuickAdd() {
+    document.getElementById('tt-qa-overlay').classList.remove('active');
+    document.getElementById('tt-qa-drawer').classList.remove('active');
+    currentQuickAddVariantId = null;
+  }
+
+  function syncQuickAddVariantUI(button) {
+    if (!button) return;
+
+    currentQuickAddVariantId = Number(button.dataset.variantId);
+
+    document.querySelectorAll('.tt-qa-variant-pill').forEach(pill => {
+      pill.classList.remove('is-active');
+    });
+    button.classList.add('is-active');
+
+    const priceEl = document.getElementById('tt-qa-current-price');
+    if (priceEl && button.dataset.price) {
+      priceEl.textContent = formatQuickAddMoney(Number(button.dataset.price));
+    }
+
+    const addBtn = document.getElementById('tt-qa-add-btn');
+    if (addBtn) {
+      const available = button.dataset.available === 'true';
+      addBtn.disabled = !available;
+      addBtn.textContent = available ? 'Add To Bag' : 'Sold Out';
+    }
+  }
+
+  function openQuickAddModal(handle) {
+    document.getElementById('tt-qa-header-product').innerHTML = '';
+    document.getElementById('tt-qa-variants').innerHTML = '<div style="text-align:center; padding: 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #888;">Loading...</div>';
+    document.getElementById('tt-qa-overlay').classList.add('active');
+    document.getElementById('tt-qa-drawer').classList.add('active');
+    
+    fetch('/products/' + handle + '.js')
+      .then(r => r.json())
+      .then(product => {
+        // Build Header
+        let imgUrl = product.featured_image || '';
+        let vendor = product.vendor || 'Tulsi Tales';
+        let title = product.title.split('-').pop().trim();
+        // Strip HTML from description for a short excerpt
+        let descHtml = product.description || '';
+        let descText = descHtml;
+        
+        let headerHtml = '';
+        let productUrl = '/products/' + product.handle;
+        headerHtml += '<a href="' + productUrl + '" class="tt-qa-product-link" onclick="closeQuickAdd()">';
+        if(imgUrl) {
+          headerHtml += '<img src="' + imgUrl + '" class="tt-qa-prod-img" alt="' + title + '">';
+        }
+        headerHtml += '<div class="tt-qa-prod-info">';
+        headerHtml += '<span class="tt-qa-prod-vendor">' + vendor + '</span>';
+        headerHtml += '<h4 class="tt-qa-prod-title">' + title + '</h4>';
+        if(descText) {
+          headerHtml += '<div class="tt-qa-prod-desc">' + descText + '</div>';
+        }
+        headerHtml += '</div>';
+        headerHtml += '</a>';
+        headerHtml += '<a href="' + productUrl + '" class="tt-qa-view-product" onclick="closeQuickAdd()">View full details</a>';
+        
+        document.getElementById('tt-qa-header-product').innerHTML = headerHtml;
+
+        // Build Variant Selector + Single CTA
+        const selectedVariant = product.variants.find(v => v.available) || product.variants[0];
+        currentQuickAddVariantId = selectedVariant ? selectedVariant.id : null;
+
+        let vHtml = '';
+        if (selectedVariant) {
+          vHtml += '<div class="tt-qa-meta">';
+          vHtml += '<span class="tt-qa-price" id="tt-qa-current-price">' + formatQuickAddMoney(selectedVariant.price) + '</span>';
+          vHtml += '</div>';
+        }
+
+        const showVariantChoices = product.variants.length > 1 || (product.variants[0] && product.variants[0].title !== 'Default Title');
+        if (showVariantChoices) {
+          vHtml += '<div class="tt-qa-size-selector">';
+          vHtml += '<span class="tt-qa-size-label">Size</span>';
+          vHtml += '<div class="tt-qa-variant-pills">';
+          product.variants.forEach(v => {
+            const label = v.title === 'Default Title' ? 'Standard Size' : v.title;
+            const isSelected = selectedVariant && v.id === selectedVariant.id;
+            const activeClass = isSelected ? ' is-active' : '';
+            const disabledClass = v.available ? '' : ' is-disabled';
+            vHtml += '<button type="button" class="tt-qa-variant-pill' + activeClass + disabledClass + '" data-variant-id="' + v.id + '" data-price="' + v.price + '" data-available="' + v.available + '" onclick="syncQuickAddVariantUI(this)">' + label + '</button>';
+          });
+          vHtml += '</div>';
+          vHtml += '</div>';
+        }
+
+        const canAdd = selectedVariant && selectedVariant.available;
+        vHtml += '<button type="button" class="tt-qa-add-btn" id="tt-qa-add-btn" onclick="addVariantToCart()"' + (canAdd ? '' : ' disabled') + '>' + (canAdd ? 'Add To Bag' : 'Sold Out') + '</button>';
+        document.getElementById('tt-qa-variants').innerHTML = vHtml;
+
+        syncQuickAddVariantUI(document.querySelector('.tt-qa-variant-pill.is-active') || document.querySelector('.tt-qa-variant-pill:not(.is-disabled)'));
+      });
+  }
+  function addVariantToCart(id = currentQuickAddVariantId) {
+    if (!id) return;
+    const btn = document.getElementById('tt-qa-add-btn');
+    if (btn) {
+      btn.innerText = 'ADDING...';
+      btn.style.opacity = '0.7';
+      btn.disabled = true;
+    }
+    
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: id, quantity: 1, sections: 'ayus-cart-drawer' })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (btn) btn.innerText = 'ADDED';
+      closeQuickAdd();
+      if (data.sections && data.sections['ayus-cart-drawer']) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data.sections['ayus-cart-drawer'], 'text/html');
+        const newDrawerWrapper = doc.querySelector('.tt-cart-drawer-wrapper') || doc.body.firstElementChild;
+        
+        if(newDrawerWrapper) {
+          const newPanel = newDrawerWrapper.querySelector('.tt-cart-panel');
+          const oldPanel = document.querySelector('.tt-cart-panel');
+          if(newPanel && oldPanel) oldPanel.innerHTML = newPanel.innerHTML;
+          
+          const cartDrawer = document.getElementById('tt-cart-drawer');
+          if (cartDrawer && !cartDrawer.classList.contains('is-open')) {
+            cartDrawer.classList.add('is-open');
+          }
+          
+          const newCount = newDrawerWrapper.querySelector('#shopify-section-cart-drawer')?.getAttribute('data-cart-count') || newDrawerWrapper.getAttribute('data-cart-count');
+          const countElements = document.querySelectorAll('.ayus-cart-link');
+          countElements.forEach(el => {
+            if(el.querySelector('.tt-cart-badge')) { el.querySelector('.tt-cart-badge').innerText = newCount || document.querySelector('.tt-cart-drawer-wrapper').getAttribute('data-cart-count'); }
+          });
+        }
+      } else {
+        refreshBagDrawer();
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      if (btn) {
+        btn.innerText = 'ERROR';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      }
+    });
+  }
+</script>

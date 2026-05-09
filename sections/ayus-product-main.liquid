@@ -1,0 +1,440 @@
+{% if section.settings.show_section %}
+
+<div style="background-color: #ffffff; width: 100%;">
+<section id="MainProduct-{{ section.id }}" class="cb-20260507e ayus-product-section" data-section="{{ section.id }}">
+  <style>
+    @media (max-width: 850px) {
+      #MainProduct-{{ section.id }} .tt-commerce-controls {
+        gap: 6px !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+      }
+
+      #MainProduct-{{ section.id }} .ayus-add-to-cart-wrapper {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
+      
+      #MainProduct-{{ section.id }} .tt-meta-grid {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+      }
+    }
+  </style>
+  <div class="ayus-product-container" style="padding-top: {{ section.settings.padding_top }}px !important; padding-bottom: {{ section.settings.padding_bottom }}px !important;">
+    
+    <!-- Left Column: The Imagery (Thumbnails + Main Image) -->
+    <div class="tt-left-column">
+      
+      <!-- Mobile Swipeable Carousel -->
+      <div class="tt-mobile-carousel">
+        <div class="tt-mobile-carousel-track">
+          {% for media in product.media %}
+            <div class="tt-mobile-carousel-slide">
+              <img src="{{ media | img_url: '800x' }}" alt="{{ media.alt | escape }}" loading="lazy">
+            </div>
+          {% endfor %}
+        </div>
+        {% if product.media.size > 1 %}
+        <div class="tt-mobile-carousel-dots">
+          {% for media in product.media %}
+            <div class="tt-dot {% if forloop.first %}active{% endif %}"></div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const track = document.querySelector('.tt-mobile-carousel-track');
+    const dots = document.querySelectorAll('.tt-mobile-carousel-dots .tt-dot');
+    if (track && dots.length > 0) {
+      track.addEventListener('scroll', function() {
+        let index = Math.round(track.scrollLeft / track.clientWidth);
+        dots.forEach(d => d.classList.remove('active'));
+        if(dots[index]) dots[index].classList.add('active');
+      });
+    }
+  });
+</script>
+
+
+      <div class="tt-product-media-gallery">
+      {% if product.media.size > 1 %}
+        <div class="tt-thumbnail-strip">
+          {% for media in product.media %}
+            <div class="tt-thumb" onmouseenter="changeMainImage('{{ media | img_url: '1200x' }}')">
+              <img src="{{ media | img_url: '150x' }}" alt="{{ media.alt | escape }}" loading="lazy">
+            </div>
+          {% endfor %}
+        
+        <script>
+          // Preload full-res images in the background so hover is completely instant
+          {% for media in product.media %}
+            (new Image()).src = '{{ media | img_url: "1200x" }}';
+          {% endfor %}
+        </script>
+
+      </div>
+      {% endif %}
+
+      <div class="tt-main-image-container">
+        {%- if product.media.size > 0 -%}
+          <div class="tt-main-image-zoom">
+            <img id="tt-primary-image" src="{{ product.featured_media | img_url: '1200x' }}" alt="{{ product.title | escape }}" loading="lazy">
+          </div>
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'ayus-placeholder-svg' }}
+        {%- endif -%}
+        
+        <!-- Moved Description -->
+        <div class="ayus-product-description rte" style="margin-top: 40px;">
+          {{ product.description }}
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Right Column: The Narrative & Commerce -->
+    <div class="ayus-product-info-wrapper">
+      
+      <!-- Brand & Title -->
+      <div class="ayus-product-header" style="padding-bottom: 20px; border-bottom: 1px solid var(--color-border); margin-bottom: 20px;">
+        {%- if product.metafields.custom.brand_name -%}
+          <p class="ayus-brand-name">{{ product.metafields.custom.brand_name }}</p>
+        {%- else -%}
+          <p class="ayus-brand-name">{{ product.vendor }}</p>
+        {%- endif -%}
+        
+        <h1 class="ayus-product-title">{{ product.title | split: '-' | last | strip }}</h1>
+        
+        <!-- 1: Short Description / Benefits Hook -->
+        {%- if product.metafields.custom.benefits != blank -%}
+          {%- assign benefit_text = product.metafields.custom.benefits | strip_html | strip_newlines -%}
+          {%- assign sentences = benefit_text | split: '.' -%}
+          {%- assign short_desc = '' -%}
+          {%- for sentence in sentences limit: 2 -%}
+            {%- assign trimmed = sentence | strip -%}
+            {%- if trimmed != blank -%}
+              {%- assign short_desc = short_desc | append: trimmed | append: '.' -%}
+            {%- endif -%}
+          {%- endfor -%}
+          <p class="ayus-product-subtitle" id="ayus-subtitle-{{ section.id }}">{{ short_desc | strip }}</p><script>document.addEventListener("DOMContentLoaded", function() { const sub = document.getElementById("ayus-subtitle-{{ section.id }}"); if(sub) { sub.innerText = sub.innerText.replace(/,\s([A-Z])/g, function(m, p1) { return ", " + p1.toLowerCase(); }); } });</script>
+        {%- endif -%}
+        
+        <!-- Pricing & Reviews Wrapper (Purearth Style) -->
+        <div class="ayus-pdp-price-reviews-wrap" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0px; padding-bottom: 0; border-bottom: none;">
+          
+          <!-- Pricing -->
+          <div class="ayus-price-block" style="margin: 0; padding: 0; display: flex; align-items: baseline;">
+            <span id="ayus-regular-price-{{ section.id }}" class="ayus-regular-price" style="font-size: 20px; font-family: var(--font-body); letter-spacing: 0.05em; color: var(--color-text);">{{ product.selected_or_first_available_variant.price | money_with_currency }}</span>
+          </div>
+          
+          <!-- Stars Next to Price -->
+          <div class="ayus-pdp-stars" style="margin: 0; display: flex; align-items: center; cursor: pointer;" onclick="document.getElementById('judgeme_product_reviews').scrollIntoView({behavior: 'smooth'})">
+            
+            <!-- Raw data fallback wrapper if Judgeme doesn't mount -->
+            <div class="ayus-pdp-stars-custom" style="display: flex; align-items: center; gap: 10px; line-height: 1; position: relative; top: 3px;">
+              <span class="ayus-pdp-stars-icons" style="gap: 2px;">
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </span>
+              <span class="ayus-pdp-stars-text" id="ayus-review-text-custom">No reviews</span>
+            </div>
+
+            <div style="display: none;" id="judgeme-raw-badge">
+              {{ product.metafields.judgeme.badge }}
+            </div>
+          </div>
+          <script>
+            (function syncPdpReviewMarkers() {
+              const rawData = document.getElementById('judgeme-raw-badge');
+              if(rawData) {
+                const badge = rawData.querySelector('.jdgm-prev-badge') || rawData.querySelector('.jdgm-preview-badge');
+                if(badge) {
+                  const num = badge.getAttribute('data-number-of-reviews') || '0';
+                  const textEl = document.getElementById('ayus-review-text-custom');
+                  if(textEl) {
+                    textEl.innerText = num === '1' ? '1 REVIEW' : num + ' REVIEWS';
+                    if(num === '0') textEl.innerText = 'NO REVIEWS';
+                  }
+                }
+              }
+            })();
+          </script>
+          
+        </div>
+      </div>
+
+      <!-- Add to Cart -->
+      <div class="ayus-cart-form">
+        <form action="/cart/add" method="post" enctype="multipart/form-data">
+          
+          
+          
+<!-- 3: Size / Quantity Selector block (Purearth style) -->
+          <div class="tt-commerce-controls" style="display:flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-top: 0;">
+            <div class="tt-size-selector" style="width: 100%;">
+              <span class="tt-control-label" style="margin-bottom: 10px; display: block;">Size:</span>
+              <div class="ayus-variant-pills" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                {%- for variant in product.variants -%}
+                  <input type="radio" name="id" value="{{ variant.id }}" id="variant-{{ variant.id }}" class="ayus-variant-radio" data-price="{{ variant.price | money_with_currency }}" {% if variant == product.selected_or_first_available_variant %}checked{% endif %} style="display: none;">
+                  <label for="variant-{{ variant.id }}" class="ayus-variant-label">
+                    {%- if variant.title == 'Default Title' -%}
+                      {%- if product.metafields.custom.pack_size != blank -%}{{ product.metafields.custom.pack_size }}{%- else -%}Standard Size{%- endif -%}
+                    {%- else -%}
+                      {{ variant.title }}
+                    {%- endif -%}
+                  </label>
+                {%- endfor -%}
+              </div>
+            </div>
+            
+            <div class="tt-quantity-selector" style="margin-left: 0; margin-top: 10px;">
+              <span class="tt-control-label" style="margin-right: 15px;">QTY:</span>
+              <div class="tt-qty-box">
+                <button type="button" class="tt-qty-btn tt-qty-minus">−</button>
+                <input type="number" name="quantity" id="tt-qty-input" value="1" min="1">
+                <button type="button" class="tt-qty-btn tt-qty-plus">+</button>
+              </div>
+            
+            </div> <!-- end quantity selector -->
+          </div> <!-- end commerce controls -->
+
+          <div class="ayus-add-to-cart-wrapper" style="margin: 0;">
+            <button type="submit" name="add" class="ayus-add-to-cart-button" style="width: 100%; display: inline-flex; justify-content: center; text-align: center; background: transparent; color: var(--color-text); border: 1px solid var(--color-text); box-shadow: none; appearance: none; -webkit-appearance: none;">
+              ADD TO BAG
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="tt-meta-grid" style="padding-bottom: 0; margin-bottom: 0;">
+        <div style="background: var(--color-background); padding: 18px 20px 10px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          {%- if product.metafields.custom.product_type != blank -%}
+            <div class="tt-meta-item">
+              <span class="tt-meta-key">Type</span>
+            <span class="tt-meta-val">{{ product.metafields.custom.product_type }}</span>
+          </div>
+        {%- endif -%}
+        {%- if product.metafields.custom.dietary_preference != blank -%}
+          <div class="tt-meta-item">
+            <span class="tt-meta-key">Dietary</span>
+            <span class="tt-meta-val">{{ product.metafields.custom.dietary_preference }}</span>
+          </div>
+        {%- endif -%}
+        {%- if product.metafields.custom.hsm_code != blank -%}
+          <div class="tt-meta-item">
+            <span class="tt-meta-key">HSN Code</span>
+            <span class="tt-meta-val">{{ product.metafields.custom.hsm_code }}</span>
+          </div>
+        {%- endif -%}
+        {%- if product.metafields.custom.ayush_license != blank -%}
+          <div class="tt-meta-item">
+            <span class="tt-meta-key">AYUSH License</span>
+            <span class="tt-meta-val">{{ product.metafields.custom.ayush_license }}</span>
+          </div>
+        {%- endif -%}
+        {%- if product.metafields.custom.expiry != blank -%}
+          <div class="tt-meta-item">
+            <span class="tt-meta-key">Expiry</span>
+            <span class="tt-meta-val">{{ product.metafields.custom.expiry | replace: "Months", "" | replace: "months", "" | strip }} Months</span>
+          </div>
+        {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Accordions / Dropdowns -->
+      <div class="ayus-accordions">
+        
+        <!-- Dosage & Usage -->
+        {%- if product.metafields.custom.dosage != blank or product.metafields.custom.usage != blank -%}
+          <details class="tt-filter-group ayus-accordion" style="border-bottom: 1px solid var(--color-border); padding: 5px 0; margin-bottom: 0;">
+            <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
+              {{ section.settings.accordion_1_heading | default: 'DOSAGE & USAGE' }} <span class="tt-icon-toggle"></span>
+            </summary>
+            <div class="tt-filter-content rte" style="padding: 0; margin-bottom: 0;">
+              {%- if product.metafields.custom.dosage != blank -%}
+                <p><strong>Dosage:</strong> {{ product.metafields.custom.dosage }}</p>
+              {%- endif -%}
+              {%- if product.metafields.custom.usage != blank -%}
+                <p><strong>Usage:</strong> {{ product.metafields.custom.usage }}</p>
+              {%- endif -%}
+            </div>
+          </details>
+        {%- endif -%}
+
+        <!-- 4: Indications & Contraindications -->
+        {%- if product.metafields.custom.indications != blank or product.metafields.custom.contraindications != blank -%}
+          <details class="tt-filter-group ayus-accordion" style="border-bottom: 1px solid var(--color-border); padding: 5px 0; margin-bottom: 0;">
+            <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
+              {{ section.settings.accordion_2_heading | default: 'INDICATIONS & CONTRAINDICATIONS' }} <span class="tt-icon-toggle"></span>
+            </summary>
+            <div class="tt-filter-content rte" style="padding: 0; margin-bottom: 0;">
+              {%- if product.metafields.custom.indications != blank -%}
+                <p><strong>Indications:</strong> {{ product.metafields.custom.indications }}</p>
+              {%- endif -%}
+              {%- if product.metafields.custom.contraindications != blank -%}
+                <p><strong>Contraindications:</strong> {{ product.metafields.custom.contraindications }}</p>
+              {%- endif -%}
+            </div>
+          </details>
+        {%- endif -%}
+
+        <!-- Ingredients -->
+        {%- if product.metafields.custom.ingredients_botanical != blank or product.metafields.custom.ingredients_sanskrit != blank -%}
+          <details class="tt-filter-group ayus-accordion" style="border-bottom: 1px solid var(--color-border); padding: 5px 0; margin-bottom: 0;">
+            <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
+              {{ section.settings.accordion_3_heading | default: 'INGREDIENTS' }} <span class="tt-icon-toggle"></span>
+            </summary>
+            <div class="tt-filter-content rte" style="padding: 0; margin-bottom: 0;">
+              {%- if product.metafields.custom.ingredients_botanical != blank -%}
+                <p><strong>Botanical:</strong> {{ product.metafields.custom.ingredients_botanical }}</p>
+              {%- endif -%}
+              {%- if product.metafields.custom.ingredients_sanskrit != blank -%}
+                <p><strong>Sanskrit:</strong> {{ product.metafields.custom.ingredients_sanskrit }}</p>
+              {%- endif -%}
+            </div>
+          </details>
+        {%- endif -%}
+
+        <!-- 5: Dosha Profile -->
+        {%- if product.metafields.custom.dosha_impact != blank or product.metafields.custom.side_effects != blank -%}
+          <details class="tt-filter-group ayus-accordion" style="border-bottom: 1px solid var(--color-border); padding: 5px 0; margin-bottom: 0;">
+            <summary class="tt-filter-header" style="font-family: var(--font-body); font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1em; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; margin: 0;">
+              {{ section.settings.accordion_4_heading | default: 'DOSHA PROFILE' }} <span class="tt-icon-toggle"></span>
+            </summary>
+            <div class="tt-filter-content rte" style="padding: 0; margin-bottom: 0;">
+              {%- if product.metafields.custom.dosha_impact != blank -%}
+                <p><strong>Dosha Impact:</strong> {{ product.metafields.custom.dosha_impact }}</p>
+              {%- endif -%}
+              
+            </div>
+          </details>
+        {%- endif -%}
+        
+      </div>
+      
+    </div>
+  </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const radioButtons = document.querySelectorAll('.ayus-variant-radio');
+  const priceEl = document.getElementById('ayus-regular-price-{{ section.id }}');
+
+  function syncVariantUI(radio) {
+    if (!radio) return;
+    if (priceEl && radio.dataset.price) {
+      priceEl.textContent = radio.dataset.price;
+    }
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('variant', radio.value);
+    window.history.replaceState({}, '', url.toString());
+  }
+
+  radioButtons.forEach(radio => {
+    radio.addEventListener('change', function() {
+      syncVariantUI(this);
+    });
+  });
+
+  syncVariantUI(document.querySelector('.ayus-variant-radio:checked'));
+
+  // --- Quantity Selector Logic CLEAN ---
+  const qtyInputEl = document.getElementById('tt-qty-input');
+  const btnMinusEl = document.querySelector('.tt-qty-minus');
+  const btnPlusEl = document.querySelector('.tt-qty-plus');
+  
+  if (qtyInputEl && btnMinusEl && btnPlusEl) {
+    btnMinusEl.onclick = function() {
+      let currentVal = parseInt(qtyInputEl.value) || 1;
+      if (currentVal > 1) {
+        qtyInputEl.value = currentVal - 1;
+      }
+    };
+    btnPlusEl.onclick = function() {
+      let currentVal = parseInt(qtyInputEl.value) || 1;
+      qtyInputEl.value = currentVal + 1;
+    };
+  }
+
+});
+</script>
+
+</section>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product Information",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Accordions"
+    },
+    {
+      "type": "text",
+      "id": "accordion_1_heading",
+      "label": "Accordion 1 Heading",
+      "default": "DOSAGE & USAGE"
+    },
+    {
+      "type": "text",
+      "id": "accordion_2_heading",
+      "label": "Accordion 2 Heading",
+      "default": "INDICATIONS & CONTRAINDICATIONS"
+    },
+    {
+      "type": "text",
+      "id": "accordion_3_heading",
+      "label": "Accordion 3 Heading",
+      "default": "INGREDIENTS"
+    },
+    {
+      "type": "text",
+      "id": "accordion_4_heading",
+      "label": "Accordion 4 Heading",
+      "default": "DOSHA PROFILE"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
+}
+{% endschema %}
+

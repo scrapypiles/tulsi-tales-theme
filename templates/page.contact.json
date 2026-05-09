@@ -1,0 +1,73 @@
+{
+  "sections": {
+    "main": {
+      "type": "ayus-contact",
+      "blocks": {
+        "support": {
+          "type": "contact_block",
+          "settings": {
+            "title": "Customer Support",
+            "link_text": "",
+            "link_url": "",
+            "subtitle": "",
+            "text_content": "Ayurveda works best when you have the right guidance. If you're unsure which products are right for you, we'd recommend speaking with a qualified Ayurvedic practitioner first. For everything else, including orders, products, or general questions, we're right here."
+          }
+        },
+        "whatsapp": {
+          "type": "contact_block",
+          "settings": {
+            "title": "WhatsApp \/ Phone",
+            "link_text": "+91 7832 980 384",
+            "link_url": "https:\/\/wa.me\/916300796184",
+            "subtitle": "Available Mon-Fri, 9am - 6pm IST",
+            "text_content": ""
+          }
+        },
+        "email": {
+          "type": "contact_block",
+          "settings": {
+            "title": "Email",
+            "link_text": "tulsitales@gmail.com",
+            "link_url": "mailto:tulsitales@gmail.com",
+            "subtitle": "We aim to reply within 72 hours.",
+            "text_content": ""
+          }
+        },
+        "instagram": {
+          "type": "contact_block",
+          "settings": {
+            "title": "Instagram",
+            "link_text": "@tulsitalesofficial",
+            "link_url": "https:\/\/instagram.com\/tulsitales",
+            "subtitle": "",
+            "text_content": ""
+          }
+        }
+      },
+      "block_order": [
+        "support",
+        "whatsapp",
+        "email",
+        "instagram"
+      ],
+      "settings": {
+        "banner_image": "shopify:\/\/shop_images\/Tulsi_Tales.png",
+        "overlay_color": "#000000",
+        "overlay_opacity": 50,
+        "text_color": "#ffffff",
+        "tagline": "Get in touch",
+        "title": "We're here if you need us.",
+        "subtitle": "<p>Whether you have a question about a product, need help with an order, or are simply not sure where to start with Ayurveda — reach out. We're a small team and we read every message personally.<\/p>",
+        "form_heading": "Send us a Message",
+        "name_label": "Name",
+        "email_label": "Email",
+        "phone_label": "Phone Number",
+        "message_label": "Message",
+        "button_label": "Send Message"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

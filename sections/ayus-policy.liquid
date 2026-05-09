@@ -1,0 +1,72 @@
+{% if section.settings.show_section %}
+
+<section class="ayus-policy-page" style="padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px !important; background-color: var(--color-background);">
+  <div class="ayus-container" style="max-width: 800px; margin: 0 auto; background: #fff; padding: 60px 80px; border: 1px solid var(--color-border); box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+    
+    <div style="text-align: center; margin-bottom: 50px;">
+      <span style="font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.15em; font-size: 10px; color: var(--color-accent); display: block; margin-bottom: 10px;">Legal</span>
+      <h1 style="font-family: var(--font-heading); font-size: 36px; color: var(--color-text); margin: 0;">{{ page.title }}</h1>
+    </div>
+
+    <div class="rte" style="font-family: var(--font-body); font-size: 14px; line-height: 1.8; color: #444;">
+      {{ page.content }}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .ayus-policy-page .rte h1, .ayus-policy-page .rte h2, .ayus-policy-page .rte h3 {
+    font-family: var(--font-heading);
+    margin-top: 40px;
+    margin-bottom: 15px;
+    color: var(--color-text);
+  }
+  .ayus-policy-page .rte h2 { font-size: 22px; border-bottom: 1px solid var(--color-border); padding-bottom: 10px; }
+  .ayus-policy-page .rte p { margin-bottom: 20px; }
+  .ayus-policy-page .rte ul { margin-bottom: 20px; padding-left: 20px; }
+  .ayus-policy-page .rte li { margin-bottom: 10px; }
+  .ayus-policy-page .rte a { color: var(--color-accent); text-decoration: underline; }
+  
+  @media (max-width: 850px) {
+    .ayus-policy-page .ayus-container { padding: 40px 20px !important; }
+    .ayus-policy-page .rte h2 { font-size: 18px; }
+    .ayus-policy-page .rte { font-size: 13px; }
+  }
+</style>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Policy Template",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 100
+    }
+  ]
+}
+{% endschema %}

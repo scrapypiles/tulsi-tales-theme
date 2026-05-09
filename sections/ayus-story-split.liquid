@@ -1,0 +1,159 @@
+{% if section.settings.show_section %}
+
+
+<section class="ayus-story-split-section" style="background-color: #FAF8F5; border-bottom: 1px solid var(--color-border); padding: 0 !important;">
+<style>@media(max-width:850px){.ayus-story-split-section { padding: 0 !important; }}</style>
+
+    
+    
+  {% assign split_bg = section.settings.image | img_url: '800x' %}
+  {% if section.settings.image == blank %}
+    {% assign split_bg = 'https://images.unsplash.com/photo-1611078449942-9ce28014eeb5?q=80&w=1200' %}
+  {% endif %}
+  <div class="tt-story-split {% if section.settings.image_position == 'right' %}tt-reverse{% endif %}" style="display: flex; flex-wrap: wrap; align-items: stretch; {% if section.settings.image_position == 'right' %}flex-direction: row-reverse;{% endif %}">
+    <div class="tt-split-img" role="img" aria-label="{{ section.settings.heading | escape }}" style="flex: 1; min-width: 300px; background-image: url('{{ split_bg }}'); background-size: cover; background-repeat: no-repeat; background-position: center center;"></div>
+    <div class="tt-split-text" style="flex: 1; min-width: 300px; padding: 60px 8%; display: flex; flex-direction: column; justify-content: center;">
+      {% if section.settings.label != blank %}
+        <span class="tt-story-label" style="font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.15em; font-size: 12px; color: var(--color-accent); margin-bottom: 10px; display: block;">{{ section.settings.label }}</span>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2 style="font-family: var(--font-heading); font-size: 32px; margin-bottom: 15px; color: var(--color-text);">{{ section.settings.heading }}</h2>
+      {% endif %}
+      <div class="rte" style="font-family: var(--font-body); font-size: 14px; line-height: 1.7; color: #444;">
+        {{ section.settings.text }}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  @media (min-width: 851px) {
+    .tt-story-split {
+      align-items: stretch !important;
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .tt-split-img {
+      flex: 0 0 50% !important;
+      max-width: 50% !important;
+      min-height: 100% !important; /* Let it match the text height naturally */
+    }
+
+    .tt-split-text {
+      flex: 0 0 50% !important;
+      max-width: 50% !important;
+      padding: 100px 8% !important;
+    }
+  }
+
+  @media (max-width: 850px) {
+    .tt-story-split { flex-direction: column !important; }
+    .tt-story-split.tt-reverse { flex-direction: column !important; }
+    .tt-split-img { min-height: 450px !important; }
+    .tt-split-text { padding: 50px 20px !important; }
+    .ayus-story-split-section .tt-story-label { font-size: 13px !important; }
+  }
+</style>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Story Split Block",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "header",
+      "content": "Layout & Styling"
+    },
+    {
+      "type": "select",
+      "id": "header_placement",
+      "label": "Header Placement",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "border_placement",
+      "label": "Border Placement",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "top", "label": "Top" },
+        { "value": "bottom", "label": "Bottom" },
+        { "value": "both", "label": "Top & Bottom" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "options": [
+        { "value": "24px", "label": "Small" },
+        { "value": "36px", "label": "Medium" },
+        { "value": "48px", "label": "Large" }
+      ],
+      "default": "36px"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "layout_bg_color",
+      "label": "Background Color",
+      "default": "#FAF8F5"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_image",
+      "label": "Insert Image"
+    },
+    
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "select", "id": "image_position", "label": "Image Position", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "text", "id": "label", "label": "Tagline / Label" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "richtext", "id": "text", "label": "Body Text" }
+  ],
+  "presets": [{ "name": "Story Split Block" }]
+}
+{% endschema %}
