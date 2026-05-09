@@ -1,6 +1,6 @@
 {% if section.settings.show_section %}
 <!-- Related Product Recommendations -->
-<section class="tt-recommendations" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; background-color: {{ section.settings.bg_color }};">
+<section class="tt-recommendations" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; background-color: {{ section.settings.bg_color }}; margin: 0;">
   <div class="ayus-container">
     <h2 style="text-align: center; font-family: var(--font-heading); margin-bottom: 40px; font-size: 32px;">{{ section.settings.heading | default: 'You May Also Like' }}</h2>
     <div class="tt-horizontal-carousel">
@@ -82,7 +82,7 @@
       "type": "color",
       "id": "bg_color",
       "label": "Background Color",
-      "default": "#ffffff"
+      "default": "#faf8f5"
     },
     {
       "type": "range",

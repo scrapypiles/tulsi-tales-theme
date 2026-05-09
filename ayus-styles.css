@@ -614,9 +614,7 @@ h6 {
 /* Recommendations Section */
 .tt-recommendations {
   border: none;
-  padding: 80px 0;
-  margin-top: 0;
-  background-color: var(--color-background);
+  background-color: transparent;
 }
 
 /* Responsive Fixes for Gallery */
