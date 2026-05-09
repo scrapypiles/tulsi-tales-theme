@@ -415,10 +415,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <div class="ayus-card-info" style="flex-grow: 1; display: flex; flex-direction: column; text-align: center; align-items: center; padding-top: 10px;">
               <span class="ayus-brand-text" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-accent); margin-bottom: 5px;">{{ related.vendor }}</span>
-              <a href="{{ related.url }}" style="text-decoration: none; color: inherit;">
-                <h3 class="ayus-card-title" style="font-size: 16px; font-family: var(--font-body); margin-bottom: 10px;">{{ related.title | split: '-' | last | strip }}</h3>
+              <a href="{{ related.url }}" style="text-decoration: none; color: inherit; margin-bottom: auto;">
+                <h3 class="ayus-card-title" style="font-size: 16px; font-family: var(--font-body); margin-bottom: 8px;">{{ related.title | split: '-' | last | strip }}</h3>
               </a>
-              <p class="ayus-card-price" style="margin-bottom: 0; font-size: 14px;">{{ related.price | money }}</p>
+              <p class="ayus-card-price" style="margin-top: 10px; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: #333;">{{ related.price | money }}</p>
             </div>
             
           </div>
