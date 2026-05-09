@@ -93,7 +93,7 @@ h6 {
 
 /* Button */
 .ayus-add-to-cart-wrapper {
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 /* Hook Description */
@@ -3332,16 +3332,16 @@ details > summary::-webkit-details-marker {
   .ayus-product-header { order: 3 !important; margin-bottom: 0px !important; padding-bottom: 0 !important; width: 100% !important; border-bottom: none !important; }
   
   .tt-commerce-controls { order: 4 !important; margin-top: 0px !important; margin-bottom: 0px !important; border-bottom: none !important; padding-bottom: 0 !important; width: 100% !important; }
-  .ayus-add-to-cart-wrapper { order: 5 !important; margin-top: 25px !important; margin-bottom: 25px !important; width: 100% !important; }
+  .ayus-add-to-cart-wrapper { order: 5 !important; margin-top: 15px !important; margin-bottom: 15px !important; width: 100% !important; }
   
-  .ayus-product-description { order: 6 !important; margin-top: 0 !important; margin-bottom: 25px !important; width: 100% !important; }
+  .ayus-product-description { order: 6 !important; margin-top: 0 !important; margin-bottom: 15px !important; width: 100% !important; }
   
   .tt-meta-grid { 
     order: 7 !important; 
     grid-template-columns: 1fr 1fr !important; /* Two columns on mobile */
     margin-top: 0 !important;
-    margin-bottom: 25px !important;
-    padding-bottom: 25px !important;
+    margin-bottom: 15px !important;
+    padding-bottom: 15px !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
