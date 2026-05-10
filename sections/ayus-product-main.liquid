@@ -82,7 +82,7 @@
       <div class="tt-main-image-container">
         {%- if product.media.size > 0 -%}
           <div class="tt-main-image-zoom">
-            <img id="tt-primary-image" src="{{ product.featured_media | image_url: width: 1200 }}" alt="{{ product.title | escape }}" loading="lazy">
+            <img id="tt-primary-image" src="{{ product.featured_media | image_url: width: 1200 }}" alt="{{ product.title | escape }}">
           </div>
         {%- else -%}
           {{ 'product-1' | placeholder_svg_tag: 'ayus-placeholder-svg' }}
@@ -172,7 +172,7 @@
 
       <!-- Add to Cart -->
       <div class="ayus-cart-form">
-        <form action="/cart/add" method="post" enctype="multipart/form-data">
+        <form action="/cart/add" method="post" id="ayus-add-to-cart-form" enctype="multipart/form-data" onsubmit="event.preventDefault(); const btn = this.querySelector('button[name=\'add\']'); const oldText = btn.innerText; btn.innerText = 'ADDING...'; btn.disabled = true; const fd = new FormData(this); fd.append('sections', 'ayus-cart-drawer'); fetch((window.Shopify && window.Shopify.routes ? window.Shopify.routes.root : '/') + 'cart/add.js', {method: 'POST', body: fd}).then(r=>r.json()).then(data => { btn.innerText = 'ADDED'; setTimeout(()=>{btn.innerText=oldText; btn.disabled=false;}, 2000); if(data.sections && data.sections['ayus-cart-drawer']) { const parser = new DOMParser(); const doc = parser.parseFromString(data.sections['ayus-cart-drawer'], 'text/html'); const newDrawer = doc.querySelector('.tt-cart-drawer-wrapper'); if(newDrawer) { const oldPanel = document.querySelector('.tt-cart-panel'); const newPanel = newDrawer.querySelector('.tt-cart-panel'); if(oldPanel && newPanel) oldPanel.innerHTML = newPanel.innerHTML; document.getElementById('tt-cart-drawer').classList.add('is-open'); const newCount = newDrawer.querySelector('#shopify-section-cart-drawer')?.getAttribute('data-cart-count') || newDrawer.getAttribute('data-cart-count'); document.querySelectorAll('.tt-cart-badge').forEach(el => el.innerText = newCount); } } });">
           
           
           

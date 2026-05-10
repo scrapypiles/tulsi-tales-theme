@@ -4,5 +4,24 @@
   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-  <span style="color: #888; font-size: 11px; margin-left: 6px; font-weight: normal; letter-spacing: 0.1em; text-transform: uppercase;">{{ review_text | default: '(0 REVIEWS)' }}</span>
+  <span id="ayus-review-text-{{ product.id | default: '0' }}" style="color: #888; font-size: 11px; margin-left: 6px; font-weight: normal; letter-spacing: 0.1em; text-transform: uppercase;">{{ review_text | default: '(0 REVIEWS)' }}</span>
 </div>
+<div style="display: none;" id="judgeme-raw-badge-{{ product.id | default: '0' }}">
+  {{ product.metafields.judgeme.badge }}
+</div>
+<script>
+  (function() {
+    const rawData = document.getElementById('judgeme-raw-badge-{{ product.id | default: "0" }}');
+    if(rawData) {
+      const badge = rawData.querySelector('.jdgm-prev-badge') || rawData.querySelector('.jdgm-preview-badge');
+      if(badge) {
+        const num = badge.getAttribute('data-number-of-reviews') || '0';
+        const textEl = document.getElementById('ayus-review-text-{{ product.id | default: "0" }}');
+        if(textEl) {
+          textEl.innerText = num === '1' ? '(1 REVIEW)' : '(' + num + ' REVIEWS)';
+          if(num === '0') textEl.innerText = '(0 REVIEWS)';
+        }
+      }
+    }
+  })();
+</script>
