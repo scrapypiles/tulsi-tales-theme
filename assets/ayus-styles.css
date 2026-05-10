@@ -1665,11 +1665,11 @@ html, body {
     margin-bottom: 10px !important;
   }
 
-  /* Form inputs should be strictly 16px on iOS to prevent auto-zoom */
+  /* Form inputs should be strictly 16px on iOS to prevent auto-zoom, EXCEPT for custom quantity boxes */
   input[type="text"],
   input[type="email"],
   input[type="password"],
-  input[type="number"],
+  input[type="number"]:not(#tt-qty-input):not(.tt-cart-qty input),
   select {
     font-size: 16px !important;
   }
