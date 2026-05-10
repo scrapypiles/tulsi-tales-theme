@@ -672,7 +672,8 @@ h6 {
 }
 
 .tt-qty-box input {
-  width: 40px;
+  width: 38px;
+  flex: 0 0 38px;
   text-align: center;
   border: none;
   border-left: 1px solid var(--color-border);
@@ -702,7 +703,7 @@ h6 {
 .tt-qty-btn {
   background: transparent;
   border: none;
-  padding: 5px 12px;
+  padding: 0;
   cursor: pointer;
   color: var(--color-text);
   font-size: 16px;
@@ -711,9 +712,12 @@ h6 {
   justify-content: center;
   height: auto;
   align-self: stretch;
+  width: 38px;
+  flex: 0 0 38px;
 }
 #tt-qty-input {
-  width: 40px;
+  width: 38px;
+  flex: 0 0 38px;
   text-align: center;
   border: none;
   border-left: 1px solid var(--color-border);

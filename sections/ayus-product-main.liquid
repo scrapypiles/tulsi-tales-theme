@@ -190,14 +190,13 @@
               </div>
             </div>
             
-            <div class="tt-quantity-selector" style="margin-left: 0; margin-top: 0;">
-              <span class="tt-control-label" style="margin-right: 15px;">{{ section.settings.quantity_label | default: 'QTY:' }}</span>
-              <div class="tt-qty-box">
+            <div class="tt-quantity-selector" style="width: 100%;">
+              <span class="tt-control-label" style="margin-bottom: 10px; display: block;">{{ section.settings.quantity_label | default: 'Quantity' }}</span>
+              <div class="tt-qty-box" style="display: flex;">
                 <button type="button" class="tt-qty-btn tt-qty-minus">−</button>
                 <input type="number" name="quantity" id="tt-qty-input" value="1" min="1">
                 <button type="button" class="tt-qty-btn tt-qty-plus">+</button>
               </div>
-            
             </div> <!-- end quantity selector -->
           </div> <!-- end commerce controls -->
 
