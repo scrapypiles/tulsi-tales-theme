@@ -93,7 +93,6 @@ h6 {
 
 /* Button */
 .ayus-add-to-cart-wrapper {
-  margin-bottom: 0;
 }
 
 /* Hook Description */
@@ -3325,7 +3324,6 @@ details > summary::-webkit-details-marker {
   .tt-left-column,
   .ayus-product-info-wrapper,
   .ayus-cart-form,
-  .ayus-cart-form form,
   .tt-product-media-gallery,
   .tt-main-image-container {
     display: contents !important;
@@ -3340,7 +3338,7 @@ details > summary::-webkit-details-marker {
   .tt-commerce-controls { order: 4 !important; border-bottom: none !important; width: 100% !important; }
   .ayus-add-to-cart-wrapper { order: 5 !important; width: 100% !important; }
   
-  .ayus-product-description { order: 6 !important; margin-top: 0 !important; margin-bottom: 0px !important; width: 100% !important; }
+  .ayus-product-description { order: 6 !important; width: 100% !important; }
   
   .tt-meta-grid { 
     order: 7 !important; 
