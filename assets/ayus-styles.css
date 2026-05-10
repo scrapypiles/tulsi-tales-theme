@@ -440,7 +440,6 @@ h6 {
 
 .tt-shop-by-section {
   background-color: #fff;
-  padding: 80px 0;
   text-align: center;
 }
 .tt-shop-by-section h2 {
@@ -2500,7 +2499,6 @@ details[open] > summary .tt-icon-plus::after {
 /* SAFE HOMEPAGE COLOR FIXES */
 .tt-shop-by-section {
   background-color: #ffffff;
-  padding: 80px 0;
   text-align: center;
 }
 .tt-shop-by-section h2 {
@@ -2847,9 +2845,6 @@ details > summary::-webkit-details-marker {
   }
 
   /* Featured Collection section specific spacing */
-  .ayus-featured-collection {
-    padding-bottom: 60px !important;
-  }
   .ayus-featured-collection .ayus-container,
   .tt-recommendations .ayus-container {
     padding-top: 0 !important;
