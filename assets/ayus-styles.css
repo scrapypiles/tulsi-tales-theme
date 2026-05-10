@@ -3016,18 +3016,21 @@ details > summary::-webkit-details-marker {
   margin-bottom: 15px !important;
 }
 
-.ayus-accordion .tt-filter-content {
+.ayus-accordion .tt-filter-content,
+.ayus-story-accordion .tt-filter-content {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
   padding-top: 0 !important;
   padding-bottom: 20px !important;
 }
 
-.ayus-accordion .tt-filter-content p:first-child {
+.ayus-accordion .tt-filter-content p:first-child,
+.ayus-story-accordion .tt-filter-content p:first-child {
   margin-top: 0 !important;
 }
 
-.ayus-accordion .tt-filter-content > *:last-child {
+.ayus-accordion .tt-filter-content > *:last-child,
+.ayus-story-accordion .tt-filter-content > *:last-child {
   margin-bottom: 0 !important;
 }
 
