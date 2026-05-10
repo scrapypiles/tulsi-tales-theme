@@ -32,6 +32,43 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Tulsi Tales — curated Ayurvedic products from India">
+
+    {%- if template contains 'product' -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": {{ product.title | json }},
+        "image": [
+          {{ product.featured_media | image_url: width: 1200 | prepend: 'https:' | json }}
+        ],
+        "description": {{ product.description | strip_html | json }},
+        "brand": {
+          "@type": "Brand",
+          "name": {{ product.vendor | json }}
+        },
+        {% if product.metafields.judgeme.badge %}
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "{{ product.metafields.judgeme.badge | split: "data-average-rating='" | last | split: "'" | first | default: '5.0' }}",
+          "reviewCount": "{{ product.metafields.judgeme.badge | split: "data-number-of-reviews='" | last | split: "'" | first | default: '1' }}"
+        },
+        {% endif %}
+        "offers": {
+          "@type": "Offer",
+          "url": {{ shop.url | append: product.url | json }},
+          "priceCurrency": {{ cart.currency.iso_code | json }},
+          "price": {{ product.selected_or_first_available_variant.price | divided_by: 100.0 | json }},
+          "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+          "seller": {
+            "@type": "Organization",
+            "name": {{ shop.name | json }}
+          }
+        }
+      }
+    </script>
+    {%- endif -%}
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
