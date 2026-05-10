@@ -660,7 +660,9 @@ h6 {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #888;
-  margin-right: 10px;
+  margin-right: 0;
+  margin-bottom: 10px;
+  display: block;
 }
 .tt-size-value {
   font-size: 14px;
@@ -668,7 +670,8 @@ h6 {
 }
 .tt-quantity-selector {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .tt-qty-box input {

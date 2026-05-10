@@ -175,7 +175,7 @@
 <!-- 3: Size / Quantity Selector block (Purearth style) -->
           <div class="tt-commerce-controls" style="display:flex; flex-direction: column; align-items: flex-start; gap: 20px; margin: 0;">
             <div class="tt-size-selector" style="width: 100%;">
-              <span class="tt-control-label" style="margin-bottom: 10px; display: block;">{{ section.settings.size_label | default: 'Size:' }}</span>
+              <span class="tt-control-label">{{ section.settings.size_label | default: 'Size:' }}</span>
               <div class="ayus-variant-pills" style="display: flex; flex-wrap: wrap; gap: 10px;">
                 {%- for variant in product.variants -%}
                   <input type="radio" name="id" value="{{ variant.id }}" id="variant-{{ variant.id }}" class="ayus-variant-radio" data-price="{{ variant.price | money_with_currency }}" {% if variant == product.selected_or_first_available_variant %}checked{% endif %} style="display: none;">
@@ -191,7 +191,7 @@
             </div>
             
             <div class="tt-quantity-selector" style="width: 100%;">
-              <span class="tt-control-label" style="margin-bottom: 10px; display: block;">{{ section.settings.quantity_label | default: 'Quantity' }}</span>
+              <span class="tt-control-label">{{ section.settings.quantity_label | default: 'Quantity' }}</span>
               <div class="tt-qty-box" style="display: flex;">
                 <button type="button" class="tt-qty-btn tt-qty-minus">−</button>
                 <input type="number" name="quantity" id="tt-qty-input" value="1" min="1">
