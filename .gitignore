@@ -2,3 +2,4 @@ shopify_credentials.txt
 shopify_access_token.txt
 theme-sync-manifest.json
 sync_live_theme_structure.js
+scripts/utils/
