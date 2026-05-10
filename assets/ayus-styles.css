@@ -3328,6 +3328,7 @@ details > summary::-webkit-details-marker {
   .tt-left-column,
   .ayus-product-info-wrapper,
   .ayus-cart-form,
+  .ayus-cart-form form,
   .tt-product-media-gallery,
   .tt-main-image-container {
     display: contents !important;
