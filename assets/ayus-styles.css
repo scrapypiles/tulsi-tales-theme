@@ -679,7 +679,8 @@ h6 {
   border-left: 1px solid var(--color-border);
   border-right: 1px solid var(--color-border);
   padding: 0;
-  height: 100%;
+  height: auto;
+  align-self: stretch;
   font-family: var(--font-body);
   background: transparent;
   color: var(--color-text);
@@ -708,7 +709,8 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: auto;
+  align-self: stretch;
 }
 #tt-qty-input {
   width: 40px;
@@ -718,7 +720,8 @@ h6 {
   border-right: 1px solid var(--color-border);
   font-family: var(--font-body);
   padding: 0;
-  height: 100%;
+  height: auto;
+  align-self: stretch;
   min-height: 40px;
   margin: 0;
   border-radius: 0;
@@ -1469,13 +1472,6 @@ html, body {
     padding: 12px 24px !important;
   }
 
-  /* 3: Reduce space above Shop By */
-  .tt-shop-by-section {
-    padding-bottom: 30px !important;
-  }
-  .tt-shop-by-section .ayus-container {
-    padding-top: 0 !important;
-  }
   .tt-shop-by-section h2,
   .ayus-featured-collection h2 {
     font-size: 28px !important;
@@ -2845,11 +2841,6 @@ details > summary::-webkit-details-marker {
   }
 
   /* Featured Collection section specific spacing */
-  .ayus-featured-collection .ayus-container,
-  .tt-recommendations .ayus-container {
-    padding-top: 0 !important;
-    padding-bottom: 26px !important;
-  }
   .ayus-featured-collection .ayus-center-btn {
     margin-top: 32px !important;
     margin-bottom: 0 !important;
