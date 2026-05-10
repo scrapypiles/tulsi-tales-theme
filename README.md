@@ -68,6 +68,20 @@ node scripts/shopify-theme-sync.js
 node scripts/shopify-theme-deploy.js
 ```
 
+### Sync canonical files back into the legacy root-level mirrors
+
+Use this after editing canonical `sections/` or `templates/` files when older helper scripts still expect the legacy root-level copies.
+
+```bash
+node scripts/sync-legacy-mirrors.js
+```
+
+You can also target specific mirrors:
+
+```bash
+node scripts/sync-legacy-mirrors.js ayus-product-main.liquid product.json
+```
+
 ## Notes for developers
 
 - Keep storefront appearance stable unless a change is explicitly requested.
