@@ -692,6 +692,7 @@ h6 {
   display: flex;
   align-items: stretch;
   border: 1px solid var(--color-border);
+  min-height: 40px;
 }
 
 .tt-qty-box.tt-cart-qty {
@@ -717,7 +718,11 @@ h6 {
   border-left: 1px solid var(--color-border);
   border-right: 1px solid var(--color-border);
   font-family: var(--font-body);
-  padding: 5px 0;
+  padding: 0;
+  height: 100%;
+  min-height: 40px;
+  margin: 0;
+  border-radius: 0;
   -moz-appearance: textfield;
 }
 #tt-qty-input::-webkit-outer-spin-button,
@@ -1024,9 +1029,6 @@ h6 {
 }
 
 /* Shop By Spacing Adjustments */
-.tt-shop-by-section {
-  padding: 40px 0 !important;
-}
 .tt-recommendations {
   /* Removed conflicting padding zeroing */
 }
@@ -1470,7 +1472,6 @@ html, body {
 
   /* 3: Reduce space above Shop By */
   .tt-shop-by-section {
-    padding-top: 0 !important;
     padding-bottom: 30px !important;
   }
   .tt-shop-by-section .ayus-container {
@@ -1809,7 +1810,6 @@ html, body {
 @media (max-width: 850px) {
   /* 1. Reduce space above Shop By */
   .tt-shop-by-section {
-    padding-top: 15px !important;
     margin-top: 0 !important;
   }
 
@@ -2516,7 +2516,6 @@ details[open] > summary .tt-icon-plus::after {
 
 .ayus-featured-collection {
   background-color: var(--color-background);
-  padding: 80px 0 50px;
   border-top: 1px solid var(--color-border);
 }
 .ayus-featured-collection h2 {
@@ -3289,7 +3288,6 @@ details > summary::-webkit-details-marker {
 }
 
 
-@media (max-width: 850px) { .tt-shop-by-section { padding-top: 20px !important; } }
 .tt-checkout-btn:hover {
   background-color: transparent !important;
   color: var(--color-accent) !important;
@@ -3357,17 +3355,14 @@ details > summary::-webkit-details-marker {
   
   .ayus-product-header { order: 3 !important; margin-bottom: 0px !important; padding-bottom: 0 !important; width: 100% !important; border-bottom: none !important; }
   
-  .tt-commerce-controls { order: 4 !important; margin-top: 0px !important; margin-bottom: 0px !important; border-bottom: none !important; padding-bottom: 0 !important; width: 100% !important; gap: 6px !important; }
-  .ayus-add-to-cart-wrapper { order: 5 !important; margin-top: 0px !important; margin-bottom: 0px !important; width: 100% !important; }
+  .tt-commerce-controls { order: 4 !important; border-bottom: none !important; width: 100% !important; }
+  .ayus-add-to-cart-wrapper { order: 5 !important; width: 100% !important; }
   
   .ayus-product-description { order: 6 !important; margin-top: 0 !important; margin-bottom: 0px !important; width: 100% !important; }
   
   .tt-meta-grid { 
     order: 7 !important; 
     grid-template-columns: 1fr 1fr !important; /* Two columns on mobile */
-    margin-top: 0 !important;
-    margin-bottom: 0px !important;
-    padding-bottom: 0px !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
