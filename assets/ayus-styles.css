@@ -3320,6 +3320,7 @@ details > summary::-webkit-details-marker {
   .ayus-product-container {
     display: flex !important;
     flex-direction: column !important;
+    gap: 20px !important;
   }
   .tt-left-column,
   .ayus-product-info-wrapper,
@@ -3331,8 +3332,8 @@ details > summary::-webkit-details-marker {
   }
   
   /* Pure Earth Mobile Layout Order */
-  .tt-main-image-zoom { order: 1 !important; margin-bottom: 15px !important; width: 100% !important; }
-  .tt-thumbnail-strip { order: 2 !important; margin-bottom: 15px !important; width: 100% !important; }
+  .tt-main-image-zoom { order: 1 !important; margin-bottom: 0 !important; width: 100% !important; }
+  .tt-thumbnail-strip { order: 2 !important; margin-bottom: 0 !important; width: 100% !important; }
   
   .ayus-product-header { order: 3 !important; margin-bottom: 0px !important; padding-bottom: 0 !important; width: 100% !important; border-bottom: none !important; }
   
@@ -3362,7 +3363,7 @@ details > summary::-webkit-details-marker {
     display: block;
     width: 100%;
     order: 1 !important;
-    margin-bottom: 15px !important;
+    margin-bottom: 0 !important;
     position: relative;
   }
   .tt-mobile-carousel-track {
