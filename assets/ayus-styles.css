@@ -679,16 +679,18 @@ h6 {
   border: none;
   border-left: 1px solid var(--color-border);
   border-right: 1px solid var(--color-border);
-  padding: 5px 0;
+  padding: 0;
+  height: 100%;
   font-family: var(--font-body);
   background: transparent;
   color: var(--color-text);
   margin: 0;
+  border-radius: 0;
 }
 
 .tt-qty-box {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   border: 1px solid var(--color-border);
 }
 
@@ -703,6 +705,10 @@ h6 {
   cursor: pointer;
   color: var(--color-text);
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 #tt-qty-input {
   width: 40px;
