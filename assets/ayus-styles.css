@@ -1803,11 +1803,6 @@ html, body {
 /* FORCE MOBILE HOMEPAGE LAYOUT (< 850px)    */
 /* ----------------------------------------- */
 @media (max-width: 850px) {
-  /* 1. Reduce space above Shop By */
-  .tt-shop-by-section {
-    margin-top: 0 !important;
-  }
-
   /* 2. Soulful Curation - Horizontal Scroll */
   /* Override the default grid layout to be a flex row that scrolls horizontally */
   .ayus-featured-collection .ayus-grid {
