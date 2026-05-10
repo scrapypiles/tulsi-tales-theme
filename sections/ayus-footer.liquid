@@ -266,7 +266,7 @@
             <div class="tt-footer-brand" {{ block.shopify_attributes }}>
               <a href="/" class="tt-footer-brand-logo">
                 {% if block.settings.logo != blank %}
-                  <img src="{{ block.settings.logo | img_url: '400x' }}" alt="{{ shop.name }}" style="max-width: {{ block.settings.logo_width }}px; height: auto;" loading="lazy">
+                  <img src="{{ block.settings.logo | image_url: width: 400 }}" alt="{{ shop.name }}" style="max-width: {{ block.settings.logo_width }}px; height: auto;" loading="lazy">
                 {% else %}
                   <img src="{{ 'logo.png' | asset_url }}" alt="Tulsi Tales Logo" style="max-width: {{ block.settings.logo_width }}px; height: auto;" loading="lazy">
                 {% endif %}

@@ -1,6 +1,6 @@
 {% if section.settings.show_section %}
 
-<section class="ayus-hero" style="{% if section.settings.image %}background-image: url('{{ section.settings.image | img_url: 'master' }}');{% endif %} display: flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; text-align: center !important; padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px !important;">
+<section class="ayus-hero" style="{% if section.settings.image %}background-image: url('{{ section.settings.image | image_url: width: 2000 }}');{% endif %} display: flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; text-align: center !important; padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px !important;">
   <div class="ayus-hero-overlay"></div>
   <div class="ayus-hero-content" style="position: relative; z-index: 10; width: 100%; max-width: 800px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto;">
     <h1>{{ section.settings.heading | escape }}</h1>

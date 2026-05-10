@@ -12,7 +12,7 @@
     text-align: center;
     background-color: #F7F5F0;
     {% if section.settings.banner_image %}
-      background-image: url('{{ section.settings.banner_image | img_url: '1200x' }}');
+      background-image: url('{{ section.settings.banner_image | image_url: width: 1200 }}');
     {% endif %}
   }
   .contact-banner::before {

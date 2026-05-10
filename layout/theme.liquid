@@ -37,8 +37,8 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": {{ shop.name | json }},
-        "url": {{ shop.url | json }},
-        "logo": {{ settings.share_image | image_url: width: 512 | json }}
+        "url": {{ shop.url | json }}{% if settings.share_image != blank %},
+        "logo": {{ settings.share_image | image_url: width: 512 | prepend: 'https:' | json }}{% endif %}
       }
     </script>
     <script type="application/ld+json">

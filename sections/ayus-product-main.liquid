@@ -32,7 +32,7 @@
         <div class="tt-mobile-carousel-track">
           {% for media in product.media %}
             <div class="tt-mobile-carousel-slide">
-              <img src="{{ media | img_url: '800x' }}" alt="{{ media.alt | escape }}" loading="lazy">
+              <img src="{{ media | image_url: width: 800 }}" alt="{{ media.alt | escape }}" loading="lazy">
             </div>
           {% endfor %}
         </div>
@@ -64,15 +64,15 @@
       {% if product.media.size > 1 %}
         <div class="tt-thumbnail-strip">
           {% for media in product.media %}
-            <div class="tt-thumb" onmouseenter="changeMainImage('{{ media | img_url: '1200x' }}')">
-              <img src="{{ media | img_url: '150x' }}" alt="{{ media.alt | escape }}" loading="lazy">
+            <div class="tt-thumb" onmouseenter="changeMainImage('{{ media | image_url: width: 1200 }}')">
+              <img src="{{ media | image_url: width: 150 }}" alt="{{ media.alt | escape }}" loading="lazy">
             </div>
           {% endfor %}
         
         <script>
           // Preload full-res images in the background so hover is completely instant
           {% for media in product.media %}
-            (new Image()).src = '{{ media | img_url: "1200x" }}';
+            (new Image()).src = '{{ media | image_url: width: 1200 }}';
           {% endfor %}
         </script>
 
@@ -82,7 +82,7 @@
       <div class="tt-main-image-container">
         {%- if product.media.size > 0 -%}
           <div class="tt-main-image-zoom">
-            <img id="tt-primary-image" src="{{ product.featured_media | img_url: '1200x' }}" alt="{{ product.title | escape }}" loading="lazy">
+            <img id="tt-primary-image" src="{{ product.featured_media | image_url: width: 1200 }}" alt="{{ product.title | escape }}" loading="lazy">
           </div>
         {%- else -%}
           {{ 'product-1' | placeholder_svg_tag: 'ayus-placeholder-svg' }}

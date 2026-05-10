@@ -6,7 +6,7 @@
 
     
     
-  {% assign split_bg = section.settings.image | img_url: '800x' %}
+  {% assign split_bg = section.settings.image | image_url: width: 800 %}
   {% if section.settings.image == blank %}
     {% assign split_bg = 'https://images.unsplash.com/photo-1611078449942-9ce28014eeb5?q=80&w=1200' %}
   {% endif %}
