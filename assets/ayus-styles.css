@@ -1316,8 +1316,7 @@ html, body {
     width: 100%;
     min-height: 52px;
   }
-  .tt-mobile-header-left,
-  .ayus-nav-right {
+  .tt-mobile-header-left {
     width: 76px !important;
     min-width: 76px !important;
     display: flex !important;
@@ -1325,17 +1324,18 @@ html, body {
     gap: 12px !important;
     z-index: 4;
     padding: 0 !important;
-  }
-  .ayus-nav-right {
-    justify-content: flex-end !important;
-  }
-  .tt-mobile-header-left {
     justify-content: flex-start !important;
-  }
-  .tt-mobile-header-left {
     justify-self: start;
   }
   .ayus-nav-right {
+    width: 76px !important;
+    min-width: 76px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    z-index: 4;
+    padding: 0 !important;
+    justify-content: flex-end !important;
     justify-self: end;
   }
 
