@@ -2336,22 +2336,22 @@ details.ayus-accordion[open] > summary .ayus-icon-plus::after {
 
 /* Fix Judge.me stars aligning with bottom border */
 .ayus-pdp-stars .jdgm-preview-badge {
-  align-items: flex-end !important;
+  align-items: center !important;
 }
 .ayus-pdp-stars .jdgm-star {
   line-height: 1 !important;
 }
 .ayus-pdp-stars .jdgm-prev-badge__text {
-  position: relative !important;
-  top: -2px !important;
+  position: static !important;
+  top: auto !important;
 }
 .ayus-pdp-stars-custom {
   display: flex;
   align-items: center;
   gap: 10px;
   line-height: 1;
-  position: relative;
-  top: 3px;
+  position: static;
+  top: auto;
 }
 .ayus-pdp-stars-icons {
   letter-spacing: 0;
