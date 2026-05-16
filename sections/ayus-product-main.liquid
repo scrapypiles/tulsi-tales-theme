@@ -177,7 +177,8 @@
             <div class="tt-size-selector" style="width: 100%;">
               <span class="tt-control-label">{{ section.settings.size_label | default: 'Size:' }}</span>
               <div class="ayus-variant-pills" style="display: flex; flex-wrap: wrap; gap: 10px;">
-                {%- for variant in product.variants -%}
+                {%- assign sorted_variants = product.variants | sort: 'price' -%}
+                {%- for variant in sorted_variants -%}
                   <input type="radio" name="id" value="{{ variant.id }}" id="variant-{{ variant.id }}" class="ayus-variant-radio" data-price="{{ variant.price | money_with_currency }}" {% if variant == product.selected_or_first_available_variant %}checked{% endif %} style="display: none;">
                   <label for="variant-{{ variant.id }}" class="ayus-variant-label">
                     {%- if variant.title == 'Default Title' -%}
