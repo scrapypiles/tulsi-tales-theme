@@ -632,8 +632,8 @@
   .tt-qa-close { position: absolute; top: 15px; right: 15px; background: transparent; border: none; font-size: 32px; font-weight: 300; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--color-text); padding: 0; margin: 0; line-height: 1; z-index: 2; box-shadow: none; border-radius: 0; }
   
   .tt-qa-header-product { margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-right: 20px; }
-  .tt-qa-product-link { display: flex; gap: 20px; align-items: flex-start; width: 100%; color: inherit; text-decoration: none; cursor: pointer; }
-  .tt-qa-product-link:hover { opacity: 0.85; }
+  .tt-qa-product-link { display: flex; gap: 20px; align-items: flex-start; width: 100%; color: inherit; text-decoration: none; }
+  .tt-qa-product-link img:hover, .tt-qa-prod-title:hover { opacity: 0.85; }
   .tt-qa-prod-img { width: 90px; height: 90px; object-fit: cover; border: 1px solid var(--color-border); border-radius: 4px; }
   .tt-qa-prod-info { flex-grow: 1; }
   .tt-qa-prod-vendor { font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: #777; margin-bottom: 6px; display: block; }
@@ -688,7 +688,61 @@
     }
   }
 
-  function openQuickAddModal(handle) {
+  function openQuickAddModal(handle, btnElement = null) {
+    if (!btnElement && window.event && window.event.currentTarget) {
+      btnElement = window.event.currentTarget;
+    } else if (!btnElement && window.event && window.event.target) {
+      btnElement = window.event.target.closest('button');
+    }
+
+    if (window.innerWidth > 768) {
+      const originalText = btnElement ? btnElement.innerText : 'ADD TO BAG';
+      if (btnElement) {
+        btnElement.innerText = 'ADDING...';
+        btnElement.style.opacity = '0.7';
+      }
+      fetch('/products/' + handle + '.js')
+        .then(r => r.json())
+        .then(product => {
+          const selectedVariant = product.variants.find(v => v.available) || product.variants[0];
+          if (selectedVariant && selectedVariant.available) {
+            fetch(window.Shopify.routes.root + 'cart/add.js', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: selectedVariant.id, quantity: 1, sections: 'ayus-cart-drawer' })
+            })
+            .then(res => res.json())
+            .then(data => {
+              if (btnElement) {
+                btnElement.innerText = originalText;
+                btnElement.style.opacity = '1';
+              }
+              if (data.sections && data.sections['ayus-cart-drawer']) {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data.sections['ayus-cart-drawer'], 'text/html');
+                const newDrawerWrapper = doc.querySelector('.tt-cart-drawer-wrapper') || doc.body.firstElementChild;
+                if(newDrawerWrapper) {
+                  const newPanel = newDrawerWrapper.querySelector('.tt-cart-panel');
+                  const oldPanel = document.querySelector('.tt-cart-panel');
+                  if(newPanel && oldPanel) oldPanel.innerHTML = newPanel.innerHTML;
+                  const cartDrawer = document.getElementById('tt-cart-drawer');
+                  if (cartDrawer && !cartDrawer.classList.contains('is-open')) {
+                    cartDrawer.classList.add('is-open');
+                    document.body.style.overflow = 'hidden';
+                  }
+                }
+              }
+            });
+          } else {
+            if (btnElement) {
+              btnElement.innerText = 'SOLD OUT';
+              btnElement.style.opacity = '1';
+            }
+          }
+        });
+      return;
+    }
+
     document.getElementById('tt-qa-header-product').innerHTML = '';
     document.getElementById('tt-qa-variants').innerHTML = '<div style="text-align:center; padding: 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #888;">Loading...</div>';
     document.getElementById('tt-qa-overlay').classList.add('active');
@@ -707,19 +761,19 @@
         
         let headerHtml = '';
         let productUrl = '/products/' + product.handle;
-        headerHtml += '<a href="' + productUrl + '" class="tt-qa-product-link" onclick="closeQuickAdd()">';
+        headerHtml += '<div class="tt-qa-product-link">';
         if(imgUrl) {
-          headerHtml += '<img src="' + imgUrl + '" class="tt-qa-prod-img" alt="' + title + '">';
+          headerHtml += '<a href="' + productUrl + '" onclick="closeQuickAdd()" style="line-height:0; display:block;"><img src="' + imgUrl + '" class="tt-qa-prod-img" alt="' + title + '"></a>';
         }
         headerHtml += '<div class="tt-qa-prod-info">';
         headerHtml += '<span class="tt-qa-prod-vendor">' + vendor + '</span>';
-        headerHtml += '<h4 class="tt-qa-prod-title">' + title + '</h4>';
+        headerHtml += '<a href="' + productUrl + '" onclick="closeQuickAdd()" style="text-decoration:none;color:inherit;"><h4 class="tt-qa-prod-title">' + title + '</h4></a>';
         if(descText) {
           headerHtml += '<div class="tt-qa-prod-desc">' + descText + '</div>';
         }
-        headerHtml += '</div>';
-        headerHtml += '</a>';
         headerHtml += '<a href="' + productUrl + '" class="tt-qa-view-product" onclick="closeQuickAdd()">View full details</a>';
+        headerHtml += '</div>';
+        headerHtml += '</div>';
         
         document.getElementById('tt-qa-header-product').innerHTML = headerHtml;
 
