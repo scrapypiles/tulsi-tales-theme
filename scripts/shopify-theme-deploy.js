@@ -3,9 +3,9 @@ const fs = require('fs');
 const path = require('path');
 
 const SHOP = '5iib0q-9y.myshopify.com';
-const TOKEN = fs.readFileSync('/home/acharya-kln/.openclaw/workspace/shopify_access_token.txt', 'utf8').trim();
+const TOKEN = fs.readFileSync('/home/ubuntu/.nanobot/workspace/shopify_access_token.txt', 'utf8').trim();
 const THEME_ID = 182982246700;
-const ROOT = '/home/acharya-kln/.openclaw/workspace/tulsi-tales-theme';
+const ROOT = '/home/ubuntu/.nanobot/workspace/tulsi-tales-theme';
 const SOURCE_DIRS = ['layout', 'templates', 'sections', 'assets', 'config', 'snippets'];
 
 function sleep(ms) {
