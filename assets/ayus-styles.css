@@ -207,7 +207,7 @@ h6 {
 .ayus-footer {
   border-top: 1px solid var(--color-border);
   padding: 60px 20px;
-  
+  text-align: center;
   margin-top: 80px;
 }
 .ayus-footer p {
@@ -228,7 +228,7 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  text-align: center;
 }
 .ayus-hero-overlay {
   position: absolute;
@@ -269,7 +269,7 @@ h6 {
   padding: 80px 40px;
 }
 .ayus-featured-collection h2 {
-  
+  text-align: center;
   font-size: 36px;
   margin-bottom: 60px;
 }
@@ -288,7 +288,7 @@ h6 {
   transform: scale(1.05);
 }
 .ayus-card-info {
-  
+  text-align: center;
 
   padding-top: 15px !important; /* Match original purearth reference */
 }
@@ -297,9 +297,7 @@ h6 {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--color-accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   margin-bottom: 8px;
 }
 .ayus-card-title {
@@ -308,7 +306,7 @@ h6 {
   margin-bottom: 10px;
 }
 .ayus-center-btn {
-  
+  text-align: center;
   margin-top: 60px;
 }
 
@@ -316,7 +314,7 @@ h6 {
 .ayus-philosophy {
   background: #eae6df;
   padding: 100px 20px;
-  
+  text-align: center;
 }
 .ayus-philosophy-content {
   max-width: 800px;
@@ -337,7 +335,7 @@ h6 {
   min-height: 60vh;
 }
 .ayus-page-title {
-  
+  text-align: center;
   font-size: 42px;
   margin-bottom: 60px;
 }
@@ -353,9 +351,7 @@ h6 {
 }
 .ayus-cart-item-image img {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
 }
 .ayus-cart-item-details {
   flex-grow: 1;
@@ -366,9 +362,7 @@ h6 {
   font-size: 20px;
   color: var(--color-text);
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   margin-bottom: 5px;
 }
 .ayus-cart-item-vendor {
@@ -380,7 +374,7 @@ h6 {
 .ayus-qty-input {
   width: 60px;
   padding: 10px;
-  
+  text-align: center;
   border: 1px solid var(--color-border);
   background: transparent;
 }
@@ -414,7 +408,7 @@ h6 {
   gap: 20px;
 }
 .ayus-cart-buttons .ayus-empty-cart {
-  
+  text-align: center;
   padding: 100px 0;
 }
 .ayus-empty-cart p {
@@ -427,7 +421,7 @@ h6 {
 .tt-announcement-bar {
   background-color: var(--color-accent);
   color: #fff;
-  
+  text-align: center;
   padding: 8px 20px;
   font-size: 12px;
   letter-spacing: 0.05em;
@@ -445,7 +439,7 @@ h6 {
 
 .tt-shop-by-section {
   background-color: #fff;
-  
+  text-align: center;
 }
 .tt-shop-by-section h2 {
   font-size: 32px;
@@ -537,7 +531,7 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  text-align: center;
 }
 
 /* Product Page Additions (Zoom, Thumbnails, Recommendations) */
@@ -584,9 +578,7 @@ h6 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
 }
 
 /* Main Image Zoom Container */
@@ -670,9 +662,7 @@ h6 {
   color: #888;
   margin-right: 0;
   margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
 }
 .tt-size-value {
   font-size: 14px;
@@ -687,7 +677,7 @@ h6 {
 .tt-qty-box input {
   width: 38px;
   flex: 0 0 38px;
-  
+  text-align: center;
   border: none;
   border-left: 1px solid var(--color-border);
   border-right: 1px solid var(--color-border);
@@ -718,16 +708,13 @@ h6 {
   background: transparent;
   border: none;
   padding: 0;
-  margin: 0;
   cursor: pointer;
   color: var(--color-text);
   font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  
-  height: 100%;
+  height: auto;
   align-self: stretch;
   width: 38px;
   flex: 0 0 38px;
@@ -735,7 +722,7 @@ h6 {
 #tt-qty-input {
   width: 38px;
   flex: 0 0 38px;
-  
+  text-align: center;
   border: none;
   border-left: 1px solid var(--color-border);
   border-right: 1px solid var(--color-border);
@@ -822,7 +809,7 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  text-align: center;
   color: #fff;
   margin-bottom: 40px;
   background-size: cover;
@@ -979,7 +966,7 @@ h6 {
 
 /* Empty State */
 .tt-empty-state {
-  
+  text-align: center;
   padding: 60px 0;
   grid-column: 1 / -1;
 }
@@ -1008,9 +995,7 @@ h6 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 .tt-search-bar-dropdown.active {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
 }
 .tt-search-form {
   max-width: 600px;
@@ -1275,7 +1260,7 @@ h6 {
   align-items: center !important;
   justify-content: center !important;
   line-height: normal !important;
-  
+  text-align: center;
   padding: 0;
   font-weight: 700;
 }
@@ -1375,9 +1360,7 @@ html, body {
   .ayus-mobile-toggle svg {
     width: 34px !important;
     height: 34px !important;
-    display: flex;
-  align-items: center;
-  justify-content: center;
+    display: block;
     stroke-width: 1.8 !important;
   }
   .ayus-logo {
@@ -1429,9 +1412,7 @@ html, body {
   .tt-icon-link svg {
     width: 28px !important;
     height: 28px !important;
-    display: flex;
-  align-items: center;
-  justify-content: center;
+    display: block;
     stroke-width: 1.7 !important;
   }
   .tt-cart-badge {
@@ -1805,9 +1786,7 @@ html, body {
     color: #555 !important;
     text-decoration: none !important;
     padding: 8px 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    display: block !important;
   }
 
   /* Distinct Auth Footer area */
@@ -2520,7 +2499,7 @@ details[open] > summary .tt-icon-plus::after {
 /* SAFE HOMEPAGE COLOR FIXES */
 .tt-shop-by-section {
   background-color: #ffffff;
-  
+  text-align: center;
 }
 .tt-shop-by-section h2 {
   margin-top: 0;
@@ -2692,14 +2671,14 @@ details > summary::-webkit-details-marker {
 /* Elegant Bottom Button */
 .ayus-reviews-title {
   margin: 0 0 30px 0;
-  
+  text-align: center;
   font-family: var(--font-heading);
   font-size: 32px;
   font-weight: 400;
   color: var(--color-text);
 }
 .ayus-review-bottom-action {
-  
+  text-align: center;
   margin-top: 20px;
 }
 .ayus-btn-elegant {
@@ -2946,9 +2925,7 @@ details > summary::-webkit-details-marker {
   padding-bottom: 125% !important; /* Strict 4:5 ratio for EVERY product card */
   /* overflow: hidden removed to fix sticky */
   background: #ffffff !important;
-  display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+  display: block !important;
   margin-bottom: 0 !important; /* Stitched to info block */
 }
 
@@ -3130,7 +3107,7 @@ details > summary::-webkit-details-marker {
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  text-align: center;
   background-color: #F7F5F0;
 }
 .contact-banner::before {
@@ -3151,9 +3128,7 @@ details > summary::-webkit-details-marker {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   margin-bottom: 15px;
 }
 .contact-title {
@@ -3271,20 +3246,19 @@ details > summary::-webkit-details-marker {
     align-items: stretch !important;
   }
   .tt-qty-box.tt-cart-qty .tt-qty-btn {
-  user-select: none;
     flex: 0 0 25px !important;
     width: 25px !important;
     height: 100% !important;
     background: transparent !important;
     border: none !important;
     padding: 0 !important;
+     /* Optical adjustment for + and - */
     margin: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    text-align: center !important;
     font-size: 18px !important;
-    
+    line-height: 0 !important;
     color: #333 !important;
   }
   .tt-qty-box.tt-cart-qty input {
@@ -3399,9 +3373,7 @@ details > summary::-webkit-details-marker {
     display: none !important; /* hide desktop gallery */
   }
   .tt-mobile-carousel {
-    display: flex;
-  align-items: center;
-  justify-content: center;
+    display: block;
     width: 100%;
     order: 1 !important;
     margin-bottom: 0 !important;
@@ -3428,9 +3400,7 @@ details > summary::-webkit-details-marker {
     width: 100%;
     height: auto;
     object-fit: cover;
-    display: flex;
-  align-items: center;
-  justify-content: center;
+    display: block;
     aspect-ratio: 1 / 1;
   }
   .tt-mobile-carousel-dots {
@@ -3574,9 +3544,8 @@ details > summary::-webkit-details-marker {
     min-height: 42px !important;
     box-sizing: border-box !important;
   }
-  .tt-qty-box input { height: 100% !important; }
+  .tt-qty-box input { height: 100% !important; } 
   .tt-qty-btn {
-  user-select: none;
-    height: 100% !important; display: flex !important; align-items: center !important; justify-content: center !important; padding: 0 !important; margin: 0 !important;
+    height: 100% !important; display: flex !important; align-items: center !important; justify-content: center !important; 
   }
 }
