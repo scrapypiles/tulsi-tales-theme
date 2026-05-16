@@ -193,9 +193,9 @@
             <div class="tt-quantity-selector" style="width: 100%;">
               <span class="tt-control-label">{{ section.settings.quantity_label | default: 'Quantity:' }}</span>
               <div class="tt-qty-box" style="display: flex;">
-                <button type="button" class="tt-qty-btn tt-qty-minus">−</button>
+                <span class="tt-qty-btn tt-qty-minus" role="button" tabindex="0">−</span>
                 <input type="number" name="quantity" id="tt-qty-input" value="1" min="1">
-                <button type="button" class="tt-qty-btn tt-qty-plus">+</button>
+                <span class="tt-qty-btn tt-qty-plus" role="button" tabindex="0">+</span>
               </div>
             </div> <!-- end quantity selector -->
           </div> <!-- end commerce controls -->
