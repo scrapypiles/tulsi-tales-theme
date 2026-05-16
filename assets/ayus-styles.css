@@ -707,13 +707,14 @@ h6 {
   background: transparent;
   border: none;
   padding: 0;
+  margin: 0;
   cursor: pointer;
   color: var(--color-text);
   font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: auto;
+  display: block;
+  text-align: center;
+  line-height: 36px;
+  height: 100%;
   align-self: stretch;
   width: 38px;
   flex: 0 0 38px;
@@ -3251,13 +3252,11 @@ details > summary::-webkit-details-marker {
     background: transparent !important;
     border: none !important;
     padding: 0 !important;
-    padding-bottom: 2px !important; /* Optical adjustment for + and - */
     margin: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    display: block !important;
+    text-align: center !important;
     font-size: 18px !important;
-    line-height: 0 !important;
+    line-height: 30px !important;
     color: #333 !important;
   }
   .tt-qty-box.tt-cart-qty input {
@@ -3543,8 +3542,8 @@ details > summary::-webkit-details-marker {
     min-height: 42px !important;
     box-sizing: border-box !important;
   }
-  .tt-qty-box input { height: 100% !important; } 
+  .tt-qty-box input { height: 100% !important; }
   .tt-qty-btn {
-    height: 100% !important; display: flex !important; align-items: center !important; justify-content: center !important; padding-bottom: 2px !important;
+    height: 100% !important; display: block !important; line-height: 40px !important; text-align: center !important; padding: 0 !important; margin: 0 !important;
   }
 }
