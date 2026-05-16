@@ -3543,8 +3543,8 @@ details > summary::-webkit-details-marker {
     min-height: 42px !important;
     box-sizing: border-box !important;
   }
-  .tt-qty-box input, 
+  .tt-qty-box input { height: 100% !important; } 
   .tt-qty-btn {
-    height: auto !important; /* Relies on align-items: stretch */
+    height: 100% !important; display: flex !important; align-items: center !important; justify-content: center !important; padding-bottom: 2px !important;
   }
 }

@@ -191,7 +191,7 @@
             </div>
             
             <div class="tt-quantity-selector" style="width: 100%;">
-              <span class="tt-control-label">Quantity</span>
+              <span class="tt-control-label">{{ section.settings.quantity_label | default: 'Quantity:' }}</span>
               <div class="tt-qty-box" style="display: flex;">
                 <button type="button" class="tt-qty-btn tt-qty-minus">−</button>
                 <input type="number" name="quantity" id="tt-qty-input" value="1" min="1">
