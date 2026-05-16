@@ -178,8 +178,10 @@
               <span class="tt-control-label">{{ section.settings.size_label | default: 'Size:' }}</span>
               <div class="ayus-variant-pills" style="display: flex; flex-wrap: wrap; gap: 10px;">
                 {%- for variant in product.variants -%}
-                  <input type="radio" name="id" value="{{ variant.id }}" id="variant-{{ variant.id }}" class="ayus-variant-radio" data-price="{{ variant.price | money_with_currency }}" {% if variant == product.selected_or_first_available_variant %}checked{% endif %} style="display: none; order: {{ variant.price }};">
-                  <label for="variant-{{ variant.id }}" class="ayus-variant-label" style="order: {{ variant.price }};">
+                  {%- assign sort_val = variant.title | plus: 0 -%}
+                  {%- if sort_val == 0 -%}{%- assign sort_val = 9999 -%}{%- endif -%}
+                  <input type="radio" name="id" value="{{ variant.id }}" id="variant-{{ variant.id }}" class="ayus-variant-radio" data-price="{{ variant.price | money_with_currency }}" {% if variant == product.selected_or_first_available_variant %}checked{% endif %} style="display: none; order: {{ sort_val }};">
+                  <label for="variant-{{ variant.id }}" class="ayus-variant-label" style="order: {{ sort_val }};">
                     {%- if variant.title == 'Default Title' -%}
                       {%- if product.metafields.custom.pack_size != blank -%}{{ product.metafields.custom.pack_size }}{%- else -%}Standard Size{%- endif -%}
                     {%- else -%}
