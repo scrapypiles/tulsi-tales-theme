@@ -3527,3 +3527,24 @@ details > summary::-webkit-details-marker {
   border-color: var(--color-accent) !important;
   color: #fff !important;
 }
+
+/* Mobile PDP sizing fixes for Quantity and Size blocks */
+@media (max-width: 768px) {
+  .ayus-variant-label {
+    height: 42px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+  }
+  .tt-qty-box {
+    height: 42px !important;
+    min-height: 42px !important;
+    box-sizing: border-box !important;
+  }
+  .tt-qty-box input, 
+  .tt-qty-btn {
+    height: auto !important; /* Relies on align-items: stretch */
+  }
+}
